@@ -73,3 +73,7 @@ python scripts/validate.py
 ## 参与贡献
 
 欢迎补充真实面试题、修正事实错误、更新过时产品能力或改进答案。提交前请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。如果发现模型幻觉或协议描述不准确，可使用“内容纠错”Issue 模板，并尽量附上官方资料。
+
+## License
+
+本项目采用 [MIT License](LICENSE)。
