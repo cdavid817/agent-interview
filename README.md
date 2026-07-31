@@ -2,9 +2,9 @@
 
 [![Validate](https://github.com/cdavid817/agent-interview/actions/workflows/validate.yml/badge.svg)](https://github.com/cdavid817/agent-interview/actions/workflows/validate.yml)
 
-一套面向 **AI Agent / 大模型应用工程师** 的中文面试题库，覆盖架构、任务执行、上下文、工具、多 Agent、模型、安全和工程落地八个方向。
+一套面向 **AI Agent / 大模型应用工程师** 的中文面试题库，覆盖架构、任务执行、上下文、工具、多 Agent、模型、安全、工程落地、RAG 和 Transformer 十个方向。
 
-项目当前收录 **1,731 道问题及参考答案**。内容强调工程边界、失败处理、验证指标和生产实践，不把模型生成的设计推演当成产品已实现能力。
+项目当前收录 **1,760 道问题及参考答案**。内容强调工程边界、失败处理、验证指标和生产实践，不把模型生成的设计推演当成产品已实现能力。
 
 ## 内容导航
 
@@ -12,13 +12,15 @@
 |---|---:|---|
 | [一、Agent 核心架构](docs/一、Agent核心架构.md) | 114 | 分层架构、Runtime、Harness、框架与 OpenClaw |
 | [二、任务规划与执行](docs/二、任务规划与执行.md) | 311 | 任务识别、规划、ReAct、Reflection、恢复 |
-| [三、上下文与知识系统](docs/三、上下文与知识系统.md) | 391 | Context、Memory、RAG、向量库、知识图谱 |
+| [三、上下文与知识系统](docs/三、上下文与知识系统.md) | 206 | Context、Memory、状态恢复、压缩与权限 |
 | [四、工具与能力体系](docs/四、工具与能力体系.md) | 239 | Tool Calling、MCP、鉴权、沙箱、幂等 |
 | [五、多 Agent 与协作](docs/五、多Agent与协作.md) | 34 | 选型、Supervisor、通信、冲突和协作评测 |
-| [六、模型能力与成本](docs/六、模型能力与成本.md) | 206 | 路由、缓存、Token、微调、Transformer |
+| [六、模型能力与成本](docs/六、模型能力与成本.md) | 160 | 路由、缓存、Token、微调、流式输出 |
 | [七、安全、治理与可观测性](docs/七、安全、治理与可观测性.md) | 191 | 幻觉、注入、权限、评测、Tracing、SLO |
 | [八、工程落地与平台化](docs/八、工程落地与平台化.md) | 245 | PromptOps、Coding Agent、单测、多模态、KPI |
-| **合计** | **1,731** |  |
+| [九、RAG](docs/九、RAG.md) | 200 | 切分、Embedding、混合召回、重排、索引与评测 |
+| [十、Transformer](docs/十、Transformer.md) | 60 | Attention、位置编码、MoE、长上下文与推理优化 |
+| **合计** | **1,760** |  |
 
 ## 如何使用
 
@@ -31,9 +33,9 @@
 
 ### 建议学习路径
 
-- **入门**：核心架构 → 任务规划基础 → Tool Calling → Context/RAG 基础。
-- **进阶**：状态与恢复 → 多模型路由 → MCP → 多 Agent → 评测与可观测。
-- **高级/架构岗**：多租户平台 → 成本与容量 → 安全治理 → Coding Agent → 业务 KPI。
+- **入门**：核心架构 → Transformer 基础 → Tool Calling → Context/Memory → RAG 基础。
+- **进阶**：状态与恢复 → 混合检索与重排 → 多模型路由 → MCP → 多 Agent → 评测与可观测。
+- **高级/架构岗**：RAG 生产治理 → 推理优化 → 多租户平台 → 成本与容量 → 安全治理 → Coding Agent → 业务 KPI。
 
 ### 模拟面试
 
@@ -55,7 +57,7 @@
 agent-interview/
 ├─ README.md
 ├─ CONTRIBUTING.md
-├─ docs/                  # 八个主题题库
+├─ docs/                  # 十个主题题库
 ├─ scripts/validate.py    # 题号、格式和统计校验
 └─ .github/               # CI 与内容纠错模板
 ```

@@ -13,12 +13,14 @@ DOCS = ROOT / "docs"
 EXPECTED = {
     "一、Agent核心架构.md": 114,
     "二、任务规划与执行.md": 311,
-    "三、上下文与知识系统.md": 391,
+    "三、上下文与知识系统.md": 206,
     "四、工具与能力体系.md": 239,
     "五、多Agent与协作.md": 34,
-    "六、模型能力与成本.md": 206,
+    "六、模型能力与成本.md": 160,
     "七、安全、治理与可观测性.md": 191,
     "八、工程落地与平台化.md": 245,
+    "九、RAG.md": 200,
+    "十、Transformer.md": 60,
 }
 QUESTION_RE = re.compile(r"^####\s+(\d+)、(.+?)\s*$", re.MULTILINE)
 LOCAL_LINK_RE = re.compile(r"\[[^\]]+\]\((?!https?://|#)([^)]+)\)")
@@ -102,8 +104,8 @@ def main() -> int:
         print(f"{status:4}  {expected_count:4}  {name}")
 
     errors.extend(validate_readme_links())
-    if total != 1731:
-        errors.append(f"总题数应为 1731，配置值为 {total}")
+    if total != 1760:
+        errors.append(f"总题数应为 1760，配置值为 {total}")
 
     print("-" * 58)
     print(f"Total: {total}")
