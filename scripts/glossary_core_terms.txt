@@ -1,0 +1,156 @@
+# Agent 与框架
+Agent
+LLM
+Agent Runtime
+Agent Harness
+Agent SDK
+Subagent
+Multi-Agent
+OpenClaw
+Claude Code
+LangGraph
+AutoGen
+CrewAI
+Semantic Kernel
+OpenAI Agents SDK
+MCP
+A2A
+ACP
+Workspace
+Session
+Gateway
+
+# 规划与编排
+ReAct
+Planner
+Workflow
+DAG
+State Machine
+Checkpoint
+Task Decomposition
+Reflection
+Human-in-the-loop
+
+# 模型与推理
+Transformer
+Attention
+Self-Attention
+Token
+Tokenizer
+Context Window
+KV Cache
+Embedding
+Rerank
+RLHF
+DPO
+LoRA
+Quantization
+Temperature
+Top-p
+
+# Prompt 与上下文
+Prompt
+System Prompt
+Few-shot
+Zero-shot
+Chain-of-Thought
+Context Engineering
+Structured Output
+Prompt Injection
+
+# RAG 与向量检索
+RAG
+GraphRAG
+BM25
+Hybrid Search
+RRF
+Cross-Encoder
+Chunking
+Vector Search
+Citation
+Grounding
+Hallucination
+HNSW
+ANN
+FAISS
+Milvus
+Qdrant
+Pinecone
+Weaviate
+Chroma
+pgvector
+
+# 记忆系统
+Memory
+Working Memory
+Short-term Memory
+Long-term Memory
+Episodic Memory
+Semantic Memory
+Memory Retrieval
+Memory Consolidation
+
+# 工具与工程能力
+Tool Calling
+Function Calling
+JSON Schema
+Skill
+Hook
+Plugin
+Browser
+Shell
+Computer Use
+CLAUDE.md
+AGENTS.md
+Git Worktree
+
+# 安全与治理
+Jailbreak
+Least Privilege
+RBAC
+ABAC
+OAuth
+JWT
+Sandbox
+Guardrail
+PII
+Secret
+Audit
+Zero Trust
+
+# 可观测性
+OpenTelemetry
+Trace
+Span
+Metrics
+Logs
+SLO
+SLA
+P95
+P99
+
+# 评测
+LLM-as-a-Judge
+Benchmark
+Golden Dataset
+pass@k
+Accuracy
+Precision
+Recall
+F1
+MRR
+NDCG
+A/B Testing
+
+# 稳定性与发布
+Idempotency
+Retry
+Exponential Backoff
+Circuit Breaker
+Rate Limiting
+Cache
+Event Sourcing
+Saga
+Outbox
+Canary
+Feature Flag

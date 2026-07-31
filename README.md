@@ -2,25 +2,27 @@
 
 [![Validate](https://github.com/cdavid817/agent-interview/actions/workflows/validate.yml/badge.svg)](https://github.com/cdavid817/agent-interview/actions/workflows/validate.yml)
 
-一套面向 **AI Agent / 大模型应用工程师** 的中文面试题库，覆盖架构、任务执行、上下文、工具、多 Agent、模型、安全、工程落地、RAG 和 Transformer 十个方向。
+一套面向 **AI Agent / 大模型应用工程师** 的中文面试题库，覆盖架构、任务执行、上下文、工具、多 Agent、模型、安全、工程落地、RAG、Transformer、OpenClaw 和 Claude Code 十二个方向。
 
-项目当前收录 **1,760 道问题及参考答案**。内容强调工程边界、失败处理、验证指标和生产实践，不把模型生成的设计推演当成产品已实现能力。
+项目当前收录 **1,820 道问题及参考答案**。内容强调工程边界、失败处理、验证指标和生产实践，不把模型生成的设计推演当成产品已实现能力。
 
 ## 内容导航
 
 | 章节 | 题数 | 主要内容 |
 |---|---:|---|
-| [一、Agent 核心架构](docs/一、Agent核心架构.md) | 114 | 分层架构、Runtime、Harness、框架与 OpenClaw |
-| [二、任务规划与执行](docs/二、任务规划与执行.md) | 311 | 任务识别、规划、ReAct、Reflection、恢复 |
+| [一、Agent 核心架构](docs/一、Agent核心架构.md) | 87 | 分层架构、Runtime、Harness、框架与平台化 |
+| [二、任务规划与执行](docs/二、任务规划与执行.md) | 307 | 任务识别、规划、ReAct、Reflection、恢复 |
 | [三、上下文与知识系统](docs/三、上下文与知识系统.md) | 206 | Context、Memory、状态恢复、压缩与权限 |
-| [四、工具与能力体系](docs/四、工具与能力体系.md) | 239 | Tool Calling、MCP、鉴权、沙箱、幂等 |
+| [四、工具与能力体系](docs/四、工具与能力体系.md) | 237 | Tool Calling、MCP、鉴权、沙箱、幂等 |
 | [五、多 Agent 与协作](docs/五、多Agent与协作.md) | 34 | 选型、Supervisor、通信、冲突和协作评测 |
 | [六、模型能力与成本](docs/六、模型能力与成本.md) | 160 | 路由、缓存、Token、微调、流式输出 |
 | [七、安全、治理与可观测性](docs/七、安全、治理与可观测性.md) | 191 | 幻觉、注入、权限、评测、Tracing、SLO |
-| [八、工程落地与平台化](docs/八、工程落地与平台化.md) | 245 | PromptOps、Coding Agent、单测、多模态、KPI |
+| [八、工程落地与平台化](docs/八、工程落地与平台化.md) | 202 | PromptOps、Coding Agent、单测、多模态、KPI |
 | [九、RAG](docs/九、RAG.md) | 200 | 切分、Embedding、混合召回、重排、索引与评测 |
 | [十、Transformer](docs/十、Transformer.md) | 60 | Attention、位置编码、MoE、长上下文与推理优化 |
-| **合计** | **1,760** |  |
+| [十一、OpenClaw](docs/十一、OpenClaw.md) | 56 | Gateway、渠道、记忆、工具、沙箱、自动化与生产治理 |
+| [十二、Claude Code](docs/十二、ClaudeCode.md) | 80 | Agent Loop、代码上下文、权限、Hooks、MCP、Agent SDK 与企业落地 |
+| **合计** | **1,820** |  |
 
 ## 如何使用
 
@@ -57,7 +59,9 @@
 agent-interview/
 ├─ README.md
 ├─ CONTRIBUTING.md
-├─ docs/                  # 十个主题题库
+├─ Agent 名词解释.md      # 全部题目相关知识点分类索引
+├─ docs/                  # 十二个主题题库
+├─ scripts/build_glossary.ps1
 ├─ scripts/validate.py    # 题号、格式和统计校验
 └─ .github/               # CI 与内容纠错模板
 ```
@@ -67,10 +71,11 @@ agent-interview/
 需要 Python 3.9 或更高版本：
 
 ```bash
+pwsh -File scripts/build_glossary.ps1
 python scripts/validate.py
 ```
 
-校验内容包括文件是否齐全、题号是否连续、题目与答案是否为空、章节题数和总题数是否正确，以及 README 本地链接是否有效。
+第一条命令从全部章节同步“相关知识点”到分类术语表。校验内容包括文件是否齐全、题号是否连续、题目与答案是否为空、章节题数和总题数是否正确、名词解释覆盖是否完整，以及 README 本地链接是否有效。
 
 ## 参与贡献
 

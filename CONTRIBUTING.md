@@ -42,9 +42,10 @@
 1. Fork 仓库并创建主题分支；
 2. 修改对应 `docs/` 文件；
 3. 保证该文件题号从 1 连续递增；
-4. 运行校验：
+4. 同步名词解释并运行校验：
 
    ```bash
+   pwsh -File scripts/build_glossary.ps1
    python scripts/validate.py
    ```
 
