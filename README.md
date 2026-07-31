@@ -4,7 +4,7 @@
 
 一套面向 **AI Agent / 大模型应用工程师** 的中文面试题库，覆盖架构、任务执行、上下文、工具、多 Agent、模型、安全、工程落地、RAG、Transformer、OpenClaw 和 Claude Code 十二个方向。
 
-项目当前收录 **1,820 道问题及参考答案**。内容强调工程边界、失败处理、验证指标和生产实践，不把模型生成的设计推演当成产品已实现能力。
+项目当前收录 **1,840 道问题及参考答案**。内容强调工程边界、失败处理、验证指标和生产实践，不把模型生成的设计推演当成产品已实现能力。
 
 ## 内容导航
 
@@ -21,8 +21,8 @@
 | [九、RAG](docs/九、RAG.md) | 200 | 切分、Embedding、混合召回、重排、索引与评测 |
 | [十、Transformer](docs/十、Transformer.md) | 60 | Attention、位置编码、MoE、长上下文与推理优化 |
 | [十一、OpenClaw](docs/十一、OpenClaw.md) | 56 | Gateway、渠道、记忆、工具、沙箱、自动化与生产治理 |
-| [十二、Claude Code](docs/十二、ClaudeCode.md) | 80 | Agent Loop、代码上下文、权限、Hooks、MCP、Agent SDK 与企业落地 |
-| **合计** | **1,820** |  |
+| [十二、Claude Code](docs/十二、ClaudeCode.md) | 100 | Agent Loop、消息生命周期、上下文原理、Prompt Cache、权限、Hooks、MCP 与 Agent SDK |
+| **合计** | **1,840** |  |
 
 ## 如何使用
 

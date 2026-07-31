@@ -1,8 +1,8 @@
 # Agent 名词解释
 
-> 本文件保留在面试题「相关知识点」中至少出现 **5** 次的术语，并补充 Agent 领域核心术语；共 **676** 个去重术语，按 12 个主题分类。
+> 本文件保留在面试题「相关知识点」中至少出现 **5** 次的术语，并补充 Agent 领域核心术语；共 **677** 个去重术语，按 12 个主题分类。
 >
-> 当前覆盖 `docs/` 下 **12** 个章节、**1707** 处「相关知识点」。筛选规则由 `scripts/glossary_core_terms.txt` 与最小出现次数共同维护。
+> 当前覆盖 `docs/` 下 **12** 个章节、**1727** 处「相关知识点」。筛选规则由 `scripts/glossary_core_terms.txt` 与最小出现次数共同维护。
 
 ## 一、架构设计类
 
@@ -516,15 +516,16 @@
 50. Policy Engine
 51. Prompt Injection
 52. RBAC
-53. Risk Score
-54. Sandbox
-55. SBOM
-56. seccomp
-57. Secret
-58. SSO
-59. Unknown State
-60. Vault
-61. Zero Trust
+53. Retention Policy
+54. Risk Score
+55. Sandbox
+56. SBOM
+57. seccomp
+58. Secret
+59. SSO
+60. Unknown State
+61. Vault
+62. Zero Trust
 
 ## 十、可观测性类
 

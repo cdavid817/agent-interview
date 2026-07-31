@@ -23,7 +23,7 @@ EXPECTED = {
     "九、RAG.md": 200,
     "十、Transformer.md": 60,
     "十一、OpenClaw.md": 56,
-    "十二、ClaudeCode.md": 80,
+    "十二、ClaudeCode.md": 100,
 }
 QUESTION_RE = re.compile(r"^####\s+(\d+)、(.+?)\s*$", re.MULTILINE)
 LOCAL_LINK_RE = re.compile(r"\[[^\]]+\]\((?!https?://|#)([^)]+)\)")
@@ -286,8 +286,8 @@ def main() -> int:
             GLOSSARY_ITEM_RE.findall(GLOSSARY.read_text(encoding="utf-8-sig"))
         )
         print(f"{glossary_status:4}  {glossary_count:4}  {GLOSSARY.name}")
-    if total != 1820:
-        errors.append(f"总题数应为 1820，配置值为 {total}")
+    if total != 1840:
+        errors.append(f"总题数应为 1840，配置值为 {total}")
 
     print("-" * 58)
     print(f"Total: {total}")

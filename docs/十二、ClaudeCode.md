@@ -1,6 +1,6 @@
 # 十二、Claude Code
 
-> 本章共 **80** 题，覆盖 Claude Code 的 Agent Loop、代码库探索、上下文与项目记忆、工具与权限、Hooks、MCP、Subagents、Agent Teams、Checkpoint、Agent SDK、CI/CD、可观测性和企业治理。
+> 本章共 **100** 题，覆盖 Claude Code 的 Agent Loop、请求与消息生命周期、上下文与Prompt Cache、代码库探索、工具与权限、Hooks、MCP、Subagents、Agent Teams、Checkpoint、Agent SDK、CI/CD、可观测性和企业治理。
 >
 > 内容按 **2026-07-31** 可访问的 Claude Code 官方文档核验。不同终端、IDE、Desktop、Web、订阅方案和模型Provider的功能可能不同，面试回答应给出版本与运行Surface，避免把建议架构描述成产品内部实现。
 
@@ -1123,12 +1123,258 @@ Hooks部署在**动作前阻断、动作后验证、任务结束汇总**三个�
 
 ---
 
+## 原理深入专题
+
+#### 81、Claude模型本身是无状态的，Claude Code为什么能表现为持续工作的Agent？
+模型API的单次请求本身不保存上一轮状态。持续性来自Claude Code这个**Agent Harness**：它保存Session Transcript和工作目录状态，在下一轮请求中重新组装系统提示、项目上下文、历史消息、工具定义及最新工具结果。
+
+因此需要区分三类状态：
+
+1. 模型上下文状态：当前请求中可见的Token，受窗口和Compaction限制。
+2. Harness状态：Session ID、Transcript、权限模式、任务和工具调用记录。
+3. 外部环境状态：文件、Git、进程、数据库和远程服务中的真实副作用。
+
+恢复Transcript只能恢复对话状态，不能自动回滚或重建外部环境。面试中不应把连续行为解释成“模型内部一直记得”，也不能把Claude Code公开可观察的Harness机制扩写成未公开的模型内部实现。
+
+**相关知识点：** Stateless Model、Agent Harness、Session Transcript、Context Reconstruction、External State、状态分层。
+
+---
+
+#### 82、Claude Code的一次Agent Turn在消息层面经历哪些阶段？
+一个Turn通常从当前上下文发给模型开始。模型返回包含文本和一个或多个`tool_use`请求的Assistant Message；Runtime校验工具名和参数，执行权限、Hook与工具逻辑，再把带对应调用ID的`tool_result`回灌给模型。模型基于新证据继续请求工具或返回不含工具调用的最终回复。
+
+独立的读取或搜索可以并行执行，存在数据依赖的动作必须串行。例如先读取文件再生成精确Edit，不能把读和写作为无依赖调用并行。工具失败也应作为结构化Observation回灌，而不是由宿主静默吞掉。
+
+CLI显示的一条回复、一次API请求、一个Turn和一个完整任务不是同一概念。模型停止调用工具只代表Loop到达协议终点，不等于测试通过或业务目标完成。
+
+**相关知识点：** Assistant Message、tool_use、tool_result、Tool Call ID、Turn、Parallel Tool Use、Protocol Termination。
+
+---
+
+#### 83、Claude Code的Agent Loop为什么能够根据执行结果动态调整，而不是一次性执行固定计划？
+模型每次只基于**当前可见状态**决定下一步，工具结果会成为下一轮的新Observation。测试失败、文件内容与预期不同或权限被拒绝都会改变后续决策，因此计划本质上是滚动更新的，而不是启动时生成后机械执行。
+
+这个机制类似`observe → decide → act → observe`的闭环：模型负责概率性判断，工具提供外部证据，Harness负责消息传递和执行控制。Plan或Todo可以稳定目标和顺序，但不会把模型转换为确定性工作流引擎。
+
+可靠性来自外部闭环：每次修改后运行Validator，失败必须产生新证据或改变策略；连续重复相同调用时由最大Turn、预算、无进展检测或人工中断停止。
+
+**相关知识点：** Closed-loop Control、Rolling Plan、Observation、Replanning、Validator、No-progress Detection。
+
+---
+
+#### 84、工具Schema和工具描述为什么会影响Claude Code的推理与行为？
+工具定义构成模型当前可选择的**动作空间**。名称、描述、参数Schema和示例告诉模型工具能做什么、何时使用以及怎样构造参数；含糊或重叠的描述会增加误选工具和参数错误。
+
+Runtime仍需做确定性校验：验证JSON Schema、权限和路径，执行工具并限制超时与输出大小。模型选择某个工具只是请求，不是授权；工具返回成功也不代表业务结果正确。
+
+设计自定义MCP工具时应采用清晰动词、窄职责、强类型参数和结构化错误，并让读写能力可区分。工具集过大时使用Tool Search延迟加载Schema，降低上下文噪声。
+
+**相关知识点：** Action Space、Tool Schema、Tool Description、Structured Error、Capability Boundary、Schema Validation。
+
+---
+
+#### 85、Claude Code的上下文窗口在长任务中如何演化？
+上下文不会在每个Turn后重置。系统提示、项目上下文、对话、文件内容、工具输入输出会逐步累积；固定前缀通常可被Prompt Cache复用，但仍占模型可见窗口。
+
+接近窗口上限时，Claude Code先清理较旧的工具输出，再在需要时把历史压缩成摘要。摘要保留的是信息的有损表示，早期临时指令、精确错误文本和细节可能丢失。项目根级`CLAUDE.md`和Auto Memory可从磁盘重新注入；按路径加载的规则和嵌套指令进入消息历史后可能被压缩，后续再次读取匹配文件时才重新加载。
+
+因此长任务应把目标、验收、关键决定、已改文件和测试状态持久化到稳定Artifact；大输出过滤或落盘，阶段切换时主动Compact或Clear。
+
+**相关知识点：** Context Accumulation、Tool Output Eviction、Lossy Compaction、Context Rehydration、Path-scoped Rules、Artifact。
+
+---
+
+#### 86、Claude Code的Prompt Cache原理是什么？哪些操作会造成Cache Miss？
+每轮请求的大部分前缀相同：系统提示与工具定义在前，项目上下文居中，对话和新消息追加在后。Prompt Cache按**精确前缀匹配**复用服务端已处理内容，并不是按语义或文件分别缓存。
+
+系统提示、工具集合或前部内容变化会使其后的缓存失效。切换模型使用另一套Cache；MCP Server连接状态或工具列表变化会改变系统层；Compaction用摘要替换对话历史，使Conversation层重新建立缓存；升级Claude Code也可能改变系统提示和内置工具。
+
+缓存降低重复输入的费用和延迟，但不扩大上下文窗口，也不保证恢复后的首轮便宜。应在任务开始时稳定模型和MCP集合，在自然阶段边界Compact，并用Usage数据观察Cache Read与Cache Creation。
+
+**相关知识点：** Prompt Cache、Exact Prefix Match、Cache Invalidation、Cache Read、Cache Creation、Stable Prefix。
+
+---
+
+#### 87、CLAUDE.md和路径规则是如何进入模型上下文的？
+项目根级`CLAUDE.md`、用户级指令和Auto Memory通常在Session启动时加载，形成每轮请求中的项目上下文。嵌套`CLAUDE.md`和带`paths`范围的Rules采用延迟机制：当Claude读取匹配路径的文件时，相应指令才进入消息历史。
+
+这解释了两个现象：第一，局部规则不会无条件占用所有任务的上下文；第二，局部规则被Compaction摘要后不一定持续逐字存在，直到再次触发对应文件读取。必须跨整个Session保持的约束，应放在根级无路径范围的规则或由权限、Hook强制执行。
+
+指令层级用于提供行为上下文，不是安全边界。敏感路径禁止、生产写入限制和命令审批仍要由Permission、Sandbox与服务端ACL执行。
+
+**相关知识点：** Project Context、Instruction Loading、Lazy Rule Loading、Path Scope、Compaction Boundary、Policy Enforcement。
+
+---
+
+#### 88、Claude Code Skill的渐进式加载原理是什么？
+Session启动时通常只把Skill的名称和描述暴露给模型，用于判断是否相关；模型或用户调用后，Skill正文才进入当前对话。这种**Progressive Disclosure**避免把每个工作流的完整说明常驻上下文。
+
+Skill正文进入主Session上下文，适合复用步骤、模板和领域知识；Subagent则创建隔离上下文，适合会产生大量中间材料的独立任务。Skill不是可执行安全策略：它能指导模型调用工具，但不能保证指令必然执行。
+
+描述应明确触发条件，正文把关键规则放在前部并控制体积。需要人工显式调用的Skill可关闭模型自动调用，避免大量描述干扰路由和占用上下文。
+
+**相关知识点：** Skill Discovery、Progressive Disclosure、Description Routing、On-demand Context、Skill Invocation、Context Budget。
+
+---
+
+#### 89、MCP Tool Search为什么能减少上下文占用？它的代价是什么？
+默认情况下，Claude Code只在启动上下文中保留MCP工具名称，把完整Schema延迟到需要时再通过Tool Search发现并加载。这样连接大量Server时，不必在每轮请求中携带全部工具定义。
+
+代价是多一次发现决策，并依赖模型和Provider支持`tool_reference`能力。关闭Tool Search、使用不兼容模型或某些不转发相关Block的代理时，工具Schema可能回退为全部预加载。设置`alwaysLoad`的工具也会固定占用上下文，并可能使启动等待Server连接。
+
+Tool Search只解决发现与Token问题，不解决可信性、权限和可用性。加载后的工具仍需Permission、Hook、Sandbox或后端ACL约束，MCP结果仍按不可信输入处理。
+
+**相关知识点：** Deferred Tool Loading、Tool Search、tool_reference、Schema Cost、alwaysLoad、Provider Compatibility。
+
+---
+
+#### 90、Claude Code理解调用关系主要依赖模型推理，还是依赖LSP和索引？
+两者结合，但职责不同。模型从已读取的代码、类型和命名中推断语义；Grep、Glob和Read提供文本证据；启用代码智能插件后，LSP Tool可提供定义、引用、诊断等结构化信息。
+
+LSP不是模型内部记忆，也不保证覆盖反射、动态导入、宏、生成代码或运行时绑定。公开文档也没有承诺Claude Code默认为所有仓库维护完整Call Graph或向量索引。复杂项目应把静态关系、Git历史、构建反馈和运行Trace交叉验证。
+
+正确流程是先用低成本搜索缩小范围，再通过LSP/AST确认符号关系，最后用编译和测试验证。没有代码智能时，Agent会更多依赖文本搜索和逐文件阅读，成本和误判率通常更高。
+
+**相关知识点：** LSP Tool、Code Intelligence、Text Search、Static Analysis、Dynamic Dispatch、Evidence Triangulation。
+
+---
+
+#### 91、Claude Code的Bash工具如何处理Shell状态和后台任务？
+Bash调用由Harness启动进程执行，命令的stdout、stderr和退出状态作为工具结果返回。不能假设不同Bash调用天然共享同一个交互式Shell状态；需要跨调用持久化的环境变量应通过启动环境、`CLAUDE_ENV_FILE`或SessionStart Hook明确注入。
+
+长时间命令可以转为后台任务，Runtime返回Task ID，使Agent继续工作并在之后查询输出。后台进程属于外部环境状态，不会因为对话Compact、Rewind或模型停止调用工具而自动撤销。
+
+工程上要为进程设置超时、日志上限、端口和清理策略，并区分“命令已启动”“进程仍健康”和“业务已就绪”。测试Server启动后应通过健康检查而非仅看零退出码判断成功。
+
+**相关知识点：** Process Execution、stdout/stderr、Exit Status、CLAUDE_ENV_FILE、Background Task、Process Lifecycle。
+
+---
+
+#### 92、一次工具调用同时命中Hook、Deny、Ask和Allow时，权限决策如何理解？
+权限决策遵循**拒绝优先和多层约束**。`PreToolUse`在权限提示前运行，可阻止、修改输入或提出决策；显式Deny仍不能被Hook的Allow结果绕过，Ask也仍可要求确认。阻断型Hook可在Allow规则存在时拒绝动作。
+
+随后Permission规则根据工具、命令、路径或域名匹配Deny、Ask和Allow。Sandbox启用自动放行时，只是用OS隔离边界替代部分逐命令确认，显式Deny与关键路径保护仍然有效。MCP或远端服务还会执行自己的身份与资源授权。
+
+因此最终可执行范围是Hook、Managed Settings、项目/用户权限、Sandbox和后端ACL的交集，而不是某一条Allow的并集。
+
+**相关知识点：** Deny-first、PreToolUse、Permission Evaluation、Managed Settings、Policy Intersection、Backend ACL。
+
+---
+
+#### 93、Claude Code Sandbox的安全边界是如何形成的？为什么仍可能需要人工确认？
+Sandbox在OS层限制Bash及其子进程的文件系统和网络访问；Permission层对所有工具的动作进行授权。两者合并后，命令即使受到Prompt Injection影响，也应被限制在允许挂载和域名内。
+
+Sandbox不是所有能力的统一虚拟机：内置Read/Edit、WebFetch和MCP有各自权限路径，Bash之外的工具不能只靠Shell Sandbox保护。若平台依赖缺失，默认配置可能警告后继续以非Sandbox方式执行；高安全环境应启用不可用即失败。
+
+某些不兼容命令可以请求在Sandbox外重试，这个Escape Hatch需要走常规权限流程，并可被组织关闭。生产任务还应使用短生命周期容器或VM、临时凭据和服务端最小权限。
+
+**相关知识点：** OS Sandbox、Fail Open、Fail Closed、Escape Hatch、Filesystem Boundary、Network Boundary、Defense in Depth。
+
+---
+
+#### 94、Claude Code Hooks在Runtime中类似什么机制？其阻断语义如何实现？
+Hooks可理解为Agent Runtime的**生命周期事件总线和策略扩展点**。Session、Prompt、Tool、Permission、Compaction、Subagent和Task等事件触发外部命令、HTTP端点或其他处理器，输入输出通过结构化JSON传递。
+
+命令Hook退出码`0`表示正常并可解析JSON，退出码`2`在支持阻断的事件上表达拒绝；不同事件的阻断效果不同，例如`PreToolUse`可阻止尚未执行的工具，而`PostToolUse`只能反馈，因为副作用已经发生。多个匹配Hook可能并行执行后合并结果，拒绝应优先。
+
+HTTP Hook的非2xx或超时通常是非阻断错误，不能仅靠返回500实现安全拒绝；需要在2xx JSON中返回对应Decision。安全Hook必须默认策略明确、输入严格解析、超时可控并有审计。
+
+**相关知识点：** Lifecycle Event Bus、Hook JSON Protocol、Exit Code 2、Pre/Post Semantics、Decision Merge、Fail-open HTTP Hook。
+
+---
+
+#### 95、Session、Context、Checkpoint和Git分别保存哪一层状态？
+四者解决不同问题：
+
+| 机制 | 保存内容 | 主要用途 |
+|---|---|---|
+| Context | 当前模型请求可见信息 | 本轮推理 |
+| Session Transcript | 消息、工具调用和元数据 | 恢复对话 |
+| Checkpoint | Claude编辑工具改动前的文件状态 | 会话级撤销 |
+| Git | 显式提交的仓库版本历史 | 长期协作与审计 |
+
+Compaction改变Context表示但保留Session；Resume加载Transcript但不保证进程和远端资源仍在；Checkpoint不覆盖Bash或外部程序造成的全部文件变化；Git也不记录未提交的数据库或云端副作用。
+
+可靠恢复必须同时记录代码Base SHA、工作区Diff、Session ID、外部操作幂等键和验证状态，并针对每层采用对应的回退方法。
+
+**相关知识点：** State Plane、Context、Transcript、Checkpoint、Git、External Side Effect、Recovery Point。
+
+---
+
+#### 96、Claude Code Session Transcript的持久化原理是什么？
+CLI会持续把Session事件写入本地JSONL Transcript，Session与项目目录关联。`continue`、`resume`和`fork`读取或分支这份历史，再结合当前工作目录、配置和凭据恢复运行。
+
+Agent SDK的外部Session Store采用**本地先写、外部镜像**：Claude Code子进程先写本地文件，SDK再批量调用`append()`。镜像失败会产生错误事件但通常不中断Agent，失败批次也不保证自动重试，因此外部存储不是天然强一致日志。
+
+Transcript可能包含源码片段、命令输出和用户输入，应加密、鉴权、设置保留期并脱敏。外部Store与文件Checkpoint存在兼容限制时，应以当前SDK文档和运行验证为准。
+
+**相关知识点：** JSONL Transcript、Local-first Persistence、Dual Write、Best-effort Mirror、Session Fork、Retention Policy。
+
+---
+
+#### 97、Subagent为什么能节省主Session上下文？它实际继承了什么？
+Subagent启动一个新的隔离上下文，不读取父Session的完整消息历史和已读文件。主Agent把任务、边界和必要证据压缩成Delegation Message；Subagent加载自己的系统提示、项目级上下文和被授权的工具，完成后只把最终摘要作为工具结果返回父Session。
+
+节省来自“大量搜索和中间输出留在子上下文”，而不是免费执行。委派摘要缺少关键信息会导致重复探索，返回过长也会重新占满父上下文。Subagent通常不能再生成嵌套Subagent，需要由主Agent串联任务。
+
+权限方面应显式收窄工具和MCP Server；父Session的安全边界不能通过子Agent扩大。高耦合、需要频繁共享上下文的修改留在主Session通常更合适。
+
+**相关知识点：** Fresh Context、Delegation Message、Context Isolation、Summary Return、Tool Scoping、Nested Delegation。
+
+---
+
+#### 98、Agent Teams的协调原理与普通并行Tool Call有什么区别？
+并行Tool Call发生在同一Agent Turn内，共享一个上下文，适合无依赖的读取和查询。Agent Teams则由多个独立Claude Code实例组成，每个Teammate有自己的上下文，通过共享任务列表和消息通道协调，Lead负责分配、跟踪和综合。
+
+独立上下文提高并行探索能力，也引入状态一致性问题。共享任务状态并不等于共享完整推理证据；Teammate修改同一工作区时也没有自动获得Git隔离。官方建议按文件或模块划分所有权，需要隔离时使用独立Worktree和分支。
+
+选择并行方式要看任务粒度、依赖和通信成本：毫秒级独立读取用并行工具，短期独立研究用Subagent，持续多角色协作用Agent Teams，多任务由人调度可用Agent View。
+
+**相关知识点：** Parallel Tool Call、Independent Context、Shared Task List、Lead/Teammate、Message Passing、Worktree Isolation。
+
+---
+
+#### 99、Claude Code面对工具失败时，恢复机制的本质是什么？
+工具失败会作为Observation进入下一轮，模型可根据错误类型选择重试、修改参数、换工具、降级或请求用户。Harness提供最大Turn、权限拒绝、取消和Session恢复等控制，但不会自动证明某个重试策略正确。
+
+应先把失败分类：
+
+1. 瞬时失败：限流、网络抖动，可指数退避并设置上限。
+2. 输入或前置条件失败：修正参数、路径、依赖或环境。
+3. 权限与策略失败：不能通过改写命令绕过，应请求授权或停止。
+4. 确定性业务失败：保留证据、改变方案或升级人工。
+
+连续调用相同工具、错误指纹不变且没有新证据就是无进展。此时应停止重试并输出当前状态、已验证事实和需要的外部决策。
+
+**相关知识点：** Error Observation、Retry Taxonomy、Exponential Backoff、Policy Failure、Error Fingerprint、No-progress Loop。
+
+---
+
+#### 100、如何从原理层面调试一个“Claude Code没有按预期工作”的问题？
+按**输入上下文—模型决策—权限控制—工具执行—环境副作用—验证结果**逐层定位，而不是只修改Prompt。
+
+1. 用`/context`和`/memory`确认实际加载的CLAUDE.md、Rules、Skill与上下文占用，检查是否发生Compaction。
+2. 查看Transcript和Debug日志，确认模型请求了什么工具、参数是什么、Tool Result是否完整以及调用ID是否匹配。
+3. 检查Hook、Deny/Ask/Allow、Sandbox和MCP/服务端ACL，区分模型没请求、策略拒绝和执行失败。
+4. 在相同Base SHA、配置、模型与依赖下单独重放命令，检查后台进程、环境变量和外部服务状态。
+5. 用测试、Diff和Trace验证真实结果；记录Claude Code版本、模型、Provider和随机运行差异。
+
+这种分层方法能把“模型能力问题”与上下文污染、工具契约、权限、环境漂移和验收缺失区分开。
+
+**相关知识点：** Layered Debugging、Context Inspection、Transcript、Tool Trace、Policy Debugging、Environment Reproduction、Result Verification。
+
+---
+
 ## 官方核验资料
 
 - [Claude Code 文档索引](https://code.claude.com/docs/llms.txt)
 - [Claude Code 工作原理](https://code.claude.com/docs/en/how-claude-code-works)
+- [Agent Loop 原理](https://code.claude.com/docs/en/agent-sdk/agent-loop)
+- [上下文窗口](https://code.claude.com/docs/en/context-window)
+- [Prompt Cache](https://code.claude.com/docs/en/prompt-caching)
 - [大型代码库](https://code.claude.com/docs/en/large-codebases)
 - [项目记忆](https://code.claude.com/docs/en/memory)
+- [工具参考](https://code.claude.com/docs/en/tools-reference)
 - [权限](https://code.claude.com/docs/en/permissions)
 - [Sandboxing](https://code.claude.com/docs/en/sandboxing)
 - [Hooks](https://code.claude.com/docs/en/hooks)
@@ -1136,4 +1382,6 @@ Hooks部署在**动作前阻断、动作后验证、任务结束汇总**三个�
 - [Subagents](https://code.claude.com/docs/en/sub-agents)
 - [Agent Teams](https://code.claude.com/docs/en/agent-teams)
 - [Checkpointing](https://code.claude.com/docs/en/checkpointing)
+- [Session 管理](https://code.claude.com/docs/en/sessions)
+- [外部 Session Storage](https://code.claude.com/docs/en/agent-sdk/session-storage)
 - [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview)
