@@ -3,7 +3,7 @@
 > 所属章节：[OpenClaw](README.md)｜本文件共 **8** 题。
 
 <a id="oclaw-004"></a>
-### OpenClaw 如何把不同消息渠道和会话路由到正确的 Agent？
+### 1. OpenClaw 如何把不同消息渠道和会话路由到正确的 Agent？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -13,7 +13,7 @@ OpenClaw通过**渠道适配器、Agent Binding和会话键**进行确定性路�
 
 **相关知识点：** Channel Adapter、Agent Binding、Session Key、Reply Route、Thread、Channel Docking。
 <a id="oclaw-006"></a>
-### OpenClaw 的主会话、群组会话和子 Agent 会话有什么差异？
+### 2. OpenClaw 的主会话、群组会话和子 Agent 会话有什么差异？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -30,7 +30,7 @@ OpenClaw通过**渠道适配器、Agent Binding和会话键**进行确定性路�
 
 **相关知识点：** Main Session、Group Session、Subagent Session、Context Fork、Session Visibility、数据隔离。
 <a id="oclaw-007"></a>
-### OpenClaw 的 Memory 与会话历史有什么区别？
+### 3. OpenClaw 的 Memory 与会话历史有什么区别？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -40,7 +40,7 @@ OpenClaw可从工作区笔记和已配置的Memory Engine检索相关片段；�
 
 **相关知识点：** Episodic History、Durable Memory、Hybrid Search、Provenance、Memory Lifecycle、隐私。
 <a id="oclaw-014"></a>
-### OpenClaw 多 Agent 路由与临时子 Agent 委派有什么区别？
+### 4. OpenClaw 多 Agent 路由与临时子 Agent 委派有什么区别？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -50,7 +50,7 @@ OpenClaw可从工作区笔记和已配置的Memory Engine检索相关片段；�
 
 **相关知识点：** Multi-agent Routing、Agent Binding、Subagent、Delegation、Announce、共享写冲突。
 <a id="oclaw-016"></a>
-### OpenClaw 如何通过 ACP 接入 Claude Code、Codex 等 Coding Harness？
+### 5. OpenClaw 如何通过 ACP 接入 Claude Code、Codex 等 Coding Harness？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -60,7 +60,7 @@ ACP用于把外部Coding Harness作为**具有独立会话和执行语义的Agen
 
 **相关知识点：** Agent Client Protocol、Coding Harness、Session Backend、MCP、权限传递、结果交付。
 <a id="oclaw-021"></a>
-### OpenClaw 的模型选择、认证 Profile 轮换与 Fallback 如何协作？
+### 6. OpenClaw 的模型选择、认证 Profile 轮换与 Fallback 如何协作？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -70,7 +70,7 @@ ACP用于把外部Coding Harness作为**具有独立会话和执行语义的Agen
 
 **相关知识点：** Model Resolution、Auth Profile、Failover、Fallback Chain、Capability Compatibility、路由观测。
 <a id="oclaw-022"></a>
-### OpenClaw 如何处理长会话的上下文增长？
+### 7. OpenClaw 如何处理长会话的上下文增长？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -80,7 +80,7 @@ ACP用于把外部Coding Harness作为**具有独立会话和执行语义的Agen
 
 **相关知识点：** Context Window、Pruning、Compaction、Memory Flush、Recall、Prompt Cache。
 <a id="oclaw-023"></a>
-### OpenClaw 的浏览器和设备 Node 能力有哪些安全风险？
+### 8. OpenClaw 的浏览器和设备 Node 能力有哪些安全风险？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 

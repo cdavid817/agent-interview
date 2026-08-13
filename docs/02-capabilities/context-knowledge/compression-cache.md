@@ -3,7 +3,7 @@
 > 所属章节：[上下文与知识系统](README.md)｜本文件共 **44** 题。
 
 <a id="ctx-008"></a>
-### 上下文是怎么构建的？怎么避免上下文过长或者信息污染？（百度Agent）
+### 1. 上下文是怎么构建的？怎么避免上下文过长或者信息污染？（百度Agent）
 
 **上下文不是历史信息的简单拼接，而是Context Builder依据当前目标、指令优先级、证据质量和Token预算生成的最小充分输入。**
 
@@ -15,7 +15,7 @@
 
 **相关知识点：** Context Builder、Token Budget、Prompt分层、滚动摘要、Contextual Compression、Artifact Store、Context Validator、Prompt Injection。
 <a id="ctx-011"></a>
-### 动态Prompt和静态Prompt有什么区别？上下文是如何动态组装的？（DeepSeek二面）
+### 2. 动态Prompt和静态Prompt有什么区别？上下文是如何动态组装的？（DeepSeek二面）
 
 **静态Prompt定义行为边界与输出契约，动态Prompt依据本轮任务选择状态、记忆、知识和工具结果，两者由Prompt Builder组合。**
 
@@ -32,7 +32,7 @@
 
 **相关知识点：** Static Prompt、Dynamic Prompt、Prompt Builder、Prompt分层、版本管理、Prompt Injection、Prefix Cache。
 <a id="ctx-012"></a>
-### 上下文窗口总Token是多少？压缩机制（DeepSeek二面）
+### 3. 上下文窗口总Token是多少？压缩机制（DeepSeek二面）
 
 **上下文窗口没有统一Token数，必须以所选模型的官方限制为准；工程预算还要从总窗口中扣除预期输出、工具参数和安全余量。**
 
@@ -44,7 +44,7 @@
 
 **相关知识点：** Context Window、Tokenizer、Token Budget、输出预留、滚动摘要、抽取式压缩、Contextual Compression、Lost in the Middle、保真度。
 <a id="ctx-014"></a>
-### 长对话+大量检索文档，上下文过长送入模型出现超时、回答冗余，怎么优化处理（Agent中级）
+### 4. 长对话+大量检索文档，上下文过长送入模型出现超时、回答冗余，怎么优化处理（Agent中级）
 
 **长对话叠加大量RAG文档时，应分别压缩历史和检索证据，再由统一Token预算选择最小充分上下文，避免把超时交给模型承担。**
 
@@ -56,7 +56,7 @@
 
 **相关知识点：** Rolling Summary、Reranker、Contextual Compression、Token Budget、证据去重、Artifact Store、Prompt Cache、超时率。
 <a id="ctx-015"></a>
-### 如果上下文窗口不够，优先保留哪些信息？为什么？（百度Agent）
+### 5. 如果上下文窗口不够，优先保留哪些信息？为什么？（百度Agent）
 
 **窗口不足时应优先保留决定模型行为和当前任务正确性的内容，历史背景与低相关材料只能在剩余预算中按需加入。**
 
@@ -75,7 +75,7 @@
 
 **相关知识点：** Instruction Hierarchy、Token Budget、Context Ranking、Rolling Summary、证据抽取、Artifact引用、冲突保留、压缩保真度。
 <a id="ctx-017"></a>
-### Token成本怎么控制？（豆包一面）
+### 6. Token成本怎么控制？（豆包一面）
 
 **Token成本应以“单位成功任务的总Token与费用”为治理目标，通过精确计量、上下文裁剪、模型路由、缓存和调用预算联合控制。**
 
@@ -87,7 +87,7 @@
 
 **相关知识点：** Token Accounting、Budget Guard、模型路由、Rolling Summary、动态Top-K、Prompt Cache、Semantic Cache、Artifact Store、Pareto最优。
 <a id="ctx-026"></a>
-### 为什么不能把所有聊天记录直接放进Prompt？
+### 7. 为什么不能把所有聊天记录直接放进Prompt？
 
 **全部聊天记录直接进入Prompt会放大成本、噪声、冲突、安全和隐私风险，长上下文不等于模型能无损利用所有历史。**
 
@@ -99,7 +99,7 @@
 
 **相关知识点：** Context Window、Token Budget、Lost in the Middle、注意力稀释、上下文污染、分层摘要、按需检索、Prompt Injection、最小充分上下文。
 <a id="ctx-054"></a>
-### 静态知识如何进行权限隔离？
+### 8. 静态知识如何进行权限隔离？
 
 **知识权限隔离必须由服务端身份和数据层ACL强制执行，并贯穿原文、元数据、倒排索引、向量索引、缓存及生成引用。**
 
@@ -111,7 +111,7 @@
 
 **相关知识点：** ACL、IAM、RBAC、ABAC、Tenant Isolation、Pre-filter、最小权限、缓存隔离、权限版本、审计日志、权限漂移。
 <a id="ctx-075"></a>
-### 如何保证压缩后信息不丢失？
+### 9. 如何保证压缩后信息不丢失？
 
 **压缩无法保证逐字无损，但可以通过强制字段、来源引用、自动校验和原文回溯，保证任务关键事实与约束不丢失。**
 
@@ -123,7 +123,7 @@
 
 **相关知识点：** Lossy Compression、强制槽位、Source Span、派生视图、事实一致性、引用可达性、Staleness、Progressive Retrieval、摘要漂移。
 <a id="ctx-080"></a>
-### 如何处理已经失效的用户信息？
+### 10. 如何处理已经失效的用户信息？
 
 **失效的用户信息必须立即退出默认召回，并依据纠错、历史审计和隐私要求选择版本保留、归档或彻底删除。**
 
@@ -135,7 +135,7 @@
 
 **相关知识点：** Valid Time、Supersedes、Bitemporal Data、用户纠错、审计域、Outbox、Staleness、墓碑删除、删除权、缓存失效。
 <a id="ctx-084"></a>
-### Top-K参数应该如何设置？
+### 11. Top-K参数应该如何设置？
 
 **Top-K不应使用全局固定值，而应区分召回K、重排K和最终注入N，并根据查询难度、分数分布、Token预算及延迟动态调整。**
 
@@ -147,7 +147,7 @@
 
 **相关知识点：** Recall K、Rerank K、Top-N、动态Top-K、Score Gap、Early Stop、Golden Dataset、质量—延迟曲线、Token Budget、A/B测试。
 <a id="ctx-133"></a>
-### 向量检索为什么会产生误召回？
+### 12. 向量检索为什么会产生误召回？
 
 **向量检索产生误召回，是因为Embedding压缩了语义细节，而近邻算法只优化几何相似，不验证事实、关系和业务约束。**
 
@@ -159,7 +159,7 @@
 
 **相关知识点：** Embedding、语义压缩、否定语义、Chunking、ANN、量化误差、元数据过滤、混合检索、Cross-Encoder、Precision@K、困难负例。
 <a id="ctx-140"></a>
-### 什么是Context Pollution？
+### 13. 什么是Context Pollution？
 
 **Context Pollution是无关、过期、重复、冲突或不可信信息进入模型输入并干扰注意力与决策的现象。**
 
@@ -171,7 +171,7 @@
 
 **相关知识点：** Context Engineering、Token Budget、Prompt Builder、分层摘要、Contextual Compression、Lost in the Middle、证据密度、上下文污染。
 <a id="ctx-141"></a>
-### 上下文污染会导致哪些问题？
+### 14. 上下文污染会导致哪些问题？
 
 **上下文污染会同时损害答案正确性、任务执行稳定性、安全边界、推理成本和问题可诊断性。**
 
@@ -183,7 +183,7 @@
 
 **相关知识点：** Context Pollution、Lost in the Middle、注意力稀释、错误引用、Prompt Injection、越权暴露、工具误调用、证据密度、消融实验、单位成功任务成本。
 <a id="ctx-142"></a>
-### 如何控制Prompt长度？
+### 15. 如何控制Prompt长度？
 
 **控制Prompt长度应先建立分区Token预算，再通过按需检索、结构化裁剪、去重和保真压缩构造最小充分上下文。**
 
@@ -195,7 +195,7 @@
 
 **相关知识点：** Prompt Builder、Token Budget、Tokenizer、最小充分上下文、结构化裁剪、语义去重、证据窗口、抽取式压缩、压缩保真度、分阶段执行。
 <a id="ctx-143"></a>
-### Token Budget应该如何分配？
+### 16. Token Budget应该如何分配？
 
 **Token Budget应先预留输出和安全余量，再按指令、当前任务、状态、证据、记忆与工具结果的优先级动态分配。**
 
@@ -207,7 +207,7 @@
 
 **相关知识点：** 上下文窗口、输出预留、Tokenizer、不可裁剪区、动态预算、Utility per Token、证据密度、分阶段执行、Pareto最优、截断率。
 <a id="ctx-145"></a>
-### Context Compression有哪些实现方式？
+### 17. Context Compression有哪些实现方式？
 
 **Context Compression可分为确定性裁剪、抽取式压缩、生成式摘要、结构化状态化和分层按需展开五类方式。**
 
@@ -219,7 +219,7 @@
 
 **相关知识点：** 确定性裁剪、抽取式压缩、结构化状态、滚动摘要、分层摘要、Map-Reduce、按需展开、压缩率、事实一致性、引用保持率。
 <a id="ctx-149"></a>
-### Retrieval Pipeline应该如何设计？
+### 18. Retrieval Pipeline应该如何设计？
 
 **Retrieval Pipeline应按查询理解、强制过滤、多路召回、融合、精排、去重压缩和证据校验分阶段设计。**
 
@@ -231,7 +231,7 @@
 
 **相关知识点：** Query Understanding、权限预过滤、多路召回、RRF、Cross-Encoder、语义去重、证据压缩、阶段Deadline、检索Trace、边际贡献。
 <a id="ctx-163"></a>
-### 如何避免 Prompt 过长导致性能下降？
+### 19. 如何避免 Prompt 过长导致性能下降？
 
 **避免Prompt过长应通过分区预算、按需检索、去重压缩和稳定前缀缓存，同时优化质量、延迟与费用。**
 
@@ -243,7 +243,7 @@
 
 **相关知识点：** Token Budget、Tokenizer、Prompt Builder、前缀缓存、检索去重、证据窗口、抽取式压缩、Lost in the Middle、分阶段执行、Pareto最优。
 <a id="ctx-166"></a>
-### 上下文窗口不足时如何选择保留哪些内容？
+### 20. 上下文窗口不足时如何选择保留哪些内容？
 
 **上下文不足时应按指令优先级、任务必要性、证据可信度和单位Token价值保留最小充分信息，而不是简单保留最近文本。**
 
@@ -264,7 +264,7 @@
 > **题目合并：** `CTX-167` 已并入 [CTX-206 · Context Compression 如何实现？](#ctx-206)。
 
 <a id="ctx-169"></a>
-### 多轮会话摘要如何设计？
+### 21. 多轮会话摘要如何设计？
 
 **多轮会话摘要应采用按主题分区的结构化增量摘要，区分确认事实、用户偏好、决策、待办与模型推断，并可回溯原始轮次。**
 
@@ -276,7 +276,7 @@
 
 **相关知识点：** 结构化摘要、主题分区、Source Turn、增量摘要、Checkpoint、版本链、摘要漂移、抽取式保留、按需展开、字段覆盖率。
 <a id="ctx-170"></a>
-### 为什么上下文窗口越大不一定效果越好？
+### 22. 为什么上下文窗口越大不一定效果越好？
 
 **更大的上下文窗口只提高可容纳信息量，不保证模型能正确定位、区分和使用信息，质量取决于信噪比与组织方式。**
 
@@ -288,7 +288,7 @@
 
 **相关知识点：** 上下文窗口、Lost in the Middle、注意力稀释、信噪比、预填充延迟、边际信息价值、Context Pollution、最小充分上下文、位置敏感、分块推理。
 <a id="ctx-172"></a>
-### Lost in the Middle 问题是什么？
+### 23. Lost in the Middle 问题是什么？
 
 **Lost in the Middle是模型对长上下文中部信息利用率低于开头和结尾的现象，增加窗口并不能自动消除该注意力偏差。**
 
@@ -300,7 +300,7 @@
 
 **相关知识点：** Lost in the Middle、位置偏置、位置编码、注意力竞争、证据位置、位置—准确率曲线、Context Ranking、证据窗口、分块推理、上下文截断。
 <a id="ctx-175"></a>
-### 如何设计 Context Ranking 机制？
+### 24. 如何设计 Context Ranking 机制？
 
 **Context Ranking应先执行不可协商的优先级与权限规则，再对可选片段按任务相关性、可信度、新鲜度、唯一性和Token效率排序。**
 
@@ -312,7 +312,7 @@
 
 **相关知识点：** Context Ranking、硬过滤、Cross-Encoder、来源校准、MMR、多样性、预算优化、Context Precision、困难负例、单位Token价值。
 <a id="ctx-176"></a>
-### Agent 如何进行 Token Budget 分配？
+### 25. Agent 如何进行 Token Budget 分配？
 
 **Agent应把Token预算分为输入上下文、规划推理、工具交互和最终输出四类，并根据任务阶段动态调整而非平均分配。**
 
@@ -324,7 +324,7 @@
 
 **相关知识点：** Token Budget、Tokenizer、保护区、阶段预算、Utility per Token、Checkpoint、任务分解、重试预算、单位成功成本、Pareto最优。
 <a id="ctx-179"></a>
-### Tool 调用结果如何压缩？
+### 26. Tool 调用结果如何压缩？
 
 **工具结果压缩应保留完成下一步所需的结构化字段、错误、证据和产物引用，删除冗余日志但不改变执行事实。**
 
@@ -336,7 +336,7 @@
 
 **相关知识点：** Result Adapter、字段白名单、Artifact URI、分页游标、退出码、错误摘要、参数哈希、结果哈希、关键字段保留率、按需回读。
 <a id="ctx-182"></a>
-### 上下文组装服务应该独立成微服务吗？
+### 27. 上下文组装服务应该独立成微服务吗？
 
 **当多个Agent或产品共享上下文策略、需要独立扩缩容与统一治理时应拆成微服务；早期单场景则优先保持模块化单体，避免无收益的网络边界。**
 
@@ -348,7 +348,7 @@
 
 **相关知识点：** 模块化单体、微服务边界、Prompt Builder、结构化API、策略版本、Token Budget、熔断降级、可观测性。
 <a id="ctx-183"></a>
-### Prompt Builder 模块应该如何设计？
+### 28. Prompt Builder 模块应该如何设计？
 
 **Prompt Builder应是结构化、版本化且可审计的上下文编排器，负责按优先级和Token预算生成模型消息，而不是进行字符串拼接。**
 
@@ -360,7 +360,7 @@
 
 **相关知识点：** 消息分层、结构化输入、Token Budget、Prompt Registry、引用映射、Prompt Injection、前缀缓存、A/B测试、版本回滚。
 <a id="ctx-185"></a>
-### 动态 Prompt 组装链路如何进行性能优化？
+### 29. 动态 Prompt 组装链路如何进行性能优化？
 
 **动态Prompt组装应通过阶段并行、稳定前缀缓存、增量Token计算和有界压缩优化，优先消除串行等待与重复处理，而非盲目缩短内容。**
 
@@ -372,7 +372,7 @@
 
 **相关知识点：** 阶段Trace、异步并行、Prefix Cache、增量Token计数、快速路径、早停、抽取式压缩、Token装箱、取消传播。
 <a id="ctx-186"></a>
-### 如何统计每轮请求的 Token 消耗？
+### 30. 如何统计每轮请求的 Token 消耗？
 
 **每轮Token消耗应以模型服务返回的Usage为权威值，并按Agent请求内的所有模型调用、重试、工具循环及缓存读写进行分项归集。**
 
@@ -390,7 +390,7 @@
 > **题目合并：** `CTX-188` 已并入 [MODEL-118 · Semantic Cache如何设计？](../../03-production/model-capability-cost/cache.md#model-118)。
 
 <a id="ctx-189"></a>
-### 企业级 Agent 如何控制 Token 成本？
+### 31. 企业级 Agent 如何控制 Token 成本？
 
 **企业级Agent应以单位成功任务Token和成本为目标，在预算控制、模型路由、上下文治理、循环终止与缓存复用五个层面联合降本。**
 
@@ -402,7 +402,7 @@
 
 **相关知识点：** Token Budget、Usage归集、模型路由、上下文压缩、Prompt Cache、Semantic Cache、循环终止、单位成功任务成本。
 <a id="ctx-191"></a>
-### 如何控制Context Window和Token成本？
+### 32. 如何控制Context Window和Token成本？
 
 **控制Context Window应先分配硬预算，再按指令优先级和证据价值选择最小充分上下文，并通过模型路由、缓存和循环约束控制总Token成本。**
 
@@ -416,7 +416,7 @@
 
 **相关知识点：** Context Window、Token Budget、Prompt Builder、历史摘要、Rerank、上下文压缩、模型路由、Prompt Cache、循环终止。
 <a id="ctx-195"></a>
-### 长对话场景如何进行上下文压缩？
+### 33. 长对话场景如何进行上下文压缩？
 
 **长对话压缩应把原始消息转化为结构化任务状态、分层摘要和可检索历史，在保留约束与证据的前提下减少重复Token。**
 
@@ -430,7 +430,7 @@
 
 **相关知识点：** 结构化任务状态、滑动窗口、分层摘要、增量摘要、抽取式压缩、历史检索、message_id、事实一致性、摘要回滚。
 <a id="ctx-196"></a>
-### Token消耗主要集中在哪些部分？
+### 34. Token消耗主要集中在哪些部分？
 
 **Agent的Token主要消耗在上下文的重复携带、多轮模型输出、工具循环与重试，以及RAG证据及工具结果的持续回填。**
 
@@ -442,7 +442,7 @@
 
 **相关知识点：** Input Token、Output Token、Cached Token、工具Schema、RAG证据、ReAct循环、重试放大、turn_id、单位成功任务Token。
 <a id="ctx-197"></a>
-### Agent系统中哪些内容最占上下文窗口？
+### 35. Agent系统中哪些内容最占上下文窗口？
 
 **Agent上下文通常由长对话历史、RAG证据、工具Schema与工具结果占据大部分空间，具体占比取决于工具数量和任务迭代轮次。**
 
@@ -454,7 +454,7 @@
 
 **相关知识点：** Tool Schema、Conversation History、RAG Chunk、Tool Result、Token Attribution、按需工具、历史摘要、证据压缩、窗口占用率。
 <a id="ctx-198"></a>
-### 如果上下文窗口不足，应该优先保留哪些信息？
+### 36. 如果上下文窗口不足，应该优先保留哪些信息？
 
 **上下文不足时应依次保留高优先级指令、当前问题、用户硬约束、最新任务状态和直接证据，再压缩辅助历史与低价值材料。**
 
@@ -466,7 +466,7 @@
 
 **相关知识点：** 指令优先级、Token Budget、最小充分证据、证据集合覆盖率、抽取式压缩、分层摘要、裁剪审计、拒答。
 <a id="ctx-199"></a>
-### Prompt长度增加为什么会导致成本上升？
+### 37. Prompt长度增加为什么会导致成本上升？
 
 **Prompt变长会直接增加输入Token计费，并扩大注意力计算、KV Cache、传输和排队资源；在Agent循环中还会被多次重复放大。**
 
@@ -478,7 +478,7 @@
 
 **相关知识点：** Input Token计费、Attention Prefill、KV Cache、首Token延迟、吞吐、ReAct放大、Token归因、Prompt Cache、边际成本。
 <a id="ctx-202"></a>
-### Tool Result 应该如何组织到 Prompt 中？
+### 38. Tool Result 应该如何组织到 Prompt 中？
 
 **Tool Result应作为与call_id关联的结构化tool消息进入Prompt，明确状态、来源、时间和有效载荷，并只保留当前决策所需内容。**
 
@@ -490,7 +490,7 @@
 
 **相关知识点：** tool角色、call_id、Tool Result Schema、artifact_ref、结构化错误、抽取式压缩、Prompt Injection、脱敏、来源追踪。
 <a id="ctx-203"></a>
-### ReAct Agent 的 Prompt 是如何动态变化的？
+### 39. ReAct Agent 的 Prompt 是如何动态变化的？
 
 **ReAct Prompt在每轮保留稳定策略与任务目标，并追加动作、工具Observation和更新后的任务状态，直至满足终止条件或预算耗尽。**
 
@@ -502,7 +502,7 @@
 
 **相关知识点：** ReAct、Action、Observation、tool消息、任务状态机、轨迹摘要、幂等键、循环终止、Trace回放、无效动作率。
 <a id="ctx-205"></a>
-### 如何控制 Prompt Token 成本？
+### 40. 如何控制 Prompt Token 成本？
 
 **Prompt Token成本应通过分项计量、预算分配、上下文压缩、缓存与模型路由联合控制，并以单位成功任务成本而非单次Token数评价。**
 
@@ -514,7 +514,7 @@
 
 **相关知识点：** Token Accounting、Token Budget、Prompt Cache、Semantic Cache、模型路由、动态Top-K、Context Compression、重试放大、单位成功任务成本、Pareto前沿。
 <a id="ctx-206"></a>
-### Context Compression 如何实现？
+### 41. Context Compression 如何实现？
 
 **Context Compression应按信息类型采用规则裁剪、抽取压缩、分层摘要和结构化状态化，在降低Token的同时保留约束、证据与可追溯性。**
 

@@ -3,7 +3,7 @@
 > 所属章节：[Claude Code](README.md)｜本文件共 **9** 题。
 
 <a id="cc-025"></a>
-### 企业如何通过 Managed Settings 和 LLM Gateway 治理 Claude Code？
+### 1. 企业如何通过 Managed Settings 和 LLM Gateway 治理 Claude Code？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -13,7 +13,7 @@ Managed Settings集中下发不可被普通用户放宽的权限、MCP、网络�
 
 **相关知识点：** Managed Settings、LLM Gateway、Policy Enforcement、Spend Limit、Protocol Compatibility、Effective Config。
 <a id="cc-026"></a>
-### Claude Code 的 Anthropic、Bedrock、Google Cloud 和 Microsoft Foundry 部署如何选型？
+### 2. Claude Code 的 Anthropic、Bedrock、Google Cloud 和 Microsoft Foundry 部署如何选型？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -23,7 +23,7 @@ Managed Settings集中下发不可被普通用户放宽的权限、MCP、网络�
 
 **相关知识点：** Anthropic API、Amazon Bedrock、Google Cloud、Microsoft Foundry、IAM、Feature Matrix。
 <a id="cc-027"></a>
-### Claude Code 的 Code Review 如何减少误报和漏报？
+### 3. Claude Code 的 Code Review 如何减少误报和漏报？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -33,7 +33,7 @@ Managed Settings集中下发不可被普通用户放宽的权限、MCP、网络�
 
 **相关知识点：** Code Review、REVIEW.md、Multi-agent Analysis、Finding Evidence、Precision、Recall。
 <a id="cc-028"></a>
-### Claude Code 修改代码后应如何设计验证闭环？
+### 4. Claude Code 修改代码后应如何设计验证闭环？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -43,7 +43,7 @@ Agent先从仓库规则或CI配置找到权威命令，失败后区分代码缺�
 
 **相关知识点：** Test Pyramid、Static Analysis、Affected Tests、Flaky Test、Retry Budget、Verification Evidence。
 <a id="cc-030"></a>
-### 企业推广 Claude Code 时如何衡量真实价值，而不是只看使用量？
+### 5. 企业推广 Claude Code 时如何衡量真实价值，而不是只看使用量？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -55,7 +55,7 @@ Agent先从仓库规则或CI配置找到权威命令，失败后区分代码缺�
 > 以下题目由「Agent 核心架构」「任务规划与执行」「工具与能力体系」「工程落地与平台化」迁入，保留原答案内容并统一纳入 Claude Code 专章。
 
 <a id="cc-074"></a>
-### 如何评估Claude Code的任务完成率？
+### 6. 如何评估Claude Code的任务完成率？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -71,7 +71,7 @@ Agent先从仓库规则或CI配置找到权威命令，失败后区分代码缺�
 
 **相关知识点：** Acceptance Criteria、Strict Success Rate、Partial Completion、隐藏测试、盲审、pass@1、置信区间、任务切片、单位成功成本。
 <a id="cc-075"></a>
-### 如何构建Coding Agent的离线评测集？
+### 7. 如何构建Coding Agent的离线评测集？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -87,7 +87,7 @@ Agent先从仓库规则或CI配置找到权威命令，失败后区分代码缺�
 
 **相关知识点：** 仓库快照、真实PR任务、隐藏测试、盲审Rubric、可复现环境、Flaky治理、时间切分、数据污染、挑战集。
 <a id="cc-078"></a>
-### 如何进行大小模型分工和模型路由？
+### 8. 如何进行大小模型分工和模型路由？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -103,7 +103,7 @@ Agent先从仓库规则或CI配置找到权威命令，失败后区分代码缺�
 
 **相关知识点：** Model Routing、级联推理、置信度校准、风险路由、Validator、Bandit、模型熔断、单位成功成本、误路由率。
 <a id="cc-090"></a>
-### Claude Code理解调用关系主要依赖模型推理，还是依赖LSP和索引？
+### 9. Claude Code理解调用关系主要依赖模型推理，还是依赖LSP和索引？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 

@@ -3,7 +3,7 @@
 > 所属章节：[工具、Skills 与 MCP](README.md)｜本文件共 **23** 题。
 
 <a id="tool-002"></a>
-### 如何自定义工具供给大模型调用，开发工具的关键参数、完整实现流程（Agent初级）
+### 1. 如何自定义工具供给大模型调用，开发工具的关键参数、完整实现流程（Agent初级）
 
 自定义工具是把函数或外部服务封装为 **模型可理解、平台可校验、运行可控制** 的标准能力。
 
@@ -25,7 +25,7 @@
 > **题目合并：** `TOOL-014` 已并入 [TOOL-048 · MCP与Function Calling有什么区别？](#tool-048)。
 
 <a id="tool-016"></a>
-### Tool 如何实现动态发现？
+### 2. Tool 如何实现动态发现？
 
 Tool 动态发现应形成 **能力发布、目录同步、权限过滤、候选检索、执行复核** 的闭环，使工具可热更新且受治理。
 
@@ -44,7 +44,7 @@ Tool 动态发现应形成 **能力发布、目录同步、权限过滤、候选
 
 **相关知识点：** 动态发现、Tool Registry、MCP、事件订阅、ETag、TTL、权限过滤、健康检查。
 <a id="tool-019"></a>
-### Tool Calling 与 Function Calling 有什么区别？
+### 3. Tool Calling 与 Function Calling 有什么区别？
 
 两者在模型 API 中常互换使用。严格区分时，**Function Calling 是生成结构化函数参数的机制，Tool Calling 是更广义的工具调用体系**。
 
@@ -65,7 +65,7 @@ Tool 动态发现应形成 **能力发布、目录同步、权限过滤、候选
 
 **相关知识点：** Function Calling、Tool Calling、JSON Schema、Tool Registry、Policy Engine、Tool Executor、MCP。
 <a id="tool-031"></a>
-### 如何接入 HTTP、本地函数、数据库、Shell、Python、MCP 等不同类型工具？
+### 4. 如何接入 HTTP、本地函数、数据库、Shell、Python、MCP 等不同类型工具？
 
 不同工具应通过 **统一 Tool SPI 加类型 Adapter** 接入：Adapter 封装协议差异，Executor 统一实施安全与可靠性策略。
 
@@ -84,7 +84,7 @@ Tool 动态发现应形成 **能力发布、目录同步、权限过滤、候选
 
 **相关知识点：** Tool SPI、Adapter模式、连接池、参数绑定、沙箱、MCP Client、契约测试、热更新。
 <a id="tool-042"></a>
-### MCP 在 Agent 工具调用体系中解决了哪些问题？
+### 5. MCP 在 Agent 工具调用体系中解决了哪些问题？
 
 MCP 解决 **接入协议不统一、发现静态、连接器重复开发和上下文难复用**，使 Host 与外部系统按 Client/Server 协作。
 
@@ -105,7 +105,7 @@ MCP 不负责规划、业务正确性和最终授权，也不消除 Prompt Injec
 
 **相关知识点：** MCP Host、MCP Client、MCP Server、Tools、Resources、Prompts、能力协商、动态发现。
 <a id="tool-046"></a>
-### MCP协议的核心组成部分有哪些？
+### 6. MCP协议的核心组成部分有哪些？
 
 MCP 由 **Host、Client、Server、能力原语、传输与生命周期** 组成，建立模型应用与外部系统的标准通道。
 
@@ -129,7 +129,7 @@ MCP 标准化连接与能力表达，不负责模型推理或业务正确性。�
 **官方规范：** [MCP Lifecycle](https://modelcontextprotocol.io/specification/2025-06-18/basic/lifecycle)、[MCP Authorization](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)。
 
 <a id="tool-047"></a>
-### MCP Client 和 MCP Server 如何通信？
+### 7. MCP Client 和 MCP Server 如何通信？
 
 MCP Client 与 Server 通过 **请求、响应和通知** 通信，经历初始化、发现、调用、变更和关闭生命周期。
 
@@ -150,7 +150,7 @@ Deadline、Trace、终端用户身份和幂等键不是所有MCP请求的固定�
 
 **相关知识点：** JSON-RPC、初始化协商、Request、Response、Notification、能力发现、Capability Negotiation、取消、Prompt Injection。
 <a id="tool-048"></a>
-### MCP与Function Calling有什么区别？
+### 8. MCP与Function Calling有什么区别？
 
 **Function Calling 是模型输出工具意图的机制，MCP 是 Host 与能力提供方的协议**。前者位于模型层，后者位于接入层。
 
@@ -173,7 +173,7 @@ Deadline、Trace、终端用户身份和幂等键不是所有MCP请求的固定�
 
 **相关知识点：** Function Calling、MCP Host、MCP Client、MCP Server、Tool Discovery、JSON Schema、Tool Executor。
 <a id="tool-049"></a>
-### MCP相比传统Plugin机制优势是什么？
+### 9. MCP相比传统Plugin机制优势是什么？
 
 MCP 相比 Plugin 的优势是 **开放协议、运行时发现、跨宿主复用和多类上下文能力**，使集成转向 Client/Server 生态。
 
@@ -193,7 +193,7 @@ MCP 不自动保证 Server 可信，也不替代授权与审计；企业仍需�
 
 **相关知识点：** MCP、Plugin、开放协议、运行时发现、Tools、Resources、Prompts、MCP Gateway。
 <a id="tool-050"></a>
-### MCP如何实现工具发现（Tool Discovery）？
+### 10. MCP如何实现工具发现（Tool Discovery）？
 
 MCP 工具发现通过 **初始化协商、工具列举、变更通知和 Host 过滤** 完成，使 Client 获取 Server 的工具定义。
 
@@ -213,7 +213,7 @@ MCP 工具发现通过 **初始化协商、工具列举、变更通知和 Host �
 
 **相关知识点：** Tool Discovery、能力协商、工具列举、变更通知、Schema、缓存失效、权限过滤。
 <a id="tool-051"></a>
-### MCP如何实现权限控制和安全隔离？
+### 11. MCP如何实现权限控制和安全隔离？
 
 MCP 权限由 **可信 Server、最小暴露、Host 策略、Server 最终授权和隔离** 共同实现，连接成功不代表有权执行。
 
@@ -233,7 +233,7 @@ MCP 权限由 **可信 Server、最小暴露、Host 策略、Server 最终授权
 
 **相关知识点：** MCP安全、最小权限、Policy Engine、短期令牌、资源级授权、运行隔离、Prompt Injection。
 <a id="tool-052"></a>
-### MCP如何支持动态工具注册？
+### 12. MCP如何支持动态工具注册？
 
 MCP 动态注册是 **Server 更新目录并通知 Client 重新发现**；企业还需来源审核、版本控制和权限门禁。
 
@@ -255,7 +255,7 @@ MCP 动态注册是 **Server 更新目录并通知 Client 重新发现**；企�
 
 **相关知识点：** 动态注册、工具列表通知、缓存失效、Schema哈希、语义版本、灰度发布、权限过滤。
 <a id="tool-053"></a>
-### MCP资源（Resources）和工具（Tools）有什么区别？
+### 13. MCP资源（Resources）和工具（Tools）有什么区别？
 
 **Resource 提供可寻址上下文，Tool 执行带动作语义的能力**。边界是访问方式、副作用和授权，不只是读写之分。
 
@@ -275,7 +275,7 @@ MCP 动态注册是 **Server 更新目录并通知 Client 重新发现**；企�
 
 **相关知识点：** MCP Resources、MCP Tools、URI、JSON Schema、副作用、资源授权、Prompt Injection。
 <a id="tool-054"></a>
-### MCP在企业内部落地会遇到哪些挑战？
+### 14. MCP在企业内部落地会遇到哪些挑战？
 
 MCP 企业落地难在 **Server 可信度、身份权限、版本兼容、多租户、内容安全和运维**，而非协议连接。
 
@@ -295,7 +295,7 @@ MCP 企业落地难在 **Server 可信度、身份权限、版本兼容、多租
 
 **相关知识点：** MCP Gateway、IAM、Server签名、契约测试、多租户、Prompt Injection、SLA、成本治理。
 <a id="tool-055"></a>
-### MCP如何支持多Agent协作？
+### 15. MCP如何支持多Agent协作？
 
 MCP 通过 **共享能力目录和上下文资源** 降低多 Agent 接入成本，但分工、协商和一致性由编排层负责。
 
@@ -315,7 +315,7 @@ MCP 是能力接入基础，不是多 Agent 调度协议；完整系统还需任
 
 **相关知识点：** 多Agent、MCP Resources、工作负载身份、ETag、租约、幂等性、任务编排、共享上下文。
 <a id="tool-066"></a>
-### MCP工具调用过程中如何进行权限校验？
+### 16. MCP工具调用过程中如何进行权限校验？
 
 MCP Tool 权限应贯穿 **发现、调用前决策、Server 最终授权和审计**，连接成功不代表可用全部工具。
 
@@ -339,7 +339,7 @@ MCP Tool 权限应贯穿 **发现、调用前决策、Server 最终授权和审�
 
 **相关知识点：** MCP权限、RBAC、ABAC、Policy Engine、短期令牌、资源级授权、审批令牌、审计。
 <a id="tool-092"></a>
-### 如何设计沙箱与外部工具调用（Tool Calling）之间的安全通信协议？
+### 17. 如何设计沙箱与外部工具调用（Tool Calling）之间的安全通信协议？
 
 沙箱不直接访问企业服务或持有长期凭据，通过 **Tool Gateway、结构化消息、最小授权和结果校验** 通信。
 
@@ -360,7 +360,7 @@ MCP Tool 权限应贯穿 **发现、调用前决策、Server 最终授权和审�
 
 **相关知识点：** Tool Gateway、mTLS、短期令牌、nonce、防重放、Policy Engine、流控、结果脱敏。
 <a id="tool-095"></a>
-### LangChain 和 Spring AI 的核心区别是什么？
+### 18. LangChain 和 Spring AI 的核心区别是什么？
 
 核心差异是：**LangChain以AI编排与Agent生态为中心，Spring AI以Spring体系中的可移植AI抽象和企业集成为中心**。
 
@@ -378,7 +378,7 @@ MCP Tool 权限应贯穿 **发现、调用前决策、Server 最终授权和审�
 
 **相关知识点：** LangChain、LangGraph、Spring AI、ChatClient、Advisor、Tool Calling、Vector Store、MCP、框架适配层。
 <a id="tool-100"></a>
-### 自研 Agent 框架如何避免重复造轮子？
+### 19. 自研 Agent 框架如何避免重复造轮子？
 
 自研的重点应是企业特有的**控制面、执行语义与治理能力**，而不是重写模型SDK、向量数据库客户端和通用解析器；采用薄内核、标准协议和可替换适配器能够控制自研边界。
 
@@ -398,7 +398,7 @@ MCP Tool 权限应贯穿 **发现、调用前决策、Server 最终授权和审�
 
 **相关知识点：** 薄内核、插件架构、Adapter、契约测试、OpenTelemetry、MCP、Build vs Buy、退出成本、软件供应链。
 <a id="tool-109"></a>
-### Spring AI 更适合哪些 Java 企业应用场景？
+### 20. Spring AI 更适合哪些 Java 企业应用场景？
 
 Spring AI更适合**既有Spring技术栈中以业务集成、统一治理和可维护性为优先**的应用，尤其适合把模型能力嵌入微服务。
 
@@ -418,7 +418,7 @@ Spring AI仍需补充评测、安全、审批和可靠工作流；统一API不�
 
 **相关知识点：** Spring AI、ChatClient、Advisor、Model API、Vector Store、ETL、Tool Calling、MCP、Spring Boot、可观测性。
 <a id="tool-112"></a>
-### Tool Calling与MCP协议有什么区别？
+### 21. Tool Calling与MCP协议有什么区别？
 
 **Tool Calling是模型表达调用意图的能力，MCP是AI应用连接外部能力的标准协议**。前者解决结构化输出，后者解决发现、传输与互操作。
 
@@ -440,7 +440,7 @@ Spring AI仍需补充评测、安全、审批和可靠工作流；统一API不�
 
 **相关知识点：** Function Calling、JSON Schema、MCP Client、MCP Server、JSON-RPC、能力协商、tools/list、tools/call、Host安全边界。
 <a id="tool-117"></a>
-### MCP与Tool Calling如何融合？
+### 22. MCP与Tool Calling如何融合？
 
 融合方式是**MCP负责发现与通信，Tool Calling负责选择和参数，Host负责安全与编排**，使协议层与推理层解耦。
 

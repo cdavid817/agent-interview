@@ -3,7 +3,7 @@
 > 所属章节：[Transformer](README.md)｜本文件共 **4** 题。
 
 <a id="trans-048"></a>
-### Pre-Norm、Post-Norm 和 Sandwich Norm 有什么区别？为什么深层模型常用 Pre-Norm？（高级）
+### 1. Pre-Norm、Post-Norm 和 Sandwich Norm 有什么区别？为什么深层模型常用 Pre-Norm？（高级）
 
 **归一化位置改变残差支路的梯度路径：Pre-Norm在子层前归一化，提供更直接的恒等梯度通道；Post-Norm在残差相加后归一化，表示性质不同但深层训练更敏感。**
 
@@ -13,7 +13,7 @@
 
 **相关知识点：** Pre-LN、Post-LN、Sandwich Norm、残差通路、梯度传播、Residual Scaling、Training Stability。
 <a id="trans-049"></a>
-### RMSNorm 与 LayerNorm 有什么区别，为什么很多大模型选择 RMSNorm？（高级）
+### 2. RMSNorm 与 LayerNorm 有什么区别，为什么很多大模型选择 RMSNorm？（高级）
 
 **LayerNorm同时去均值并按方差缩放，RMSNorm只按均方根缩放；后者计算更简单，并保留了对激活尺度的控制。**
 
@@ -23,7 +23,7 @@
 
 **相关知识点：** LayerNorm、RMSNorm、均值中心化、尺度不变性、Kernel Fusion、Mixed Precision。
 <a id="trans-050"></a>
-### Transformer 中 FFN/MLP 层承担什么作用？SwiGLU 为什么常见？（高级）
+### 3. Transformer 中 FFN/MLP 层承担什么作用？SwiGLU 为什么常见？（高级）
 
 **Attention负责跨Token混合信息，FFN在每个Token位置独立进行通道变换和非线性特征组合；两者缺一不可。**
 
@@ -33,7 +33,7 @@
 
 **相关知识点：** Feed-Forward Network、MLP、GELU、GLU、SwiGLU、门控、通道混合、算子融合。
 <a id="trans-060"></a>
-### Transformer 训练出现 Loss Spike、梯度爆炸或 NaN，如何系统定位？（高级）
+### 4. Transformer 训练出现 Loss Spike、梯度爆炸或 NaN，如何系统定位？（高级）
 
 **定位训练不稳定应固定可复现检查点，先区分数据、数值精度、优化器和分布式通信问题，再通过最小变量回放找到首个异常算子或批次。**
 

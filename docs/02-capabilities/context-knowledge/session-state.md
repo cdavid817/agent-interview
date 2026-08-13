@@ -3,7 +3,7 @@
 > 所属章节：[上下文与知识系统](README.md)｜本文件共 **7** 题。
 
 <a id="ctx-001"></a>
-### 介绍一下Harness Engineering（上下文工程）（附加专题）
+### 1. 介绍一下Harness Engineering（上下文工程）（附加专题）
 
 **Harness Engineering通过运行环境、反馈机制和工程约束，使Agent在长周期任务中稳定执行、验证结果并从故障点恢复。**
 
@@ -21,7 +21,7 @@
 
 **相关知识点：** Agent Runtime、Context Engineering、渐进式披露、状态机、Checkpoint、Validator、沙箱、幂等、可观测性、人工接管。
 <a id="ctx-009"></a>
-### 如何理解Agent中的状态和上下文？（千问二面）
+### 2. 如何理解Agent中的状态和上下文？（千问二面）
 
 **Agent状态是跨步骤持久存在的权威事实，上下文是某次模型调用从状态、指令和外部证据中投影出的有限输入，两者是数据源与派生视图的关系。**
 
@@ -39,7 +39,7 @@
 
 **相关知识点：** Agent State、Context Window、状态机、Checkpoint、Context Builder、派生视图、Validator、CAS。
 <a id="ctx-048"></a>
-### 如何实现跨会话任务状态恢复？
+### 3. 如何实现跨会话任务状态恢复？
 
 **跨会话恢复应依赖持久化状态和可重放事件，而不是拼接聊天记录；恢复点必须明确、版本一致且能验证外部副作用。**
 
@@ -51,7 +51,7 @@
 
 **相关知识点：** Task State、Checkpoint、Event Sourcing、Replay、幂等键、乐观锁、Schema Migration、Context Builder、状态机、Exactly-once Effect。
 <a id="ctx-052"></a>
-### 如何实现任务执行过程中的状态快照？
+### 4. 如何实现任务执行过程中的状态快照？
 
 **任务状态快照应保存可恢复的最小完整状态，并与增量事件、外部副作用和代码版本关联，使Agent能从一致检查点继续执行。**
 
@@ -63,7 +63,7 @@
 
 **相关知识点：** Snapshot、Checkpoint、Event Sourcing、Write-ahead Log、乐观锁、幂等键、增量快照、RPO、状态恢复、外部副作用。
 <a id="ctx-177"></a>
-### Planner 如何决定保留哪些上下文？
+### 5. Planner 如何决定保留哪些上下文？
 
 **Planner应针对当前计划节点保留目标、前置依赖、最新状态、直接证据和未决风险，其他信息通过索引按需展开。**
 
@@ -75,7 +75,7 @@
 
 **相关知识点：** Planner、任务DAG、前置依赖、Checkpoint、工作上下文、产物URI、上下文句柄、状态差异、片段消融、约束保持率。
 <a id="ctx-178"></a>
-### 多 Agent 协作时上下文如何共享？
+### 6. 多 Agent 协作时上下文如何共享？
 
 **多Agent协作应共享结构化任务状态、必要证据和产物引用，不应广播各自完整对话、Prompt或隐藏推理。**
 
@@ -87,7 +87,7 @@
 
 **相关知识点：** Shared Task Board、任务契约、状态差异、产物引用、事件幂等、乐观锁、最小必要授权、冲突裁决、上下文传播、状态重建。
 <a id="ctx-204"></a>
-### 多 Agent 系统中 Prompt 如何共享和传递？
+### 7. 多 Agent 系统中 Prompt 如何共享和传递？
 
 **多Agent不应直接复制完整Prompt，而应通过结构化任务信封传递目标、约束、证据、状态和权限，每个Agent再按自身职责组装本地Prompt。**
 

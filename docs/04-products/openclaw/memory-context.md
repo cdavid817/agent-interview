@@ -3,7 +3,7 @@
 > 所属章节：[OpenClaw](README.md)｜本文件共 **8** 题。
 
 <a id="oclaw-008"></a>
-### OpenClaw 如何利用混合检索提高 Memory Recall？
+### 1. OpenClaw 如何利用混合检索提高 Memory Recall？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -13,7 +13,7 @@
 
 **相关知识点：** BM25、Embedding、Hybrid Retrieval、Rerank、Recall@K、Context Precision、记忆冲突。
 <a id="oclaw-013"></a>
-### 如何防止不可信频道用户控制 OpenClaw 执行危险操作？
+### 2. 如何防止不可信频道用户控制 OpenClaw 执行危险操作？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -25,7 +25,7 @@
 
 **相关知识点：** Pairing、Sender Allowlist、Group Policy、Prompt Injection、Bot Loop、只读Agent、租户隔离。
 <a id="oclaw-015"></a>
-### OpenClaw 子 Agent 如何控制上下文、权限和并发？
+### 3. OpenClaw 子 Agent 如何控制上下文、权限和并发？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -35,7 +35,7 @@
 
 **相关知识点：** Context Isolation、Tool Restriction、Concurrency Lane、Nesting Depth、Artifact、Best-effort Announce。
 <a id="oclaw-018"></a>
-### OpenClaw 的 Code Mode 与普通工具调用有什么差异？
+### 4. OpenClaw 的 Code Mode 与普通工具调用有什么差异？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -47,7 +47,7 @@
 
 **相关知识点：** Code Mode、Tool Search、Nested Calls、Context Reduction、执行预算、实验能力。
 <a id="oclaw-035"></a>
-### OpenClaw 为什么需要 Memory 系统？
+### 5. OpenClaw 为什么需要 Memory 系统？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -60,7 +60,7 @@ Memory文件持久存在不代表每轮都进入上下文，相关内容通过�
 
 **相关知识点：** OpenClaw、Multi-Agent、检索、Memory、Agent Runtime。
 <a id="oclaw-036"></a>
-### OpenClaw 如何解决上下文窗口限制？
+### 6. OpenClaw 如何解决上下文窗口限制？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -73,7 +73,7 @@ OpenClaw通过会话压缩、Memory Flush与Memory Search减少长期会话对�
 
 **相关知识点：** OpenClaw、Memory、Context Window、Window。
 <a id="oclaw-042"></a>
-### OpenClaw 如何管理 Prompt 版本？
+### 7. OpenClaw 如何管理 Prompt 版本？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -84,7 +84,7 @@ OpenClaw通过工作区文件、Agent配置、Skills和Plugins影响行为，但
 
 **相关知识点：** OpenClaw、Skill、Prompt Engineering、评测体系、灰度发布。
 <a id="oclaw-049"></a>
-### OpenClaw 如何设计 Memory 检索机制？
+### 8. OpenClaw 如何设计 Memory 检索机制？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 

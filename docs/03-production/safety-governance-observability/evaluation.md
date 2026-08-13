@@ -3,7 +3,7 @@
 > 所属章节：[安全、治理与可观测性](README.md)｜本文件共 **39** 题。
 
 <a id="gov-011"></a>
-### 任务完成率如何评估？（豆包二面）
+### 1. 任务完成率如何评估？（豆包二面）
 
 任务完成率是**在范围、期限和验收标准内达到业务目标的任务占比**，不能用流程结束或模型自报代替。分母、部分完成与取消口径须预先定义。
 
@@ -22,7 +22,7 @@
 
 **相关知识点：** Task Success Rate、验收标准、分母治理、部分完成、一次解决率、置信区间、Failure Taxonomy、Baseline。
 <a id="gov-012"></a>
-### 当Agent任务完成率只有70%时，如何判断问题出在模型、Prompt、RAG、工具调用还是流程编排？（腾讯二面）
+### 2. 当Agent任务完成率只有70%时，如何判断问题出在模型、Prompt、RAG、工具调用还是流程编排？（腾讯二面）
 
 应基于**统一Trace、分层验收、失败Taxonomy和受控消融**归因，不能凭直觉判断。先定位首个决定性失败节点，再验证是否引发连锁失败。
 
@@ -41,7 +41,7 @@
 
 **相关知识点：** Failure Taxonomy、首个失败节点、配对实验、消融、Recall@K、Context Precision、Tool验收、根因占比。
 <a id="gov-049"></a>
-### 如何统计工具成功率和耗时？
+### 3. 如何统计工具成功率和耗时？
 
 工具指标应以**逻辑调用Operation**为主键，同时保留Attempt；否则重试会放大样本，造成成功率和耗时失真。
 
@@ -58,7 +58,7 @@
 > **题目合并：** `GOV-053` 已并入 [TOOL-116 · 如何评估工具调用质量？](../../02-capabilities/tools-skills-mcp/tool-platform.md#tool-116)。
 
 <a id="gov-057"></a>
-### Prometheus需要监控哪些指标？
+### 4. Prometheus需要监控哪些指标？
 
 Prometheus应监控**业务、模型、RAG、Tool、编排、基础设施和观测管道**，遵循低基数；TaskID、UserID等只放Trace或Log。
 
@@ -72,7 +72,7 @@ Prometheus应监控**业务、模型、RAG、Tool、编排、基础设施和观�
 
 **相关知识点：** Prometheus、Counter、Gauge、Histogram、Label Cardinality、RED/USE、SLO、Burn Rate、Exemplar。
 <a id="gov-059"></a>
-### 如何利用追踪数据持续优化Agent性能与成本？
+### 5. 如何利用追踪数据持续优化Agent性能与成本？
 
 追踪优化应形成**测量—归因—实验—门禁—回归**闭环，以成功任务为单位约束质量、延迟和成本，不能只压缩Token。
 
@@ -86,7 +86,7 @@ Prometheus应监控**业务、模型、RAG、Tool、编排、基础设施和观�
 
 **相关知识点：** Critical Path、Cost Attribution、Unit Economics、A/B Test、Tail Sampling、模型路由、缓存、回归评测、置信区间。
 <a id="gov-063"></a>
-### 如何建设Agent运营分析平台？
+### 6. 如何建设Agent运营分析平台？
 
 Agent运营平台应把**使用、质量、效率、成本、风险和用户价值**统一到任务事实模型，以成功任务为核心单位，并可下钻Trace。
 
@@ -100,7 +100,7 @@ Agent运营平台应把**使用、质量、效率、成本、风险和用户价�
 
 **相关知识点：** Metrics Layer、Fact Table、North Star Metric、Funnel、Cohort、A/B Test、数据血缘、指标治理、单位经济性。
 <a id="gov-092"></a>
-### Agent任务成功率和用户满意度有什么区别？
+### 7. Agent任务成功率和用户满意度有什么区别？
 
 两者分别衡量**客观完成**与**主观体验**，相关但不可替代。任务可能按验收标准成功却因慢、贵或表达不佳而低满意；用户也可能满意于错误但流畅的答案。
 
@@ -118,7 +118,7 @@ Agent运营平台应把**使用、质量、效率、成本、风险和用户价�
 
 **相关知识点：** Task Success Rate、CSAT、Behavioral Proxy、验收标准、选择偏差、二维分析、A/B Test、护栏指标。
 <a id="gov-094"></a>
-### Agent评估为什么不能只看任务完成率？
+### 8. Agent评估为什么不能只看任务完成率？
 
 任务完成率只回答**是否到达终点**，无法说明过程是否真实、安全、稳定且经济。单指标优化还会诱导过度拒答或绕过验收，形成Goodhart效应。
 
@@ -132,7 +132,7 @@ Agent运营平台应把**使用、质量、效率、成本、风险和用户价�
 
 **相关知识点：** Goodhart’s Law、Task Success、Guardrail Metric、Side-effect Safety、Cost/Success、切片评估、置信区间、A/B Test。
 <a id="gov-096"></a>
-### LLM-as-Judge有哪些优缺点？
+### 9. LLM-as-Judge有哪些优缺点？
 
 LLM-as-Judge适合**规模化评估开放式输出**，但存在偏差、随机性和攻击面，不能替代确定性测试与业务验收。
 
@@ -151,7 +151,7 @@ LLM-as-Judge适合**规模化评估开放式输出**，但存在偏差、随机�
 
 **相关知识点：** LLM-as-Judge、Position Bias、Verbosity Bias、Self-preference、Pairwise Evaluation、Rubric、Calibration、Inter-rater Agreement。
 <a id="gov-097"></a>
-### 如何降低大模型评测结果的主观性？
+### 10. 如何降低大模型评测结果的主观性？
 
 降低主观性依赖**可操作Rubric、确定性证据、盲评校准和统计报告**，使不同评审者获得可重复、可解释的结果。
 
@@ -165,7 +165,7 @@ LLM-as-Judge适合**规模化评估开放式输出**，但存在偏差、随机�
 
 **相关知识点：** Rubric、Anchor Example、Blind Review、Cohen’s Kappa、Krippendorff’s Alpha、Judge Calibration、配对检验、置信区间。
 <a id="gov-098"></a>
-### 多模型交叉评测是怎么实现的？
+### 11. 多模型交叉评测是怎么实现的？
 
 多模型交叉评测通过**候选匿名化、独立Judge、偏差校准和确定性Oracle融合**实现，用于降低单一模型的系统偏见。
 
@@ -179,7 +179,7 @@ LLM-as-Judge适合**规模化评估开放式输出**，但存在偏差、随机�
 
 **相关知识点：** Multi-Judge、Blind Evaluation、Pairwise Ranking、Bradley-Terry、Elo、Self-preference、Inter-rater Agreement、Calibration。
 <a id="gov-099"></a>
-### 自动验收机制如何设计？
+### 12. 自动验收机制如何设计？
 
 自动验收应把目标转化为**可执行、分层、不可被模型修改的Acceptance Contract**，由独立Verifier判定；Agent自评仅作证据。
 
@@ -193,7 +193,7 @@ LLM-as-Judge适合**规模化评估开放式输出**，但存在偏差、随机�
 
 **相关知识点：** Acceptance Contract、Independent Verifier、Hard Gate、Schema Validation、Golden Set、LLM-as-Judge、Partial Success、回归测试。
 <a id="gov-100"></a>
-### 多步骤任务如何计算完成率？
+### 13. 多步骤任务如何计算完成率？
 
 多步骤任务应报告**最终成功、必需节点通过率和加权进度**，不能用已执行步骤数计算；执行完成不等于验收通过。
 
@@ -207,7 +207,7 @@ LLM-as-Judge适合**规模化评估开放式输出**，但存在偏差、随机�
 
 **相关知识点：** DAG、Required/Optional、Weighted Progress、Task Success、Acceptance Criteria、Hard Gate、Attempt、Goodhart效应。
 <a id="gov-101"></a>
-### Agent任务拆解失败如何评估？
+### 14. Agent任务拆解失败如何评估？
 
 拆解质量应评估**目标覆盖、依赖、粒度、可执行、可验收和风险**。最终失败只是结果，还需定位计划中的结构错误。
 
@@ -221,7 +221,7 @@ LLM-as-Judge适合**规模化评估开放式输出**，但存在偏差、随机�
 
 **相关知识点：** Plan Evaluation、Goal Coverage、DAG Validation、Granularity、Feasibility、Acceptance Criteria、Mutation Testing、Failure Taxonomy。
 <a id="gov-102"></a>
-### 多Agent协作任务如何评估整体成功率？
+### 15. 多Agent协作任务如何评估整体成功率？
 
 整体成功率应以**端到端目标和副作用正确性**为准，不能取Agent成功率平均值；局部完成不代表组合结果正确。
 
@@ -235,7 +235,7 @@ LLM-as-Judge适合**规模化评估开放式输出**，但存在偏差、随机�
 
 **相关知识点：** End-to-end Success、DAG Acceptance、Artifact Compatibility、Failure Taxonomy、Fault Injection、Cost/Success、协作开销、基线对照。
 <a id="gov-104"></a>
-### Coding Agent最重要的评估指标是什么？
+### 16. Coding Agent最重要的评估指标是什么？
 
 最重要的指标是**经独立验收的任务解决率**：代码是否真正解决任务且未引入安全与回归问题。测试通过或可编译只是子指标。
 
@@ -249,7 +249,7 @@ LLM-as-Judge适合**规模化评估开放式输出**，但存在偏差、随机�
 
 **相关知识点：** Task Resolution Rate、Hidden Test、Regression、SAST、Diff Minimality、Defect Escape Rate、Cost/Resolved Task、代码评测。
 <a id="gov-106"></a>
-### 如何评估代码生成质量？
+### 17. 如何评估代码生成质量？
 
 代码生成质量应以**正确、安全、可维护、变更最小且可交付**为标准，由独立Verifier在沙箱评估；相似度和编译通过不足以代表质量。
 
@@ -263,7 +263,7 @@ LLM-as-Judge适合**规模化评估开放式输出**，但存在偏差、随机�
 
 **相关知识点：** Task Resolution、Hidden Test、Mutation Testing、Static Analysis、SAST、Diff Minimality、Maintainability、Defect Escape Rate。
 <a id="gov-107"></a>
-### 如何评估代码修改带来的风险？
+### 18. 如何评估代码修改带来的风险？
 
 代码风险由**影响面、资产敏感度、验证强度、可逆性和运行证据**评估，不能只看修改行数；一行鉴权代码可能更危险。
 
@@ -277,7 +277,7 @@ LLM-as-Judge适合**规模化评估开放式输出**，但存在偏差、随机�
 
 **相关知识点：** Blast Radius、Risk Score、Call Graph、SAST、Mutation Testing、Feature Flag、Canary、CODEOWNERS、缺陷逃逸率。
 <a id="gov-108"></a>
-### 人工接管率为什么重要？
+### 19. 人工接管率为什么重要？
 
 人工接管率衡量**Agent在风险边界内独立完成任务的能力**，影响自动化价值和成本；但并非越低越好，正确升级也是能力。
 
@@ -291,7 +291,7 @@ LLM-as-Judge适合**规模化评估开放式输出**，但存在偏差、随机�
 
 **相关知识点：** Human Takeover Rate、Automation Rate、Appropriate Escalation、Failure Taxonomy、Cost/Success、HITL、护栏指标、A/B Test。
 <a id="gov-110"></a>
-### 如何通过监控发现Agent能力退化？
+### 20. 如何通过监控发现Agent能力退化？
 
 能力退化应通过**稳定基线、分层指标、版本关联和统计检测**发现，并区分真实下降与流量、数据、工具或评测变化。
 
@@ -305,7 +305,7 @@ LLM-as-Judge适合**规模化评估开放式输出**，但存在偏差、随机�
 
 **相关知识点：** Capability Drift、Baseline、Canary Set、Change Point、Control Chart、Shadow Traffic、Failure Taxonomy、Judge Drift。
 <a id="gov-115"></a>
-### 如何构建Agent评测平台（Evaluation Platform）？
+### 21. 如何构建Agent评测平台（Evaluation Platform）？
 
 Agent评测平台应形成**数据集—执行—裁判—分析—发布门禁—反馈回流**的闭环，既评估最终答案，也评估规划、检索、工具和安全过程。
 
@@ -319,7 +319,7 @@ Agent评测平台应形成**数据集—执行—裁判—分析—发布门禁�
 
 **相关知识点：** 黄金数据集、生产回放、Rubric、LLM-as-a-Judge、显著性检验、分层指标、回归门禁、数据泄漏、评测闭环。
 <a id="gov-116"></a>
-### 你们线上Agent完成率是多少？
+### 22. 你们线上Agent完成率是多少？
 
 该问题不能只给一个脱离口径的百分比。面试中应先明确统计周期、任务边界与成功定义，再给真实数据；若没有生产数据，应明确说明，**不得虚构完成率**。可按以下方式作答：
 
@@ -333,7 +333,7 @@ Agent评测平台应形成**数据集—执行—裁判—分析—发布门禁�
 
 **相关知识点：** 任务完成率、严格成功、辅助成功、分层统计、置信区间、首次通过率、人工介入率、指标口径、幸存者偏差。
 <a id="gov-117"></a>
-### 如何持续优化Agent完成率？
+### 23. 如何持续优化Agent完成率？
 
 持续优化完成率应建立**可度量、可归因、可验证、可回滚**的工程闭环，在不牺牲安全、成本和时延的前提下减少失败。
 
@@ -347,7 +347,7 @@ Agent评测平台应形成**数据集—执行—裁判—分析—发布门禁�
 
 **相关知识点：** Failure Taxonomy、错误预算、回归集、根因分析、分层指标、Shadow、Canary、A/B Test、Verifier、持续评测。
 <a id="gov-118"></a>
-### Agent能力升级后如何验证效果提升？
+### 24. Agent能力升级后如何验证效果提升？
 
 能力升级必须通过**同口径基线、配对评测、统计检验和线上业务验证**证明净收益，不能仅凭展示样例或总体平均分判断。
 
@@ -361,7 +361,7 @@ Agent评测平台应形成**数据集—执行—裁判—分析—发布门禁�
 
 **相关知识点：** 配对评测、基线、最小实际效应、Bootstrap、置信区间、回归测试、Shadow、Canary、护栏指标、可复现性。
 <a id="gov-119"></a>
-### 如何设计A/B Test评估Agent版本效果？
+### 25. 如何设计A/B Test评估Agent版本效果？
 
 Agent A/B Test应验证新版本对真实业务的**因果增益**，核心是稳定随机化、口径一致、污染隔离和预设停止规则，而非简单比较两个时间段。
 
@@ -375,7 +375,7 @@ Agent A/B Test应验证新版本对真实业务的**因果增益**，核心是�
 
 **相关知识点：** 随机对照实验、随机化单元、分层随机、SRM、最小可检测效应、检验功效、序贯检验、处理干扰、护栏指标。
 <a id="gov-121"></a>
-### 企业级Agent上线前需要经过哪些评测流程？
+### 26. 企业级Agent上线前需要经过哪些评测流程？
 
 企业级Agent上线前应通过**能力、安全、可靠性、性能成本和合规**五类门禁，并采用离线到线上、低风险到高风险的逐级放量流程。
 
@@ -389,7 +389,7 @@ Agent A/B Test应验证新版本对真实业务的**因果增益**，核心是�
 
 **相关知识点：** 发布门禁、威胁建模、红队测试、回归测试、故障注入、契约测试、Shadow、Canary、Runbook、持续评测。
 <a id="gov-126"></a>
-### Prompt评测体系如何搭建？
+### 27. Prompt评测体系如何搭建？
 
 Prompt评测体系应把Prompt视为**可版本化、可回归、可灰度的软件资产**，同时检验任务质量、安全性、稳定性、延迟与成本，避免凭少量案例主观选择。
 
@@ -405,7 +405,7 @@ Prompt评测体系应把Prompt视为**可版本化、可回归、可灰度的软
 
 **相关知识点：** Prompt版本管理、Rubric、配对评测、隐藏测试集、确定性评测、LLM Judge、人工盲审、回归门禁、Prompt漂移。
 <a id="gov-127"></a>
-### Prompt AB Test如何实施？
+### 28. Prompt AB Test如何实施？
 
 Prompt A/B Test应在**仅改变Prompt版本**的前提下，以稳定随机流量验证真实业务收益，并用安全、成本和延迟指标约束质量提升。
 
@@ -424,7 +424,7 @@ Prompt A/B Test应在**仅改变Prompt版本**的前提下，以稳定随机流�
 > **题目合并：** `GOV-128` 已并入 [ENG-046 · 如何量化评估Prompt优化效果？](../engineering-platform/promptops.md#eng-046)。
 
 <a id="gov-129"></a>
-### RAG召回率与准确率如何评估？
+### 29. RAG召回率与准确率如何评估？
 
 RAG评估应建立**Query—相关Chunk黄金标注**，将“是否找全”和“结果是否相关”分开测，再验证证据能否支持答案。
 
@@ -444,7 +444,7 @@ RAG评估应建立**Query—相关Chunk黄金标注**，将“是否找全”和
 
 **相关知识点：** Recall@K、Precision@K、Hit Rate、MRR、NDCG、Context Recall、Context Precision、黄金标注、无答案评测。
 <a id="gov-135"></a>
-### 多模型AB Test如何实施？
+### 30. 多模型AB Test如何实施？
 
 多模型A/B Test应比较不同模型在同一Agent中的**端到端净效益**，必须控制Prompt、工具、知识库和路由差异，并处理模型价格、限流及输出风格造成的混杂。
 
@@ -458,7 +458,7 @@ RAG评估应建立**Query—相关Chunk黄金标注**，将“是否找全”和
 
 **相关知识点：** 模型适配层、配对评测、稳定随机、SRM、路由回退、每次成功成本、Judge盲测、分层路由、护栏指标。
 <a id="gov-136"></a>
-### 如何判断模型能力是否达到瓶颈？
+### 31. 如何判断模型能力是否达到瓶颈？
 
 判断模型瓶颈应通过**上限实验和错误归因**证明：控制检索、工具、上下文与预算后，更强模型仍显著提升，才说明当前模型是主要限制。
 
@@ -472,7 +472,7 @@ RAG评估应建立**Query—相关Chunk黄金标注**，将“是否找全”和
 
 **相关知识点：** Oracle实验、组件消融、模型阶梯、错误归因、能力上限、边际收益、分层评测、单位成功成本、系统瓶颈。
 <a id="gov-137"></a>
-### Agent任务完成率指标体系如何设计？
+### 32. Agent任务完成率指标体系如何设计？
 
 任务完成率体系应围绕**业务终态是否正确达成**设计主指标，并用自主程度、安全、效率和成本指标约束，避免重试、人工代办或筛除困难任务造成虚高。
 
@@ -486,7 +486,7 @@ RAG评估应建立**Query—相关Chunk黄金标注**，将“是否找全”和
 
 **相关知识点：** 严格完成率、自主完成率、首次通过率、任务漏斗、业务终态、护栏指标、分层统计、置信区间、分母漂移。
 <a id="gov-140"></a>
-### 如何构建Agent质量评测集？
+### 33. 如何构建Agent质量评测集？
 
 Agent质量评测集应代表**真实任务分布、关键风险和能力边界**，并提供可执行环境、明确成功标准与版本血缘，而不是只保存问答文本。
 
@@ -500,7 +500,7 @@ Agent质量评测集应代表**真实任务分布、关键风险和能力边界*
 
 **相关知识点：** 黄金集、生产回放、覆盖矩阵、业务终态、Rubric、双人标注、隐藏测试集、数据泄漏、滚动评测集。
 <a id="gov-141"></a>
-### Agent完成率从70%提升到90%的优化路径是什么？
+### 34. Agent完成率从70%提升到90%的优化路径是什么？
 
 从70%提升到90%应按**失败占比乘业务影响**逐层消除缺陷；先统一口径，否则变化可能只来自分母或人工兜底。
 
@@ -514,7 +514,7 @@ Agent质量评测集应代表**真实任务分布、关键风险和能力边界*
 
 **相关知识点：** 帕累托优化、Failure Taxonomy、严格完成率、RAG诊断、Tool Schema、Verifier、长尾治理、Shadow、Canary。
 <a id="gov-146"></a>
-### 如何建立Agent持续优化闭环体系？
+### 35. 如何建立Agent持续优化闭环体系？
 
 持续优化闭环应把**线上信号转化为可验证的工程改动，再安全发布并回流新证据**，形成“观测—归因—排序—修复—评测—发布—监控”的循环。
 

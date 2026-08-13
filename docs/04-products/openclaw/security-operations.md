@@ -3,7 +3,7 @@
 > 所属章节：[OpenClaw](README.md)｜本文件共 **4** 题。
 
 <a id="oclaw-026"></a>
-### OpenClaw 的配置应如何进行版本管理和安全发布？
+### 1. OpenClaw 的配置应如何进行版本管理和安全发布？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -15,7 +15,7 @@
 
 **相关知识点：** Configuration as Code、SecretRef、Schema Validation、Policy Diff、Canary、Rollback。
 <a id="oclaw-030"></a>
-### 如何设计 OpenClaw 的面试级评测体系？
+### 2. 如何设计 OpenClaw 的面试级评测体系？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -33,7 +33,7 @@
 > 以下题目由「Agent 核心架构」迁入，保留原答案内容并统一纳入 OpenClaw 专章。
 
 <a id="oclaw-045"></a>
-### OpenClaw 如何实现模型切换与熔断？
+### 3. OpenClaw 如何实现模型切换与熔断？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -44,7 +44,7 @@
 
 **相关知识点：** OpenClaw、故障恢复、model、Agent Runtime。
 <a id="oclaw-056"></a>
-### OpenClaw 如何支持大规模 Agent 集群部署？
+### 4. OpenClaw 如何支持大规模 Agent 集群部署？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 

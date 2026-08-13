@@ -3,7 +3,7 @@
 > 所属章节：[多 Agent 与协作](README.md)｜本文件共 **1** 题。
 
 <a id="multi-031"></a>
-### 相比单体应用，Multi-Agent系统的可观测性（Observability）怎么设计？
+### 1. 相比单体应用，Multi-Agent系统的可观测性（Observability）怎么设计？
 
 Multi-Agent可观测性要在**Logs、Metrics、Traces**上增加任务语义、模型决策、跨Agent因果和成本质量信号，既定位故障，也解释路由、停滞与结果依据。
 

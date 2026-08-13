@@ -3,7 +3,7 @@
 > 所属章节：[OpenClaw](README.md)｜本文件共 **19** 题。
 
 <a id="oclaw-011"></a>
-### OpenClaw 的 Sandbox 隔离了什么？没有隔离什么？
+### 1. OpenClaw 的 Sandbox 隔离了什么？没有隔离什么？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -13,7 +13,7 @@ Sandbox主要隔离**工具执行**，包括`exec`、文件读写、Patch、Proc
 
 **相关知识点：** Sandbox Backend、Workspace Access、Filesystem Isolation、Network Egress、Elevated Mode、纵深防御。
 <a id="oclaw-012"></a>
-### Exec Approval、Elevated Mode 和真正的系统授权有什么区别？
+### 2. Exec Approval、Elevated Mode 和真正的系统授权有什么区别？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -25,7 +25,7 @@ Exec Approval是**人机交互护栏**，Elevated Mode是**允许命令脱离工
 
 **相关知识点：** Human Approval、Elevated Exec、IAM、ACL、Least Privilege、审计、后置校验。
 <a id="oclaw-027"></a>
-### 如何建立 OpenClaw 的可观测性和故障排查路径？
+### 3. 如何建立 OpenClaw 的可观测性和故障排查路径？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -35,7 +35,7 @@ Exec Approval是**人机交互护栏**，Elevated Mode是**允许命令脱离工
 
 **相关知识点：** Health Check、Doctor、Structured Log、Correlation ID、Metrics、Delivery Observability。
 <a id="oclaw-028"></a>
-### OpenClaw 如何做备份、恢复和灾难演练？
+### 4. OpenClaw 如何做备份、恢复和灾难演练？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -45,7 +45,7 @@ Exec Approval是**人机交互护栏**，Elevated Mode是**允许命令脱离工
 
 **相关知识点：** Backup、Restore Drill、RPO、RTO、Key Rotation、幂等恢复、补偿。
 <a id="oclaw-031"></a>
-### OpenClaw 设计方案（附加专题）
+### 5. OpenClaw 设计方案（附加专题）
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -67,7 +67,7 @@ OpenClaw 官方定位是**运行在自有设备上的开源个人 AI 助手与�
 
 **相关知识点：** OpenClaw、Claude Code、Harness Engineering、Agent Loop、Multi-Agent、MCP、Skill、检索。
 <a id="oclaw-033"></a>
-### OpenClaw 如何实现长任务执行？
+### 6. OpenClaw 如何实现长任务执行？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -80,7 +80,7 @@ OpenClaw 官方定位是**运行在自有设备上的开源个人 AI 助手与�
 
 **相关知识点：** OpenClaw、Workflow、Checkpoint、任务调度、Agent Runtime。
 <a id="oclaw-034"></a>
-### OpenClaw 的 Agent Loop 如何设计？
+### 7. OpenClaw 的 Agent Loop 如何设计？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -93,7 +93,7 @@ OpenClaw 官方定位是**运行在自有设备上的开源个人 AI 助手与�
 
 **相关知识点：** OpenClaw、Harness Engineering、Agent Loop、Tool Calling、Planner、ReAct、Prompt Engineering、故障恢复。
 <a id="oclaw-038"></a>
-### OpenClaw 中的 Planner 如何实现？
+### 8. OpenClaw 中的 Planner 如何实现？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -106,7 +106,7 @@ OpenClaw 官方定位是**运行在自有设备上的开源个人 AI 助手与�
 
 **相关知识点：** OpenClaw、Harness Engineering、Skill、Workflow、Planner、Task Decomposition。
 <a id="oclaw-039"></a>
-### OpenClaw 如何做任务拆解？
+### 9. OpenClaw 如何做任务拆解？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -117,7 +117,7 @@ OpenClaw可由主Agent把独立研究或慢任务委派给子Agent，但官方�
 
 **相关知识点：** OpenClaw、Task Decomposition、权限控制、成本治理、任务调度。
 <a id="oclaw-043"></a>
-### OpenClaw 如何实现任务 Checkpoint 恢复？
+### 10. OpenClaw 如何实现任务 Checkpoint 恢复？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -128,7 +128,7 @@ OpenClaw会持久化会话和本地状态，也支持压缩与Memory，但这不
 
 **相关知识点：** OpenClaw、Checkpoint、Memory、故障恢复、Agent Runtime。
 <a id="oclaw-044"></a>
-### OpenClaw 如何保证 Agent 执行稳定性？
+### 11. OpenClaw 如何保证 Agent 执行稳定性？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -139,7 +139,7 @@ OpenClaw会持久化会话和本地状态，也支持压缩与Memory，但这不
 
 **相关知识点：** OpenClaw、Sandbox、可靠性、任务调度、Agent Runtime。
 <a id="oclaw-046"></a>
-### OpenClaw 如何设计 Agent 状态机？
+### 12. OpenClaw 如何设计 Agent 状态机？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -152,7 +152,7 @@ OpenClaw确实维护会话、后台任务、子Agent和路由状态，但官方�
 
 **相关知识点：** OpenClaw、Workflow、状态机、Running、WaitingApproval。
 <a id="oclaw-047"></a>
-### OpenClaw 如何做任务完成率评估？
+### 13. OpenClaw 如何做任务完成率评估？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -163,7 +163,7 @@ OpenClaw官方没有定义适用于所有任务的内建“完成率”。应由
 
 **相关知识点：** OpenClaw、Skill、Retry、评测体系、成本治理。
 <a id="oclaw-048"></a>
-### OpenClaw 如何实现 Workflow 编排？
+### 14. OpenClaw 如何实现 Workflow 编排？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -176,7 +176,7 @@ OpenClaw提供Cron、Heartbeat、Hooks、Skills、会话和子Agent等自动化�
 
 **相关知识点：** OpenClaw、Tool Calling、Skill、Workflow、任务调度。
 <a id="oclaw-050"></a>
-### OpenClaw 如何降低 Token 消耗？
+### 15. OpenClaw 如何降低 Token 消耗？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -187,7 +187,7 @@ OpenClaw提供Cron、Heartbeat、Hooks、Skills、会话和子Agent等自动化�
 
 **相关知识点：** OpenClaw、Skill、检索、Memory、成本治理。
 <a id="oclaw-051"></a>
-### OpenClaw 在企业级生产环境如何落地？
+### 16. OpenClaw 在企业级生产环境如何落地？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -198,7 +198,7 @@ OpenClaw提供Cron、Heartbeat、Hooks、Skills、会话和子Agent等自动化�
 
 **相关知识点：** OpenClaw、Embedding、Prompt Engineering、权限控制、多租户、Sandbox、可靠性、成本治理。
 <a id="oclaw-052"></a>
-### OpenClaw 如何实现 Agent 可观测性建设？
+### 17. OpenClaw 如何实现 Agent 可观测性建设？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -209,7 +209,7 @@ OpenClaw提供Cron、Heartbeat、Hooks、Skills、会话和子Agent等自动化�
 
 **相关知识点：** OpenClaw、Chain-of-Thought、Prompt Engineering、可观测性、成本治理。
 <a id="oclaw-053"></a>
-### OpenClaw 如何进行 Agent 性能优化？
+### 18. OpenClaw 如何进行 Agent 性能优化？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -220,7 +220,7 @@ OpenClaw提供Cron、Heartbeat、Hooks、Skills、会话和子Agent等自动化�
 
 **相关知识点：** OpenClaw、Agent Runtime、可观测性、可靠性、成本治理、任务调度。
 <a id="oclaw-054"></a>
-### OpenClaw 如何设计多模型调度策略？
+### 19. OpenClaw 如何设计多模型调度策略？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 

@@ -3,7 +3,7 @@
 > 所属章节：[多 Agent 与协作](README.md)｜本文件共 **3** 题。
 
 <a id="multi-029"></a>
-### Orchestrator本身如果挂掉了，怎么保证整体任务不丢失？
+### 1. Orchestrator本身如果挂掉了，怎么保证整体任务不丢失？
 
 Orchestrator应是**无状态或可重建控制器，权威状态持久化在外部存储**。高可用副本只能缩短恢复；任务与副作用若只在内存中，新实例仍无法续跑。
 
@@ -22,7 +22,7 @@ Orchestrator应是**无状态或可重建控制器，权威状态持久化在外
 
 **相关知识点：** 高可用、Leader Election、WAL、检查点、租约、Fencing Token、脑裂、Outbox、幂等续跑、RPO、RTO。
 <a id="multi-032"></a>
-### 多Agent协同时如何实现链路关联？
+### 2. 多Agent协同时如何实现链路关联？
 
 链路关联采用**Trace传播、任务标识和异步因果建模**。TraceID描述一次调用链，TaskID覆盖长任务，MessageID识别消息，IdempotencyKey标识业务操作，四者不可混用。
 
@@ -42,7 +42,7 @@ Orchestrator应是**无状态或可重建控制器，权威状态持久化在外
 
 **相关知识点：** W3C Trace Context、TraceID、SpanID、Span Link、TaskID、CorrelationID、异步追踪、尾部采样、孤儿Span。
 <a id="multi-034"></a>
-### 多Agent系统如何进行链路追踪？
+### 3. 多Agent系统如何进行链路追踪？
 
 多Agent链路追踪采用**OpenTelemetry、W3C上下文、语义Span和Collector**，还原规划、路由、执行、工具与汇聚的因果链，分析时延、错误和成本。
 

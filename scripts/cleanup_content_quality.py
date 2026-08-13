@@ -15,7 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 TAXONOMY = json.loads((ROOT / "scripts" / "taxonomy.json").read_text(encoding="utf-8"))
 QUESTION_RE = re.compile(
-    r'^<a id="([a-z]+-\d{3})"></a>\s*\n###\s+(.+?)\s*$',
+    r'^<a id="([a-z]+-\d{3})"></a>\s*\n###\s+(?:\d+\.\s+)?(.+?)\s*$',
     re.MULTILINE,
 )
 ANCHOR_RE = re.compile(r'^<a id="([a-z]+-\d{3})"></a>\s*$', re.MULTILINE)
