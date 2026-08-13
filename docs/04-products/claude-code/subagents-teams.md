@@ -3,7 +3,7 @@
 > 所属章节：[Claude Code](README.md)｜本文件共 **1** 题。
 
 <a id="cc-018"></a>
-### Subagents、Agent Teams 和 Agent View 有什么区别？
+### 1. Subagents、Agent Teams 和 Agent View 有什么区别？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 

@@ -17,7 +17,7 @@ DOCS = ROOT / "docs"
 TAXONOMY_PATH = ROOT / "scripts" / "taxonomy.json"
 TAXONOMY = json.loads(TAXONOMY_PATH.read_text(encoding="utf-8"))
 QUESTION_RE = re.compile(
-    r'^<a id="([a-z]+-\d{3})"></a>\s*\n###\s+(.+?)\s*$',
+    r'^<a id="([a-z]+-\d{3})"></a>\s*\n###\s+(?:\d+\.\s+)?(.+?)\s*$',
     re.MULTILINE,
 )
 LEGACY_QUESTION_RE = re.compile(r"^####\s+\d+、", re.MULTILINE)

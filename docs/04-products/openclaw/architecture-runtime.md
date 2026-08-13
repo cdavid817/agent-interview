@@ -3,7 +3,7 @@
 > 所属章节：[OpenClaw](README.md)｜本文件共 **7** 题。
 
 <a id="oclaw-001"></a>
-### OpenClaw 的产品定位是什么？它与普通聊天机器人有什么区别？
+### 1. OpenClaw 的产品定位是什么？它与普通聊天机器人有什么区别？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -15,7 +15,7 @@ OpenClaw 是运行在自有设备或服务器上的**自托管 Agent Gateway 与
 
 **相关知识点：** Self-hosted、Gateway、Agent Runtime、渠道适配、个人助手、ACP、控制面。
 <a id="oclaw-002"></a>
-### OpenClaw Gateway 在整体架构中承担什么职责？
+### 2. OpenClaw Gateway 在整体架构中承担什么职责？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -30,7 +30,7 @@ Gateway 是 OpenClaw 的**常驻控制面和连接中枢**，负责接受渠道�
 
 **相关知识点：** WebSocket Gateway、控制面、会话路由、故障域、进程守护、信任边界。
 <a id="oclaw-003"></a>
-### OpenClaw 内置 Agent Runtime 的一次执行循环是怎样的？
+### 3. OpenClaw 内置 Agent Runtime 的一次执行循环是怎样的？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -42,7 +42,7 @@ Gateway 是 OpenClaw 的**常驻控制面和连接中枢**，负责接受渠道�
 
 **相关知识点：** Agent Loop、Prompt Assembly、Tool Calling、Observation、Streaming、Steering、停止条件。
 <a id="oclaw-005"></a>
-### 为什么 OpenClaw 为每个 Agent 设置独立工作区？工作区中通常放什么？
+### 4. 为什么 OpenClaw 为每个 Agent 设置独立工作区？工作区中通常放什么？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -54,7 +54,7 @@ Gateway 是 OpenClaw 的**常驻控制面和连接中枢**，负责接受渠道�
 
 **相关知识点：** Agent Workspace、Bootstrap Files、身份隔离、配置即代码、备份、Secret Management。
 <a id="oclaw-020"></a>
-### OpenClaw 的后台任务如何避免“运行了但用户没收到结果”？
+### 5. OpenClaw 的后台任务如何避免“运行了但用户没收到结果”？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -64,7 +64,7 @@ Gateway 是 OpenClaw 的**常驻控制面和连接中枢**，负责接受渠道�
 
 **相关知识点：** Background Task、Delivery Receipt、Outbox、Idempotency、Dead Letter、任务与交付分离。
 <a id="oclaw-029"></a>
-### OpenClaw 是否适合直接作为多租户 SaaS 的共享 Runtime？
+### 6. OpenClaw 是否适合直接作为多租户 SaaS 的共享 Runtime？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -74,7 +74,7 @@ Gateway 是 OpenClaw 的**常驻控制面和连接中枢**，负责接受渠道�
 
 **相关知识点：** Multi-tenancy、Trust Domain、Process Isolation、Tenant Context、Quota、Data Residency。
 <a id="oclaw-032"></a>
-### OpenClaw 与 Claude Code 的架构差异是什么？
+### 7. OpenClaw 与 Claude Code 的架构差异是什么？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 

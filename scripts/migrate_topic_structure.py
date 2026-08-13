@@ -288,12 +288,12 @@ def write_chapter(chapter: dict[str, object], questions: list[dict[str, str | in
                 f"> 所属章节：[{chapter['title']}](README.md)｜本文件共 **{len(chunk)}** 题。",
                 "",
             ]
-            for question in chunk:
+            for index, question in enumerate(chunk, 1):
                 stable_id = f"{chapter['prefix']}-{int(question['number']):03d}"
                 lines.extend(
                     [
                         f'<a id="{stable_id.lower()}"></a>',
-                        f"### {question['title']}",
+                        f"### {index}. {question['title']}",
                         "",
                         str(question["body"]),
                         "",

@@ -6,7 +6,7 @@
 > **题目合并：** `MODEL-011` 已并入 [GOV-142 · 如何设计Agent自动反思与自修复机制？](../safety-governance-observability/governance.md#gov-142)。
 
 <a id="model-030"></a>
-### 哪些模型 API 错误可以重试，哪些不能重试？
+### 1. 哪些模型 API 错误可以重试，哪些不能重试？
 
 是否重试取决于**错误是否瞬时、请求幂等性、剩余Deadline和服务端状态**，不能只看HTTP码；超时可能发生在建连前或副作用之后。
 
@@ -25,7 +25,7 @@
 
 **相关知识点：** 错误分类、Retry-After、指数退避、Jitter、Retry Budget、幂等、状态核验、重试放大。
 <a id="model-036"></a>
-### 如果主模型和备用模型能力差异很大怎么办？
+### 2. 如果主模型和备用模型能力差异很大怎么办？
 
 能力差异大时不能承诺等价切换，应设计**分级降级、任务拆解、增强验证和可见状态**。备用只执行能力内子任务；高风险越界应排队、人工或失败。
 
@@ -47,7 +47,7 @@
 > **题目合并：** `MODEL-050` 已并入 [MODEL-102 · 敏感数据如何保证不被发送到外部模型？](cost-token.md#model-102)。
 
 <a id="model-066"></a>
-### 如何处理模型返回内容为空或格式不合法？
+### 3. 如何处理模型返回内容为空或格式不合法？
 
 应将模型输出视为**不可信的外部数据**，通过“协议约束、分层校验、有限修复、受控重试、确定性兜底”处理。空内容还需区分安全拦截、截断、超时和模型真实返回空值。
 
@@ -65,7 +65,7 @@
 
 **相关知识点：** Structured Output、JSON Schema、Tool Calling、finish reason、语义校验、幂等、降级。
 <a id="model-067"></a>
-### Agent 执行到一半模型失败，如何恢复任务？
+### 4. Agent 执行到一半模型失败，如何恢复任务？
 
 Agent中途失败应采用**持久化状态机、检查点、幂等工具和可恢复执行**，从最后一个已确认状态继续，并避免重复产生外部副作用。
 
@@ -83,7 +83,7 @@ Agent中途失败应采用**持久化状态机、检查点、幂等工具和可�
 
 **相关知识点：** Durable Execution、状态机、Checkpoint、幂等键、事件溯源、Saga、Prepare/Commit、恢复点。
 <a id="model-069"></a>
-### 如何区分模型异常、网络异常和业务异常？
+### 5. 如何区分模型异常、网络异常和业务异常？
 
 应建立**分层错误分类与统一错误信封**，依据证据判定故障层级。分类结果必须驱动不同的重试、熔断、降级和用户提示策略。
 
@@ -101,7 +101,7 @@ Agent中途失败应采用**持久化状态机、检查点、幂等工具和可�
 
 **相关知识点：** 错误分类、Error Envelope、Cause Chain、幂等、Trace、可重试性、后置条件、安全拒绝。
 <a id="model-071"></a>
-### 模型降级会不会影响用户体验？
+### 6. 模型降级会不会影响用户体验？
 
 模型降级会影响能力上限，但不必等同于体验恶化；通过**按场景降级、能力契约、结果校验和透明反馈**，可把故障转化为“功能受限但结果可信”。关键是守住安全和正确性底线。
 
@@ -123,7 +123,7 @@ Agent中途失败应采用**持久化状态机、检查点、幂等工具和可�
 > **题目合并：** `MODEL-074` 已并入 [CTX-195 · 长对话场景如何进行上下文压缩？](../../02-capabilities/context-knowledge/compression-cache.md#ctx-195)。
 
 <a id="model-075"></a>
-### Conversation Summary如何设计？
+### 7. Conversation Summary如何设计？
 
 Conversation Summary应是**可验证、可增量更新、可追溯的会话状态**，而非自由散文。它必须区分事实、偏好、决策、待办和临时推测，并保留来源。
 
@@ -142,7 +142,7 @@ Conversation Summary应是**可验证、可增量更新、可追溯的会话状�
 
 **相关知识点：** Conversation Summary、Schema、增量合并、事实溯源、摘要漂移、版本化、TTL、隐私治理。
 <a id="model-076"></a>
-### 长期记忆召回过多会带来什么问题？
+### 8. 长期记忆召回过多会带来什么问题？
 
 长期记忆召回过多会造成**成本上升、首Token变慢、信号稀释、事实冲突和隐私暴露**。目标不是召回数量，而是对当前任务有效且可信的最小证据集。
 
@@ -161,7 +161,7 @@ Conversation Summary应是**可验证、可增量更新、可追溯的会话状�
 
 **相关知识点：** 长期记忆、Rerank、MMR、Top-K、记忆污染、Lost in the Middle、TTL、Prompt Injection。
 <a id="model-088"></a>
-### Reflection机制什么时候开启最合适？
+### 9. Reflection机制什么时候开启最合适？
 
 Reflection适合在**错误代价高、结果可评审、首次输出不确定且可修正**时条件开启；不应成为固定步骤，否则增加Token和时延，还可能把正确答案改坏。
 
@@ -180,7 +180,7 @@ Reflection适合在**错误代价高、结果可评审、首次输出不确定�
 
 **相关知识点：** Reflection、Critic、Rubric、验证器、条件触发、Early Exit、误改率、消融实验。
 <a id="model-089"></a>
-### 如何限制Agent无限循环调用工具？
+### 10. 如何限制Agent无限循环调用工具？
 
 限制无限循环需要**硬预算、状态机、重复检测、进展判定和工具治理**。Prompt约束不可靠，编排层必须拥有最终中止权。
 
@@ -208,7 +208,7 @@ Reflection适合在**错误代价高、结果可评审、首次输出不确定�
 > **题目合并：** `MODEL-122` 已并入 [MODEL-029 · 企业级模型网关需要具备哪些能力？](routing-fallback.md#model-029)。
 
 <a id="model-129"></a>
-### 开源模型与商业模型混合部署如何设计？
+### 11. 开源模型与商业模型混合部署如何设计？
 
 混合部署以**统一网关、数据分级、能力路由、故障隔离和统一评测**为基础：开源模型承担敏感和稳定任务，商业模型补充复杂推理与多模态。
 
@@ -232,7 +232,7 @@ Reflection适合在**错误代价高、结果可评审、首次输出不确定�
 > **题目合并：** `MODEL-131` 已并入 [MODEL-046 · 如何设计企业级统一模型接入层（Model Gateway）？](routing-fallback.md#model-046)。
 
 <a id="model-134"></a>
-### 如何避免SSE连接占满线程池？
+### 12. 如何避免SSE连接占满线程池？
 
 关键是采用**事件驱动非阻塞I/O与异步管道**，使长连接占用状态而非“一连接一线程”。同时对连接、缓冲区和慢消费者设硬上限。
 
@@ -251,7 +251,7 @@ Reflection适合在**错误代价高、结果可评审、首次输出不确定�
 
 **相关知识点：** Non-blocking I/O、Event Loop、Reactive Streams、背压、Bulkhead、时间轮、Load Shedding、慢消费者。
 <a id="model-135"></a>
-### Nginx或网关对SSE有哪些特殊配置？
+### 13. Nginx或网关对SSE有哪些特殊配置？
 
 SSE网关配置核心是**关闭缓冲、合理读取超时、保持流式并感知断开**。面向短请求的缓存、压缩和超时会导致事件积压或误断。
 
@@ -270,7 +270,7 @@ SSE网关配置核心是**关闭缓冲、合理读取超时、保持流式并感
 
 **相关知识点：** proxy_buffering、X-Accel-Buffering、text/event-stream、心跳、499、Last-Event-ID、文件描述符。
 <a id="model-139"></a>
-### 如何监控SSE连接泄漏？
+### 14. 如何监控SSE连接泄漏？
 
 连接泄漏判定应基于**连接注册表、生命周期闭环和资源核对**。仅看活动连接无法区分真实长会话与失去客户端的孤儿连接。
 
@@ -289,7 +289,7 @@ SSE网关配置核心是**关闭缓冲、合理读取超时、保持流式并感
 
 **相关知识点：** Connection Registry、Lease、Reaper、心跳、半开连接、499、Cancellation、资源不变量。
 <a id="model-141"></a>
-### SSE如何和Agent任务状态机结合？
+### 15. SSE如何和Agent任务状态机结合？
 
 SSE应作为**任务状态机事件的只读投影**，而非任务容器。客户端断开不破坏持久状态，重连后按Sequence恢复同一任务。
 
@@ -308,7 +308,7 @@ SSE应作为**任务状态机事件的只读投影**，而非任务容器。客�
 
 **相关知识点：** State Machine、Event Sourcing、Transactional Outbox、SSE、Sequence、Last-Event-ID、Cancellation、幂等。
 <a id="model-144"></a>
-### Markdown增量解析具体如何实现状态机？
+### 16. Markdown增量解析具体如何实现状态机？
 
 Markdown增量解析采用**词法缓冲、块状态机、稳定前缀和局部重解析**，不能每个Token重解析全文。未闭合结构保留暂态，稳定块才固化。
 
@@ -327,7 +327,7 @@ Markdown增量解析采用**词法缓冲、块状态机、稳定前缀和局部�
 
 **相关知识点：** Incremental Parsing、Lexer、AST、Delimiter Stack、Checkpoint、Stable Prefix、Keyed Diff、EOF规则。
 <a id="model-145"></a>
-### 代码块未闭合时如何保证渲染正确？
+### 17. 代码块未闭合时如何保证渲染正确？
 
 未闭合代码块是**合法的流式暂态**，解析器保持围栏状态并安全临时渲染，不能自动补闭合后写入AST，也不能把代码误解析为Markdown或HTML。
 
@@ -346,7 +346,7 @@ Markdown增量解析采用**词法缓冲、块状态机、稳定前缀和局部�
 
 **相关知识点：** Fenced Code Block、增量解析、AST、HTML Escape、稳定节点、增量高亮、EOF规则。
 <a id="model-147"></a>
-### 如何设计Chunk协议格式？
+### 18. 如何设计Chunk协议格式？
 
 Chunk协议应是**版本化、可排序、可恢复的结构化协议**。客户端必须识别重复、缺失、终态和部分失败。
 
@@ -366,7 +366,7 @@ Chunk协议应是**版本化、可排序、可恢复的结构化协议**。客�
 
 **相关知识点：** Protocol Envelope、Sequence、Idempotency、Last-Event-ID、Schema Evolution、内容哈希、契约测试。
 <a id="model-148"></a>
-### Sequence丢失时如何补偿？
+### 19. Sequence丢失时如何补偿？
 
 Sequence丢失应采用**检测缺口、暂停应用、范围重放、幂等去重和快照兜底**。不能先渲染后续事件再插入缺失内容，否则状态会错乱。
 
@@ -385,7 +385,7 @@ Sequence丢失应采用**检测缺口、暂停应用、范围重放、幂等去�
 
 **相关知识点：** Sequence Gap、Replay Log、Last-Event-ID、Idempotency、Snapshot、排序缓冲、内容哈希。
 <a id="model-149"></a>
-### WebSocket断线重连如何保证消息不丢失？
+### 20. WebSocket断线重连如何保证消息不丢失？
 
 WebSocket仅提供连接内有序帧，断线后不保证可靠；需通过**Sequence、ACK、持久日志、会话恢复和幂等消费**实现至少一次传递且效果不重复。
 
@@ -405,7 +405,7 @@ WebSocket仅提供连接内有序帧，断线后不保证可靠；需通过**Seq
 
 **相关知识点：** WebSocket、ACK、Sequence、Outbox/Inbox、At-Least-Once、幂等、Session Resume、重连风暴。
 <a id="model-150"></a>
-### Last Event ID机制底层原理是什么？
+### 21. Last Event ID机制底层原理是什么？
 
 Last-Event-ID是SSE的**客户端消费位置提示**：服务端发送`id`，浏览器记录最近ID；重连时以`Last-Event-ID`带回。它不自动保存或重放事件。
 
@@ -424,7 +424,7 @@ Last-Event-ID是SSE的**客户端消费位置提示**：服务端发送`id`，�
 
 **相关知识点：** SSE、EventSource、Last-Event-ID、Sequence、Replay Log、At-Least-Once、ACK、Snapshot。
 <a id="model-152"></a>
-### 如何实现边输出边语法高亮？
+### 22. 如何实现边输出边语法高亮？
 
 边输出边高亮以**围栏状态、增量词法状态和节流渲染**实现，避免每Token重解析代码。未闭合时优先保证文本正确，高亮失败可降级。
 
@@ -443,7 +443,7 @@ Last-Event-ID是SSE的**客户端消费位置提示**：服务端发送`id`，�
 
 **相关知识点：** Incremental Lexer、Fenced Code、requestAnimationFrame、Web Worker、HTML Escape、稳定Key、节流。
 <a id="model-153"></a>
-### 长文本场景下虚拟列表如何设计？
+### 23. 长文本场景下虚拟列表如何设计？
 
 长文本虚拟化以**块级节点、动态高度、滚动锚定和增量追加**为核心，只渲染视口附近内容。不能按Token虚拟化，否则破坏Markdown结构。
 
@@ -462,7 +462,7 @@ Last-Event-ID是SSE的**客户端消费位置提示**：服务端发送`id`，�
 
 **相关知识点：** Virtual List、Dynamic Height、Fenwick Tree、ResizeObserver、Overscan、Scroll Anchoring、稳定Key。
 <a id="model-155"></a>
-### 小程序环境下Markdown渲染有哪些限制？
+### 24. 小程序环境下Markdown渲染有哪些限制？
 
 小程序Markdown受**组件、包体、性能、样式隔离和安全能力**限制，不能照搬浏览器DOM解析器。应采用受控语法子集、结构化节点与分块更新。
 
@@ -481,7 +481,7 @@ Last-Event-ID是SSE的**客户端消费位置提示**：服务端发送`id`，�
 
 **相关知识点：** 小程序Renderer、AST、setData、分包、虚拟列表、HTML Escape、域名白名单、真机测试。
 <a id="model-157"></a>
-### Agent输出包含图片、表格、代码时如何增量渲染？
+### 25. Agent输出包含图片、表格、代码时如何增量渲染？
 
 应将输出建模为**类型化内容块事件流**，由增量解析器生成稳定AST，再由组件局部更新。图片、表格和代码闭合条件不同，不能均按文本追加。
 

@@ -3,7 +3,7 @@
 > 所属章节：[Agent 核心架构](README.md)｜本文件共 **23** 题。
 
 <a id="arc-003"></a>
-### 一个企业级 Agent 系统应该拆分成哪些核心模块？规划器、执行器、工具层及记忆层和评测层如何协作？（腾讯二面）
+### 1. 一个企业级 Agent 系统应该拆分成哪些核心模块？规划器、执行器、工具层及记忆层和评测层如何协作？（腾讯二面）
 
 **【核心思路】**
 五大件（规划器/执行器/工具层/记忆层/评测层）构成一条**闭环**：规划器拆任务 → 执行器驱动 Loop 调工具 → 结果入记忆并回灌 → 评测层打分 → 失败触发 Replanning。本质是"大脑—手脚—工具—记忆—考官"的分工。
@@ -25,7 +25,7 @@
 
 **相关知识点：** Agent Loop、Multi-Agent、Tool Calling、Planner、Executor、状态机、Replanning、Retry。
 <a id="arc-011"></a>
-### Agent Runtime 包含哪些核心模块？
+### 2. Agent Runtime 包含哪些核心模块？
 
 **【核心思路】**
 Runtime 是"**运行时**"，负责一次 Agent 执行的**完整生命周期调度**。核心模块：Agent Loop 调度器、上下文管理器、工具执行器、记忆管理、状态管理、模型客户端（LLM Client）。它是 Platform（平台）中真正"跑起来"的引擎内核。
@@ -50,7 +50,7 @@ Runtime 是"**运行时**"，负责一次 Agent 执行的**完整生命周期调
 
 **相关知识点：** Agent Runtime、Agent Loop、Function Calling、Executor、状态机、Retry、检索、长期记忆。
 <a id="arc-012"></a>
-### Runtime 与 Workflow Engine 有什么区别？
+### 3. Runtime 与 Workflow Engine 有什么区别？
 
 **【核心思路】**
 **核心区别是"谁决定执行路径"**：Workflow Engine 的路径由**人预先定义**（固定 DAG，确定性、可预测）；Agent Runtime 的路径由 **LLM 运行时动态决策**（走一步看一步，灵活、自主）。前者适合标准化流程，后者适合开放式任务，二者常结合使用。
@@ -72,7 +72,7 @@ Runtime 是"**运行时**"，负责一次 Agent 执行的**完整生命周期调
 
 **相关知识点：** Agent Runtime、Workflow、成本治理、Runtime、Engine、Agent Architecture。
 <a id="arc-028"></a>
-### Harness Engineering 与 Prompt Engineering 有什么区别？
+### 4. Harness Engineering 与 Prompt Engineering 有什么区别？
 
 **【核心思路】**
 **Prompt Engineering 优化"对模型说什么"**（单次输入的措辞、示例、格式），是**点**上的技巧；**Harness Engineering 优化"模型周围的整套工程系统"**（Agent Loop、上下文动态组装、工具、记忆、状态、护栏、可观测），是**面**上的架构。一句话：**Prompt 是喂给模型的一句话，Harness 是承载模型自主运行的整个骨架**。Agent 时代，Harness 决定上限。
@@ -92,7 +92,7 @@ Runtime 是"**运行时**"，负责一次 Agent 执行的**完整生命周期调
 
 **相关知识点：** Harness Engineering、Agent Loop、Retry、Memory、Prompt Engineering、可观测性、Agent Architecture。
 <a id="arc-029"></a>
-### 为什么 Agent 更强调 Harness 而不是 Prompt？
+### 5. 为什么 Agent 更强调 Harness 而不是 Prompt？
 
 **【核心思路】**
 因为 Agent 是**多步自主系统**，单靠一句好 Prompt 无法保证几十步都不出错——真正决定成败的是**模型周围的工程**：上下文喂什么、工具怎么调、失败怎么兜底、状态怎么恢复、行为怎么约束。**Prompt 决定单步表现的下限，Harness 决定整个任务的上限**；模型能力越强，边际收益越从"调 Prompt"转移到"建 Harness"。
@@ -113,7 +113,7 @@ Runtime 是"**运行时**"，负责一次 Agent 执行的**完整生命周期调
 
 **相关知识点：** Harness Engineering、Retry、Prompt Engineering、可观测性、故障恢复、Agent Architecture。
 <a id="arc-033"></a>
-### RAG 在 Harness 中承担什么角色？
+### 6. RAG 在 Harness 中承担什么角色？
 
 **【核心思路】**
 RAG 在 Harness 中是**"外部知识的动态供给器"**，为 Context Engineering 提供**按需召回的相关知识**，解决模型**知识过时、不含私域数据、易幻觉**的问题。它把企业知识库/文档/记忆变成可检索的外部记忆，在每轮上下文组装时**按当前 query 精准注入**，是长期记忆召回和事实性保障的关键环节。
@@ -133,7 +133,7 @@ RAG 在 Harness 中是**"外部知识的动态供给器"**，为 Context Enginee
 
 **相关知识点：** Harness Engineering、Context Engineering、RAG、Embedding、Rerank、检索、长期记忆、Memory。
 <a id="arc-035"></a>
-### MCP 在 Harness Engineering 中如何接入？
+### 7. MCP 在 Harness Engineering 中如何接入？
 
 **【核心思路】**
 MCP（Model Context Protocol）是**工具/数据源的标准化接入协议**，在 Harness 中扮演"**通用工具适配层**"。Agent 作为 **MCP Client**，外部能力（数据库、文件系统、API、第三方服务）封装为 **MCP Server**，双方通过标准协议通信。接入即"**即插即用**"：新工具只要实现 MCP Server，Agent 无需改代码即可发现并调用，实现 Agent 与工具的解耦。
@@ -155,7 +155,7 @@ MCP（Model Context Protocol）是**工具/数据源的标准化接入协议**�
 
 **相关知识点：** Harness Engineering、MCP、Tool Hub、权限控制、Agent Architecture。
 <a id="arc-040"></a>
-### 如何评估 Harness Engineering 的效果？
+### 8. 如何评估 Harness Engineering 的效果？
 
 **【核心思路】**
 评估 Harness 效果看**系统级增益**：同一模型下，加了 Harness 后**任务成功率↑、幻觉率↓、稳定性↑、成本↓、可恢复性↑**。方法：固定评测集做**AB 对比**（有无某 Harness 组件），观察端到端成功率、步骤正确率、Token 成本、人工介入率、故障恢复率的变化。核心命题：**Harness 是否让"同一个模型"表现得更可靠、更省、更稳**（指标体系参见 [ARC-027](reliability.md#arc-027)）。
@@ -176,7 +176,7 @@ MCP（Model Context Protocol）是**工具/数据源的标准化接入协议**�
 
 **相关知识点：** Harness Engineering、Checkpoint、Retry、RAG、可观测性、幻觉治理、评测体系、成本治理。
 <a id="arc-043"></a>
-### Harness Engineering 如何支持长任务、多轮任务和断点恢复？
+### 9. Harness Engineering 如何支持长任务、多轮任务和断点恢复？
 
 **【核心思路】**
 靠**状态外置 + Checkpoint + 上下文压缩 + 任务拆解**。长任务用 **Planner 拆成可跟踪的子任务/TODO** 逐步推进；每步**持久化状态快照**（[ARC-036](architecture.md#arc-036)），中断后从最近 Checkpoint **续跑**；多轮/长历史用**摘要压缩**控制上下文（[ARC-031](architecture.md#arc-031)）；关键节点可**人工介入**后继续。核心是把"一次长执行"变成"可暂停、可恢复、可续跑的分步过程"。
@@ -197,7 +197,7 @@ MCP（Model Context Protocol）是**工具/数据源的标准化接入协议**�
 
 **相关知识点：** Harness Engineering、Planner、Task Decomposition、Checkpoint、检索、故障恢复、Agent Architecture。
 <a id="arc-078"></a>
-### 规划器和执行器为什么要拆开？
+### 10. 规划器和执行器为什么要拆开？
 
 **【核心思路】**
 核心理由：**关注点分离 + 独立优化 + 可控可审计**。规划是"**决定做什么**"（需强推理、全局视野、慢而贵），执行是"**具体怎么做**"（工具调用、可用小模型/规则、快而多）。拆开后：①各自用**最合适的模型/策略**（规划用大模型，执行分流）；②计划**可审计、可人工介入**；③**独立扩展**（执行可并行水平扩展）；④**失败可分层处理**（Replan vs Retry，[ARC-025](architecture.md#arc-025)）。合在一起则职责混乱、难优化、难控制。
@@ -218,7 +218,7 @@ MCP（Model Context Protocol）是**工具/数据源的标准化接入协议**�
 
 **相关知识点：** Tool Calling、Planner、Executor、Replanning、Retry、Agent Architecture。
 <a id="arc-080"></a>
-### 如何设计 Agent 的任务状态机？
+### 11. 如何设计 Agent 的任务状态机？
 
 **【核心思路】**
 定义**状态集合**（Created→Planning→Running→Waiting/Paused→Success/Failed）与**合法转移规则**，非法转移拒绝；每次转移**持久化快照**支持恢复；异常态可**回滚/Replan/人工介入**。状态机让 Agent 执行**可跟踪、可恢复、可审计、可并发调度**。核心：**用显式状态机把不确定的执行过程约束成可管理的确定流转**（同 [ARC-036](architecture.md#arc-036)）。
@@ -240,7 +240,7 @@ MCP（Model Context Protocol）是**工具/数据源的标准化接入协议**�
 **相关知识点：** 状态机、Replanning、任务调度、故障恢复、Agent Architecture。
 
 <a id="arc-088"></a>
-### Agent Loop 如何防止无限循环和步数爆炸？
+### 12. Agent Loop 如何防止无限循环和步数爆炸？
 
 **【核心思路】**
 Agent Loop 的失控本质是 **LLM 反复"决策—行动"却始终无法收敛到终止条件**：要么一直调同类工具打转（死循环），要么不断拆出子任务越拆越多（步数爆炸）。Harness 不能寄望模型自觉，必须用**确定性工程约束**兜底——硬步数上限、循环检测、预算熔断、终止判定的独立仲裁（参见 [ARC-040](#arc-040)）。一句话：**模型负责尝试，Harness 负责踩刹车**。
@@ -263,7 +263,7 @@ Agent Loop 的失控本质是 **LLM 反复"决策—行动"却始终无法收敛
 **相关知识点：** Agent Loop、Max Steps、循环检测、Token 预算、LLM-as-a-Judge、人工接管、Agent Architecture。
 
 <a id="arc-089"></a>
-### 如何对 Agent Loop 的工具调用做滥用与风险护栏？
+### 13. 如何对 Agent Loop 的工具调用做滥用与风险护栏？
 
 **【核心思路】**
 模型可能在 Loop 中做出**高风险或越权**动作：连续调用 Shell 执行危险命令、批量删除、访问越权数据、高频调用付费工具刷成本。Harness 护栏分**事前—事中—事后**三层：事前按风险分级与权限校验，事中用配额/频控/审批拦截，事后审计留痕。核心：**高风险动作必须有人工或规则闸门，不能让 Loop 自行通过**。
@@ -287,7 +287,7 @@ Agent Loop 的失控本质是 **LLM 反复"决策—行动"却始终无法收敛
 **相关知识点：** Agent Loop、护栏、风险分级、最小权限、沙箱、审计、人工审批、Agent Architecture。
 
 <a id="arc-090"></a>
-### 如何对 LLM 的结构化输出在 Loop 中做校验与修复？
+### 14. 如何对 LLM 的结构化输出在 Loop 中做校验与修复？
 
 **【核心思路】**
 Agent Loop 每轮依赖模型的**结构化输出**（tool_call 参数、JSON 计划、状态转移）。一旦模型吐出格式错误、字段缺失、类型不对的输出，Loop 就会断裂。Harness 不能假设模型永远输出正确——必须对每轮输出做**Schema 校验**，失败时按策略**自动修复或重试**，而不是直接崩。一句话：**校验是 Loop 的免疫系统，修复是它的自愈机制**。
@@ -311,7 +311,7 @@ Agent Loop 每轮依赖模型的**结构化输出**（tool_call 参数、JSON �
 **相关知识点：** Agent Loop、Schema 校验、Function Calling、Retry、降级、LLM-as-a-Judge、Agent Architecture。
 
 <a id="arc-091"></a>
-### Harness 如何为 Agent Loop 动态分配上下文窗口预算？
+### 15. Harness 如何为 Agent Loop 动态分配上下文窗口预算？
 
 **【核心思路】**
 上下文窗口是**稀缺固定资源**：模型每轮能"看到"的 Token 有上限。Harness 要在有限窗口里塞进**系统指令、工具描述、历史、检索知识、工具结果**，彼此争抢空间。关键不是"塞满"，而是**按任务阶段动态分配预算**——哪些信息当前最相关就给多少配额，无关的压缩或裁掉。一句话：**上下文组装是预算分配问题，不是堆砌问题**（[ARC-031](architecture.md#arc-031)）。
@@ -336,7 +336,7 @@ Agent Loop 每轮依赖模型的**结构化输出**（tool_call 参数、JSON �
 **相关知识点：** Harness Engineering、Context Engineering、Token 预算、上下文压缩、检索、Rerank、Memory、Agent Architecture。
 
 <a id="arc-092"></a>
-### 工具结果如何压缩与裁剪才能既省 Token 又不丢关键信息？
+### 16. 工具结果如何压缩与裁剪才能既省 Token 又不丢关键信息？
 
 **【核心思路】**
 工具结果是 Loop 上下文里**最容易撑爆窗口的部分**——一次 SQL 可能返回千行、一次检索可能返回整篇文档。但其中对决策真正有用的往往只有几行/几段。Harness 的做法是**按相关性裁剪**：先摘要保留要点，再按当前子任务相关性筛选，最后控制每条结果的上限长度。核心：**喂给模型的是"对下一步有用的信息"，不是"工具吐出的全部"**。
@@ -360,7 +360,7 @@ Agent Loop 每轮依赖模型的**结构化输出**（tool_call 参数、JSON �
 **相关知识点：** Harness Engineering、上下文压缩、Token 预算、检索、Rerank、摘要、Agent Architecture。
 
 <a id="arc-093"></a>
-### Prompt Cache 失效或未命中时，Harness 如何避免成本与延迟飙升？
+### 17. Prompt Cache 失效或未命中时，Harness 如何避免成本与延迟飙升？
 
 **【核心思路】**
 Agent Loop 每轮重发长上下文（系统提示、工具描述、历史）开销巨大，靠 **Prompt Cache** 复用前缀降本提速。但缓存会**失效**（上下文变动）或**未命中**（首次/冷启动），一旦退化为全量重算，成本和延迟立刻飙升。Harness 的应对是**稳住可缓存前缀 + 失效时降级**：把稳定部分前置、易变部分后置，最大化命中率；未命中时用预算控制和模型降级兜底。一句话：**缓存是 Loop 的省电模式，Harness 要让前缀尽可能稳定**（[ARC-031](architecture.md#arc-031)）。
@@ -384,7 +384,7 @@ Agent Loop 每轮重发长上下文（系统提示、工具描述、历史）开
 **相关知识点：** Harness Engineering、Prompt Cache、Token 预算、上下文组装、模型降级、可观测性、Agent Architecture。
 
 <a id="arc-094"></a>
-### Harness 如何区分 Loop 中的可重试错误与不可重试错误？
+### 18. Harness 如何区分 Loop 中的可重试错误与不可重试错误？
 
 **【核心思路】**
 不是所有失败都该重试。Harness 必须在 Loop 中对错误**分类**：**瞬时性错误**（超时、限流、网络抖动）可重试；**确定性错误**（参数错、权限不足、逻辑矛盾、资源不存在）重试也是错，应走修复/Replan/降级。误判会导致要么无脑重试撞墙浪费成本，要么该重试的却直接放弃。一句话：**重试前先问"重试能改变结果吗"**（[ARC-025](architecture.md#arc-025)）。
@@ -408,7 +408,7 @@ Agent Loop 每轮重发长上下文（系统提示、工具描述、历史）开
 **相关知识点：** Harness Engineering、Replanning、Retry、错误分类、退避、降级、Agent Architecture。
 
 <a id="arc-095"></a>
-### Harness 在部分步骤失败时，如何决定回滚、补偿还是继续？
+### 19. Harness 在部分步骤失败时，如何决定回滚、补偿还是继续？
 
 **【核心思路】**
 Loop 多步执行中某步失败，未必整体失败——Harness 要判断**该步失败是否致命**：致命（破坏一致性、产生不可逆副作用）需回滚已执行步骤；非致命（可跳过或用默认值）则继续；已产生外部副作用的不能简单回滚，要**补偿**。核心：**不是"失败就回滚"，而是按失败影响分级处置**（[ARC-025](architecture.md#arc-025)）。
@@ -432,7 +432,7 @@ Loop 多步执行中某步失败，未必整体失败——Harness 要判断**�
 **相关知识点：** Harness Engineering、Checkpoint、补偿事务、Replanning、降级、状态机、Agent Architecture。
 
 <a id="arc-096"></a>
-### Harness 如何设计断点续跑的状态序列化以保证可恢复？
+### 20. Harness 如何设计断点续跑的状态序列化以保证可恢复？
 
 **【核心思路】**
 断点续跑的前提是**每一步的可恢复状态都被完整持久化**：任务进度、上下文快照、工具中间结果、状态机当前态。Harness 设计状态序列化的关键是**确定可恢复边界**——在哪些点序列化、序列化什么、如何保证快照与实际执行一致。核心：**把"一次长执行"变成一串可重放的确定性步骤**（[ARC-043](#arc-043)、[ARC-074](reliability.md#arc-074)）。
@@ -457,7 +457,7 @@ Loop 多步执行中某步失败，未必整体失败——Harness 要判断**�
 **相关知识点：** Harness Engineering、Checkpoint、状态机、幂等、上下文压缩、故障恢复、Agent Architecture。
 
 <a id="arc-097"></a>
-### Harness 组件如何抽象为可插拔接口以支持灵活组装？
+### 21. Harness 组件如何抽象为可插拔接口以支持灵活组装？
 
 **【核心思路】**
 一个成熟的 Harness 由多个组件构成（Agent Loop 调度器、上下文管理器、工具执行器、记忆、状态管理、护栏、评测）。若各组件与具体实现强耦合，换模型/换工具/换记忆方案就要改 Harness 内核。可插拔设计的核心是**定义清晰接口 + 组件注册机制**：组件实现统一接口，Harness 按配置动态装载。一句话：**Harness 是骨架，组件是可替换的器官**（[ARC-011](#arc-011)、[ARC-045](platform.md#arc-045)）。
@@ -482,7 +482,7 @@ Loop 多步执行中某步失败，未必整体失败——Harness 要判断**�
 **相关知识点：** Harness Engineering、Agent Loop、MCP、Tool Hub、可插拔架构、配置驱动、Agent Architecture。
 
 <a id="arc-098"></a>
-### 多租户场景下 Harness 如何做隔离与配额治理？
+### 22. 多租户场景下 Harness 如何做隔离与配额治理？
 
 **【核心思路】**
 企业级 Harness 要同时服务多租户（不同业务线/客户），核心矛盾是**共享底层资源 vs 租户互不影响**。隔离分**数据隔离**（上下文/记忆/知识库不串）、**资源隔离**（算力/并发/模型配额不抢占）、**安全隔离**（权限/操作边界不越权）。Harness 通过**租户上下文贯穿全链路 + 配额限流**实现。一句话：**每个请求带上租户身份，Harness 据此隔离与限流**（[ARC-048](platform.md#arc-048)、[ARC-075](platform.md#arc-075)）。
@@ -507,7 +507,7 @@ Loop 多步执行中某步失败，未必整体失败——Harness 要判断**�
 **相关知识点：** Harness Engineering、多租户、资源隔离、配额限流、最小权限、成本核算、Agent Architecture。
 
 <a id="arc-099"></a>
-### Harness 如何做版本化、回滚与生产级压测？
+### 23. Harness 如何做版本化、回滚与生产级压测？
 
 **【核心思路】**
 Harness 是承载模型的整套工程系统，本身要像普通服务一样**可版本化、可回滚、可压测**。Prompt、工具配置、组件组合、护栏规则都要版本管理；线上异常能快速回滚到上一稳定版；上线前用压测验证 Loop 在高并发/长任务下的稳定性。核心：**Harness 不是一次性脚本，而是有版本生命周期的生产系统**（[ARC-076](platform.md#arc-076)）。
