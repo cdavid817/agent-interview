@@ -20,4 +20,6 @@ jobs:
           python-version: "3.12"
 
       - name: Validate question bank
-        run: python scripts/validate.py
+        run: |
+          python scripts/build_indexes.py --check
+          python scripts/validate.py
