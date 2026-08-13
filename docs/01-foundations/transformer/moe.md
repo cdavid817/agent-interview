@@ -3,9 +3,7 @@
 > 所属章节：[Transformer](README.md)｜本文件共 **2** 题。
 
 <a id="trans-051"></a>
-### TRANS-051 · MoE Transformer 为什么能扩大参数量却不同比例增加计算？它的工程难点是什么？（高级）
-
-> 稳定 ID：`TRANS-051`｜原题号：51
+### MoE Transformer 为什么能扩大参数量却不同比例增加计算？它的工程难点是什么？（高级）
 
 **MoE为每个Token只激活少量专家，因此总参数可大幅增长而单Token计算近似由激活专家数决定；代价是路由、通信、负载均衡和显存部署更复杂。**
 
@@ -15,9 +13,7 @@
 
 **相关知识点：** Mixture of Experts、Top-K Routing、Expert Parallelism、Capacity Factor、Load Balancing、All-to-All、Router Z-Loss。
 <a id="trans-059"></a>
-### TRANS-059 · 数据并行、张量并行、流水线并行、序列并行和专家并行如何组合？（高级）
-
-> 稳定 ID：`TRANS-059`｜原题号：59
+### 数据并行、张量并行、流水线并行、序列并行和专家并行如何组合？（高级）
 
 **并行策略应按“什么状态装不下、什么通信最昂贵”组合：数据并行切Batch，张量并行切单层矩阵，流水线并行切层，Sequence Parallel切分可逐Token计算的激活，Expert Parallel切MoE专家；超长Attention通常还需单独的Context Parallel。**
 

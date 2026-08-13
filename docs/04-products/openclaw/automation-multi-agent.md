@@ -3,9 +3,9 @@
 > 所属章节：[OpenClaw](README.md)｜本文件共 **2** 题。
 
 <a id="oclaw-019"></a>
-### OCLAW-019 · OpenClaw 中 Cron、Heartbeat、Hooks 和 Task Flow 应如何选型？
+### OpenClaw 中 Cron、Heartbeat、Hooks 和 Task Flow 应如何选型？
 
-> 稳定 ID：`OCLAW-019`｜原题号：19｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 它们对应不同触发和编排语义。
 
@@ -20,9 +20,9 @@
 
 **相关知识点：** Scheduler、Heartbeat、Event Hook、Webhook、Task Flow、Durable Workflow。
 <a id="oclaw-037"></a>
-### OCLAW-037 · OpenClaw 如何实现多 Agent 协作？
+### OpenClaw 如何实现多 Agent 协作？
 
-> 稳定 ID：`OCLAW-037`｜原题号：37｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 OpenClaw有两类机制：配置多个Agent并用Bindings把渠道、账号或对话路由到指定Agent；以及由当前Run通过`sessions_spawn`启动后台子Agent。每个配置Agent有自己的工作区、Agent目录和会话存储，子Agent则在独立会话运行并向请求方回报。

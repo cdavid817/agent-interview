@@ -3,9 +3,9 @@
 > 所属章节：[OpenClaw](README.md)｜本文件共 **8** 题。
 
 <a id="oclaw-004"></a>
-### OCLAW-004 · OpenClaw 如何把不同消息渠道和会话路由到正确的 Agent？
+### OpenClaw 如何把不同消息渠道和会话路由到正确的 Agent？
 
-> 稳定 ID：`OCLAW-004`｜原题号：4｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 OpenClaw通过**渠道适配器、Agent Binding和会话键**进行确定性路由。Binding可按渠道、账号、群组或具体对话选择Agent，每个Agent再使用独立工作区与会话存储。
 
@@ -13,9 +13,9 @@ OpenClaw通过**渠道适配器、Agent Binding和会话键**进行确定性路�
 
 **相关知识点：** Channel Adapter、Agent Binding、Session Key、Reply Route、Thread、Channel Docking。
 <a id="oclaw-006"></a>
-### OCLAW-006 · OpenClaw 的主会话、群组会话和子 Agent 会话有什么差异？
+### OpenClaw 的主会话、群组会话和子 Agent 会话有什么差异？
 
-> 稳定 ID：`OCLAW-006`｜原题号：6｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 三者的区别在于**身份范围、上下文继承、回复目标和权限风险**。
 
@@ -30,9 +30,9 @@ OpenClaw通过**渠道适配器、Agent Binding和会话键**进行确定性路�
 
 **相关知识点：** Main Session、Group Session、Subagent Session、Context Fork、Session Visibility、数据隔离。
 <a id="oclaw-007"></a>
-### OCLAW-007 · OpenClaw 的 Memory 与会话历史有什么区别？
+### OpenClaw 的 Memory 与会话历史有什么区别？
 
-> 稳定 ID：`OCLAW-007`｜原题号：7｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 会话历史记录**发生过的对话与工具事件**，Memory保存**值得跨会话复用的稳定信息**。把全部历史当Memory会导致噪声、隐私和Token成本不断增长。
 
@@ -40,9 +40,9 @@ OpenClaw可从工作区笔记和已配置的Memory Engine检索相关片段；�
 
 **相关知识点：** Episodic History、Durable Memory、Hybrid Search、Provenance、Memory Lifecycle、隐私。
 <a id="oclaw-014"></a>
-### OCLAW-014 · OpenClaw 多 Agent 路由与临时子 Agent 委派有什么区别？
+### OpenClaw 多 Agent 路由与临时子 Agent 委派有什么区别？
 
-> 稳定 ID：`OCLAW-014`｜原题号：14｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 多Agent路由是**长期配置的身份与入口分工**，子Agent委派是**某次Run中的临时后台协作**。
 
@@ -50,9 +50,9 @@ OpenClaw可从工作区笔记和已配置的Memory Engine检索相关片段；�
 
 **相关知识点：** Multi-agent Routing、Agent Binding、Subagent、Delegation、Announce、共享写冲突。
 <a id="oclaw-016"></a>
-### OCLAW-016 · OpenClaw 如何通过 ACP 接入 Claude Code、Codex 等 Coding Harness？
+### OpenClaw 如何通过 ACP 接入 Claude Code、Codex 等 Coding Harness？
 
-> 稳定 ID：`OCLAW-016`｜原题号：16｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 ACP用于把外部Coding Harness作为**具有独立会话和执行语义的Agent后端**接入OpenClaw。OpenClaw负责渠道入口、会话协调和交付，Claude Code、Codex或其他Harness负责仓库探索、修改、命令和验证。
 
@@ -60,9 +60,9 @@ ACP用于把外部Coding Harness作为**具有独立会话和执行语义的Agen
 
 **相关知识点：** Agent Client Protocol、Coding Harness、Session Backend、MCP、权限传递、结果交付。
 <a id="oclaw-021"></a>
-### OCLAW-021 · OpenClaw 的模型选择、认证 Profile 轮换与 Fallback 如何协作？
+### OpenClaw 的模型选择、认证 Profile 轮换与 Fallback 如何协作？
 
-> 稳定 ID：`OCLAW-021`｜原题号：21｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 模型解析先确定Provider与Model，再选择可用认证Profile；遇到符合条件的认证或Provider故障时，可轮换Profile并沿配置的Fallback链尝试其他模型。
 
@@ -70,9 +70,9 @@ ACP用于把外部Coding Harness作为**具有独立会话和执行语义的Agen
 
 **相关知识点：** Model Resolution、Auth Profile、Failover、Fallback Chain、Capability Compatibility、路由观测。
 <a id="oclaw-022"></a>
-### OCLAW-022 · OpenClaw 如何处理长会话的上下文增长？
+### OpenClaw 如何处理长会话的上下文增长？
 
-> 稳定 ID：`OCLAW-022`｜原题号：22｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 主要手段是**Session Pruning、Compaction、Memory写入与按需Recall**。旧的大型工具结果可先裁剪，接近窗口上限时将历史压缩成摘要；稳定事实写入Memory后在后续会话按需检索。
 
@@ -80,9 +80,9 @@ ACP用于把外部Coding Harness作为**具有独立会话和执行语义的Agen
 
 **相关知识点：** Context Window、Pruning、Compaction、Memory Flush、Recall、Prompt Cache。
 <a id="oclaw-023"></a>
-### OCLAW-023 · OpenClaw 的浏览器和设备 Node 能力有哪些安全风险？
+### OpenClaw 的浏览器和设备 Node 能力有哪些安全风险？
 
-> 稳定 ID：`OCLAW-023`｜原题号：23｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 浏览器可能携带登录态、Cookie和高价值会话，设备Node可能访问摄像头、屏幕、位置、通知或本地应用，因此都属于**高权限执行面**。
 

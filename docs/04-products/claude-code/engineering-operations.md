@@ -3,9 +3,9 @@
 > 所属章节：[Claude Code](README.md)｜本文件共 **9** 题。
 
 <a id="cc-025"></a>
-### CC-025 · 企业如何通过 Managed Settings 和 LLM Gateway 治理 Claude Code？
+### 企业如何通过 Managed Settings 和 LLM Gateway 治理 Claude Code？
 
-> 稳定 ID：`CC-025`｜原题号：25｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Managed Settings集中下发不可被普通用户放宽的权限、MCP、网络和功能策略；LLM Gateway集中处理认证、模型访问、用量、预算、审计和路由。二者分别治理客户端行为和模型流量。
 
@@ -13,9 +13,9 @@ Managed Settings集中下发不可被普通用户放宽的权限、MCP、网络�
 
 **相关知识点：** Managed Settings、LLM Gateway、Policy Enforcement、Spend Limit、Protocol Compatibility、Effective Config。
 <a id="cc-026"></a>
-### CC-026 · Claude Code 的 Anthropic、Bedrock、Google Cloud 和 Microsoft Foundry 部署如何选型？
+### Claude Code 的 Anthropic、Bedrock、Google Cloud 和 Microsoft Foundry 部署如何选型？
 
-> 稳定 ID：`CC-026`｜原题号：26｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 选择取决于**现有云治理、模型可用性、区域、IAM、采购、日志和功能兼容性**。直接Anthropic通常获得原生更新路径；云Provider便于复用企业账号、网络和审计体系，但模型名称、区域、配额和部分Feature Availability可能不同。
 
@@ -23,9 +23,9 @@ Managed Settings集中下发不可被普通用户放宽的权限、MCP、网络�
 
 **相关知识点：** Anthropic API、Amazon Bedrock、Google Cloud、Microsoft Foundry、IAM、Feature Matrix。
 <a id="cc-027"></a>
-### CC-027 · Claude Code 的 Code Review 如何减少误报和漏报？
+### Claude Code 的 Code Review 如何减少误报和漏报？
 
-> 稳定 ID：`CC-027`｜原题号：27｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 有效Review需要**明确差异范围、仓库上下文、严重级别和可验证证据**。`CLAUDE.md`提供项目约定，Review专用规则可放`REVIEW.md`；多Agent分析发现候选后，应检查可达路径、测试和上下游影响再报告。
 
@@ -33,9 +33,9 @@ Managed Settings集中下发不可被普通用户放宽的权限、MCP、网络�
 
 **相关知识点：** Code Review、REVIEW.md、Multi-agent Analysis、Finding Evidence、Precision、Recall。
 <a id="cc-028"></a>
-### CC-028 · Claude Code 修改代码后应如何设计验证闭环？
+### Claude Code 修改代码后应如何设计验证闭环？
 
-> 稳定 ID：`CC-028`｜原题号：28｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 验证顺序应从**最小、快速、确定性检查**逐步扩大：格式化与静态检查、受影响单测、组件/集成测试、构建，再按风险运行端到端与安全测试。
 
@@ -43,9 +43,9 @@ Agent先从仓库规则或CI配置找到权威命令，失败后区分代码缺�
 
 **相关知识点：** Test Pyramid、Static Analysis、Affected Tests、Flaky Test、Retry Budget、Verification Evidence。
 <a id="cc-030"></a>
-### CC-030 · 企业推广 Claude Code 时如何衡量真实价值，而不是只看使用量？
+### 企业推广 Claude Code 时如何衡量真实价值，而不是只看使用量？
 
-> 稳定 ID：`CC-030`｜原题号：30｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 使用量只说明调用发生，价值应看**质量调整后的工程结果**。建立采用前基线，比较Issue周期、PR吞吐、Review等待、缺陷逃逸、回滚、人工返工和开发者满意度。
 
@@ -55,9 +55,9 @@ Agent先从仓库规则或CI配置找到权威命令，失败后区分代码缺�
 > 以下题目由「Agent 核心架构」「任务规划与执行」「工具与能力体系」「工程落地与平台化」迁入，保留原答案内容并统一纳入 Claude Code 专章。
 
 <a id="cc-074"></a>
-### CC-074 · 如何评估Claude Code的任务完成率？
+### 如何评估Claude Code的任务完成率？
 
-> 稳定 ID：`CC-074`｜原题号：74｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 任务完成率是**在约束与预算内，满足全部必需验收且无禁止副作用的任务比例**，不能以模型自报或生成补丁替代。
 
@@ -71,9 +71,9 @@ Agent先从仓库规则或CI配置找到权威命令，失败后区分代码缺�
 
 **相关知识点：** Acceptance Criteria、Strict Success Rate、Partial Completion、隐藏测试、盲审、pass@1、置信区间、任务切片、单位成功成本。
 <a id="cc-075"></a>
-### CC-075 · 如何构建Coding Agent的离线评测集？
+### 如何构建Coding Agent的离线评测集？
 
-> 稳定 ID：`CC-075`｜原题号：75｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 离线评测集应以**真实任务、可复现仓库快照、可执行验收和防污染治理**为核心，覆盖代码定位、修改、验证及安全的完整闭环。
 
@@ -87,9 +87,9 @@ Agent先从仓库规则或CI配置找到权威命令，失败后区分代码缺�
 
 **相关知识点：** 仓库快照、真实PR任务、隐藏测试、盲审Rubric、可复现环境、Flaky治理、时间切分、数据污染、挑战集。
 <a id="cc-078"></a>
-### CC-078 · 如何进行大小模型分工和模型路由？
+### 如何进行大小模型分工和模型路由？
 
-> 稳定 ID：`CC-078`｜原题号：78｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 大小模型依据**任务难度、风险、上下文、工具需求和失败代价**动态路由，以质量约束下的单位成功成本最小为目标。
 
@@ -103,9 +103,9 @@ Agent先从仓库规则或CI配置找到权威命令，失败后区分代码缺�
 
 **相关知识点：** Model Routing、级联推理、置信度校准、风险路由、Validator、Bandit、模型熔断、单位成功成本、误路由率。
 <a id="cc-090"></a>
-### CC-090 · Claude Code理解调用关系主要依赖模型推理，还是依赖LSP和索引？
+### Claude Code理解调用关系主要依赖模型推理，还是依赖LSP和索引？
 
-> 稳定 ID：`CC-090`｜原题号：90｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 两者结合，但职责不同。模型从已读取的代码、类型和命名中推断语义；Grep、Glob和Read提供文本证据；启用代码智能插件后，LSP Tool可提供定义、引用、诊断等结构化信息。
 

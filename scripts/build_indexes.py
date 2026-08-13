@@ -14,7 +14,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TAXONOMY = json.loads((ROOT / "scripts" / "taxonomy.json").read_text(encoding="utf-8"))
-QUESTION_RE = re.compile(r"^###\s+([A-Z]+-\d{3})\s+·\s+(.+?)\s*$", re.MULTILINE)
+QUESTION_RE = re.compile(
+    r'^<a id="([a-z]+-\d{3})"></a>\s*\n###\s+(.+?)\s*$',
+    re.MULTILINE,
+)
 STATS_START = "<!-- QUESTION_STATS_START -->"
 STATS_END = "<!-- QUESTION_STATS_END -->"
 CORE_ALLOCATIONS = {
@@ -34,7 +37,7 @@ def question_files(chapter: dict[str, str]) -> list[Path]:
 
 
 def questions_in(path: Path) -> list[tuple[str, str]]:
-    return [match.groups() for match in QUESTION_RE.finditer(path.read_text(encoding="utf-8-sig"))]
+    return [(match.group(1).upper(), match.group(2)) for match in QUESTION_RE.finditer(path.read_text(encoding="utf-8-sig"))]
 
 
 def replace_stats(readme: str) -> str:

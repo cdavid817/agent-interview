@@ -3,9 +3,9 @@
 > 所属章节：[OpenClaw](README.md)｜本文件共 **8** 题。
 
 <a id="oclaw-009"></a>
-### OCLAW-009 · OpenClaw 中 Tools、Skills 和 Plugins 的边界是什么？
+### OpenClaw 中 Tools、Skills 和 Plugins 的边界是什么？
 
-> 稳定 ID：`OCLAW-009`｜原题号：9｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 三者分别解决**行动、方法和扩展载体**。
 
@@ -21,9 +21,9 @@ Skill不会天然新增底层权限，Plugin也不应绕过Tool Policy。第三�
 
 **相关知识点：** Tool Schema、Agent Skills、Plugin SDK、能力注册、最小权限、供应链安全。
 <a id="oclaw-010"></a>
-### OCLAW-010 · OpenClaw 的工具可见性和 Allow/Deny 策略如何生效？
+### OpenClaw 的工具可见性和 Allow/Deny 策略如何生效？
 
-> 稳定 ID：`OCLAW-010`｜原题号：10｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 工具不是安装后就必然对模型可见，而是经过**Profile、全局策略、Provider限制、Agent策略、渠道权限、沙箱状态和Plugin可用性**等多层过滤，最终集合才进入模型上下文。
 
@@ -31,9 +31,9 @@ Skill不会天然新增底层权限，Plugin也不应绕过Tool Policy。第三�
 
 **相关知识点：** Tool Profile、Allowlist、Denylist、策略优先级、Effective Policy、Tool Surface。
 <a id="oclaw-017"></a>
-### OCLAW-017 · OpenClaw 的 MCP 能力应如何理解和治理？
+### OpenClaw 的 MCP 能力应如何理解和治理？
 
-> 稳定 ID：`OCLAW-017`｜原题号：17｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 MCP是OpenClaw连接或暴露标准化工具与上下文的协议层，但**协议互通不等于自动可信**。接入Server前应固定来源与版本，验证Transport、认证、工具Schema、超时和错误语义，再通过Include/Exclude与Agent Policy缩小工具面。
 
@@ -41,9 +41,9 @@ MCP是OpenClaw连接或暴露标准化工具与上下文的协议层，但**协�
 
 **相关知识点：** MCP、stdio、HTTP、OAuth、Tool Filtering、Schema、Tool Search。
 <a id="oclaw-024"></a>
-### OCLAW-024 · 如何为 OpenClaw 编写可维护的 Skill？
+### 如何为 OpenClaw 编写可维护的 Skill？
 
-> 稳定 ID：`OCLAW-024`｜原题号：24｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 一个好Skill应有**准确触发描述、最小必要指令、明确输入输出、可复用脚本和验证步骤**。`SKILL.md`只放Agent需要遵循的流程，长参考资料按需加载，确定性操作优先复用Skill目录内脚本。
 
@@ -51,9 +51,9 @@ Skill不能把Secret写入正文，也不能用文字要求绕过工具策略。
 
 **相关知识点：** SKILL.md、渐进加载、Trigger Description、脚本复用、依赖门禁、Skill Supply Chain。
 <a id="oclaw-025"></a>
-### OCLAW-025 · OpenClaw Plugin 的设计和升级需要关注哪些兼容性问题？
+### OpenClaw Plugin 的设计和升级需要关注哪些兼容性问题？
 
-> 稳定 ID：`OCLAW-025`｜原题号：25｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Plugin可注册Tool、Channel、Provider、Hook和其他Runtime能力，因而兼容面包括**Manifest、配置Schema、SDK接口、权限、事件和持久数据**。
 
@@ -63,9 +63,9 @@ Plugin可注册Tool、Channel、Provider、Hook和其他Runtime能力，因而�
 
 **相关知识点：** Plugin SDK、Manifest、Semantic Versioning、Schema Migration、Canary、Fail Closed。
 <a id="oclaw-040"></a>
-### OCLAW-040 · OpenClaw 如何实现工具调用决策？
+### OpenClaw 如何实现工具调用决策？
 
-> 稳定 ID：`OCLAW-040`｜原题号：40｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 模型根据当前上下文与可见工具描述产生调用，Gateway再应用工具Profile、Allow/Deny、Sandbox和Elevated等策略。模型“想调用”不等于获准执行，宿主策略才是权限边界。
@@ -74,9 +74,9 @@ Plugin可注册Tool、Channel、Provider、Hook和其他Runtime能力，因而�
 
 **相关知识点：** OpenClaw、Tool Calling、权限控制、Sandbox、Agent Runtime。
 <a id="oclaw-041"></a>
-### OCLAW-041 · OpenClaw 如何接入 MCP 工具？
+### OpenClaw 如何接入 MCP 工具？
 
-> 稳定 ID：`OCLAW-041`｜原题号：41｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 当前`openclaw mcp`有两条明确路径：`openclaw mcp serve`让OpenClaw作为MCP Server，通过stdio向外部客户端暴露Gateway支持的渠道会话；`mcp add/set/configure/...`管理外部MCP Server定义，供符合条件的Runtime使用。
@@ -85,9 +85,9 @@ Plugin可注册Tool、Channel、Provider、Hook和其他Runtime能力，因而�
 
 **相关知识点：** OpenClaw、Harness Engineering、Agent Runtime、MCP、工程扩展。
 <a id="oclaw-055"></a>
-### OCLAW-055 · OpenClaw 如何保证工具调用安全性？
+### OpenClaw 如何保证工具调用安全性？
 
-> 稳定 ID：`OCLAW-055`｜原题号：55｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 先用渠道配对和Allowlist限制谁能发指令，再用Tool Profile与Allow/Deny限制能调用什么；Sandbox限制文件、进程和网络范围，Elevated能力另设门槛。外部网页、邮件和媒体内容统一视为不可信。

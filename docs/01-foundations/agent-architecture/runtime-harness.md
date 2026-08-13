@@ -3,9 +3,7 @@
 > 所属章节：[Agent 核心架构](README.md)｜本文件共 **11** 题。
 
 <a id="arc-003"></a>
-### ARC-003 · 一个企业级 Agent 系统应该拆分成哪些核心模块？规划器、执行器、工具层及记忆层和评测层如何协作？（腾讯二面）
-
-> 稳定 ID：`ARC-003`｜原题号：3
+### 一个企业级 Agent 系统应该拆分成哪些核心模块？规划器、执行器、工具层及记忆层和评测层如何协作？（腾讯二面）
 
 **【核心思路】**
 五大件（规划器/执行器/工具层/记忆层/评测层）构成一条**闭环**：规划器拆任务 → 执行器驱动 Loop 调工具 → 结果入记忆并回灌 → 评测层打分 → 失败触发 Replanning。本质是"大脑—手脚—工具—记忆—考官"的分工。
@@ -27,9 +25,7 @@
 
 **相关知识点：** Agent Loop、Multi-Agent、Tool Calling、Planner、Executor、状态机、Replanning、Retry。
 <a id="arc-011"></a>
-### ARC-011 · Agent Runtime 包含哪些核心模块？
-
-> 稳定 ID：`ARC-011`｜原题号：11
+### Agent Runtime 包含哪些核心模块？
 
 **【核心思路】**
 Runtime 是"**运行时**"，负责一次 Agent 执行的**完整生命周期调度**。核心模块：Agent Loop 调度器、上下文管理器、工具执行器、记忆管理、状态管理、模型客户端（LLM Client）。它是 Platform（平台）中真正"跑起来"的引擎内核。
@@ -54,9 +50,7 @@ Runtime 是"**运行时**"，负责一次 Agent 执行的**完整生命周期调
 
 **相关知识点：** Agent Runtime、Agent Loop、Function Calling、Executor、状态机、Retry、检索、长期记忆。
 <a id="arc-012"></a>
-### ARC-012 · Runtime 与 Workflow Engine 有什么区别？
-
-> 稳定 ID：`ARC-012`｜原题号：12
+### Runtime 与 Workflow Engine 有什么区别？
 
 **【核心思路】**
 **核心区别是"谁决定执行路径"**：Workflow Engine 的路径由**人预先定义**（固定 DAG，确定性、可预测）；Agent Runtime 的路径由 **LLM 运行时动态决策**（走一步看一步，灵活、自主）。前者适合标准化流程，后者适合开放式任务，二者常结合使用。
@@ -78,9 +72,7 @@ Runtime 是"**运行时**"，负责一次 Agent 执行的**完整生命周期调
 
 **相关知识点：** Agent Runtime、Workflow、成本治理、Runtime、Engine、Agent Architecture。
 <a id="arc-028"></a>
-### ARC-028 · Harness Engineering 与 Prompt Engineering 有什么区别？
-
-> 稳定 ID：`ARC-028`｜原题号：28
+### Harness Engineering 与 Prompt Engineering 有什么区别？
 
 **【核心思路】**
 **Prompt Engineering 优化"对模型说什么"**（单次输入的措辞、示例、格式），是**点**上的技巧；**Harness Engineering 优化"模型周围的整套工程系统"**（Agent Loop、上下文动态组装、工具、记忆、状态、护栏、可观测），是**面**上的架构。一句话：**Prompt 是喂给模型的一句话，Harness 是承载模型自主运行的整个骨架**。Agent 时代，Harness 决定上限。
@@ -100,9 +92,7 @@ Runtime 是"**运行时**"，负责一次 Agent 执行的**完整生命周期调
 
 **相关知识点：** Harness Engineering、Agent Loop、Retry、Memory、Prompt Engineering、可观测性、Agent Architecture。
 <a id="arc-029"></a>
-### ARC-029 · 为什么 Agent 更强调 Harness 而不是 Prompt？
-
-> 稳定 ID：`ARC-029`｜原题号：29
+### 为什么 Agent 更强调 Harness 而不是 Prompt？
 
 **【核心思路】**
 因为 Agent 是**多步自主系统**，单靠一句好 Prompt 无法保证几十步都不出错——真正决定成败的是**模型周围的工程**：上下文喂什么、工具怎么调、失败怎么兜底、状态怎么恢复、行为怎么约束。**Prompt 决定单步表现的下限，Harness 决定整个任务的上限**；模型能力越强，边际收益越从"调 Prompt"转移到"建 Harness"。
@@ -123,9 +113,7 @@ Runtime 是"**运行时**"，负责一次 Agent 执行的**完整生命周期调
 
 **相关知识点：** Harness Engineering、Retry、Prompt Engineering、可观测性、故障恢复、Agent Architecture。
 <a id="arc-033"></a>
-### ARC-033 · RAG 在 Harness 中承担什么角色？
-
-> 稳定 ID：`ARC-033`｜原题号：33
+### RAG 在 Harness 中承担什么角色？
 
 **【核心思路】**
 RAG 在 Harness 中是**"外部知识的动态供给器"**，为 Context Engineering 提供**按需召回的相关知识**，解决模型**知识过时、不含私域数据、易幻觉**的问题。它把企业知识库/文档/记忆变成可检索的外部记忆，在每轮上下文组装时**按当前 query 精准注入**，是长期记忆召回和事实性保障的关键环节。
@@ -145,9 +133,7 @@ RAG 在 Harness 中是**"外部知识的动态供给器"**，为 Context Enginee
 
 **相关知识点：** Harness Engineering、Context Engineering、RAG、Embedding、Rerank、检索、长期记忆、Memory。
 <a id="arc-035"></a>
-### ARC-035 · MCP 在 Harness Engineering 中如何接入？
-
-> 稳定 ID：`ARC-035`｜原题号：35
+### MCP 在 Harness Engineering 中如何接入？
 
 **【核心思路】**
 MCP（Model Context Protocol）是**工具/数据源的标准化接入协议**，在 Harness 中扮演"**通用工具适配层**"。Agent 作为 **MCP Client**，外部能力（数据库、文件系统、API、第三方服务）封装为 **MCP Server**，双方通过标准协议通信。接入即"**即插即用**"：新工具只要实现 MCP Server，Agent 无需改代码即可发现并调用，实现 Agent 与工具的解耦。
@@ -169,9 +155,7 @@ MCP（Model Context Protocol）是**工具/数据源的标准化接入协议**�
 
 **相关知识点：** Harness Engineering、MCP、Tool Hub、权限控制、Agent Architecture。
 <a id="arc-040"></a>
-### ARC-040 · 如何评估 Harness Engineering 的效果？
-
-> 稳定 ID：`ARC-040`｜原题号：40
+### 如何评估 Harness Engineering 的效果？
 
 **【核心思路】**
 评估 Harness 效果看**系统级增益**：同一模型下，加了 Harness 后**任务成功率↑、幻觉率↓、稳定性↑、成本↓、可恢复性↑**。方法：固定评测集做**AB 对比**（有无某 Harness 组件），观察端到端成功率、步骤正确率、Token 成本、人工介入率、故障恢复率的变化。核心命题：**Harness 是否让"同一个模型"表现得更可靠、更省、更稳**（指标体系参见 [ARC-027](reliability.md#arc-027)）。
@@ -192,9 +176,7 @@ MCP（Model Context Protocol）是**工具/数据源的标准化接入协议**�
 
 **相关知识点：** Harness Engineering、Checkpoint、Retry、RAG、可观测性、幻觉治理、评测体系、成本治理。
 <a id="arc-043"></a>
-### ARC-043 · Harness Engineering 如何支持长任务、多轮任务和断点恢复？
-
-> 稳定 ID：`ARC-043`｜原题号：43
+### Harness Engineering 如何支持长任务、多轮任务和断点恢复？
 
 **【核心思路】**
 靠**状态外置 + Checkpoint + 上下文压缩 + 任务拆解**。长任务用 **Planner 拆成可跟踪的子任务/TODO** 逐步推进；每步**持久化状态快照**（[ARC-036](architecture.md#arc-036)），中断后从最近 Checkpoint **续跑**；多轮/长历史用**摘要压缩**控制上下文（[ARC-031](architecture.md#arc-031)）；关键节点可**人工介入**后继续。核心是把"一次长执行"变成"可暂停、可恢复、可续跑的分步过程"。
@@ -215,9 +197,7 @@ MCP（Model Context Protocol）是**工具/数据源的标准化接入协议**�
 
 **相关知识点：** Harness Engineering、Planner、Task Decomposition、Checkpoint、检索、故障恢复、Agent Architecture。
 <a id="arc-078"></a>
-### ARC-078 · 规划器和执行器为什么要拆开？
-
-> 稳定 ID：`ARC-078`｜原题号：78
+### 规划器和执行器为什么要拆开？
 
 **【核心思路】**
 核心理由：**关注点分离 + 独立优化 + 可控可审计**。规划是"**决定做什么**"（需强推理、全局视野、慢而贵），执行是"**具体怎么做**"（工具调用、可用小模型/规则、快而多）。拆开后：①各自用**最合适的模型/策略**（规划用大模型，执行分流）；②计划**可审计、可人工介入**；③**独立扩展**（执行可并行水平扩展）；④**失败可分层处理**（Replan vs Retry，[ARC-025](architecture.md#arc-025)）。合在一起则职责混乱、难优化、难控制。
@@ -238,9 +218,7 @@ MCP（Model Context Protocol）是**工具/数据源的标准化接入协议**�
 
 **相关知识点：** Tool Calling、Planner、Executor、Replanning、Retry、Agent Architecture。
 <a id="arc-080"></a>
-### ARC-080 · 如何设计 Agent 的任务状态机？
-
-> 稳定 ID：`ARC-080`｜原题号：80
+### 如何设计 Agent 的任务状态机？
 
 **【核心思路】**
 定义**状态集合**（Created→Planning→Running→Waiting/Paused→Success/Failed）与**合法转移规则**，非法转移拒绝；每次转移**持久化快照**支持恢复；异常态可**回滚/Replan/人工介入**。状态机让 Agent 执行**可跟踪、可恢复、可审计、可并发调度**。核心：**用显式状态机把不确定的执行过程约束成可管理的确定流转**（同 [ARC-036](architecture.md#arc-036)）。

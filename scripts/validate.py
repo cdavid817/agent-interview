@@ -16,7 +16,10 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 TAXONOMY_PATH = ROOT / "scripts" / "taxonomy.json"
 TAXONOMY = json.loads(TAXONOMY_PATH.read_text(encoding="utf-8"))
-QUESTION_RE = re.compile(r"^###\s+([A-Z]+-\d{3})\s+·\s+(.+?)\s*$", re.MULTILINE)
+QUESTION_RE = re.compile(
+    r'^<a id="([a-z]+-\d{3})"></a>\s*\n###\s+(.+?)\s*$',
+    re.MULTILINE,
+)
 LEGACY_QUESTION_RE = re.compile(r"^####\s+\d+、", re.MULTILINE)
 ANCHOR_RE = re.compile(r'<a id="([a-z]+-\d{3})"></a>\s*$', re.MULTILINE)
 LOCAL_LINK_RE = re.compile(r"\[[^\]]+\]\((?!https?://|mailto:|#)([^)]+)\)")
@@ -109,7 +112,8 @@ def validate_questions() -> tuple[list[str], Counter[str], int]:
 
         previous_number = -1
         for index, match in enumerate(matches):
-            stable_id, title = match.groups()
+            stable_id = match.group(1).upper()
+            title = match.group(2)
             prefix, raw_number = stable_id.rsplit("-", 1)
             number = int(raw_number)
             total += 1
@@ -139,14 +143,9 @@ def validate_questions() -> tuple[list[str], Counter[str], int]:
             )
             normalized_titles[normalized_title].append(stable_id)
 
-            prefix_text = text[max(0, match.start() - 80):match.start()]
-            if f'<a id="{stable_id.lower()}"></a>' not in prefix_text:
-                errors.append(f"{relative}: {stable_id} 缺少显式锚点")
             body_end = matches[index + 1].start() if index + 1 < len(matches) else len(text)
             body = text[match.end():body_end]
-            if f"稳定 ID：`{stable_id}`" not in body:
-                errors.append(f"{relative}: {stable_id} 元数据缺少一致的稳定 ID")
-            answer = re.sub(r"(?m)^>\s*稳定 ID：.*$", "", body)
+            answer = re.sub(r"(?m)^>\s*(?:稳定 ID|核验日期)[^\n]*$", "", body)
             answer = re.sub(r"(?m)^\s*---\s*$", "", answer).strip()
             if not answer:
                 errors.append(f"{relative}: {stable_id} 答案为空")
@@ -191,7 +190,7 @@ def validate_aliases() -> list[str]:
     anchors: Counter[str] = Counter()
     for _, path in question_files():
         text = path.read_text(encoding="utf-8-sig")
-        active_ids.update(match.group(1) for match in QUESTION_RE.finditer(text))
+        active_ids.update(match.group(1).upper() for match in QUESTION_RE.finditer(text))
         anchors.update(match.group(1).upper() for match in ANCHOR_RE.finditer(text))
     report = DOCS / "reference" / "id-aliases.md"
     if not report.exists():
