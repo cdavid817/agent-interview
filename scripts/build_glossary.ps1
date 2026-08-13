@@ -23,7 +23,7 @@ $sectionNames = @(
     "十二、工程稳定性类"
 )
 
-$glossaryPath = Join-Path $Root "Agent 名词解释.md"
+$glossaryPath = Join-Path $Root "docs/reference/术语索引.md"
 $docsPath = Join-Path $Root "docs"
 $coreTermsPath = Join-Path $PSScriptRoot "glossary_core_terms.txt"
 $itemsBySection = @()
@@ -195,22 +195,29 @@ if (Test-Path -LiteralPath $glossaryPath) {
 $relatedLineCount = 0
 $documentCount = 0
 $sourceDefaults = @{
-    "一、Agent核心架构.md" = 0
-    "二、任务规划与执行.md" = 1
-    "三、上下文与知识系统.md" = 6
-    "四、工具与能力体系.md" = 7
-    "五、多Agent与协作.md" = 1
-    "六、模型能力与成本.md" = 2
-    "七、安全、治理与可观测性.md" = 8
-    "八、工程落地与平台化.md" = 11
-    "九、RAG.md" = 4
-    "十、Transformer.md" = 2
-    "十一、OpenClaw.md" = 0
-    "十二、ClaudeCode.md" = 7
+    "agent-architecture" = 0
+    "planning-execution" = 1
+    "context-knowledge" = 6
+    "tools-skills-mcp" = 7
+    "multi-agent" = 1
+    "model-capability-cost" = 2
+    "safety-governance-observability" = 8
+    "engineering-platform" = 11
+    "rag" = 4
+    "transformer" = 2
+    "openclaw" = 0
+    "claude-code" = 7
 }
-foreach ($document in Get-ChildItem -LiteralPath $docsPath -Filter "*.md" | Sort-Object Name) {
+foreach ($document in Get-ChildItem -LiteralPath $docsPath -Recurse -Filter "*.md" | Sort-Object FullName) {
+    if ($document.FullName -notmatch "[\\/]docs[\\/](01-foundations|02-capabilities|03-production|04-products)[\\/]") {
+        continue
+    }
+    $documentText = Get-Content -LiteralPath $document.FullName -Raw -Encoding utf8
+    if ($documentText -notmatch "(?m)^###\s+[A-Z]+-\d{3}\s+·") {
+        continue
+    }
     $documentCount++
-    foreach ($line in Get-Content -LiteralPath $document.FullName -Encoding utf8) {
+    foreach ($line in $documentText -split "`r?`n") {
         if ($line -notmatch "相关知识点[：:]\s*\**\s*(.+)$") {
             continue
         }
@@ -223,8 +230,9 @@ foreach ($document in Get-ChildItem -LiteralPath $docsPath -Filter "*.md" | Sort
                 $termFrequency[$term] = 1
             }
             if ($seen.Add($term)) {
-                $defaultCategory = if ($sourceDefaults.ContainsKey($document.Name)) {
-                    [int]$sourceDefaults[$document.Name]
+                $sourceKey = $document.Directory.Name
+                $defaultCategory = if ($sourceDefaults.ContainsKey($sourceKey)) {
+                    [int]$sourceDefaults[$sourceKey]
                 }
                 else {
                     11
@@ -272,11 +280,11 @@ foreach ($sectionItems in $itemsBySection) {
 }
 
 $output = [System.Collections.Generic.List[string]]::new()
-$output.Add("# Agent 名词解释")
+$output.Add("# Agent 术语索引")
 $output.Add("")
-$output.Add("> 本文件保留在面试题「相关知识点」中至少出现 **$MinimumOccurrences** 次的术语，并补充 Agent 领域核心术语；共 **$totalCount** 个去重术语，按 12 个主题分类。")
+$output.Add("> 本文件保留在面试题「相关知识点」中至少出现 **$MinimumOccurrences** 次的术语，并补充 Agent 领域核心术语；共 **$totalCount** 个去重术语，按 12 个主题分类。本页是分类索引，不把术语列表误称为完整定义。")
 $output.Add(">")
-$output.Add("> 当前覆盖 ``docs/`` 下 **$documentCount** 个章节、**$relatedLineCount** 处「相关知识点」。筛选规则由 ``scripts/glossary_core_terms.txt`` 与最小出现次数共同维护。")
+$output.Add("> 当前覆盖 ``docs/`` 下 **$documentCount** 个题目文件、**$relatedLineCount** 处「相关知识点」。筛选规则由 ``scripts/glossary_core_terms.txt`` 与最小出现次数共同维护。")
 $output.Add("")
 
 for ($sectionIndex = 0; $sectionIndex -lt $sectionNames.Count; $sectionIndex++) {
