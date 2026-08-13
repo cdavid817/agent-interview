@@ -3,9 +3,9 @@
 > 所属章节：[OpenClaw](README.md)｜本文件共 **19** 题。
 
 <a id="oclaw-011"></a>
-### OCLAW-011 · OpenClaw 的 Sandbox 隔离了什么？没有隔离什么？
+### OpenClaw 的 Sandbox 隔离了什么？没有隔离什么？
 
-> 稳定 ID：`OCLAW-011`｜原题号：11｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Sandbox主要隔离**工具执行**，包括`exec`、文件读写、Patch、Process及可选浏览器；Gateway本身仍在宿主机运行。可按Agent、Session或共享范围创建环境，并选择Docker、SSH或OpenShell等后端。
 
@@ -13,9 +13,9 @@ Sandbox主要隔离**工具执行**，包括`exec`、文件读写、Patch、Proc
 
 **相关知识点：** Sandbox Backend、Workspace Access、Filesystem Isolation、Network Egress、Elevated Mode、纵深防御。
 <a id="oclaw-012"></a>
-### OCLAW-012 · Exec Approval、Elevated Mode 和真正的系统授权有什么区别？
+### Exec Approval、Elevated Mode 和真正的系统授权有什么区别？
 
-> 稳定 ID：`OCLAW-012`｜原题号：12｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Exec Approval是**人机交互护栏**，Elevated Mode是**允许命令脱离工具沙箱执行的逃生路径**，系统授权则由OS、容器、云IAM和目标服务ACL强制。
 
@@ -25,9 +25,9 @@ Exec Approval是**人机交互护栏**，Elevated Mode是**允许命令脱离工
 
 **相关知识点：** Human Approval、Elevated Exec、IAM、ACL、Least Privilege、审计、后置校验。
 <a id="oclaw-027"></a>
-### OCLAW-027 · 如何建立 OpenClaw 的可观测性和故障排查路径？
+### 如何建立 OpenClaw 的可观测性和故障排查路径？
 
-> 稳定 ID：`OCLAW-027`｜原题号：27｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 先按**入口—路由—会话—模型—工具—任务—交付**建立关联链。请求应携带Channel、Agent、Session、Run和Task标识，记录模型路由、工具状态、时延、Token、审批和Delivery Receipt。
 
@@ -35,9 +35,9 @@ Exec Approval是**人机交互护栏**，Elevated Mode是**允许命令脱离工
 
 **相关知识点：** Health Check、Doctor、Structured Log、Correlation ID、Metrics、Delivery Observability。
 <a id="oclaw-028"></a>
-### OCLAW-028 · OpenClaw 如何做备份、恢复和灾难演练？
+### OpenClaw 如何做备份、恢复和灾难演练？
 
-> 稳定 ID：`OCLAW-028`｜原题号：28｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 先区分可重建配置、Agent工作区、Memory、会话记录、任务状态、渠道凭据和Plugin数据。备份应加密、版本化并测试恢复，Secret可通过外部密钥系统重新签发，而不是长期复制明文。
 
@@ -45,9 +45,9 @@ Exec Approval是**人机交互护栏**，Elevated Mode是**允许命令脱离工
 
 **相关知识点：** Backup、Restore Drill、RPO、RTO、Key Rotation、幂等恢复、补偿。
 <a id="oclaw-031"></a>
-### OCLAW-031 · OpenClaw 设计方案（附加专题）
+### OpenClaw 设计方案（附加专题）
 
-> 稳定 ID：`OCLAW-031`｜原题号：31｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 OpenClaw 官方定位是**运行在自有设备上的开源个人 AI 助手与协调层**：以常驻 Gateway 连接消息渠道、模型、会话、Memory、Skills、工具和设备节点。它不是 IDE 或 Claude Code/Codex 的直接替代品；直接仓库编码可交给专门 Coding Harness，OpenClaw 更适合跨渠道、跨设备和长期任务协调。
@@ -67,9 +67,9 @@ OpenClaw 官方定位是**运行在自有设备上的开源个人 AI 助手与�
 
 **相关知识点：** OpenClaw、Claude Code、Harness Engineering、Agent Loop、Multi-Agent、MCP、Skill、检索。
 <a id="oclaw-033"></a>
-### OCLAW-033 · OpenClaw 如何实现长任务执行？
+### OpenClaw 如何实现长任务执行？
 
-> 稳定 ID：`OCLAW-033`｜原题号：33｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 当前可用机制包括后台任务、子Agent独立会话、Cron/Heartbeat、会话持久化和上下文压缩。长或并行工作可交给子Agent，完成后回传摘要，避免阻塞主会话；定时任务由常驻Gateway调度。
@@ -80,9 +80,9 @@ OpenClaw 官方定位是**运行在自有设备上的开源个人 AI 助手与�
 
 **相关知识点：** OpenClaw、Workflow、Checkpoint、任务调度、Agent Runtime。
 <a id="oclaw-034"></a>
-### OCLAW-034 · OpenClaw 的 Agent Loop 如何设计？
+### OpenClaw 的 Agent Loop 如何设计？
 
-> 稳定 ID：`OCLAW-034`｜原题号：34｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 官方架构中一次Agent Run在Gateway进程内完成模型调用、工具执行和结果回灌。可以用“模型决策→工具调用→观察→继续或回复”理解，但不应断言内部固定采用某一种公开的ReAct Prompt或独立Planner。
@@ -93,9 +93,9 @@ OpenClaw 官方定位是**运行在自有设备上的开源个人 AI 助手与�
 
 **相关知识点：** OpenClaw、Harness Engineering、Agent Loop、Tool Calling、Planner、ReAct、Prompt Engineering、故障恢复。
 <a id="oclaw-038"></a>
-### OCLAW-038 · OpenClaw 中的 Planner 如何实现？
+### OpenClaw 中的 Planner 如何实现？
 
-> 稳定 ID：`OCLAW-038`｜原题号：38｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 官方文档没有把OpenClaw描述为固定的“独立Planner服务+TODO DAG”架构。任务拆解通常由所选模型、系统指令、Skill或外部Harness完成；子Agent工具可以执行明确的委派。
@@ -106,9 +106,9 @@ OpenClaw 官方定位是**运行在自有设备上的开源个人 AI 助手与�
 
 **相关知识点：** OpenClaw、Harness Engineering、Skill、Workflow、Planner、Task Decomposition。
 <a id="oclaw-039"></a>
-### OCLAW-039 · OpenClaw 如何做任务拆解？
+### OpenClaw 如何做任务拆解？
 
-> 稳定 ID：`OCLAW-039`｜原题号：39｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 OpenClaw可由主Agent把独立研究或慢任务委派给子Agent，但官方没有规定统一DAG算法。可靠做法是把复杂任务拆成输入清楚、输出可交付、权限有限且能独立验证的子任务，并限制并发和嵌套深度。
@@ -117,9 +117,9 @@ OpenClaw可由主Agent把独立研究或慢任务委派给子Agent，但官方�
 
 **相关知识点：** OpenClaw、Task Decomposition、权限控制、成本治理、任务调度。
 <a id="oclaw-043"></a>
-### OCLAW-043 · OpenClaw 如何实现任务 Checkpoint 恢复？
+### OpenClaw 如何实现任务 Checkpoint 恢复？
 
-> 稳定 ID：`OCLAW-043`｜原题号：43｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 OpenClaw会持久化会话和本地状态，也支持压缩与Memory，但这不等同于每一步具有事务化Checkpoint和Exactly-once恢复。子Agent完成通知在Gateway重启场景也可能丢失。
@@ -128,9 +128,9 @@ OpenClaw会持久化会话和本地状态，也支持压缩与Memory，但这不
 
 **相关知识点：** OpenClaw、Checkpoint、Memory、故障恢复、Agent Runtime。
 <a id="oclaw-044"></a>
-### OCLAW-044 · OpenClaw 如何保证 Agent 执行稳定性？
+### OpenClaw 如何保证 Agent 执行稳定性？
 
-> 稳定 ID：`OCLAW-044`｜原题号：44｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 官方运维能力包括`status`、`health`、`logs`、`doctor`、模型Fallback以及任务/子Agent检查。工具策略、Sandbox、渠道Allowlist和资源限制用于缩小故障与误操作影响。
@@ -139,9 +139,9 @@ OpenClaw会持久化会话和本地状态，也支持压缩与Memory，但这不
 
 **相关知识点：** OpenClaw、Sandbox、可靠性、任务调度、Agent Runtime。
 <a id="oclaw-046"></a>
-### OCLAW-046 · OpenClaw 如何设计 Agent 状态机？
+### OpenClaw 如何设计 Agent 状态机？
 
-> 稳定 ID：`OCLAW-046`｜原题号：46｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 OpenClaw确实维护会话、后台任务、子Agent和路由状态，但官方没有将其描述为用户可配置的通用业务状态机。
@@ -152,9 +152,9 @@ OpenClaw确实维护会话、后台任务、子Agent和路由状态，但官方�
 
 **相关知识点：** OpenClaw、Workflow、状态机、Running、WaitingApproval。
 <a id="oclaw-047"></a>
-### OCLAW-047 · OpenClaw 如何做任务完成率评估？
+### OpenClaw 如何做任务完成率评估？
 
-> 稳定 ID：`OCLAW-047`｜原题号：47｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 OpenClaw官方没有定义适用于所有任务的内建“完成率”。应由场景Owner建立有效任务分母和Acceptance Criteria：消息发送看目标渠道状态，定时任务看实际交付，研究任务看引用和人工Rubric，ACP编码任务看Patch、编译和测试。
@@ -163,9 +163,9 @@ OpenClaw官方没有定义适用于所有任务的内建“完成率”。应由
 
 **相关知识点：** OpenClaw、Skill、Retry、评测体系、成本治理。
 <a id="oclaw-048"></a>
-### OCLAW-048 · OpenClaw 如何实现 Workflow 编排？
+### OpenClaw 如何实现 Workflow 编排？
 
-> 稳定 ID：`OCLAW-048`｜原题号：48｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 OpenClaw提供Cron、Heartbeat、Hooks、Skills、会话和子Agent等自动化组件，但不应据此声称它等同于完整BPMN或耐久工作流引擎。
@@ -176,9 +176,9 @@ OpenClaw提供Cron、Heartbeat、Hooks、Skills、会话和子Agent等自动化�
 
 **相关知识点：** OpenClaw、Tool Calling、Skill、Workflow、任务调度。
 <a id="oclaw-050"></a>
-### OCLAW-050 · OpenClaw 如何降低 Token 消耗？
+### OpenClaw 如何降低 Token 消耗？
 
-> 稳定 ID：`OCLAW-050`｜原题号：50｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 优先使用会话压缩、Memory按需检索、精简工具与Skill、裁剪长工具输出，并让隔离子Agent只接收完成任务所需的上下文。不同Agent和Cron任务可配置更便宜模型，但工具型不可信输入不应为降本而使用明显不足的模型。
@@ -187,9 +187,9 @@ OpenClaw提供Cron、Heartbeat、Hooks、Skills、会话和子Agent等自动化�
 
 **相关知识点：** OpenClaw、Skill、检索、Memory、成本治理。
 <a id="oclaw-051"></a>
-### OCLAW-051 · OpenClaw 在企业级生产环境如何落地？
+### OpenClaw 在企业级生产环境如何落地？
 
-> 稳定 ID：`OCLAW-051`｜原题号：51｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 先接受其官方信任模型：一个Gateway对应一个可信操作者边界；互不信任的员工、客户或租户应拆分OS用户、主机和Gateway。再配置渠道配对/Allowlist、工具Policy、Sandbox、最小文件和网络权限及短期凭据。
@@ -198,9 +198,9 @@ OpenClaw提供Cron、Heartbeat、Hooks、Skills、会话和子Agent等自动化�
 
 **相关知识点：** OpenClaw、Embedding、Prompt Engineering、权限控制、多租户、Sandbox、可靠性、成本治理。
 <a id="oclaw-052"></a>
-### OCLAW-052 · OpenClaw 如何实现 Agent 可观测性建设？
+### OpenClaw 如何实现 Agent 可观测性建设？
 
-> 稳定 ID：`OCLAW-052`｜原题号：52｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 内建入口包括`openclaw status`、`gateway status`、`health`、`logs`、`doctor`以及任务/子Agent检查，可观察Gateway、渠道、Provider、会话和运行故障。
@@ -209,9 +209,9 @@ OpenClaw提供Cron、Heartbeat、Hooks、Skills、会话和子Agent等自动化�
 
 **相关知识点：** OpenClaw、Chain-of-Thought、Prompt Engineering、可观测性、成本治理。
 <a id="oclaw-053"></a>
-### OCLAW-053 · OpenClaw 如何进行 Agent 性能优化？
+### OpenClaw 如何进行 Agent 性能优化？
 
-> 稳定 ID：`OCLAW-053`｜原题号：53｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 先用Trace拆分渠道、排队、模型首Token、工具和交付耗时，再优化关键路径。可减少无关工具与上下文、给独立子Agent设置并发上限、按任务选模型，并缓存稳定的外部查询结果。
@@ -220,9 +220,9 @@ OpenClaw提供Cron、Heartbeat、Hooks、Skills、会话和子Agent等自动化�
 
 **相关知识点：** OpenClaw、Agent Runtime、可观测性、可靠性、成本治理、任务调度。
 <a id="oclaw-054"></a>
-### OCLAW-054 · OpenClaw 如何设计多模型调度策略？
+### OpenClaw 如何设计多模型调度策略？
 
-> 稳定 ID：`OCLAW-054`｜原题号：54｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 当前可按Agent设置默认模型、按Cron任务覆盖模型、给子Agent指定模型，并允许用户用`/model`切换；Primary/Fallback负责故障切换。这是配置式路由，不等同于内建的自动难度分类或在线Bandit。

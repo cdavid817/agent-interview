@@ -3,9 +3,9 @@
 > 所属章节：[Claude Code](README.md)｜本文件共 **1** 题。
 
 <a id="cc-018"></a>
-### CC-018 · Subagents、Agent Teams 和 Agent View 有什么区别？
+### Subagents、Agent Teams 和 Agent View 有什么区别？
 
-> 稳定 ID：`CC-018`｜原题号：18｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Subagent是主Session内部的任务委派；Agent Teams让多个Claude Code实例围绕共享任务、消息和协调机制协作；Agent View是从一个界面派发和监控多个Session的管理Surface。
 

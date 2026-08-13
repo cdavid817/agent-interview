@@ -3,9 +3,7 @@
 > 所属章节：[安全、治理与可观测性](README.md)｜本文件共 **17** 题。
 
 <a id="gov-013"></a>
-### GOV-013 · Agent服务如何高可用部署？（豆包一面）
-
-> 稳定 ID：`GOV-013`｜原题号：13
+### Agent服务如何高可用部署？（豆包一面）
 
 Agent高可用的核心是**无状态计算、持久化状态、依赖隔离、幂等恢复和降级**。多Pod不能解决模型、工具、队列或存储故障，须按任务语义恢复。
 
@@ -24,9 +22,7 @@ Agent高可用的核心是**无状态计算、持久化状态、依赖隔离、�
 
 **相关知识点：** High Availability、Checkpoint、Lease、At-Least-Once、幂等、Circuit Breaker、RPO、RTO、Canary、N+1。
 <a id="gov-045"></a>
-### GOV-045 · Tool调用失败如何定位原因？
-
-> 稳定 ID：`GOV-045`｜原题号：45
+### Tool调用失败如何定位原因？
 
 Tool失败定位应区分**参数、权限、传输、执行、外部依赖和解析**阶段，查找首个异常证据；最终错误通常不是根因。
 
@@ -40,9 +36,7 @@ Tool失败定位应区分**参数、权限、传输、执行、外部依赖和�
 
 **相关知识点：** Tool Span、JSON Schema、Error Taxonomy、幂等键、超时歧义、Contract Test、熔断、外部RequestID。
 <a id="gov-047"></a>
-### GOV-047 · 工具超时和重试如何记录？
-
-> 稳定 ID：`GOV-047`｜原题号：47
+### 工具超时和重试如何记录？
 
 工具超时与重试应按**一次逻辑调用、多个Attempt**建模，以OperationID聚合，每次尝试建立独立Span，从而识别额外延迟、成本和副作用。
 
@@ -59,9 +53,7 @@ Tool失败定位应区分**参数、权限、传输、执行、外部依赖和�
 > **题目合并：** `GOV-050` 已并入 [TOOL-113 · 工具调用失败如何自动恢复？](../../02-capabilities/tools-skills-mcp/sandbox-security-1.md#tool-113)。
 
 <a id="gov-066"></a>
-### GOV-066 · 如何基于链路数据实现自动调优闭环？
-
-> 稳定 ID：`GOV-066`｜原题号：66
+### 如何基于链路数据实现自动调优闭环？
 
 自动调优采用**观测—诊断—候选—验证—灰度—回滚**闭环，只在预定义安全边界内调整；链路相关性不能证明因果。
 
@@ -75,9 +67,7 @@ Tool失败定位应区分**参数、权限、传输、执行、外部依赖和�
 
 **相关知识点：** Closed-loop Optimization、Critical Path、Causal Experiment、Offline Replay、Shadow Traffic、Canary、Guardrail Metric、自动回滚。
 <a id="gov-076"></a>
-### GOV-076 · 打断后如何从断点恢复执行？
-
-> 稳定 ID：`GOV-076`｜原题号：76
+### 打断后如何从断点恢复执行？
 
 断点恢复应以**Checkpoint、幂等状态机和副作用对账**为基础，只执行未完成且仍满足条件的节点，不能从最后一条日志直接继续。
 
@@ -91,9 +81,7 @@ Tool失败定位应区分**参数、权限、传输、执行、外部依赖和�
 
 **相关知识点：** Checkpoint、Lease、CAS、Event Replay、幂等、Unknown State、DAG Version、Retry Budget、Saga。
 <a id="gov-083"></a>
-### GOV-083 · AI运维Agent如何实现发布审批？
-
-> 稳定 ID：`GOV-083`｜原题号：83
+### AI运维Agent如何实现发布审批？
 
 AI运维Agent应采用**计划与执行分离、审批绑定制品、分阶段发布和回滚**。Agent可提出Release Plan，但不能直接发布生产。
 
@@ -107,9 +95,7 @@ AI运维Agent应采用**计划与执行分离、审批绑定制品、分阶段�
 
 **相关知识点：** Release Plan、Artifact Digest、Policy Gate、Four-eyes、Canary、Error Budget、自动回滚、Break-glass、职责分离。
 <a id="gov-087"></a>
-### GOV-087 · Agent Checkpoint机制如何设计？
-
-> 稳定 ID：`GOV-087`｜原题号：87
+### Agent Checkpoint机制如何设计？
 
 Checkpoint应是**可校验、版本化、原子提交的恢复快照**，与事件配合使用；它缩短恢复时间，但不替代审计。
 
@@ -123,9 +109,7 @@ Checkpoint应是**可校验、版本化、原子提交的恢复快照**，与事
 
 **相关知识点：** Checkpoint、Event Sourcing、CAS、Write-ahead、Lease、Checksum、Schema Evolution、Unknown State、恢复演练。
 <a id="gov-089"></a>
-### GOV-089 · 如何实现跨机器任务恢复？
-
-> 稳定 ID：`GOV-089`｜原题号：89
+### 如何实现跨机器任务恢复？
 
 跨机器恢复要求**状态外置、Worker无状态、制品可寻址和租约调度**；关键状态不能只存在本机内存、临时目录或进程中。
 
@@ -139,9 +123,7 @@ Checkpoint应是**可校验、版本化、原子提交的恢复快照**，与事
 
 **相关知识点：** Stateless Worker、Durable State、Lease Epoch、CAS、Content Hash、Workload Identity、RTO、Outbox、Saga。
 <a id="gov-109"></a>
-### GOV-109 · Agent重试率过高说明什么问题？
-
-> 稳定 ID：`GOV-109`｜原题号：109
+### Agent重试率过高说明什么问题？
 
 重试率过高通常表示**决策、参数、依赖或恢复策略存在系统缺陷**，并会放大延迟、成本、流量和重复副作用。
 
@@ -155,9 +137,7 @@ Checkpoint应是**可校验、版本化、原子提交的恢复快照**，与事
 
 **相关知识点：** Operation/Attempt、First-attempt Success、Retry Budget、Exponential Backoff、Jitter、Circuit Breaker、Retry Amplification、幂等。
 <a id="gov-125"></a>
-### GOV-125 · 如何建立Agent Failure Taxonomy？
-
-> 稳定 ID：`GOV-125`｜原题号：125
+### 如何建立Agent Failure Taxonomy？
 
 Failure Taxonomy应是**稳定、互斥、可判定且可行动**的分层分类体系，既服务统计，也能直接映射责任模块、修复策略和回归样本。
 
@@ -174,9 +154,7 @@ Failure Taxonomy应是**稳定、互斥、可判定且可行动**的分层分类
 > **题目合并：** `GOV-133` 已并入 [TOOL-113 · 工具调用失败如何自动恢复？](../../02-capabilities/tools-skills-mcp/sandbox-security-1.md#tool-113)。
 
 <a id="gov-134"></a>
-### GOV-134 · Agent工具熔断机制如何设计？
-
-> 稳定 ID：`GOV-134`｜原题号：134
+### Agent工具熔断机制如何设计？
 
 工具熔断应在依赖持续异常时**快速失败并阻断重试风暴**，同时保持作用域隔离、可控恢复和安全降级，不能用一个全局开关停掉全部工具。
 
@@ -193,9 +171,7 @@ Failure Taxonomy应是**稳定、互斥、可判定且可行动**的分层分类
 > **题目合并：** `GOV-170` 已并入 [TOOL-074 · Agent执行失败后如何恢复现场？](../../02-capabilities/tools-skills-mcp/reliability.md#tool-074)。
 
 <a id="gov-184"></a>
-### GOV-184 · 数据库写操作如何设计审批和回滚机制？
-
-> 稳定 ID：`GOV-184`｜原题号：184
+### 数据库写操作如何设计审批和回滚机制？
 
 数据库写入应采用**计划审批、受控执行、分层回滚和终态验证**，审批必须绑定实际SQL与目标，不能批准可任意修改的描述。
 
@@ -209,9 +185,7 @@ Failure Taxonomy应是**稳定、互斥、可判定且可行动**的分层分类
 
 **相关知识点：** SQL AST、Dry Run、参数绑定审批、事务、保存点、PITR、Expand-Contract、补偿事务、RPO、RTO。
 <a id="gov-187"></a>
-### GOV-187 · 外部系统API调用失败或重复调用如何处理？
-
-> 稳定 ID：`GOV-187`｜原题号：187
+### 外部系统API调用失败或重复调用如何处理？
 
 外部API应先区分**失败可否重试、状态是否确定、操作是否幂等**，再选择重试、查询、补偿或人工接管；超时不等于失败。
 
@@ -225,9 +199,7 @@ Failure Taxonomy应是**稳定、互斥、可判定且可行动**的分层分类
 
 **相关知识点：** Idempotency Key、指数退避、Retry-After、状态未知、去重账本、Circuit Breaker、Outbox、Saga、补偿事务。
 <a id="gov-191"></a>
-### GOV-191 · 如何识别Agent异常行为并自动降权或熔断？
-
-> 稳定 ID：`GOV-191`｜原题号：191
+### 如何识别Agent异常行为并自动降权或熔断？
 
 异常治理应建立**行为基线、实时风险评分、分级响应和人工复核**闭环，自动动作可解释、可撤销，并优先限制副作用。
 

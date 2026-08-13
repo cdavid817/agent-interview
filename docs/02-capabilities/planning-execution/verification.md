@@ -3,9 +3,7 @@
 > 所属章节：[任务规划与执行](README.md)｜本文件共 **20** 题。
 
 <a id="plan-063"></a>
-### PLAN-063 · Agent如何判断是否需要调用RAG或外部工具？
-
-> 稳定 ID：`PLAN-063`｜原题号：63
+### Agent如何判断是否需要调用RAG或外部工具？
 
 **当答案依赖模型参数之外的私有、实时、精确或可执行信息时，Agent应调用RAG或外部工具，而不是凭记忆生成。**
 
@@ -26,9 +24,7 @@
 
 **相关知识点：** RAG、Tool Routing、Hybrid Search、结构化查询、Function Calling、权限校验、证据引用、结果验证。
 <a id="plan-078"></a>
-### PLAN-078 · Tool Selection通常依据哪些信息？
-
-> 稳定 ID：`PLAN-078`｜原题号：78
+### Tool Selection通常依据哪些信息？
 
 **Tool Selection应综合任务需求、工具契约、运行环境、治理约束和历史表现，先排除不可用候选，再进行多目标排序。**
 
@@ -48,9 +44,7 @@
 
 **相关知识点：** Tool Selection、Tool Registry、Function Calling、MCP、Schema、权限校验、结果验证。
 <a id="plan-084"></a>
-### PLAN-084 · Agent如何判断某一步执行成功？
-
-> 稳定 ID：`PLAN-084`｜原题号：84
+### Agent如何判断某一步执行成功？
 
 **单步执行成功必须同时满足调用完成、产物合规、业务状态正确和副作用受控，不能以工具无报错或模型自评作为充分证据。**
 
@@ -71,9 +65,7 @@
 
 **相关知识点：** Success Criteria、Validator、业务不变量、LLM-as-a-Judge、Rubric、幻觉检测。
 <a id="plan-092"></a>
-### PLAN-092 · 如何评估任务拆解质量和执行计划的合理性？
-
-> 稳定 ID：`PLAN-092`｜原题号：92
+### 如何评估任务拆解质量和执行计划的合理性？
 
 **任务拆解质量应从目标覆盖、节点可执行性、依赖正确性、粒度、效率、安全性和失败恢复能力联合评估。**
 
@@ -96,9 +88,7 @@
 
 **相关知识点：** 目标覆盖率、计划可执行率、依赖准确率、任务粒度、关键路径、仿真执行、Rubric、A/B测试。
 <a id="plan-112"></a>
-### PLAN-112 · Agent如何根据任务自动选择工具（Tool Selection）？
-
-> 稳定 ID：`PLAN-112`｜原题号：112
+### Agent如何根据任务自动选择工具（Tool Selection）？
 
 **自动Tool Selection应采用候选召回、硬约束过滤、多目标排序、参数绑定和结果反馈五阶段路由。**
 
@@ -120,9 +110,7 @@
 
 **相关知识点：** Tool Selection、Tool Registry、Function Calling、MCP、Schema、权限校验、结果验证。
 <a id="plan-114"></a>
-### PLAN-114 · Agent如何评估每一步执行结果是否成功？
-
-> 稳定 ID：`PLAN-114`｜原题号：114
+### Agent如何评估每一步执行结果是否成功？
 
 **每一步是否成功必须由Validator依据证据判定，不能把调用完成、HTTP 200或模型自信等同于业务成功。**
 
@@ -144,9 +132,7 @@
 
 **相关知识点：** Validator、Success Criteria、业务不变量、JSON Schema、LLM-as-a-Judge、Rubric、假阳性、证据链。
 <a id="plan-132"></a>
-### PLAN-132 · Agent如何判断当前步骤执行成功？
-
-> 稳定 ID：`PLAN-132`｜原题号：132
+### Agent如何判断当前步骤执行成功？
 
 **当前步骤只有在输出契约、业务后置条件和副作用约束均被可信证据满足时，才能标记为成功。**
 
@@ -167,9 +153,7 @@
 
 **相关知识点：** 前置条件、后置条件、输出契约、Validator、业务不变量、验收测试、LLM-as-a-Judge、证据链。
 <a id="plan-138"></a>
-### PLAN-138 · Agent如何设计Validator模块？
-
-> 稳定 ID：`PLAN-138`｜原题号：138
+### Agent如何设计Validator模块？
 
 **Validator应是独立于Executor的分层验收模块，以任务契约和可追溯证据输出结构化判定。**
 
@@ -190,9 +174,7 @@
 
 **相关知识点：** Validator、Success Criteria、业务不变量、JSON Schema、Rubric、LLM-as-a-Judge、校准、职责分离。
 <a id="plan-140"></a>
-### PLAN-140 · Agent任务成功率如何量化评估？
-
-> 稳定 ID：`PLAN-140`｜原题号：140
+### Agent任务成功率如何量化评估？
 
 **任务成功率应以预先定义的端到端验收条件计算，并按任务难度、风险和业务价值分层报告。**
 
@@ -213,9 +195,7 @@
 
 **相关知识点：** TSR、Pass@K、加权成功率、宏平均、Rubric、置信区间、回归评测、A/B测试。
 <a id="plan-158"></a>
-### PLAN-158 · Agent如何设计Success Criteria（成功判定标准）？
-
-> 稳定 ID：`PLAN-158`｜原题号：158
+### Agent如何设计Success Criteria（成功判定标准）？
 
 **Success Criteria应在执行前定义为可观察、可验证且与用户目标直接对应的验收契约。**
 
@@ -237,9 +217,7 @@
 
 **相关知识点：** Success Criteria、验收契约、Must/Should、业务不变量、Validator、Rubric、负向约束、证据链。
 <a id="plan-169"></a>
-### PLAN-169 · 如何设计统一的Validator框架？
-
-> 稳定 ID：`PLAN-169`｜原题号：169
+### 如何设计统一的Validator框架？
 
 **统一Validator框架应以标准契约、插件注册表和统一判定协议覆盖不同任务。**
 
@@ -260,9 +238,7 @@
 
 **相关知识点：** Validator Registry、Validation Contract、插件化、短路、Quorum、LLM-as-a-Judge、校准、Shadow验证。
 <a id="plan-209"></a>
-### PLAN-209 · Agent 如何构建高质量上下文（Context）？
-
-> 稳定 ID：`PLAN-209`｜原题号：209
+### Agent 如何构建高质量上下文（Context）？
 
 **高质量Context不是信息堆积，而是为当前决策提供最小充分、来源明确、权限合规且内部一致的工作集。**
 
@@ -281,9 +257,7 @@
 
 **相关知识点：** Context Engineering、最小充分上下文、信息增益、Hybrid Retrieval、重排、Artifact、上下文压缩、Prompt Injection。
 <a id="plan-213"></a>
-### PLAN-213 · Agent 如何选择最合适的 Tool？
-
-> 稳定 ID：`PLAN-213`｜原题号：213
+### Agent 如何选择最合适的 Tool？
 
 **Agent应先按能力与权限过滤工具，再按成功概率、证据质量、时延、成本和副作用风险排序，而不是仅依据工具名称做语义匹配。**
 
@@ -303,9 +277,7 @@
 
 **相关知识点：** Tool Selection、Tool Registry、Function Calling、MCP、Schema、权限校验、结果验证。
 <a id="plan-214"></a>
-### PLAN-214 · Tool Calling 的整体架构如何设计？
-
-> 稳定 ID：`PLAN-214`｜原题号：214
+### Tool Calling 的整体架构如何设计？
 
 **Tool Calling应采用“能力注册—候选路由—模型生成意图—宿主校验执行—结果验证—状态回写”的分层架构。**
 
@@ -325,9 +297,7 @@
 
 **相关知识点：** Tool Selection、Tool Registry、Function Calling、MCP、Schema、权限校验、结果验证。
 <a id="plan-217"></a>
-### PLAN-217 · Agent 如何判断工具调用是否成功？
-
-> 稳定 ID：`PLAN-217`｜原题号：217
+### Agent 如何判断工具调用是否成功？
 
 **工具调用成功必须同时满足协议返回、输出契约、业务不变量和预期外部状态，HTTP 200或无异常都不足以单独证明成功。**
 
@@ -346,9 +316,7 @@
 
 **相关知识点：** Success Criteria、Validator、业务不变量、LLM-as-a-Judge、Rubric、幻觉检测。
 <a id="plan-230"></a>
-### PLAN-230 · 如何评估 Agent 每一步执行质量？
-
-> 稳定 ID：`PLAN-230`｜原题号：230
+### 如何评估 Agent 每一步执行质量？
 
 **每一步执行质量应依据预先声明的Step Contract评估，覆盖正确性、完整性、证据、安全、时延和成本，而非只看输出是否流畅。**
 
@@ -367,9 +335,7 @@
 
 **相关知识点：** Success Criteria、Validator、业务不变量、LLM-as-a-Judge、Rubric、幻觉检测。
 <a id="plan-239"></a>
-### PLAN-239 · 如果工具调用返回结果不可信或格式错误，系统如何兜底？
-
-> 稳定 ID：`PLAN-239`｜原题号：239
+### 如果工具调用返回结果不可信或格式错误，系统如何兜底？
 
 **工具结果必须先经过Schema、来源、业务规则和交叉证据验证；格式错误可Repair，事实不可信则隔离结果并切换证据路径。**
 
@@ -388,9 +354,7 @@
 
 **相关知识点：** Output Schema、Artifact、Parser Repair、业务不变量、来源验证、交叉验证、Fail Closed、熔断。
 <a id="plan-243"></a>
-### PLAN-243 · 如何评估整个 Agent 系统的效果（准确率、任务完成率、延迟等指标）？
-
-> 稳定 ID：`PLAN-243`｜原题号：243
+### 如何评估整个 Agent 系统的效果（准确率、任务完成率、延迟等指标）？
 
 **Agent系统评估必须同时覆盖任务质量、可靠性、安全、效率和业务价值，并区分离线基准、在线实验与生产监控。**
 
@@ -409,9 +373,7 @@
 
 **相关知识点：** Agent Evaluation、Success Criteria、任务完成率、Rubric、Shadow、A/B测试、SLI/SLO、置信区间、Pareto前沿。
 <a id="plan-251"></a>
-### PLAN-251 · 没有标准答案时如何做结果评估？
-
-> 稳定 ID：`PLAN-251`｜原题号：251
+### 没有标准答案时如何做结果评估？
 
 **没有唯一标准答案时，应使用维度化Rubric、证据约束、相对比较和人工校准评估，而不是要求评审器猜测唯一参考文本。**
 
@@ -430,9 +392,7 @@
 
 **相关知识点：** Rubric、行为锚点、LLM-as-a-Judge、成对比较、多评审器、人工校准、位置偏差、评测过拟合。
 <a id="plan-252"></a>
-### PLAN-252 · 如何检测模型幻觉？
-
-> 稳定 ID：`PLAN-252`｜原题号：252
+### 如何检测模型幻觉？
 
 **模型幻觉检测的核心是把回答中的可验证声明拆成原子事实，并逐项检查其证据支持、逻辑一致性与来源可靠性。**
 

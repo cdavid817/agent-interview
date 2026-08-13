@@ -3,9 +3,7 @@
 > 所属章节：[任务规划与执行](README.md)｜本文件共 **22** 题。
 
 <a id="plan-009"></a>
-### PLAN-009 · 反思机制怎么做？（豆包二面）
-
-> 稳定 ID：`PLAN-009`｜原题号：9
+### 反思机制怎么做？（豆包二面）
 
 **Reflection应被设计为基于验证证据的受控诊断流程，用于发现根因并改变错误策略，而不是让模型机械重答。**
 
@@ -26,9 +24,7 @@
 
 **相关知识点：** Reflection、Critic、Validator、Self-Correction、反思预算、Local Replan、终止条件。
 <a id="plan-010"></a>
-### PLAN-010 · 说下你对Agent的理解，如何通过反思机制提升整体任务执行成功率？（Agent中级）
-
-> 稳定 ID：`PLAN-010`｜原题号：10
+### 说下你对Agent的理解，如何通过反思机制提升整体任务执行成功率？（Agent中级）
 
 **Agent是能以目标为中心感知、规划、行动和验证的状态化系统；反思机制以证据驱动纠错并提升失败恢复率。**
 
@@ -49,9 +45,7 @@
 
 **相关知识点：** Agent Loop、Planning、Reflection、Critic、Validator、Local Replan、恢复成功率。
 <a id="plan-024"></a>
-### PLAN-024 · ReAct 与 Plan-and-Execute 有什么区别？
-
-> 稳定 ID：`PLAN-024`｜原题号：24
+### ReAct 与 Plan-and-Execute 有什么区别？
 
 **ReAct强调基于即时观察的逐步决策，Plan-and-Execute强调全局分解后的受控执行，核心差异在规划时机与状态管理。**
 
@@ -75,9 +69,7 @@
 
 **相关知识点：** ReAct、Planner、Executor、DAG、Validator、计划陈旧、局部重规划、分层控制。
 <a id="plan-025"></a>
-### PLAN-025 · Reflection 有什么作用？
-
-> 稳定 ID：`PLAN-025`｜原题号：25
+### Reflection 有什么作用？
 
 **Reflection通过分析执行证据定位失败原因并生成修正策略，使Agent从机械重试转向有依据的自我纠错。**
 
@@ -98,9 +90,7 @@
 
 **相关知识点：** Reflection、Critic、Validator、Retry、Replan、证据驱动、反思预算、终止条件。
 <a id="plan-060"></a>
-### PLAN-060 · ReAct模式与Plan-Execute模式分别适用于哪些场景？
-
-> 稳定 ID：`PLAN-060`｜原题号：60
+### ReAct模式与Plan-Execute模式分别适用于哪些场景？
 
 **ReAct适合短链路、环境动态且下一步依赖即时观察的任务；Plan-Execute适合长链路、依赖明确且需要全局控制的任务。**
 
@@ -123,9 +113,7 @@
 
 **相关知识点：** ReAct、Plan-Execute、Planner、Executor、Validator、DAG、Workflow、局部重规划。
 <a id="plan-071"></a>
-### PLAN-071 · Task Planning有哪些常见算法或实现方式？
-
-> 稳定 ID：`PLAN-071`｜原题号：71
+### Task Planning有哪些常见算法或实现方式？
 
 **Task Planning应依据状态可枚举性、领域知识、环境不确定性和预算选择符号规划、层次规划、工作流或LLM规划。**
 
@@ -147,9 +135,7 @@
 
 **相关知识点：** STRIPS、PDDL、A*搜索、HTN、行为树、DAG、ReAct、Plan-and-Execute、ToT、MCTS。
 <a id="plan-086"></a>
-### PLAN-086 · Reflection机制通常在什么阶段使用？
-
-> 稳定 ID：`PLAN-086`｜原题号：86
+### Reflection机制通常在什么阶段使用？
 
 **Reflection通常用于计划提交前、关键节点完成后、验证失败后和任务收尾阶段，其作用是发现偏差并提出可验证的修正。**
 
@@ -170,9 +156,7 @@
 
 **相关知识点：** Reflection、Critic、Validator、证据驱动、自我修正、反思预算、终止条件。
 <a id="plan-103"></a>
-### PLAN-103 · Reflection与Replanning有什么区别？
-
-> 稳定 ID：`PLAN-103`｜原题号：103
+### Reflection与Replanning有什么区别？
 
 **Reflection基于轨迹诊断根因，Replanning据此改变后续节点、依赖或能力路径；前者产出诊断，后者产出新计划。**
 
@@ -193,9 +177,7 @@
 
 **相关知识点：** Reflection、Replanning、Critic、Validator、根因分析、局部重规划、计划版本、终止条件。
 <a id="plan-104"></a>
-### PLAN-104 · Plan-and-Execute与ReAct各自适用于哪些场景？
-
-> 稳定 ID：`PLAN-104`｜原题号：104
+### Plan-and-Execute与ReAct各自适用于哪些场景？
 
 **ReAct适合短链、信息逐步显现且路径高度不确定的任务；Plan-and-Execute适合长链、依赖清晰且需要全局控制的任务。**
 
@@ -217,9 +199,7 @@
 
 **相关知识点：** ReAct、Plan-and-Execute、Agent Loop、DAG、局部规划、全局规划、动态重规划、Workflow。
 <a id="plan-139"></a>
-### PLAN-139 · LLM如何判断自己的结果是否正确？
-
-> 稳定 ID：`PLAN-139`｜原题号：139
+### LLM如何判断自己的结果是否正确？
 
 **LLM无法通过主观置信度证明答案正确，可靠判断必须依赖任务契约、外部证据和独立验证。**
 
@@ -240,9 +220,7 @@
 
 **相关知识点：** Self-Reflection、Self-Consistency、外部验证、LLM-as-a-Judge、Rubric、置信度校准、证据链。
 <a id="plan-143"></a>
-### PLAN-143 · ReAct模式如何处理执行失败问题？
-
-> 稳定 ID：`PLAN-143`｜原题号：143
+### ReAct模式如何处理执行失败问题？
 
 **ReAct通过“推理—行动—观察”闭环把执行失败转化为新Observation，再据错误类型决定修参、重试、换工具或终止。**
 
@@ -264,9 +242,7 @@
 
 **相关知识点：** ReAct、Thought-Action-Observation、结构化错误、Repair、Retry、Replan、错误指纹、幂等性。
 <a id="plan-193"></a>
-### PLAN-193 · Coding Agent中的反思机制如何实现？
-
-> 稳定 ID：`PLAN-193`｜原题号：193
+### Coding Agent中的反思机制如何实现？
 
 **Coding Agent的反思机制应是由验证失败触发的结构化诊断器，而不是让模型无证据地重复思考或重写整个方案。**
 
@@ -285,9 +261,7 @@
 
 **相关知识点：** Reflection、Critic、Validator、证据驱动、自我修正、反思预算、终止条件。
 <a id="plan-194"></a>
-### PLAN-194 · RAG系统中的反思机制如何实现？
-
-> 稳定 ID：`PLAN-194`｜原题号：194
+### RAG系统中的反思机制如何实现？
 
 **RAG反思应把“答案不足”分解为检索链路中的可测故障，并只对失败环节采取查询改写、补检索或重新生成。**
 
@@ -306,9 +280,7 @@
 
 **相关知识点：** Reflection、Critic、Validator、证据驱动、自我修正、反思预算、终止条件。
 <a id="plan-197"></a>
-### PLAN-197 · 人工反馈如何参与反思闭环？
-
-> 稳定 ID：`PLAN-197`｜原题号：197
+### 人工反馈如何参与反思闭环？
 
 **人工反馈必须先转化为可追溯、可验证的监督信号，再分别用于当前任务纠偏、离线评测和受控策略更新。**
 
@@ -330,9 +302,7 @@
 > **题目合并：** `PLAN-205` 已并入 [PLAN-024 · ReAct 与 Plan-and-Execute 有什么区别？](#plan-024)。
 
 <a id="plan-215"></a>
-### PLAN-215 · MCP 在 Agent 中解决了什么问题？
-
-> 稳定 ID：`PLAN-215`｜原题号：215
+### MCP 在 Agent 中解决了什么问题？
 
 **MCP标准化AI应用与外部工具、数据和提示的连接，使能力可发现、可协商并跨Host复用。**
 
@@ -351,9 +321,7 @@
 
 **相关知识点：** MCP、Host/Client/Server、JSON-RPC、Capability Negotiation、Tools、Resources、Prompts、stdio、Streamable HTTP。
 <a id="plan-238"></a>
-### PLAN-238 · Reflection 机制如何避免陷入无限重试/死循环？
-
-> 稳定 ID：`PLAN-238`｜原题号：238
+### Reflection 机制如何避免陷入无限重试/死循环？
 
 **Reflection必须是有预算、有证据增量和明确终止条件的诊断过程，重复同一根因或方案时应立即停止。**
 
@@ -372,9 +340,7 @@
 
 **相关知识点：** Reflection、Critic、Validator、证据驱动、自我修正、反思预算、终止条件。
 <a id="plan-245"></a>
-### PLAN-245 · Reflection和Retry有什么区别？
-
-> 稳定 ID：`PLAN-245`｜原题号：245
+### Reflection和Retry有什么区别？
 
 **Retry是在策略不变时再次执行；Reflection根据证据诊断为什么失败；Replan根据诊断修改任务路径。**
 
@@ -392,9 +358,7 @@
 
 **相关知识点：** Reflection、Critic、Validator、证据驱动、自我修正、反思预算、终止条件。
 <a id="plan-247"></a>
-### PLAN-247 · Reflection机制什么时候触发？
-
-> 稳定 ID：`PLAN-247`｜原题号：247
+### Reflection机制什么时候触发？
 
 **Reflection应在验证失败且简单重试不足以解释或修复问题时触发，不应在每个正常步骤后例行调用。**
 
@@ -413,9 +377,7 @@
 
 **相关知识点：** Reflection、Critic、Validator、证据驱动、自我修正、反思预算、终止条件。
 <a id="plan-248"></a>
-### PLAN-248 · 如何避免无限反思循环？
-
-> 稳定 ID：`PLAN-248`｜原题号：248
+### 如何避免无限反思循环？
 
 **避免无限反思的关键是把Reflection设计成有界状态机：每轮必须产生新证据或新假设，否则立即终止。**
 
@@ -434,9 +396,7 @@
 
 **相关知识点：** Reflection、Critic、Validator、证据驱动、自我修正、反思预算、终止条件。
 <a id="plan-249"></a>
-### PLAN-249 · Reflection最多允许执行多少轮？
-
-> 稳定 ID：`PLAN-249`｜原题号：249
+### Reflection最多允许执行多少轮？
 
 **工程默认通常限制为2至3轮，但轮数不是唯一条件；还要同时约束Token、费用、时间、错误指纹和新证据增量。**
 
@@ -455,9 +415,7 @@
 
 **相关知识点：** Reflection、Critic、Validator、证据驱动、自我修正、反思预算、终止条件。
 <a id="plan-253"></a>
-### PLAN-253 · 如何量化反思效果？
-
-> 稳定 ID：`PLAN-253`｜原题号：253
+### 如何量化反思效果？
 
 **反思效果应通过“同等预算下是否提高任务成功率”量化，并同时衡量修正收益、额外成本和负面回归。**
 

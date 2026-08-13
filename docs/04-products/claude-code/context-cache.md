@@ -3,9 +3,9 @@
 > 所属章节：[Claude Code](README.md)｜本文件共 **28** 题。
 
 <a id="cc-003"></a>
-### CC-003 · Claude Code 如何理解大型代码库，而不把整个仓库放进上下文？
+### Claude Code 如何理解大型代码库，而不把整个仓库放进上下文？
 
-> 稳定 ID：`CC-003`｜原题号：3｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 它采用**代理式探索和按需取证**：先读取项目规则与目录结构，再用Glob、Grep、Read、Git、代码智能和构建反馈定位相关符号，只展开当前任务需要的文件和范围。
 
@@ -15,9 +15,9 @@
 
 **相关知识点：** Agentic Search、Progressive Context、Grep、Code Intelligence、Monorepo、Sparse Worktree。
 <a id="cc-004"></a>
-### CC-004 · Claude Code 的上下文由哪些部分组成？为什么会发生 Compaction？
+### Claude Code 的上下文由哪些部分组成？为什么会发生 Compaction？
 
-> 稳定 ID：`CC-004`｜原题号：4｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 上下文通常包含系统提示、工具Schema、对话历史、`CLAUDE.md`与Rules、已加载Skill、文件片段和工具结果。随着Agent读取文件和运行命令，窗口逐渐被占用；接近上限时会压缩较早对话以继续任务。
 
@@ -25,9 +25,9 @@ Compaction保留摘要而非逐字历史，因此关键目标、约束、决定�
 
 **相关知识点：** Context Window、Prompt Assembly、Compaction、Tool Output、Context Inspection、Artifact。
 <a id="cc-005"></a>
-### CC-005 · CLAUDE.md、`.claude/rules/` 和普通任务提示应如何分工？
+### CLAUDE.md、`.claude/rules/` 和普通任务提示应如何分工？
 
-> 稳定 ID：`CC-005`｜原题号：5｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 `CLAUDE.md`承载跨会话稳定的项目约定，`.claude/rules/`适合拆分主题或路径相关规则，任务提示描述本次目标和验收。
 
@@ -40,9 +40,9 @@ Compaction保留摘要而非逐字历史，因此关键目标、约束、决定�
 
 **相关知识点：** CLAUDE.md、Rules、Path Scope、Persistent Instructions、Local Override、指令冲突。
 <a id="cc-006"></a>
-### CC-006 · Claude Code 的 Auto Memory 与 CLAUDE.md 有什么区别？
+### Claude Code 的 Auto Memory 与 CLAUDE.md 有什么区别？
 
-> 稳定 ID：`CC-006`｜原题号：6｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 `CLAUDE.md`是团队或用户**主动维护的规范性指令**，Auto Memory是Claude在使用中积累的**经验性笔记**。前者应被Review并纳入版本管理，后者更适合个人环境、调试发现和重复偏好。
 
@@ -50,9 +50,9 @@ Auto Memory可能过时、误归纳或只适用于某台机器，不能用来保
 
 **相关知识点：** Auto Memory、Explicit Memory、Team Policy、Provenance、Memory Promotion、知识治理。
 <a id="cc-007"></a>
-### CC-007 · Claude Code 中 CLAUDE.md、Skills、Subagents、Hooks、MCP 和 Plugins 如何选型？
+### Claude Code 中 CLAUDE.md、Skills、Subagents、Hooks、MCP 和 Plugins 如何选型？
 
-> 稳定 ID：`CC-007`｜原题号：7｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 它们分别解决不同层次的扩展问题。
 
@@ -71,9 +71,9 @@ Auto Memory可能过时、误归纳或只适用于某台机器，不能用来保
 
 **相关知识点：** Extension Surface、Progressive Disclosure、Deterministic Hook、MCP、Plugin Packaging。
 <a id="cc-016"></a>
-### CC-016 · Claude Code 如何通过 MCP 扩展工具？大工具集如何控制上下文成本？
+### Claude Code 如何通过 MCP 扩展工具？大工具集如何控制上下文成本？
 
-> 稳定 ID：`CC-016`｜原题号：16｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 MCP Server向Claude Code暴露标准化Tool、Resource或Prompt，可按本地、项目或用户Scope配置。接入时要验证Transport、认证、Schema、超时和Server权限，并通过Managed MCP限制组织可连接的Server。
 
@@ -81,9 +81,9 @@ MCP Server向Claude Code暴露标准化Tool、Resource或Prompt，可按本地�
 
 **相关知识点：** MCP Server、Configuration Scope、Managed MCP、Tool Search、Deferred Loading、ACL。
 <a id="cc-017"></a>
-### CC-017 · Claude Code Subagent 适合解决什么问题？如何避免滥用？
+### Claude Code Subagent 适合解决什么问题？如何避免滥用？
 
-> 稳定 ID：`CC-017`｜原题号：17｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Subagent拥有独立上下文、工具集合、模型和专用指令，适合代码探索、安全Review、测试分析等**可独立交付且上下文噪声大的任务**。
 
@@ -91,9 +91,9 @@ Subagent拥有独立上下文、工具集合、模型和专用指令，适合代
 
 **相关知识点：** Context Isolation、Custom Subagent、Tool Allowlist、Delegation Contract、Result Verification、成本。
 <a id="cc-023"></a>
-### CC-023 · Claude Code 如何降低 Token 成本并保持质量？
+### Claude Code 如何降低 Token 成本并保持质量？
 
-> 稳定 ID：`CC-023`｜原题号：23｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 先减少无关上下文：精简`CLAUDE.md`、让Skill按需加载、用Grep定位后局部Read、过滤长日志、把稳定产物落盘。Prompt Caching可复用稳定前缀，但修改规则、切模型或频繁改变工具集合会降低命中。
 
@@ -101,9 +101,9 @@ Subagent拥有独立上下文、工具集合、模型和专用指令，适合代
 
 **相关知识点：** Prompt Caching、Context Hygiene、Model Routing、Thinking Budget、Cost per Success。
 <a id="cc-036"></a>
-### CC-036 · Claude Code、Cursor、OpenHands 的 Skill 分层有什么差异？
+### Claude Code、Cursor、OpenHands 的 Skill 分层有什么差异？
 
-> 稳定 ID：`CC-036`｜原题号：36｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 三者概念并不等价：**Claude Code强调工作流与扩展组合，Cursor偏项目规则和IDE约束，OpenHands强调可触发、可共享的上下文模块**。
 
@@ -121,9 +121,9 @@ Subagent拥有独立上下文、工具集合、模型和专用指令，适合代
 
 **相关知识点：** CLAUDE.md、SKILL.md、Cursor Rules、AGENTS.md、Subagent、Hooks、MCP、渐进加载。
 <a id="cc-037"></a>
-### CC-037 · Claude Code、OpenHands、Cursor中的Skill路由是如何实现的？
+### Claude Code、OpenHands、Cursor中的Skill路由是如何实现的？
 
-> 稳定 ID：`CC-037`｜原题号：37｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 三者都采用“常驻规则+按需能力”，但入口不同：**Claude Code靠描述与命令，OpenHands支持用户、Agent和关键词触发，Cursor按Rules作用域、相关性或手动附加**。
 
@@ -141,9 +141,9 @@ Subagent拥有独立上下文、工具集合、模型和专用指令，适合代
 
 **相关知识点：** Claude Code、OpenHands、Cursor Rules、AGENTS.md、CLAUDE.md、渐进加载、glob、显式调用、MCP。
 <a id="cc-040"></a>
-### CC-040 · Claude Code如何快速理解几十万行代码的大型项目？
+### Claude Code如何快速理解几十万行代码的大型项目？
 
-> 稳定 ID：`CC-040`｜原题号：40｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Claude Code通过**代理式探索、按需读取、持久指令和运行反馈**形成任务相关理解，不会一次装入整个仓库；未公开部分不应推断为固定索引架构。
 
@@ -157,9 +157,9 @@ Claude Code通过**代理式探索、按需读取、持久指令和运行反馈*
 
 **相关知识点：** 代理式探索、按需读取、CLAUDE.md、Glob/Grep、调用关系、工具反馈、上下文压缩、MCP、证据驱动验证。
 <a id="cc-041"></a>
-### CC-041 · Claude Code的上下文是如何动态组装的？
+### Claude Code的上下文是如何动态组装的？
 
-> 稳定 ID：`CC-041`｜原题号：41｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Claude Code上下文是**稳定指令、会话状态、按需证据和压缩摘要**的动态组合，随目录、文件、工具结果和剩余窗口变化。
 
@@ -173,9 +173,9 @@ Claude Code上下文是**稳定指令、会话状态、按需证据和压缩摘�
 
 **相关知识点：** 上下文分层、作用域规则、工具结果、按需读取、Token预算、MCP工具发现、上下文压缩、状态摘要、证据版本。
 <a id="cc-042"></a>
-### CC-042 · CLAUDE.md与普通System Prompt有什么区别？
+### CLAUDE.md与普通System Prompt有什么区别？
 
-> 稳定 ID：`CC-042`｜原题号：42｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 CLAUDE.md是**按目录加载的项目持久指令**；System Prompt是运行时最高层行为与安全指令，两者的权威级别和维护主体不同。
 
@@ -196,9 +196,9 @@ CLAUDE.md是**按目录加载的项目持久指令**；System Prompt是运行时
 
 **相关知识点：** 指令层级、CLAUDE.md、System Prompt、目录作用域、配置即代码、Hooks、权限控制、持久上下文。
 <a id="cc-043"></a>
-### CC-043 · 长任务超过上下文窗口后如何处理？
+### 长任务超过上下文窗口后如何处理？
 
-> 稳定 ID：`CC-043`｜原题号：43｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 长任务应采用**状态外置、阶段检查点、语义压缩、按需恢复和可验证交接**，把上下文窗口视为工作缓存，而非唯一记忆。
 
@@ -212,9 +212,9 @@ CLAUDE.md是**按目录加载的项目持久指令**；System Prompt是运行时
 
 **相关知识点：** 上下文窗口、Checkpoint、状态外置、语义压缩、幂等恢复、内容寻址、Git快照、任务交接、预算控制。
 <a id="cc-047"></a>
-### CC-047 · Agent如何判断应该读取哪些文件？
+### Agent如何判断应该读取哪些文件？
 
-> 稳定 ID：`CC-047`｜原题号：47｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Agent依据**任务相关性、依赖距离、证据缺口、风险与Token成本**选择文件，采用由窄到宽的主动检索。
 
@@ -228,9 +228,9 @@ Agent依据**任务相关性、依赖距离、证据缺口、风险与Token成�
 
 **相关知识点：** 候选排序、主动检索、依赖距离、信息增益、证据覆盖率、范围读取、读取去重、停止条件、Context Precision。
 <a id="cc-067"></a>
-### CC-067 · 如何设计主Agent与子Agent的协作机制？
+### 如何设计主Agent与子Agent的协作机制？
 
-> 稳定 ID：`CC-067`｜原题号：67｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 主子Agent采用**主Agent统一目标与集成、子Agent承担独立任务、结构化交付证据**，避免共享无限增长的对话。
 
@@ -244,9 +244,9 @@ Agent依据**任务相关性、依赖距离、证据缺口、风险与Token成�
 
 **相关知识点：** 任务DAG、委派契约、Result Envelope、最小上下文、Decision Log、Worktree、文件租约、取消传播、递归深度。
 <a id="cc-068"></a>
-### CC-068 · 子Agent的上下文和工具权限如何隔离？
+### 子Agent的上下文和工具权限如何隔离？
 
-> 稳定 ID：`CC-068`｜原题号：68｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 隔离原则是**按任务提供必要信息、按身份授予最小能力、由环境阻断越界**。子Agent不自动继承主Agent权限。
 
@@ -260,9 +260,9 @@ Agent依据**任务相关性、依赖距离、证据缺口、风险与Token成�
 
 **相关知识点：** Context Package、最小权限、能力令牌、Worktree、微VM、Tool Gateway、ACL、DLP、凭证撤销、租户隔离。
 <a id="cc-077"></a>
-### CC-077 · 如何降低Claude Code的Token成本？
+### 如何降低Claude Code的Token成本？
 
-> 稳定 ID：`CC-077`｜原题号：77｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 降本应优化**每个成功任务的总Token**，而非单次请求最短；过度裁剪会增加重试和返工。
 
@@ -276,9 +276,9 @@ Agent依据**任务相关性、依赖距离、证据缺口、风险与Token成�
 
 **相关知识点：** Token Budget、渐进式上下文、Read Record、Prompt Cache、模型路由、输出过滤、上下文压缩、单位成功成本。
 <a id="cc-081"></a>
-### CC-081 · Claude模型本身是无状态的，Claude Code为什么能表现为持续工作的Agent？
+### Claude模型本身是无状态的，Claude Code为什么能表现为持续工作的Agent？
 
-> 稳定 ID：`CC-081`｜原题号：81｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 模型API的单次请求本身不保存上一轮状态。持续性来自Claude Code这个**Agent Harness**：它保存Session Transcript和工作目录状态，在下一轮请求中重新组装系统提示、项目上下文、历史消息、工具定义及最新工具结果。
 
@@ -292,9 +292,9 @@ Agent依据**任务相关性、依赖距离、证据缺口、风险与Token成�
 
 **相关知识点：** Stateless Model、Agent Harness、Session Transcript、Context Reconstruction、External State、状态分层。
 <a id="cc-085"></a>
-### CC-085 · Claude Code的上下文窗口在长任务中如何演化？
+### Claude Code的上下文窗口在长任务中如何演化？
 
-> 稳定 ID：`CC-085`｜原题号：85｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 上下文不会在每个Turn后重置。系统提示、项目上下文、对话、文件内容、工具输入输出会逐步累积；固定前缀通常可被Prompt Cache复用，但仍占模型可见窗口。
 
@@ -304,9 +304,9 @@ Agent依据**任务相关性、依赖距离、证据缺口、风险与Token成�
 
 **相关知识点：** Context Accumulation、Tool Output Eviction、Lossy Compaction、Context Rehydration、Path-scoped Rules、Artifact。
 <a id="cc-086"></a>
-### CC-086 · Claude Code的Prompt Cache原理是什么？哪些操作会造成Cache Miss？
+### Claude Code的Prompt Cache原理是什么？哪些操作会造成Cache Miss？
 
-> 稳定 ID：`CC-086`｜原题号：86｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 每轮请求的大部分前缀相同：系统提示与工具定义在前，项目上下文居中，对话和新消息追加在后。Prompt Cache按**精确前缀匹配**复用服务端已处理内容，并不是按语义或文件分别缓存。
 
@@ -316,9 +316,9 @@ Agent依据**任务相关性、依赖距离、证据缺口、风险与Token成�
 
 **相关知识点：** Prompt Cache、Exact Prefix Match、Cache Invalidation、Cache Read、Cache Creation、Stable Prefix。
 <a id="cc-087"></a>
-### CC-087 · CLAUDE.md和路径规则是如何进入模型上下文的？
+### CLAUDE.md和路径规则是如何进入模型上下文的？
 
-> 稳定 ID：`CC-087`｜原题号：87｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 项目根级`CLAUDE.md`、用户级指令和Auto Memory通常在Session启动时加载，形成每轮请求中的项目上下文。嵌套`CLAUDE.md`和带`paths`范围的Rules采用延迟机制：当Claude读取匹配路径的文件时，相应指令才进入消息历史。
 
@@ -328,9 +328,9 @@ Agent依据**任务相关性、依赖距离、证据缺口、风险与Token成�
 
 **相关知识点：** Project Context、Instruction Loading、Lazy Rule Loading、Path Scope、Compaction Boundary、Policy Enforcement。
 <a id="cc-088"></a>
-### CC-088 · Claude Code Skill的渐进式加载原理是什么？
+### Claude Code Skill的渐进式加载原理是什么？
 
-> 稳定 ID：`CC-088`｜原题号：88｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Session启动时通常只把Skill的名称和描述暴露给模型，用于判断是否相关；模型或用户调用后，Skill正文才进入当前对话。这种**Progressive Disclosure**避免把每个工作流的完整说明常驻上下文。
 
@@ -342,9 +342,9 @@ Skill正文进入主Session上下文，适合复用步骤、模板和领域知�
 
 **相关知识点：** Skill Discovery、Progressive Disclosure、Description Routing、On-demand Context、Skill Invocation、Context Budget。
 <a id="cc-089"></a>
-### CC-089 · MCP Tool Search为什么能减少上下文占用？它的代价是什么？
+### MCP Tool Search为什么能减少上下文占用？它的代价是什么？
 
-> 稳定 ID：`CC-089`｜原题号：89｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 默认情况下，Claude Code只在启动上下文中保留MCP工具名称，把完整Schema延迟到需要时再通过Tool Search发现并加载。这样连接大量Server时，不必在每轮请求中携带全部工具定义。
 
@@ -354,9 +354,9 @@ Tool Search只解决发现与Token问题，不解决可信性、权限和可用�
 
 **相关知识点：** Deferred Tool Loading、Tool Search、tool_reference、Schema Cost、alwaysLoad、Provider Compatibility。
 <a id="cc-095"></a>
-### CC-095 · Session、Context、Checkpoint和Git分别保存哪一层状态？
+### Session、Context、Checkpoint和Git分别保存哪一层状态？
 
-> 稳定 ID：`CC-095`｜原题号：95｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 四者解决不同问题：
 
@@ -373,9 +373,9 @@ Compaction改变Context表示但保留Session；Resume加载Transcript但不保�
 
 **相关知识点：** State Plane、Context、Transcript、Checkpoint、Git、External Side Effect、Recovery Point。
 <a id="cc-097"></a>
-### CC-097 · Subagent为什么能节省主Session上下文？它实际继承了什么？
+### Subagent为什么能节省主Session上下文？它实际继承了什么？
 
-> 稳定 ID：`CC-097`｜原题号：97｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Subagent启动一个新的隔离上下文，不读取父Session的完整消息历史和已读文件。主Agent把任务、边界和必要证据压缩成Delegation Message；Subagent加载自己的系统提示、项目级上下文和被授权的工具，完成后只把最终摘要作为工具结果返回父Session。
 
@@ -387,9 +387,9 @@ Subagent启动一个新的隔离上下文，不读取父Session的完整消息�
 
 **相关知识点：** Fresh Context、Delegation Message、Context Isolation、Summary Return、Tool Scoping、Nested Delegation。
 <a id="cc-098"></a>
-### CC-098 · Agent Teams的协调原理与普通并行Tool Call有什么区别？
+### Agent Teams的协调原理与普通并行Tool Call有什么区别？
 
-> 稳定 ID：`CC-098`｜原题号：98｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 并行Tool Call发生在同一Agent Turn内，共享一个上下文，适合无依赖的读取和查询。Agent Teams则由多个独立Claude Code实例组成，每个Teammate有自己的上下文，通过共享任务列表和消息通道协调，Lead负责分配、跟踪和综合。
 
@@ -399,9 +399,9 @@ Subagent启动一个新的隔离上下文，不读取父Session的完整消息�
 
 **相关知识点：** Parallel Tool Call、Independent Context、Shared Task List、Lead/Teammate、Message Passing、Worktree Isolation。
 <a id="cc-100"></a>
-### CC-100 · 如何从原理层面调试一个“Claude Code没有按预期工作”的问题？
+### 如何从原理层面调试一个“Claude Code没有按预期工作”的问题？
 
-> 稳定 ID：`CC-100`｜原题号：100｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 按**输入上下文—模型决策—权限控制—工具执行—环境副作用—验证结果**逐层定位，而不是只修改Prompt。
 

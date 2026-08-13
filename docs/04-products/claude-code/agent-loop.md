@@ -3,9 +3,9 @@
 > 所属章节：[Claude Code](README.md)｜本文件共 **13** 题。
 
 <a id="cc-001"></a>
-### CC-001 · Claude Code 的产品定位是什么？它与 IDE 补全工具有什么区别？
+### Claude Code 的产品定位是什么？它与 IDE 补全工具有什么区别？
 
-> 稳定 ID：`CC-001`｜原题号：1｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Claude Code 是可在终端、IDE、Desktop和Web使用的**Agentic Coding Tool**，能够自主读取代码库、编辑文件、运行命令并连接开发工具。它的核心单位是一个围绕任务持续执行的Agent Session，而不是单次生成下一行代码。
 
@@ -13,9 +13,9 @@ IDE补全主要根据光标附近上下文给出局部建议；Claude Code会主
 
 **相关知识点：** Coding Agent、Agent Session、代码补全、Tool Use、验证闭环、Human Review。
 <a id="cc-002"></a>
-### CC-002 · Claude Code 的 Agent Loop 是如何工作的？
+### Claude Code 的 Agent Loop 是如何工作的？
 
-> 稳定 ID：`CC-002`｜原题号：2｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Agent Loop可概括为**接收目标—评估状态—请求工具—执行工具—回灌结果—继续或输出最终结果**。一次“思考并调用一组工具、接收结果”的循环构成一个Turn，直到模型不再调用工具或达到停止条件。
 
@@ -23,9 +23,9 @@ Runtime向模型提供系统提示、项目指令、会话历史和工具定义�
 
 **相关知识点：** Agentic Loop、Turn、Tool Result、Hook、Max Turns、停止条件。
 <a id="cc-032"></a>
-### CC-032 · Claude Code、OpenAI Codex、Cursor 等代码Agent是如何进行任务识别和路由的？
+### Claude Code、OpenAI Codex、Cursor 等代码Agent是如何进行任务识别和路由的？
 
-> 稳定 ID：`CC-032`｜原题号：32｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **三类产品公开呈现的共同机制是“理解请求—获取上下文—选择工具—执行—验证”，但内部分类器与评分算法未完整公开。**
 
@@ -45,9 +45,9 @@ Runtime向模型提供系统提示、项目指令、会话历史和工具定义�
 
 **相关知识点：** Agent Loop、代码检索、工具路由、项目规则、MCP、沙箱、权限审批、Diff审查、版本评测。
 <a id="cc-033"></a>
-### CC-033 · Claude Code、OpenAI Agent、Manus等Agent在任务规划方面有哪些共同设计思想？
+### Claude Code、OpenAI Agent、Manus等Agent在任务规划方面有哪些共同设计思想？
 
-> 稳定 ID：`CC-033`｜原题号：33｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **三类Agent都以多轮工具循环推进目标，并用计划、环境反馈、权限门控和人工介入提高长链可靠性。**
 
@@ -67,9 +67,9 @@ Runtime向模型提供系统提示、项目指令、会话历史和工具定义�
 
 **相关知识点：** Agent Loop、Tool Use、Plan Mode、Guardrails、Sandbox、Human-in-the-loop、Tracing、会话恢复、产品评测。
 <a id="cc-035"></a>
-### CC-035 · Claude Code的任务调度机制是什么？
+### Claude Code的任务调度机制是什么？
 
-> 稳定 ID：`CC-035`｜原题号：35｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **Claude Code的核心调度是受权限和预算约束的Agent循环；定时任务、子Agent与并行工具调用属于其上层调度能力。**
 
@@ -90,9 +90,9 @@ Runtime向模型提供系统提示、项目指令、会话历史和工具定义�
 
 **相关知识点：** Agent Loop、Harness、Tool Use、权限模式、并行只读工具、Subagent、Session、上下文压缩、定时任务。
 <a id="cc-039"></a>
-### CC-039 · Claude Code、GitHub Copilot、Cursor等Coding Agent在代码定位策略上有哪些异同？
+### Claude Code、GitHub Copilot、Cursor等Coding Agent在代码定位策略上有哪些异同？
 
-> 稳定 ID：`CC-039`｜原题号：39｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 三者都采用**按需检索与渐进读取**；差异来自产品入口、索引、执行环境和平台耦合。实现会随版本变化，未公开算法不能视为事实。
 
@@ -110,9 +110,9 @@ Runtime向模型提供系统提示、项目指令、会话历史和工具定义�
 
 **相关知识点：** 渐进检索、Agent Loop、语义索引、IDE上下文、Repository Context、Code Search、Recall@K、索引新鲜度。
 <a id="cc-046"></a>
-### CC-046 · Claude Code如何定位跨文件调用关系？
+### Claude Code如何定位跨文件调用关系？
 
-> 稳定 ID：`CC-046`｜原题号：46｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Claude Code定位跨文件关系依赖**搜索、语义线索、构建与运行反馈的迭代探索**；公开文档未声明默认维护完整Call Graph，不能把图索引视为既定机制。
 
@@ -126,9 +126,9 @@ Claude Code定位跨文件关系依赖**搜索、语义线索、构建与运行�
 
 **相关知识点：** 跨文件检索、定义引用、Call Graph、依赖注入、反射、运行时Trace、LSP、证据置信度、影响分析。
 <a id="cc-048"></a>
-### CC-048 · Agent如何避免反复读取相同代码？
+### Agent如何避免反复读取相同代码？
 
-> 稳定 ID：`CC-048`｜原题号：48｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 避免重复读取需要**版本化读取账本、内容缓存、事实摘要和差量补读**；自然语言提醒不能保证跨轮次一致性。
 
@@ -142,9 +142,9 @@ Claude Code定位跨文件关系依赖**搜索、语义线索、构建与运行�
 
 **相关知识点：** Read Record、内容寻址、区间缓存、Artifact引用、差量读取、Evidence Map、缓存失效、循环检测、上下文外置。
 <a id="cc-057"></a>
-### CC-057 · MCP Server异常时如何熔断和降级？
+### MCP Server异常时如何熔断和降级？
 
-> 稳定 ID：`CC-057`｜原题号：57｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 MCP异常治理按**故障隔离、快速失败、有界重试、能力级熔断和可解释降级**设计，避免外部服务拖垮Agent循环。
 
@@ -158,9 +158,9 @@ MCP异常治理按**故障隔离、快速失败、有界重试、能力级熔断
 
 **相关知识点：** 熔断器、Half-Open、指数退避、随机抖动、幂等键、错误分类、缓存降级、请求风暴、故障注入。
 <a id="cc-063"></a>
-### CC-063 · 如何防止Agent陷入无限循环？
+### 如何防止Agent陷入无限循环？
 
-> 稳定 ID：`CC-063`｜原题号：63｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 防循环需要**显式状态机、硬预算、进展度量、重复检测和外部终止器**；模型自述“继续尝试”不能成为继续执行的充分条件。
 
@@ -174,9 +174,9 @@ MCP异常治理按**故障隔离、快速失败、有界重试、能力级熔断
 
 **相关知识点：** 有限状态机、步骤DAG、硬预算、状态指纹、震荡检测、进展函数、Watchdog、幂等重试、Checkpoint。
 <a id="cc-070"></a>
-### CC-070 · Hooks与普通工具调用有什么区别？
+### Hooks与普通工具调用有什么区别？
 
-> 稳定 ID：`CC-070`｜原题号：70｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Hook是**由生命周期事件触发的外部控制机制**，普通工具调用由模型主动选择；前者用于治理，后者用于任务执行。
 
@@ -196,9 +196,9 @@ Hook是**由生命周期事件触发的外部控制机制**，普通工具调用
 
 **相关知识点：** 生命周期事件、PreToolUse、PostToolUse、确定性触发、Tool Calling、权限控制、幂等Hook、托管策略、审计链路。
 <a id="cc-082"></a>
-### CC-082 · Claude Code的一次Agent Turn在消息层面经历哪些阶段？
+### Claude Code的一次Agent Turn在消息层面经历哪些阶段？
 
-> 稳定 ID：`CC-082`｜原题号：82｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 一个Turn通常从当前上下文发给模型开始。模型返回包含文本和一个或多个`tool_use`请求的Assistant Message；Runtime校验工具名和参数，执行权限、Hook与工具逻辑，再把带对应调用ID的`tool_result`回灌给模型。模型基于新证据继续请求工具或返回不含工具调用的最终回复。
 
@@ -208,9 +208,9 @@ CLI显示的一条回复、一次API请求、一个Turn和一个完整任务不�
 
 **相关知识点：** Assistant Message、tool_use、tool_result、Tool Call ID、Turn、Parallel Tool Use、Protocol Termination。
 <a id="cc-083"></a>
-### CC-083 · Claude Code的Agent Loop为什么能够根据执行结果动态调整，而不是一次性执行固定计划？
+### Claude Code的Agent Loop为什么能够根据执行结果动态调整，而不是一次性执行固定计划？
 
-> 稳定 ID：`CC-083`｜原题号：83｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 模型每次只基于**当前可见状态**决定下一步，工具结果会成为下一轮的新Observation。测试失败、文件内容与预期不同或权限被拒绝都会改变后续决策，因此计划本质上是滚动更新的，而不是启动时生成后机械执行。
 

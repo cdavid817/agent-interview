@@ -14,7 +14,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TAXONOMY = json.loads((ROOT / "scripts" / "taxonomy.json").read_text(encoding="utf-8"))
-QUESTION_RE = re.compile(r"^###\s+([A-Z]+-\d{3})\s+·\s+(.+?)\s*$", re.MULTILINE)
+QUESTION_RE = re.compile(
+    r'^<a id="([a-z]+-\d{3})"></a>\s*\n###\s+(.+?)\s*$',
+    re.MULTILINE,
+)
 ANCHOR_RE = re.compile(r'^<a id="([a-z]+-\d{3})"></a>\s*$', re.MULTILINE)
 REFERENCE_RE = re.compile(
     r"(?P<lead>详见全文第|参全文第|见全文第|同全文第|呼应全文第|全文第)"
@@ -140,17 +143,17 @@ def parse_file(path: Path) -> list[Question]:
     matches = list(QUESTION_RE.finditer(text))
     questions: list[Question] = []
     for index, match in enumerate(matches):
-        anchor = list(ANCHOR_RE.finditer(text, max(0, match.start() - 80), match.start()))
-        block_start = anchor[-1].start() if anchor else match.start()
+        stable_id = match.group(1).upper()
+        block_start = match.start()
         next_anchor = ANCHOR_RE.search(text, match.end())
         block_end = next_anchor.start() if next_anchor else len(text)
         body = text[match.end():block_end].strip()
         questions.append(
             Question(
-                stable_id=match.group(1),
+                stable_id=stable_id,
                 title=match.group(2).strip(),
                 path=path,
-                prefix=match.group(1).split("-", 1)[0],
+                prefix=stable_id.split("-", 1)[0],
                 body=body,
                 block_start=block_start,
                 block_end=block_end,
@@ -442,8 +445,8 @@ def add_product_sources(apply: bool, date: str) -> int:
         for path in directory.glob("*.md"):
             text = path.read_text(encoding="utf-8-sig")
             updated, replacements = re.subn(
-                r"(?m)^(>\s*稳定 ID：`(?:OCLAW|CC)-\d{3}`[^\n]*?)(?:｜核验日期：[^\n]+)?$",
-                lambda match: match.group(1) + f"｜核验日期：{date}｜来源：[官方资料](references.md)",
+                r"(?m)^>\s*核验日期：[^\n]*$",
+                lambda match: f"> 核验日期：{date}｜来源：[官方资料](references.md)",
                 text,
             )
             if replacements:

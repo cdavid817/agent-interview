@@ -293,9 +293,7 @@ def write_chapter(chapter: dict[str, object], questions: list[dict[str, str | in
                 lines.extend(
                     [
                         f'<a id="{stable_id.lower()}"></a>',
-                        f"### {stable_id} · {question['title']}",
-                        "",
-                        f"> 稳定 ID：`{stable_id}`｜原题号：{question['number']}",
+                        f"### {question['title']}",
                         "",
                         str(question["body"]),
                         "",

@@ -3,9 +3,9 @@
 > 所属章节：[OpenClaw](README.md)｜本文件共 **4** 题。
 
 <a id="oclaw-026"></a>
-### OCLAW-026 · OpenClaw 的配置应如何进行版本管理和安全发布？
+### OpenClaw 的配置应如何进行版本管理和安全发布？
 
-> 稳定 ID：`OCLAW-026`｜原题号：26｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 将非敏感配置、工作区规则、Skills和Plugin清单纳入Git，Secret通过环境变量、SecretRef或外部Vault注入。发布流水线先做Schema校验、`doctor`检查、权限差异审查和场景回归，再灰度重载或重启。
 
@@ -15,9 +15,9 @@
 
 **相关知识点：** Configuration as Code、SecretRef、Schema Validation、Policy Diff、Canary、Rollback。
 <a id="oclaw-030"></a>
-### OCLAW-030 · 如何设计 OpenClaw 的面试级评测体系？
+### 如何设计 OpenClaw 的面试级评测体系？
 
-> 稳定 ID：`OCLAW-030`｜原题号：30｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 评测应覆盖**功能、任务质量、安全、可靠性、效率和渠道体验**，并绑定具体版本。
 
@@ -33,9 +33,9 @@
 > 以下题目由「Agent 核心架构」迁入，保留原答案内容并统一纳入 OpenClaw 专章。
 
 <a id="oclaw-045"></a>
-### OCLAW-045 · OpenClaw 如何实现模型切换与熔断？
+### OpenClaw 如何实现模型切换与熔断？
 
-> 稳定 ID：`OCLAW-045`｜原题号：45｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 用户可用`/model`切换当前会话模型，配置可为默认或单个Agent指定Primary与Fallback。运行时先在当前Provider轮换认证Profile，遇到可Failover的错误后再沿Fallback链切换，并在恢复后探测原模型。
@@ -44,9 +44,9 @@
 
 **相关知识点：** OpenClaw、故障恢复、model、Agent Runtime。
 <a id="oclaw-056"></a>
-### OCLAW-056 · OpenClaw 如何支持大规模 Agent 集群部署？
+### OpenClaw 如何支持大规模 Agent 集群部署？
 
-> 稳定 ID：`OCLAW-056`｜原题号：56｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 截至当前官方文档，OpenClaw Agent会话的Loop、工具和推理运行在**单机Gateway进程**；“Cloud workers plan”明确标注为尚未实现的提案。因此不能声称已有Redis Checkpoint、Kubernetes无状态接管或通用分布式调度。

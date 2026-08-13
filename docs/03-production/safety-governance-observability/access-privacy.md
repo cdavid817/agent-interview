@@ -3,9 +3,7 @@
 > 所属章节：[安全、治理与可观测性](README.md)｜本文件共 **33** 题。
 
 <a id="gov-014"></a>
-### GOV-014 · 对于删文件、改代码、执行命令、提交代码、部署发布等不同工具操作，如何设计权限和风险控制？（DeepSeek一面）
-
-> 稳定 ID：`GOV-014`｜原题号：14
+### 对于删文件、改代码、执行命令、提交代码、部署发布等不同工具操作，如何设计权限和风险控制？（DeepSeek一面）
 
 应以**最小权限、操作分级、资源范围、执行验证、可恢复和审计**控制工具。模型只提出动作，Policy按身份、资源、环境和风险签发一次性授权。
 
@@ -24,9 +22,7 @@
 
 **相关知识点：** Least Privilege、RBAC、ABAC、Policy Engine、路径规范化、Shell沙箱、Branch Protection、Canary、审计日志。
 <a id="gov-015"></a>
-### GOV-015 · 一个Agent可以读取知识库，查询数据库修改代码并调用外部系统、应该如何设计完整的权限和安全体系？（腾讯二面）
-
-> 稳定 ID：`GOV-015`｜原题号：15
+### 一个Agent可以读取知识库，查询数据库修改代码并调用外部系统、应该如何设计完整的权限和安全体系？（腾讯二面）
 
 完整体系应采用**身份贯穿、最小权限、集中Policy、凭据隔离、沙箱、审批和审计**。动作同时受用户委托、Agent身份及资源策略约束。
 
@@ -45,9 +41,7 @@
 
 **相关知识点：** SSO、RBAC、ABAC、Policy Engine、短期凭据、检索越权、SQL沙箱、Egress、HITL、审计。
 <a id="gov-019"></a>
-### GOV-019 · Guardrails 如何设计？
-
-> 稳定 ID：`GOV-019`｜原题号：19
+### Guardrails 如何设计？
 
 Guardrails应是**模型外的分层策略系统**，覆盖输入、上下文、输出、工具和副作用，在风险与业务SLO下执行可审计的允许、拒绝、改写或人工升级。
 
@@ -65,9 +59,7 @@ Guardrails应是**模型外的分层策略系统**，覆盖输入、上下文、
 
 **相关知识点：** Policy Taxonomy、Input/Output Guardrail、DLP、RBAC、ABAC、HITL、误报漏报、Red Team、策略版本化。
 <a id="gov-021"></a>
-### GOV-021 · 如何保证 Tool 调用安全？
-
-> 稳定 ID：`GOV-021`｜原题号：21
+### 如何保证 Tool 调用安全？
 
 Tool安全的核心是**模型只提调用意图，执行层负责工具发现、权限、参数、隔离、副作用和验收**。Prompt、RAG或回执中的“授权”均无效，默认拒绝。
 
@@ -79,9 +71,7 @@ Tool安全的核心是**模型只提调用意图，执行层负责工具发现�
 
 **相关知识点：** Tool Registry、JSON Schema、RBAC、ABAC、短期凭据、Dry Run、幂等、Sandbox、Egress、Postcondition、Tool Audit。
 <a id="gov-022"></a>
-### GOV-022 · Agent 如何进行权限控制？
-
-> 稳定 ID：`GOV-022`｜原题号：22
+### Agent 如何进行权限控制？
 
 Agent权限应采用**用户委托与Agent服务权限取交集、默认拒绝、按请求授权**。能调用工具不等于拥有全部权限，模型文本也不能提升权限。
 
@@ -99,9 +89,7 @@ Agent权限应采用**用户委托与Agent服务权限取交集、默认拒绝�
 
 **相关知识点：** IAM、RBAC、ABAC、Least Privilege、Policy Engine、Capability Token、Vault、职责分离、动态授权、审计。
 <a id="gov-029"></a>
-### GOV-029 · Agent执行日志应该记录哪些字段？
-
-> 稳定 ID：`GOV-029`｜原题号：29
+### Agent执行日志应该记录哪些字段？
 
 Agent执行日志应能**重建决策、定位故障、核算成本并满足审计**，采用结构化Event并由TraceID贯通。
 
@@ -115,9 +103,7 @@ Agent执行日志应能**重建决策、定位故障、核算成本并满足审�
 
 **相关知识点：** Structured Logging、Trace Context、Event Schema、PII脱敏、Schema Versioning、日志采样、审计日志、数据留存。
 <a id="gov-044"></a>
-### GOV-044 · 如何设计Agent审计系统？
-
-> 稳定 ID：`GOV-044`｜原题号：44
+### 如何设计Agent审计系统？
 
 Agent审计系统应形成**主体、决策、动作、结果和证据**的不可抵赖链路，回答谁以何权限、依据何策略、对何资源做了什么。
 
@@ -131,9 +117,7 @@ Agent审计系统应形成**主体、决策、动作、结果和证据**的不�
 
 **相关知识点：** Audit Trail、Append-only、WORM、Hash Chain、数字签名、Legal Hold、职责分离、数据留存。
 <a id="gov-046"></a>
-### GOV-046 · Tool调用如何做审计和回放？
-
-> 稳定 ID：`GOV-046`｜原题号：46
+### Tool调用如何做审计和回放？
 
 Tool调用应具备**不可抵赖审计与无副作用回放**。审计回答谁在何授权下执行了什么，回放重建输入、策略和结果。
 
@@ -149,9 +133,7 @@ Tool调用应具备**不可抵赖审计与无副作用回放**。审计回答谁
 
 **相关知识点：** Audit Event、WORM、Hash Chain、Record/Replay、幂等键、Dry-run、副作用隔离、ReplayID。
 <a id="gov-060"></a>
-### GOV-060 · Agent可观测平台整体架构如何设计？
-
-> 稳定 ID：`GOV-060`｜原题号：60
+### Agent可观测平台整体架构如何设计？
 
 整体架构采用**采集、处理、存储、分析、呈现与治理**六层，统一Trace、Metric、Log、Evaluation和Artifact，并以TaskID、TraceID连接。
 
@@ -165,9 +147,7 @@ Tool调用应具备**不可抵赖审计与无副作用回放**。审计回答谁
 
 **相关知识点：** OpenTelemetry、数据分层、流批一体、SLO、WORM、Failure Taxonomy、成本归因、多租户治理、冷热存储。
 <a id="gov-077"></a>
-### GOV-077 · 哪些操作必须人工审批？
-
-> 稳定 ID：`GOV-077`｜原题号：77
+### 哪些操作必须人工审批？
 
 是否审批应由**不可逆性、权限、数据级别、影响范围和可恢复性**决定。可能造成重大财务、生产、安全或合规后果且难以回滚的操作必须审批。
 
@@ -183,9 +163,7 @@ Tool调用应具备**不可抵赖审计与无副作用回放**。审计回答谁
 
 **相关知识点：** Human-in-the-Loop、Risk Score、不可逆操作、Four-eyes Principle、参数绑定、临时提权、审批有效期、最小权限。
 <a id="gov-080"></a>
-### GOV-080 · Agent和人工决策冲突时如何处理？
-
-> 稳定 ID：`GOV-080`｜原题号：80
+### Agent和人工决策冲突时如何处理？
 
 冲突处理遵循**法律与Policy最高、授权人工优先、Agent提供证据**。人工不能绕过安全规则，其权限与审批范围仍需校验。
 
@@ -199,9 +177,7 @@ Tool调用应具备**不可抵赖审计与无副作用回放**。审计回答谁
 
 **相关知识点：** Human Override、Policy Precedence、Challenge Protocol、Four-eyes Principle、Break-glass、职责矩阵、DAG Version、审计。
 <a id="gov-084"></a>
-### GOV-084 · 数据库变更Agent如何实现风险控制？
-
-> 稳定 ID：`GOV-084`｜原题号：84
+### 数据库变更Agent如何实现风险控制？
 
 数据库变更Agent应采用**默认只读、双重校验、审批绑定、受控执行和可验证回滚**。模型只生成候选，生产执行由确定性组件完成。
 
@@ -215,9 +191,7 @@ Tool调用应具备**不可抵赖审计与无副作用回放**。审计回答谁
 
 **相关知识点：** SQL AST、Least Privilege、Online Schema Change、Expand/Contract、Dry-run、QueryHash、Lock Timeout、PITR、变更审计。
 <a id="gov-086"></a>
-### GOV-086 · 如何设计一个统一的Agent审计平台？
-
-> 稳定 ID：`GOV-086`｜原题号：86
+### 如何设计一个统一的Agent审计平台？
 
 统一审计平台应建立**跨Agent、模型、RAG、Tool和审批的一致事件规范**，形成主体—授权—动作—资源—结果—证据链，并与运行日志分离。
 
@@ -231,9 +205,7 @@ Tool调用应具备**不可抵赖审计与无副作用回放**。审计回答谁
 
 **相关知识点：** Audit Schema、Append-only、WORM、Hash Chain、数字签名、Legal Hold、字段级RBAC、取证、职责分离。
 <a id="gov-091"></a>
-### GOV-091 · 如何构建企业级可审计Agent平台？
-
-> 稳定 ID：`GOV-091`｜原题号：91
+### 如何构建企业级可审计Agent平台？
 
 企业级平台要实现**身份可追溯、授权可解释、动作可回放、记录不可篡改**，治理必须位于模型和Tool之外。
 
@@ -247,9 +219,7 @@ Tool调用应具备**不可抵赖审计与无副作用回放**。审计回答谁
 
 **相关知识点：** SSO/IAM、RBAC/ABAC、Policy Gate、WORM、Hash Chain、Artifact Lineage、Legal Hold、职责分离、可审计性。
 <a id="gov-114"></a>
-### GOV-114 · Agent日志体系应该记录哪些关键数据？
-
-> 稳定 ID：`GOV-114`｜原题号：114
+### Agent日志体系应该记录哪些关键数据？
 
 Agent日志应同时支持**故障定位、质量评估、安全审计和成本核算**，采用结构化事件而非拼接文本，并以TaskID、TraceID、SpanID和StepID贯穿全过程。
 
@@ -263,9 +233,7 @@ Agent日志应同时支持**故障定位、质量评估、安全审计和成本�
 
 **相关知识点：** 结构化日志、关联标识、数据血缘、审计日志、PII脱敏、Schema版本、日志分级、留存策略、幂等键。
 <a id="gov-120"></a>
-### GOV-120 · 如何避免Agent评测指标被"刷高"？
-
-> 稳定 ID：`GOV-120`｜原题号：120
+### 如何避免Agent评测指标被"刷高"？
 
 防止指标被刷高的核心是让Agent团队**无法通过改变样本、口径、裁判或成本边界获得虚假收益**，并以多指标、盲测和审计约束Goodhart效应。
 
@@ -297,9 +265,7 @@ Agent日志应同时支持**故障定位、质量评估、安全审计和成本�
 > **题目合并：** `GOV-163` 已并入 [TOOL-067 · Tool调用前、中、后分别需要做哪些安全检查？](../../02-capabilities/tools-skills-mcp/sandbox-security-1.md#tool-067)。
 
 <a id="gov-168"></a>
-### GOV-168 · 如何设计Agent的部署发布权限？
-
-> 稳定 ID：`GOV-168`｜原题号：168
+### 如何设计Agent的部署发布权限？
 
 部署权限应将**生成、批准、执行和验证**拆为不同能力，以环境分级、短期凭证和门禁防止Agent独立完成高风险闭环。
 
@@ -318,9 +284,7 @@ Agent日志应同时支持**故障定位、质量评估、安全审计和成本�
 > **题目合并：** `GOV-171` 已并入 [TOOL-075 · 如何设计完整的Tool Audit Log？](../../02-capabilities/tools-skills-mcp/reliability.md#tool-075)。
 
 <a id="gov-173"></a>
-### GOV-173 · 企业级Agent如何满足安全合规要求？
-
-> 稳定 ID：`GOV-173`｜原题号：173
+### 企业级Agent如何满足安全合规要求？
 
 企业Agent合规需建立**风险评估—控制实施—证据留存—持续审计**的可验证体系，并按行业、地区和数据类型映射要求。
 
@@ -339,9 +303,7 @@ Agent日志应同时支持**故障定位、质量评估、安全审计和成本�
 > **题目合并：** `GOV-174` 已并入 [TOOL-078 · 如何设计统一的Policy Engine管理所有工具权限？](../../02-capabilities/tools-skills-mcp/sandbox-security-1.md#tool-078)。
 
 <a id="gov-175"></a>
-### GOV-175 · 如何实现动态授权和临时权限提升？
-
-> 稳定 ID：`GOV-175`｜原题号：175
+### 如何实现动态授权和临时权限提升？
 
 动态授权应采用**JIT、任务绑定、短时有效、可立即撤销**的能力令牌，由可信策略与审批触发，模型无权为自己提权。
 
@@ -357,9 +319,7 @@ Agent日志应同时支持**故障定位、质量评估、安全审计和成本�
 
 **相关知识点：** Just-in-Time、Capability Token、参数绑定、TTL、职责分离、Vault、Token撤销、重放防护、最小权限。
 <a id="gov-178"></a>
-### GOV-178 · 如何设计Agent的多租户权限隔离？
-
-> 稳定 ID：`GOV-178`｜原题号：178
+### 如何设计Agent的多租户权限隔离？
 
 多租户隔离应将TenantID作为**可信身份属性和资源访问强制边界**，在身份、数据、运行与观测层重复校验，不能依赖模型添加租户条件。
 
@@ -375,9 +335,7 @@ Agent日志应同时支持**故障定位、质量评估、安全审计和成本�
 
 **相关知识点：** TenantID、行级安全、命名空间、资源归属、Policy Engine、租户专属密钥、资源配额、侧信道、跨租户测试。
 <a id="gov-181"></a>
-### GOV-181 · 企业级Agent权限体系如何与企业现有IAM、SSO和审批流程集成？
-
-> 稳定 ID：`GOV-181`｜原题号：181
+### 企业级Agent权限体系如何与企业现有IAM、SSO和审批流程集成？
 
 集成原则是**复用企业身份、保持Agent独立主体、统一策略映射权限、审批签发短期能力**，避免平台复制账户和长期凭证。
 
@@ -393,9 +351,7 @@ Agent日志应同时支持**故障定位、质量评估、安全审计和成本�
 
 **相关知识点：** IAM、SSO、OIDC、SAML、SCIM、Workload Identity、PDP/PEP、JIT授权、ITSM、SIEM、职责分离。
 <a id="gov-183"></a>
-### GOV-183 · 如何区分Agent的权限和用户本人的权限？
-
-> 稳定 ID：`GOV-183`｜原题号：183
+### 如何区分Agent的权限和用户本人的权限？
 
 用户与Agent是**独立安全主体**：用户权限表示业务授权，Agent权限表示自动化上限；调用取二者与任务策略的交集。
 
@@ -415,9 +371,7 @@ Agent日志应同时支持**故障定位、质量评估、安全审计和成本�
 
 **相关知识点：** User Identity、Workload Identity、Effective Permission、权限交集、任务委托、Capability Token、JIT、双重审计。
 <a id="gov-188"></a>
-### GOV-188 · 如何设计Agent工具调用的审计日志？
-
-> 稳定 ID：`GOV-188`｜原题号：188
+### 如何设计Agent工具调用的审计日志？
 
 工具审计日志应形成**授权、执行与业务副作用的完整证据链**，回答主体、意图、资源、时间和结果，同时避免日志泄露。
 
@@ -431,9 +385,7 @@ Agent日志应同时支持**故障定位、质量评估、安全审计和成本�
 
 **相关知识点：** Audit Log、WORM、哈希链、数据最小化、参数哈希、业务终态、CausationID、法务保全、访问审计。
 <a id="gov-189"></a>
-### GOV-189 · RBAC和ABAC在Agent权限体系中如何选择？
-
-> 稳定 ID：`GOV-189`｜原题号：189
+### RBAC和ABAC在Agent权限体系中如何选择？
 
 Agent权限通常不应二选一，而应**RBAC确定稳定基线，ABAC结合上下文动态收窄**；只有简单场景才可单用RBAC。
 
@@ -453,9 +405,7 @@ Agent权限通常不应二选一，而应**RBAC确定稳定基线，ABAC结合�
 
 **相关知识点：** RBAC、ABAC、Capability、角色爆炸、属性治理、权限交集、Policy Engine、默认拒绝、策略即代码。
 <a id="gov-190"></a>
-### GOV-190 · 多租户Agent平台如何做数据隔离？
-
-> 稳定 ID：`GOV-190`｜原题号：190
+### 多租户Agent平台如何做数据隔离？
 
 多租户隔离应覆盖**业务数据、向量、记忆、缓存、日志、Artifact、备份和上下文**，TenantID由可信身份注入并在各层校验。
 
