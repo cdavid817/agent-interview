@@ -1,0 +1,14 @@
+[
+  {"area": "基础原理", "title": "Agent 核心架构", "prefix": "ARC", "path": "docs/01-foundations/agent-architecture"},
+  {"area": "基础原理", "title": "Transformer", "prefix": "TRANS", "path": "docs/01-foundations/transformer"},
+  {"area": "核心能力", "title": "任务规划与执行", "prefix": "PLAN", "path": "docs/02-capabilities/planning-execution"},
+  {"area": "核心能力", "title": "上下文与知识系统", "prefix": "CTX", "path": "docs/02-capabilities/context-knowledge"},
+  {"area": "核心能力", "title": "工具、Skills 与 MCP", "prefix": "TOOL", "path": "docs/02-capabilities/tools-skills-mcp"},
+  {"area": "核心能力", "title": "多 Agent 与协作", "prefix": "MULTI", "path": "docs/02-capabilities/multi-agent"},
+  {"area": "核心能力", "title": "RAG", "prefix": "RAG", "path": "docs/02-capabilities/rag"},
+  {"area": "生产工程", "title": "模型能力与成本", "prefix": "MODEL", "path": "docs/03-production/model-capability-cost"},
+  {"area": "生产工程", "title": "安全、治理与可观测性", "prefix": "GOV", "path": "docs/03-production/safety-governance-observability"},
+  {"area": "生产工程", "title": "工程落地与平台化", "prefix": "ENG", "path": "docs/03-production/engineering-platform"},
+  {"area": "产品专题", "title": "OpenClaw", "prefix": "OCLAW", "path": "docs/04-products/openclaw"},
+  {"area": "产品专题", "title": "Claude Code", "prefix": "CC", "path": "docs/04-products/claude-code"}
+]
