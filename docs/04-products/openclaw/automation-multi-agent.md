@@ -3,7 +3,7 @@
 > 所属章节：[OpenClaw](README.md)｜本文件共 **2** 题。
 
 <a id="oclaw-019"></a>
-### OpenClaw 中 Cron、Heartbeat、Hooks 和 Task Flow 应如何选型？
+### 1. OpenClaw 中 Cron、Heartbeat、Hooks 和 Task Flow 应如何选型？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -20,7 +20,7 @@
 
 **相关知识点：** Scheduler、Heartbeat、Event Hook、Webhook、Task Flow、Durable Workflow。
 <a id="oclaw-037"></a>
-### OpenClaw 如何实现多 Agent 协作？
+### 2. OpenClaw 如何实现多 Agent 协作？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 

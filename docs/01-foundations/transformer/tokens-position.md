@@ -3,7 +3,7 @@
 > 所属章节：[Transformer](README.md)｜本文件共 **25** 题。
 
 <a id="trans-001"></a>
-### LLM的输入到底是什么？模型真正看到的是什么？（百度Agent）
+### 1. LLM的输入到底是什么？模型真正看到的是什么？（百度Agent）
 
 LLM接收的不是文字，而是**模板化、分词和向量化后的张量**，计算Embedding、位置与Mask，预测下一Token分布。
 
@@ -22,7 +22,7 @@ LLM接收的不是文字，而是**模板化、分词和向量化后的张量**�
 
 **相关知识点：** Chat Template、Tokenizer、Token ID、Embedding、Position Encoding、Attention Mask、Hidden State、Logits、采样。
 <a id="trans-002"></a>
-### Self-Attention的核心作用是什么？为什么要拆成QKV？为什么Attention可以建模长距离关系？（百度Agent）
+### 2. Self-Attention的核心作用是什么？为什么要拆成QKV？为什么Attention可以建模长距离关系？（百度Agent）
 
 Self-Attention让每个Token根据语境，**动态聚合所有可见Token的信息**。Q、K、V分离“查询、匹配、内容”，使相关性与信息传递学习不同投影。
 
@@ -40,7 +40,7 @@ Self-Attention让每个Token根据语境，**动态聚合所有可见Token的信
 
 **相关知识点：** Self-Attention、QKV投影、Scaled Dot-Product、Softmax、因果Mask、动态权重、长距离依赖、位置编码。
 <a id="trans-004"></a>
-### 同一个token的Q、K、V为什么不一样？（百度Agent）
+### 3. 同一个token的Q、K、V为什么不一样？（百度Agent）
 
 同一Token的Q、K、V不同，因为隐藏状态经过**三组独立线性投影**。Q描述查询需求，K描述匹配索引，V描述实际传递的信息。
 
@@ -60,7 +60,7 @@ Self-Attention让每个Token根据语境，**动态聚合所有可见Token的信
 
 **相关知识点：** 线性投影、表示子空间、QK相似度、V聚合、上下文化表示、Cross-Attention、KV Cache、非对称关系。
 <a id="trans-006"></a>
-### Token和字符数、单词数之间是什么关系？
+### 4. Token和字符数、单词数之间是什么关系？
 
 Token是Tokenizer切分后的**模型计算单位**，与字符或单词无固定换算。比例取决于语言、词表、标点、数字、代码、Unicode及Tokenizer版本。
 
@@ -79,7 +79,7 @@ Token是Tokenizer切分后的**模型计算单位**，与字符或单词无固�
 
 **相关知识点：** Tokenizer、BPE、SentencePiece、Unicode、Token ID、Context Window、usage、Token预算。
 <a id="trans-007"></a>
-### 为什么不同模型计算出的Token数不一样？
+### 5. 为什么不同模型计算出的Token数不一样？
 
 不同模型Token数不同，是因为**算法、词表、训练语料、规范化和特殊Token**不同。Token是模型词表单元，不是文本自身固有属性。
 
@@ -98,7 +98,7 @@ Token是Tokenizer切分后的**模型计算单位**，与字符或单词无固�
 
 **相关知识点：** BPE、WordPiece、Unigram、Byte-level Tokenizer、词表、特殊Token、聊天模板、Embedding。
 <a id="trans-008"></a>
-### Transformer真正计算的对象为什么是向量而不是文本？
+### 6. Transformer真正计算的对象为什么是向量而不是文本？
 
 Transformer计算向量，因为神经网络核心是**可微矩阵乘法与非线性变换**；离散文本不能直接参与梯度优化。文本映射为连续表示后才可学习关系。
 
@@ -118,7 +118,7 @@ Transformer计算向量，因为神经网络核心是**可微矩阵乘法与非�
 
 **相关知识点：** Token ID、Embedding、Hidden State、QKV、Softmax、Logits、梯度下降、分布式表示。
 <a id="trans-009"></a>
-### 大模型是否真的"理解"文本，还是在预测Token？
+### 7. 大模型是否真的"理解"文本，还是在预测Token？
 
 从机制上，大模型执行**下一个Token预测**；从功能上，内部表示支持概念组合、推理和任务迁移，可表现出操作性理解。两者不矛盾，但不能等同于人类意识或稳定世界模型。
 
@@ -137,7 +137,7 @@ Transformer计算向量，因为神经网络核心是**可微矩阵乘法与非�
 
 **相关知识点：** Autoregressive Model、Next-Token Prediction、涌现能力、世界模型、操作性定义、幻觉、行为评测。
 <a id="trans-010"></a>
-### 模型训练阶段和推理阶段看到的输入有什么区别？
+### 8. 模型训练阶段和推理阶段看到的输入有什么区别？
 
 两阶段都处理Token，但**训练并行预测各位置，推理只看当前前缀并自回归生成**。训练保存梯度并更新参数，推理参数冻结且依赖KV Cache。
 
@@ -156,7 +156,7 @@ Transformer计算向量，因为神经网络核心是**可微矩阵乘法与非�
 
 **相关知识点：** Teacher Forcing、Causal Mask、Exposure Bias、Prefill、Decode、KV Cache、Loss Mask、Chat Template。
 <a id="trans-011"></a>
-### Embedding的本质是什么？如何训练出来？
+### 9. Embedding的本质是什么？如何训练出来？
 
 Embedding把离散对象映射到**可学习的稠密向量空间**，使任务相关的相似性与关系可由距离或方向表达。各维通常没有独立人工语义。
 
@@ -175,7 +175,7 @@ Embedding把离散对象映射到**可学习的稠密向量空间**，使任务�
 
 **相关知识点：** Embedding Matrix、Word2Vec、Dual Encoder、Contrastive Learning、InfoNCE、Hard Negative、ANN、L2归一化。
 <a id="trans-012"></a>
-### Position Encoding为什么是Transformer必需的？
+### 10. Position Encoding为什么是Transformer必需的？
 
 位置编码必需，因为纯Self-Attention具有**置换等变性**：打乱Token时输出对应打乱，模型无法仅凭内容判断先后、距离和方向。
 
@@ -194,7 +194,7 @@ Embedding把离散对象映射到**可学习的稠密向量空间**，使任务�
 
 **相关知识点：** Permutation Equivariance、Position Encoding、Relative Position、RoPE、ALiBi、Causal Mask、长度外推。
 <a id="trans-013"></a>
-### RoPE为什么成为当前主流位置编码方案？
+### 11. RoPE为什么成为当前主流位置编码方案？
 
 RoPE用**Q、K二维旋转**把绝对位置编码进向量，并使点积依赖相对距离，兼顾实现简洁、无额外偏置表、计算高效和较好长度扩展。
 
@@ -213,7 +213,7 @@ RoPE用**Q、K二维旋转**把绝对位置编码进向量，并使点积依赖�
 
 **相关知识点：** RoPE、Orthogonal Rotation、Relative Position、Position Interpolation、NTK Scaling、YaRN、KV Cache。
 <a id="trans-014"></a>
-### RoPE与传统Position Encoding有什么区别？
+### 12. RoPE与传统Position Encoding有什么区别？
 
 传统绝对位置把**位置向量加到Token表示上**，RoPE按位置旋转Q、K，使点积携带相对距离。两者都提供顺序，但注入位置和外推不同。
 
@@ -232,7 +232,7 @@ RoPE用**Q、K二维旋转**把绝对位置编码进向量，并使点积依赖�
 
 **相关知识点：** Absolute Position、Sinusoidal Encoding、Learned Position、RoPE、Relative Position、KV Cache、长度外推。
 <a id="trans-029"></a>
-### Context Window为什么会存在长度限制？
+### 13. Context Window为什么会存在长度限制？
 
 Context Window存在上限，本质是**模型结构、训练分布、推理资源和位置表示共同形成的有效边界**，并非简单修改一个配置值即可无限扩展。
 
@@ -244,7 +244,7 @@ Context Window存在上限，本质是**模型结构、训练分布、推理资�
 
 **相关知识点：** Self-Attention复杂度、KV Cache、RoPE、位置插值、有效上下文、Lost in the Middle、Prefill、RAG、上下文压缩。
 <a id="trans-030"></a>
-### 长上下文模型是如何实现的？
+### 14. 长上下文模型是如何实现的？
 
 长上下文能力不是单一算法，而是**位置编码扩展、长序列训练、注意力与内存优化、推理系统适配**的组合；只扩大配置中的最大长度，通常只能“装得下”，不能保证“用得好”。
 
@@ -256,7 +256,7 @@ Context Window存在上限，本质是**模型结构、训练分布、推理资�
 
 **相关知识点：** RoPE、位置插值、YaRN、ALiBi、长序列训练、FlashAttention、Sparse Attention、GQA、PagedAttention、RULER。
 <a id="trans-035"></a>
-### Sparse Attention和Dense Attention有什么区别？
+### 15. Sparse Attention和Dense Attention有什么区别？
 
 Dense Attention让每个Query访问全部Key；Sparse Attention只计算选定连接，以部分全局可达性换取更低成本。**两者差异在连接图，而非是否使用Softmax**。
 
@@ -274,7 +274,7 @@ Dense Attention让每个Query访问全部Key；Sparse Attention只计算选定�
 
 **相关知识点：** Full Attention、Sliding Window、Block Sparse、Global Token、Dynamic Routing、感受野、FlashAttention、稀疏Kernel。
 <a id="trans-039"></a>
-### 大模型长上下文能力受哪些因素限制？
+### 16. 大模型长上下文能力受哪些因素限制？
 
 长上下文能力受**可接收长度、有效利用能力和系统可承载成本**三类因素共同限制。API允许输入更长只代表格式与资源可容纳，并不等于模型能可靠检索、整合和推理全部内容。
 
@@ -286,7 +286,7 @@ Dense Attention让每个Query访问全部Key；Sparse Attention只计算选定�
 
 **相关知识点：** 有效上下文、RoPE外推、长序列训练、Lost in the Middle、KV Cache、TTFT、上下文并行、RAG、上下文压缩。
 <a id="trans-040"></a>
-### 当前主流长上下文优化方案有哪些？
+### 17. 当前主流长上下文优化方案有哪些？
 
 主流方案可分为**位置与训练扩展、Attention计算优化、KV与服务系统优化、外部记忆压缩**四层；它们分别解决“能表示、能学会、算得动、用得准”，通常需要组合应用。
 
@@ -298,7 +298,7 @@ Dense Attention让每个Query访问全部Key；Sparse Attention只计算选定�
 
 **相关知识点：** RoPE插值、YaRN、长序列训练、FlashAttention、Sparse Attention、GQA、KV量化、PagedAttention、上下文并行、RAG。
 <a id="trans-041"></a>
-### 大模型推理阶段KV Cache与Attention的关系是什么？
+### 18. 大模型推理阶段KV Cache与Attention的关系是什么？
 
 KV Cache是自回归Attention的**历史记忆与复用机制**：新Query仍匹配全部可见Key并聚合Value；缓存保存历史K/V，避免每步重算。
 
@@ -310,7 +310,7 @@ KV Cache是自回归Attention的**历史记忆与复用机制**：新Query仍匹
 
 **相关知识点：** Scaled Dot-Product Attention、增量解码、Causal Mask、RoPE、分层KV、GQA、KV量化、PagedAttention、缓存一致性。
 <a id="trans-044"></a>
-### Attention是否真的具有可解释性？
+### 19. Attention是否真的具有可解释性？
 
 Attention具有诊断价值，但**Attention权重不是充分或因果解释**。它只是某层某头混合Value的系数，不能直接等同于输入重要性、推理过程或答案依据。
 
@@ -328,7 +328,7 @@ Attention具有诊断价值，但**Attention权重不是充分或因果解释**�
 
 **相关知识点：** Attention Map、输入归因、Integrated Gradients、Attention Rollout、Head Ablation、Activation Patching、因果中介、解释稳定性。
 <a id="trans-045"></a>
-### Attention Map如何可视化分析？
+### 20. Attention Map如何可视化分析？
 
 Attention Map分析应先指定**模型、层、Head、目标Query和样本**，再将张量映射为Token热力图；直接展示全部层头会信息过载。
 
@@ -340,7 +340,7 @@ Attention Map分析应先指定**模型、层、Head、目标Query和样本**，
 
 **相关知识点：** Attention Tensor、Forward Hook、Tokenizer对齐、Causal Mask、Attention Entropy、Attention Rollout、Head Ablation、Activation Patching、可视化归一化。
 <a id="trans-046"></a>
-### Attention权重是否可以直接解释模型决策？
+### 21. Attention权重是否可以直接解释模型决策？
 
 Attention权重**不能直接解释模型决策**，最多是某层某Head的路由证据。把最高权重Token称为答案原因，混淆了相关性、信息混合与因果贡献。
 
@@ -352,7 +352,7 @@ Attention权重**不能直接解释模型决策**，最多是某层某Head的路
 
 **相关知识点：** Attention Is Not Explanation、Value Contribution、Logit Attribution、Token Occlusion、Head Ablation、Attention Edge、Activation Patching、忠实性、稳定性。
 <a id="trans-047"></a>
-### Encoder-only、Decoder-only 和 Encoder-Decoder Transformer 如何选型？（高级）
+### 22. Encoder-only、Decoder-only 和 Encoder-Decoder Transformer 如何选型？（高级）
 
 **三类架构的差异来自可见性掩码和生成方式：Encoder双向理解输入，Decoder按因果顺序生成，Encoder-Decoder先编码输入再通过Cross-Attention生成输出。**
 
@@ -362,7 +362,7 @@ Attention权重**不能直接解释模型决策**，最多是某层某Head的路
 
 **相关知识点：** Bidirectional Attention、Causal Mask、Cross-Attention、Encoder、Decoder、条件生成、Next-Token Prediction。
 <a id="trans-052"></a>
-### 如何估算一个 Decoder-only Transformer 的参数量、训练 FLOPs 和 KV Cache 显存？（高级）
+### 23. 如何估算一个 Decoder-only Transformer 的参数量、训练 FLOPs 和 KV Cache 显存？（高级）
 
 **估算应先写出层数、隐藏维度、FFN维度、词表、Head与KV Head数量，再分别计算权重、训练计算和按并发增长的运行时状态。**
 
@@ -372,7 +372,7 @@ Attention权重**不能直接解释模型决策**，最多是某层某Head的路
 
 **相关知识点：** Parameter Counting、Training FLOPs、Standard FFN、SwiGLU、Embedding Tying、GQA、KV Cache、Activation Memory、Model FLOPs Utilization。
 <a id="trans-054"></a>
-### RoPE 外推到更长上下文时为什么会退化？位置插值、NTK Scaling 和 YaRN 如何理解？（高级）
+### 24. RoPE 外推到更长上下文时为什么会退化？位置插值、NTK Scaling 和 YaRN 如何理解？（高级）
 
 **RoPE外推退化源于模型在训练长度外遇到未学过的旋转相位与相对距离分布；扩窗方法本质上在位置分辨率和可外推长度之间重新分配频率。**
 
@@ -382,7 +382,7 @@ Attention权重**不能直接解释模型决策**，最多是某层某Head的路
 
 **相关知识点：** RoPE Extrapolation、Position Interpolation、NTK-aware Scaling、YaRN、频率分配、长度外推。
 <a id="trans-057"></a>
-### Speculative Decoding 为什么能加速？如何保证输出分布不变？（高级）
+### 25. Speculative Decoding 为什么能加速？如何保证输出分布不变？（高级）
 
 **Speculative Decoding让便宜的Draft模型一次提出多个Token，再由Target模型并行验证；只有使用正确的接受与修正采样，才可在采样场景保持目标分布。**
 

@@ -3,7 +3,7 @@
 > 所属章节：[工程落地与平台化](README.md)｜本文件共 **20** 题。
 
 <a id="eng-005"></a>
-### 如果企业项目有几十万行代码，Coding Agent如何快速定位和理解相关代码上下文？（DeepSeek一面）
+### 1. 如果企业项目有几十万行代码，Coding Agent如何快速定位和理解相关代码上下文？（DeepSeek一面）
 
 大型仓库不能整库加载，应采用**结构化索引、混合检索、调用图扩展和渐进式上下文**，先定位候选，再逐步读取证据。
 
@@ -17,7 +17,7 @@
 
 **相关知识点：** Hybrid Search、Symbol Index、AST、LSP、Call Graph、Repo Map、渐进式上下文、Change Impact Analysis、增量索引。
 <a id="eng-017"></a>
-### 多租户企业级Agent平台数据隔离、权限隔离、资源隔离完整方案（Agent高级）
+### 2. 多租户企业级Agent平台数据隔离、权限隔离、资源隔离完整方案（Agent高级）
 
 多租户方案应把TenantID作为**身份、数据、执行与计费的强制边界**，在网关、存储和目标系统重复校验。
 
@@ -31,7 +31,7 @@
 
 **相关知识点：** TenantID、RLS、ABAC、Workload Identity、KMS、Network Policy、Quota、公平调度、Bulkhead、Noisy Neighbor。
 <a id="eng-052"></a>
-### Coding Agent为什么不能直接把整个代码仓库加载到大模型？
+### 3. Coding Agent为什么不能直接把整个代码仓库加载到大模型？
 
 Coding Agent不能直接加载整个仓库，原因不只是窗口有限，**信号密度、推理质量、成本、安全和版本一致性**也会恶化。
 
@@ -45,7 +45,7 @@ Coding Agent不能直接加载整个仓库，原因不只是窗口有限，**信
 
 **相关知识点：** Context Window、注意力稀释、Lost in the Middle、Repo Map、Symbol Index、AST、Hybrid Search、渐进式上下文、最小权限。
 <a id="eng-054"></a>
-### Coding Agent如何建立代码仓库索引（Repository Index）？
+### 4. Coding Agent如何建立代码仓库索引（Repository Index）？
 
 Repository Index应包含**文本、符号、语法、关系和语义索引**，并与仓库、分支、Commit绑定；单一向量库无法支撑精确定位。
 
@@ -59,7 +59,7 @@ Repository Index应包含**文本、符号、语法、关系和语义索引**，
 
 **相关知识点：** Repository Index、AST、Symbol Index、倒排索引、Embedding、代码图谱、Repo Map、增量索引、原子切换。
 <a id="eng-058"></a>
-### Coding Agent如何构建Call Graph（调用图）？
+### 5. Coding Agent如何构建Call Graph（调用图）？
 
 Call Graph以函数为节点、潜在调用为有向边，用于**跨文件定位、影响分析和上下文扩展**；实现需融合静态分析与运行时证据。
 
@@ -73,7 +73,7 @@ Call Graph表示“可能调用”，不等于真实执行顺序。Agent还需�
 
 **相关知识点：** Call Graph、CHA、RTA、动态插桩、APM Trace、依赖注入、边置信度、CFG、增量图更新。
 <a id="eng-066"></a>
-### 什么是Change Impact Analysis？如何评估一次代码修改的影响范围？
+### 6. 什么是Change Impact Analysis？如何评估一次代码修改的影响范围？
 
 Change Impact Analysis识别变更影响的**调用者、数据、接口、配置、测试、部署单元和业务流程**，以证据划定验证范围，而非统计文件数。
 
@@ -87,7 +87,7 @@ Change Impact Analysis识别变更影响的**调用者、数据、接口、配�
 
 **相关知识点：** Change Impact Analysis、语义Diff、依赖图、数据流、契约测试、Git共变、故障半径、风险评分、测试选择。
 <a id="eng-069"></a>
-### Coding Agent如何结合RAG提升大型代码仓库的理解能力？
+### 7. Coding Agent如何结合RAG提升大型代码仓库的理解能力？
 
 Code RAG把任务转换为**可追溯的代码证据**，通过多路检索、结构扩展和动态重检索，在大仓中获得最小充分上下文。
 
@@ -101,7 +101,7 @@ Code RAG把任务转换为**可追溯的代码证据**，通过多路检索、�
 
 **相关知识点：** Code RAG、语义切块、Hybrid Search、Symbol Index、Graph RAG、RRF、Rerank、动态检索、证据追踪。
 <a id="eng-070"></a>
-### 企业级Coding Agent如何实现毫秒级代码检索？
+### 8. 企业级Coding Agent如何实现毫秒级代码检索？
 
 毫秒级检索依赖**离线计算、在线轻量召回、分层缓存和索引分片**；SLO应针对检索P50/P95，不能混入Embedding构建和LLM推理。
 
@@ -115,7 +115,7 @@ Code RAG把任务转换为**可追溯的代码证据**，通过多路检索、�
 
 **相关知识点：** ANN、HNSW、倒排索引、索引分片、多级缓存、两阶段排序、增量索引、原子切换、延迟预算。
 <a id="eng-071"></a>
-### 在Monorepo架构下，Coding Agent如何进行跨模块代码理解？
+### 9. 在Monorepo架构下，Coding Agent如何进行跨模块代码理解？
 
 Monorepo理解依赖**模块边界、构建图和统一版本快照**，先缩小子图，再沿契约与调用扩展，不能把同仓库视为同一上下文。
 
@@ -129,7 +129,7 @@ Monorepo理解依赖**模块边界、构建图和统一版本快照**，先缩�
 
 **相关知识点：** Monorepo、构建图、模块边界、反向依赖、全局Symbol、索引分片、影响分析、兼容演进、跨语言调用。
 <a id="eng-072"></a>
-### 如何评估一个Coding Agent代码定位的准确率和召回率？
+### 10. 如何评估一个Coding Agent代码定位的准确率和召回率？
 
 代码定位评测以**任务所需证据集合**为真值，衡量是否找全、排前并支持任务；只看目标文件会忽略函数粒度和跨文件依赖。
 
@@ -143,7 +143,7 @@ Monorepo理解依赖**模块边界、构建图和统一版本快照**，先缩�
 
 **相关知识点：** Precision@K、Recall@K、MRR、NDCG、证据覆盖率、宏平均、候选池化、端到端评测、置信区间。
 <a id="eng-077"></a>
-### 大型单体项目无清晰模块划分时，Coding Agent 如何优化代码检索效率？
+### 11. 大型单体项目无清晰模块划分时，Coding Agent 如何优化代码检索效率？
 
 无模块单体项目应通过**结构与历史证据推导虚拟模块**，再分层检索；目录不是唯一边界，调用、数据和共变关系可形成子图。
 
@@ -157,7 +157,7 @@ Monorepo理解依赖**模块边界、构建图和统一版本快照**，先缩�
 
 **相关知识点：** 虚拟模块、社区发现、强连通分量、图聚类、Repo Map、Hub惩罚、Git共变、分层检索、架构治理。
 <a id="eng-079"></a>
-### Coding Agent 解析调用链时遇到多态、动态代理代码如何准确溯源？
+### 12. Coding Agent 解析调用链时遇到多态、动态代理代码如何准确溯源？
 
 多态和代理无法仅凭调用表达式确定目标，应采用**类型约束生成候选、配置解包代理、运行时Trace确认实例**，并标注证据与置信度。
 
@@ -171,7 +171,7 @@ Monorepo理解依赖**模块边界、构建图和统一版本快照**，先缩�
 
 **相关知识点：** 多态、动态代理、CHA、RTA、指针分析、AOP、依赖注入、运行时插桩、边置信度、Trace。
 <a id="eng-082"></a>
-### 如何量化评估 Coding Agent 代码定位与上下文理解的准确率？
+### 13. 如何量化评估 Coding Agent 代码定位与上下文理解的准确率？
 
 评测拆成**检索定位、证据覆盖、语义理解和端到端任务**四层，判断是否找全、理解正确并完成修改，不能用单一主观分替代。
 
@@ -185,7 +185,7 @@ Monorepo理解依赖**模块边界、构建图和统一版本快照**，先缩�
 
 **相关知识点：** Precision@K、Recall@K、MRR、NDCG、证据覆盖率、Rubric、端到端评测、候选池化、责任归因。
 <a id="eng-087"></a>
-### 多个子 Agent 并行探索不同模块后，如何合并/仲裁彼此的结论？
+### 14. 多个子 Agent 并行探索不同模块后，如何合并/仲裁彼此的结论？
 
 合并不能拼接摘要，应基于**统一任务契约、结构化证据和仲裁规则**；主Agent负责全局一致性，子Agent负责授权范围。
 
@@ -199,7 +199,7 @@ Monorepo理解依赖**模块边界、构建图和统一版本快照**，先缩�
 
 **相关知识点：** 任务契约、结构化证据、Claim-Evidence、证据图、冲突仲裁、写隔离、Change Set、全局验证、并行效率。
 <a id="eng-096"></a>
-### 如何构建代码仓库的AST索引？
+### 15. 如何构建代码仓库的AST索引？
 
 AST索引把解析结果转为**可检索节点、稳定Symbol和跨文件关系**，绑定仓库、Commit与解析器版本；不能只序列化整棵树。
 
@@ -213,7 +213,7 @@ AST索引把解析结果转为**可检索节点、稳定Symbol和跨文件关系
 
 **相关知识点：** AST Index、Parser、Symbol ID、源码范围、关系边、结构查询、内容哈希、增量更新、原子切换。
 <a id="eng-112"></a>
-### Coding Agent如何根据不同任务动态调整检索策略？
+### 16. Coding Agent如何根据不同任务动态调整检索策略？
 
 Coding Agent应把检索设计为**任务感知的策略决策过程**：Planner识别任务、范围与风险，再选择数据源、查询形式、深度和停止条件。
 
@@ -227,7 +227,7 @@ Coding Agent应把检索设计为**任务感知的策略决策过程**：Planner
 
 **相关知识点：** 任务分类、查询改写、分阶段检索、混合召回、依赖图、上下文构建、证据覆盖率、停止条件、Bandit、检索预算。
 <a id="eng-114"></a>
-### 检索系统如何与任务规划器（Planner）和执行器（Executor）协同工作？
+### 17. 检索系统如何与任务规划器（Planner）和执行器（Executor）协同工作？
 
 三者应通过**证据驱动闭环**协同：Planner声明信息与验收条件，Retriever返回可追溯证据，Executor执行最小动作并反馈观测。
 
@@ -241,7 +241,7 @@ Coding Agent应把检索设计为**任务感知的策略决策过程**：Planner
 
 **相关知识点：** Planner、Retriever、Executor、Retrieval Spec、Evidence对象、Context Builder、状态机、证据溯源、反馈闭环、幂等与取消。
 <a id="eng-116"></a>
-### OpenCode如何实现百万行代码仓库检索？
+### 18. OpenCode如何实现百万行代码仓库检索？
 
 百万行检索应是OpenCode的**可插拔上下文设施**：搜索和LSP即时定位，外接索引服务提供混合召回；不应虚构默认专有索引。
 
@@ -255,7 +255,7 @@ Coding Agent应把检索设计为**任务感知的策略决策过程**：Planner
 
 **相关知识点：** 大仓检索、混合索引、LSP、AST、Call Graph、RRF、渐进式上下文、增量索引、MCP、降级。
 <a id="eng-123"></a>
-### OpenCode如何保证代码修改安全？
+### 19. OpenCode如何保证代码修改安全？
 
 安全依赖**最小权限、变更隔离、分级审批和可执行验证**；不能把模型自信或“开源”本身当作安全保证。
 
@@ -268,7 +268,7 @@ Coding Agent应把检索设计为**任务感知的策略决策过程**：Planner
 
 **相关知识点：** 最小权限、Sandbox、Worktree、Diff审计、Secret Scanner、审批、回滚、供应链安全。
 <a id="eng-170"></a>
-### Coding Agent如何结合多模态能力？
+### 20. Coding Agent如何结合多模态能力？
 
 多模态可让Coding Agent理解**设计稿、报错截图、架构图、性能曲线和界面状态**，但代码事实仍以仓库和工具输出为准。
 

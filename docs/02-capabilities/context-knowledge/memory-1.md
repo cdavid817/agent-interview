@@ -3,7 +3,7 @@
 > 所属章节：[上下文与知识系统](README.md)｜本文件共 **50** 题。
 
 <a id="ctx-002"></a>
-### 长短期记忆是怎么设计的？短期记忆和长期记忆分别保存什么？（DeepSeek二面）
+### 1. 长短期记忆是怎么设计的？短期记忆和长期记忆分别保存什么？（DeepSeek二面）
 
 **短期记忆保存当前会话的执行现场，长期记忆保存跨会话仍成立的用户事实、偏好和经验；设计关键是分层存储、受控晋升与按需召回。**
 
@@ -21,7 +21,7 @@
 
 **相关知识点：** Working Memory、Session State、Long-term Memory、Checkpoint、Memory Scoring、记忆晋升、冲突检测、TTL、版本管理。
 <a id="ctx-003"></a>
-### Agent为什么必须设计记忆模块，短期对话记忆、长期持久记忆分别怎么落地，各自解决什么业务痛点（Agent中级）
+### 2. Agent为什么必须设计记忆模块，短期对话记忆、长期持久记忆分别怎么落地，各自解决什么业务痛点（Agent中级）
 
 **Agent必须配置记忆模块，因为模型调用天然无状态；记忆把分散交互转化为可恢复的任务状态和可复用的用户知识。**
 
@@ -38,7 +38,7 @@
 
 **相关知识点：** Stateless Model、Session State、Working Memory、Long-term Memory、Artifact Store、Memory Scoring、记忆晋升、冲突检测、权限隔离。
 <a id="ctx-004"></a>
-### 分层记忆完整体系：瞬时上下文记忆、短期会话记忆、长期持久记忆、知识库外部记忆四层设计；记忆自动压缩、过期清理、重要信息持久留存策略（Agent高级）
+### 3. 分层记忆完整体系：瞬时上下文记忆、短期会话记忆、长期持久记忆、知识库外部记忆四层设计；记忆自动压缩、过期清理、重要信息持久留存策略（Agent高级）
 
 **四层记忆体系应按使用时点、归属主体和可信来源隔离，使即时推理、会话恢复、个体连续性与权威知识检索分别治理。**
 
@@ -57,7 +57,7 @@
 
 **相关知识点：** Working Memory、Session Memory、Long-term Memory、External Knowledge、滚动摘要、记忆晋升、TTL、版本管理。
 <a id="ctx-005"></a>
-### 为什么要把长期记忆分成静态长期记忆和动态长期记忆？（DeepSeek二面）
+### 4. 为什么要把长期记忆分成静态长期记忆和动态长期记忆？（DeepSeek二面）
 
 **静态与动态长期记忆必须分域治理，因为二者的数据来源、变化速度、可信边界和删除责任不同，混存会破坏权威性与个性化。**
 
@@ -78,7 +78,7 @@
 
 **相关知识点：** Static Memory、Dynamic Memory、知识库、Episodic Memory、版本发布、时间衰减、双路召回、冲突消解、数据权限。
 <a id="ctx-006"></a>
-### 每一轮对话都触发长期记忆存储，会不会导致记忆膨胀？以后怎么处理？（DeepSeek二面）
+### 5. 每一轮对话都触发长期记忆存储，会不会导致记忆膨胀？以后怎么处理？（DeepSeek二面）
 
 **每轮对话都直接写入长期记忆一定会造成规模膨胀，并同时放大重复、过期、矛盾和错误信息，因此必须把事件留存与记忆晋升分开。**
 
@@ -90,7 +90,7 @@
 
 **相关知识点：** Event Log、写入门控、Memory Consolidation、语义去重、版本化记忆、TTL、冷存储、配额、用户删除权。
 <a id="ctx-007"></a>
-### 大模型如何判断哪些长期记忆需要召回？如何避免召回太多导致上下文污染？（DeepSeek二面）
+### 6. 大模型如何判断哪些长期记忆需要召回？如何避免召回太多导致上下文污染？（DeepSeek二面）
 
 **长期记忆是否召回应由当前任务的信息缺口决定，召回多少则由相关性、可信度和Token预算共同限制，不能让模型无条件读取历史。**
 
@@ -102,7 +102,7 @@
 
 **相关知识点：** Query Analyzer、Memory Retrieval、元数据过滤、Memory Reranker、时间衰减、Token Budget、Context Pollution、冲突消解、消融实验。
 <a id="ctx-010"></a>
-### 长短期记忆如何设计提取、压缩和冲突更新机制？（千问一面）
+### 7. 长短期记忆如何设计提取、压缩和冲突更新机制？（千问一面）
 
 **长短期记忆治理应形成“事件提取—价值筛选—可追溯压缩—版本化冲突更新”的闭环，任何模型摘要都不能直接成为权威事实。**
 
@@ -114,7 +114,7 @@
 
 **相关知识点：** Memory Extraction、写入门控、Memory Compression、证据溯源、双时态版本、语义去重、冲突消解、用户纠正、审计日志。
 <a id="ctx-013"></a>
-### 多轮对话优化：多轮对话不断累积历史消息，上下文过长、Token消耗过高该怎么优化（Agent初级）
+### 8. 多轮对话优化：多轮对话不断累积历史消息，上下文过长、Token消耗过高该怎么优化（Agent初级）
 
 **多轮对话不能持续回传全部消息，应把原始历史外置存储，并将当前窗口、结构化状态和滚动摘要动态组合成最小充分上下文。**
 
@@ -126,7 +126,7 @@
 
 **相关知识点：** Sliding Window、Rolling Summary、Session State、Token Budget、Prompt Cache、摘要版本、原文回退、Memory写入门控。
 <a id="ctx-018"></a>
-### 为什么要区分短期 Memory 和长期 Memory？
+### 9. 为什么要区分短期 Memory 和长期 Memory？
 
 **短期Memory与长期Memory必须区分，因为当前任务状态需要低延迟、强一致和及时清理，而跨会话知识需要筛选、持久化及按需检索。**
 
@@ -144,7 +144,7 @@
 
 **相关知识点：** Working Memory、Session State、Long-term Memory、Checkpoint、Memory Scoring、记忆晋升、时间衰减、版本管理。
 <a id="ctx-019"></a>
-### Memory 如何更新？
+### 10. Memory 如何更新？
 
 **Memory更新应采用“候选事实抽取—同一实体匹配—冲突分类—追加版本—索引刷新”的流程，不能直接覆盖原记录。**
 
@@ -156,7 +156,7 @@
 
 **相关知识点：** Memory Update、Append-only Version、Valid Time、Supersedes、Outbox、幂等索引、冲突分类、墓碑删除、Memory Consolidation。
 <a id="ctx-020"></a>
-### Memory 如何压缩？
+### 11. Memory 如何压缩？
 
 **Memory压缩应减少重复和低价值细节，同时保留可执行约束、关键事实、时间关系与原文证据，并保证摘要可回溯、可更新。**
 
@@ -168,7 +168,7 @@
 
 **相关知识点：** Memory Compression、Summary Memory、语义去重、分层摘要、证据溯源、冷存储、语义漂移、事实保留率、原文回退。
 <a id="ctx-021"></a>
-### Memory 如何检索？
+### 12. Memory 如何检索？
 
 **Memory检索应先判断当前任务是否需要历史，再通过权限过滤、多路召回、记忆重排和Token预算选出最小有效记忆集。**
 
@@ -180,7 +180,7 @@
 
 **相关知识点：** Query Analyzer、Memory Retrieval、元数据过滤、混合召回、Memory Reranker、时间衰减、Top-N、上下文污染、消融实验。
 <a id="ctx-023"></a>
-### 反思结果如何存储到长期记忆？
+### 13. 反思结果如何存储到长期记忆？
 
 **反思结果应先转化为可验证、可检索、可更新的结构化经验，再经过质量门写入长期记忆，而不是保存整段模型自述。**
 
@@ -192,7 +192,7 @@
 
 **相关知识点：** Reflection、Episodic Memory、Semantic Memory、经验单元、Trace、质量门、置信度、事件溯源、记忆衰减、负迁移。
 <a id="ctx-025"></a>
-### 如何避免错误经验被写入长期记忆？
+### 14. 如何避免错误经验被写入长期记忆？
 
 **避免错误经验进入长期记忆的关键是将“生成候选”和“正式写入”彻底分离，以证据、验证和生命周期治理建立多级质量门。**
 
@@ -204,7 +204,7 @@
 
 **相关知识点：** 候选记忆、Provenance、Trace、置信度、事实核验、冲突检测、沙箱复现、交叉评审、版本化、记忆撤销、负迁移。
 <a id="ctx-027"></a>
-### 短期记忆和上下文窗口是什么关系？
+### 15. 短期记忆和上下文窗口是什么关系？
 
 **短期记忆是Agent维护的任务状态，上下文窗口是模型单次推理接收的Token容量；前者是逻辑层，后者是计算边界。**
 
@@ -222,7 +222,7 @@
 
 **相关知识点：** Short-term Memory、Context Window、Session State、Context Builder、Token Budget、状态持久化、分层摘要、按需检索、Lost in the Middle。
 <a id="ctx-028"></a>
-### 长期记忆为什么要使用向量数据库？
+### 16. 长期记忆为什么要使用向量数据库？
 
 **向量数据库把自然语言经验映射为语义向量，使Agent能按含义而非相同关键词召回长期记忆。**
 
@@ -240,7 +240,7 @@
 
 **相关知识点：** Embedding、Vector Database、ANN、HNSW、IVF、Metadata Filter、Hybrid Search、Reranker、Recall@K、索引版本。
 <a id="ctx-029"></a>
-### Agent为什么需要分层记忆体系？
+### 17. Agent为什么需要分层记忆体系？
 
 **Agent需要分层记忆，因为任务状态、会话信息和长期知识的时效、可信度及访问成本不同，统一存储会造成污染与低效召回。**
 
@@ -258,7 +258,7 @@
 
 **相关知识点：** Working Memory、Short-term Memory、Long-term Memory、记忆巩固、Memory Scoring、时间衰减、版本管理、ACL、墓碑删除。
 <a id="ctx-030"></a>
-### 工作记忆、短期记忆和长期记忆有什么区别？
+### 18. 工作记忆、短期记忆和长期记忆有什么区别？
 
 **三类记忆分别服务于单步推理、会话连续性和跨会话复用，差异在生命周期、内容、写入门槛与召回方式。**
 
@@ -276,7 +276,7 @@
 
 **相关知识点：** Working Memory、Short-term Memory、Long-term Memory、Session State、Episodic Memory、Semantic Memory、记忆巩固、Memory Retrieval、ACL。
 <a id="ctx-031"></a>
-### Memory Service应该独立部署吗？
+### 19. Memory Service应该独立部署吗？
 
 **Memory Service不应默认独立部署；当记忆被多个Agent复用、需要独立扩缩容或统一安全治理时，服务化才具有明确收益。**
 
@@ -295,7 +295,7 @@
 
 **相关知识点：** Memory Service、模块化单体、微服务、ACL、多租户、幂等写入、最终一致性、熔断降级、数据新鲜度、SLO。
 <a id="ctx-032"></a>
-### 长期记忆如何存储、召回和更新？
+### 20. 长期记忆如何存储、召回和更新？
 
 **长期记忆应采用“原始记录与索引分离、混合召回、版本化更新”的闭环，确保内容可追溯、结果可解释、错误可撤销。**
 
@@ -309,7 +309,7 @@
 
 **相关知识点：** Memory Schema、Provenance、Hybrid Retrieval、Reranker、Memory Scoring、Supersedes、幂等更新、墓碑删除、影子索引、记忆衰减。
 <a id="ctx-033"></a>
-### 记忆层如何避免信息污染？
+### 21. 记忆层如何避免信息污染？
 
 **记忆层防污染必须同时控制写入来源、事实状态、命名空间、召回权重和撤销机制，不能让一次对话或模型输出直接成为可信记忆。**
 
@@ -323,7 +323,7 @@
 
 **相关知识点：** Memory Poisoning、候选记忆、Provenance、Namespace、ACL、Prompt Injection、置信度、Supersedes、墓碑删除、负迁移、审计追踪。
 <a id="ctx-034"></a>
-### 如何设计记忆检索机制？
+### 22. 如何设计记忆检索机制？
 
 **记忆检索应采用“触发判断—权限过滤—多路召回—可信重排—受控注入”的链路，只返回当前决策所需的少量有效记忆。**
 
@@ -335,7 +335,7 @@
 
 **相关知识点：** Retrieval Router、Query Construction、Hybrid Retrieval、RRF、Memory Scoring、Reranker、时间衰减、冲突检测、动态Top-K、负迁移。
 <a id="ctx-035"></a>
-### 什么信息应该进入长期记忆？
+### 23. 什么信息应该进入长期记忆？
 
 **应进入长期记忆的是未来任务可复用、经过验证、边界明确且允许保存的信息，而不是对话中出现过的全部内容。**
 
@@ -347,7 +347,7 @@
 
 **相关知识点：** Long-term Memory、记忆价值评分、用户偏好、Semantic Memory、Episodic Memory、Provenance、数据最小化、有效期、负迁移。
 <a id="ctx-036"></a>
-### 什么信息不应该被长期保存？
+### 24. 什么信息不应该被长期保存？
 
 **不具备持续价值、无法验证、超出授权或一旦泄露会造成高风险的信息，不应进入长期记忆。**
 
@@ -359,7 +359,7 @@
 
 **相关知识点：** 数据最小化、敏感个人信息、Secrets Management、Purpose Limitation、TTL、脱敏、Right to Erasure、Prompt Injection、删除证明。
 <a id="ctx-037"></a>
-### Skill和Memory有什么区别？
+### 25. Skill和Memory有什么区别？
 
 **Skill定义“任务怎样完成”，Memory记录“发生过什么或已知什么”；前者是方法资产，后者是有主体和时间的事实或经历。**
 
@@ -378,7 +378,7 @@
 
 **相关知识点：** Skill、Memory、输入输出契约、任务路由、Episodic Memory、Semantic Memory、经验抽象、版本发布、Memory Retrieval、负迁移。
 <a id="ctx-038"></a>
-### Agent如何自动沉淀长期记忆？
+### 26. Agent如何自动沉淀长期记忆？
 
 **Agent自动沉淀长期记忆应采用候选生成、价值评分、证据验证、受控发布和反馈淘汰的异步管线，自动化不代表无审核写入。**
 
@@ -390,7 +390,7 @@
 
 **相关知识点：** Memory Consolidation、Event Trigger、Trace、候选记忆、价值评分、质量门、实体归一、幂等写入、反馈学习、记忆衰减。
 <a id="ctx-039"></a>
-### 记忆压缩（Memory Compression）如何实现？
+### 27. 记忆压缩（Memory Compression）如何实现？
 
 **记忆压缩应在保留事实、约束、时间关系和证据引用的前提下降低冗余，原始记录必须可回溯，摘要不能成为不可逆的唯一事实源。**
 
@@ -408,7 +408,7 @@
 
 **相关知识点：** Memory Compression、去重、抽取式压缩、分层摘要、Progressive Retrieval、Supersedes、摘要漂移、事实一致性、压缩率。
 <a id="ctx-040"></a>
-### 如何设计遗忘机制（Forgetting Mechanism）？
+### 28. 如何设计遗忘机制（Forgetting Mechanism）？
 
 **遗忘机制应先降低低价值记忆的召回概率，再按保留策略归档或删除，使容量受控，同时保证重要事实可追溯、法定删除可证明。**
 
@@ -420,7 +420,7 @@
 
 **相关知识点：** Forgetting Curve、Memory Decay、TTL、重要度评分、冷归档、记忆压缩、墓碑删除、Right to Erasure、删除证明、数据保留策略。
 <a id="ctx-041"></a>
-### Agent 的短期记忆和长期记忆如何协同工作？
+### 29. Agent 的短期记忆和长期记忆如何协同工作？
 
 **短期记忆负责维持当前会话状态，长期记忆提供跨会话事实与经验；两者通过按需召回、受控晋级和结果反馈形成双向协同。**
 
@@ -432,7 +432,7 @@
 
 **相关知识点：** Short-term Memory、Long-term Memory、Memory Consolidation、Session State、按需召回、候选记忆、置信度更新、反馈闭环、负迁移。
 <a id="ctx-042"></a>
-### Episodic Memory 和 Semantic Memory 有什么区别？
+### 30. Episodic Memory 和 Semantic Memory 有什么区别？
 
 **Episodic Memory记录任务经历，Semantic Memory保存脱离单次事件仍成立的事实和规律；前者回答“发生过什么”，后者回答“知道什么”。**
 
@@ -450,7 +450,7 @@
 
 **相关知识点：** Episodic Memory、Semantic Memory、Case-based Reasoning、Memory Consolidation、知识归纳、Provenance、适用条件、反例、负迁移。
 <a id="ctx-043"></a>
-### 长期记忆如何避免无限增长？
+### 31. 长期记忆如何避免无限增长？
 
 **长期记忆必须同时控制写入速率、重复数据、保留期限和低价值内容，通过容量预算与生命周期策略把增长限制在可预测范围内。**
 
@@ -462,7 +462,7 @@
 
 **相关知识点：** 容量预算、写入配额、Deduplication、Memory Compression、TTL、Memory Decay、冷存储、墓碑删除、数据保留策略、容量水位。
 <a id="ctx-044"></a>
-### Agent 如何判断哪些内容值得写入长期记忆？
+### 32. Agent 如何判断哪些内容值得写入长期记忆？
 
 **Agent应通过持续价值、可信度、复用概率、独特性和保存风险进行多维评分，只有证据充分且预期收益高于治理成本的内容才写入长期记忆。**
 
@@ -474,7 +474,7 @@
 
 **相关知识点：** Memory Scoring、候选记忆、价值门、证据等级、数据最小化、硬规则、阈值校准、Human-in-the-loop、负迁移、TTL。
 <a id="ctx-045"></a>
-### Memory Compression 应该如何设计？
+### 33. Memory Compression 应该如何设计？
 
 **Memory Compression应设计为可回溯、分层和任务感知的压缩服务，在减少Token与存储成本的同时，严格保护事实、约束、异常和证据关系。**
 
@@ -486,7 +486,7 @@
 
 **相关知识点：** Memory Compression、结构化抽取、语义去重、Hierarchical Summary、Source ID、派生视图、事实一致性、Progressive Retrieval、摘要漂移。
 <a id="ctx-046"></a>
-### Memory Summary 和原始记忆如何关联？
+### 34. Memory Summary 和原始记忆如何关联？
 
 **Memory Summary是原始记忆的版本化派生视图，通过稳定ID、覆盖范围和哈希建立可追溯关联，不能替代原始证据。**
 
@@ -498,7 +498,7 @@
 
 **相关知识点：** Memory Summary、Event Sourcing、Source ID、Lineage、派生视图、反向索引、Staleness、引用完整性、版本化摘要、Progressive Retrieval。
 <a id="ctx-047"></a>
-### 动态长期记忆的存储结构应该如何设计？
+### 35. 动态长期记忆的存储结构应该如何设计？
 
 **动态长期记忆应分离原始事件、规范记录和派生索引，以稳定memory_id连接各层，支持检索、纠错和删除。**
 
@@ -516,7 +516,7 @@
 
 **相关知识点：** Event Sourcing、Memory Schema、Polyglot Persistence、Outbox、CDC、Supersedes、Bitemporal Data、影子索引、墓碑删除、索引对账。
 <a id="ctx-049"></a>
-### 动态记忆如何进行过期清理？
+### 36. 动态记忆如何进行过期清理？
 
 **动态记忆清理应由有效期和保留策略驱动，采用“查询过滤、写入墓碑、异步删除、跨存储对账”的流程。**
 
@@ -528,7 +528,7 @@
 
 **相关知识点：** TTL、Retention Policy、Legal Hold、墓碑删除、Delete Event、幂等消费、死信队列、索引对账、Crypto-shredding、删除证明。
 <a id="ctx-050"></a>
-### Agent Reflection 结果是否应该进入长期记忆？
+### 37. Agent Reflection 结果是否应该进入长期记忆？
 
 **Reflection结果不应默认进入长期记忆；只有被执行证据验证、能够跨任务复用且风险可控的经验，才适合经过质量门后沉淀。**
 
@@ -540,7 +540,7 @@
 
 **相关知识点：** Reflection、候选记忆、事后合理化、Trace、经验单元、质量门、独立验证、Episodic Memory、Skill晋级、负迁移。
 <a id="ctx-051"></a>
-### 动态记忆如何避免错误经验累积？
+### 38. 动态记忆如何避免错误经验累积？
 
 **动态记忆必须将候选生成、证据验证、正式发布和反馈淘汰分离，避免模型自评形成自我强化的错误经验闭环。**
 
@@ -552,7 +552,7 @@
 
 **相关知识点：** Memory Poisoning、候选记忆、质量门、Trace、经验验证、置信度校准、反馈回路、负迁移、概念漂移、版本回滚。
 <a id="ctx-053"></a>
-### Skill 是否属于静态长期记忆？
+### 39. Skill 是否属于静态长期记忆？
 
 **Skill可视为广义静态能力资产，但不应归入Memory；它保存可执行方法，而不是主体事实或经历。**
 
@@ -570,7 +570,7 @@
 
 **相关知识点：** Skill、Static Knowledge、Long-term Memory、Semantic Memory、输入输出契约、经验抽象、能力路由、版本发布、回归测试、运行时授权。
 <a id="ctx-055"></a>
-### 静态记忆和动态记忆如何联合检索？
+### 40. 静态记忆和动态记忆如何联合检索？
 
 **联合检索应先分域召回，再校准分数和可信重排，使静态知识提供权威事实，动态记忆补充任务情境。**
 
@@ -587,7 +587,7 @@
 
 **相关知识点：** Federated Retrieval、Query Router、Hybrid Search、RRF、Score Calibration、Reranker、Memory Scoring、冲突消解、动态配额、NDCG。
 <a id="ctx-057"></a>
-### 如何解决不同记忆来源之间的冲突？
+### 41. 如何解决不同记忆来源之间的冲突？
 
 **记忆冲突应通过来源等级、时间有效性、主体匹配和证据强度显式消解，不能用向量相似度或“最后写入覆盖”简单决定。**
 
@@ -599,7 +599,7 @@
 
 **相关知识点：** Conflict Resolution、Provenance、Source Authority、Bitemporal Data、Supersedes、Contradiction Detection、置信度校准、Human-in-the-loop。
 <a id="ctx-058"></a>
-### Memory Rerank 应该基于哪些特征？
+### 42. Memory Rerank 应该基于哪些特征？
 
 **Memory Rerank应联合建模相关性、可信度、时效、主体匹配、适用范围和历史效用，不能只按向量相似度排序。**
 
@@ -620,7 +620,7 @@
 > **题目合并：** `CTX-059` 已并入 [CTX-139 · 如何评估记忆召回效果？](memory-3.md#ctx-139)。
 
 <a id="ctx-060"></a>
-### 记忆检索延迟过高如何优化？
+### 43. 记忆检索延迟过高如何优化？
 
 **记忆检索优化应先用Trace定位过滤、查询、融合、重排或网络瓶颈，再按召回质量约束实施并行、裁剪、缓存和索引调优。**
 
@@ -632,7 +632,7 @@
 
 **相关知识点：** Distributed Tracing、P95/P99、HNSW、IVF、Reranker Distillation、批处理、早停、权限缓存、冷热分层、熔断降级。
 <a id="ctx-061"></a>
-### 企业级 Agent 的 Memory Service 应该如何设计？
+### 44. 企业级 Agent 的 Memory Service 应该如何设计？
 
 **Memory Service应写入、检索、更新、删除和审计，并以租户隔离、版本治理、读降级和写恢复为基础。**
 
@@ -644,7 +644,7 @@
 
 **相关知识点：** Memory Service、Candidate API、Outbox、CDC、Polyglot Persistence、多租户、Active Version、幂等、熔断降级、SLO、灾难恢复。
 <a id="ctx-062"></a>
-### 多 Agent 如何共享长期记忆？
+### 45. 多 Agent 如何共享长期记忆？
 
 **多Agent应通过Memory Service和授权命名空间共享记忆，以事件和版本同步，不能互相复制Prompt或开放全量存储。**
 
@@ -662,7 +662,7 @@
 
 **相关知识点：** Shared Memory、Memory Service、Namespace、Service Identity、授权视图、Event Bus、乐观锁、版本水位、缓存失效、审计追踪。
 <a id="ctx-063"></a>
-### 如何实现 Memory 的高可用和容灾？
+### 46. 如何实现 Memory 的高可用和容灾？
 
 **Memory高可用应保证读路径可降级、写事件不丢失、派生索引可重建，并以明确RPO和RTO设计跨可用区及跨地域恢复。**
 
@@ -674,7 +674,7 @@
 
 **相关知识点：** High Availability、Disaster Recovery、RPO、RTO、Outbox、事件重放、版本水位、派生索引、熔断降级、故障演练。
 <a id="ctx-064"></a>
-### 如何保证长期记忆的数据安全和合规性？
+### 47. 如何保证长期记忆的数据安全和合规性？
 
 **记忆安全应落实数据最小化、用途限制、服务端授权、全链路加密、可证明删除和持续审计，不能依赖Prompt声明保护数据。**
 
@@ -686,7 +686,7 @@
 
 **相关知识点：** Data Minimization、Purpose Limitation、IAM、RBAC、ABAC、KMS、Encryption、TTL、Right to Erasure、删除证明、审计日志。
 <a id="ctx-065"></a>
-### Agent 的记忆系统如何进行监控和审计？
+### 48. Agent 的记忆系统如何进行监控和审计？
 
 **记忆系统监控关注健康与质量变化，审计回答谁在何时因何目的读写了什么；两者必须通过Trace和不可篡改事件关联。**
 
@@ -703,7 +703,7 @@
 
 **相关知识点：** Observability、Metrics、Logs、Distributed Tracing、Audit Trail、SLO、Tamper-evident Log、MTTD、MTTR、删除证明。
 <a id="ctx-066"></a>
-### MCP、RAG、Memory 三者在 Agent 架构中的职责边界是什么？
+### 49. MCP、RAG、Memory 三者在 Agent 架构中的职责边界是什么？
 
 **MCP解决外部能力如何被标准化调用，RAG解决权威知识如何被检索并引用，Memory解决用户与任务状态如何跨轮延续。**
 

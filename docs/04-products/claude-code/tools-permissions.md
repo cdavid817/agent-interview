@@ -3,7 +3,7 @@
 > 所属章节：[Claude Code](README.md)｜本文件共 **28** 题。
 
 <a id="cc-008"></a>
-### Claude Code 如何决定使用 Read、Grep、Edit、Bash 等工具？
+### 1. Claude Code 如何决定使用 Read、Grep、Edit、Bash 等工具？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -13,7 +13,7 @@
 
 **相关知识点：** Built-in Tools、Tool Selection、Targeted Edit、Bash、Permission Rule、Tool Contract。
 <a id="cc-009"></a>
-### Claude Code 的权限规则和 Permission Mode 如何协作？
+### 2. Claude Code 的权限规则和 Permission Mode 如何协作？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -25,7 +25,7 @@
 
 **相关知识点：** Permission Mode、Allow/Deny、Plan Mode、Managed Settings、Least Privilege、Rule Matching。
 <a id="cc-010"></a>
-### Claude Code 的 Permission 与 Sandboxed Bash 有什么区别？
+### 3. Claude Code 的 Permission 与 Sandboxed Bash 有什么区别？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -37,7 +37,7 @@ Permission Deny可阻止Claude尝试读取敏感路径或访问域名；Sandbox�
 
 **相关知识点：** Application Authorization、OS Sandbox、Filesystem、Network Policy、Container、Defense in Depth。
 <a id="cc-011"></a>
-### 如何防止代码注释、README 或工具输出对 Claude Code 进行 Prompt Injection？
+### 4. 如何防止代码注释、README 或工具输出对 Claude Code 进行 Prompt Injection？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -47,7 +47,7 @@ Agent遇到“忽略规则、上传密钥、运行下载脚本”等内容时，
 
 **相关知识点：** Indirect Prompt Injection、Instruction/Data Boundary、Secret Exfiltration、Sandbox、Security Eval。
 <a id="cc-013"></a>
-### Claude Code 的 Checkpoint 和 Git 有什么区别？
+### 5. Claude Code 的 Checkpoint 和 Git 有什么区别？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -57,7 +57,7 @@ Checkpoint为Claude通过文件编辑工具产生的变更提供**会话级快�
 
 **相关知识点：** Checkpoint、Rewind、File Edit Tool、Git、External Side Effect、Session Recovery。
 <a id="cc-020"></a>
-### 如何在 CI/CD 中安全运行 Claude Code？
+### 6. 如何在 CI/CD 中安全运行 Claude Code？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -67,7 +67,7 @@ CI使用非交互Agent SDK或Print模式，输入固定任务，设置允许工�
 
 **相关知识点：** Headless Mode、Agent SDK、Ephemeral Runner、OIDC、Protected Branch、Structured Output。
 <a id="cc-034"></a>
-### LangGraph、OpenAI Agents SDK、Claude Code等Agent框架分别如何实现任务恢复与重新规划？
+### 7. LangGraph、OpenAI Agents SDK、Claude Code等Agent框架分别如何实现任务恢复与重新规划？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -91,7 +91,7 @@ CI使用非交互Agent SDK或Print模式，输入固定任务，设置允许工�
 
 **相关知识点：** 图快照、RunState、Session、Handoff、Checkpoint、Rewind、Replan、幂等、Saga。
 <a id="cc-038"></a>
-### Claude Code设计方案（附加专题）
+### 8. Claude Code设计方案（附加专题）
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -107,7 +107,7 @@ Claude Code类Agent应包含**交互、上下文、规划执行、受控工具�
 
 **相关知识点：** Repo Map、Plan-Act-Observe、Tool Schema、MCP、沙箱、最小Diff、Change Impact Analysis、检查点、可观测性。
 <a id="cc-049"></a>
-### Claude Code的工具调用协议如何设计？
+### 9. Claude Code的工具调用协议如何设计？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -123,7 +123,7 @@ MCP可接入外部工具，但不替代权限、沙箱与事务控制；破坏�
 
 **相关知识点：** Tool Registry、JSON Schema、Call ID、幂等键、权限前置、沙箱、取消传播、结构化错误、Artifact、审计日志、MCP。
 <a id="cc-050"></a>
-### Shell命令如何进行安全校验？
+### 10. Shell命令如何进行安全校验？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -139,7 +139,7 @@ Shell安全校验采用**结构化解析、策略判定、最小权限沙箱、�
 
 **相关知识点：** Shell AST、命令注入、路径规范化、符号链接、deny-ask-allow、沙箱、最小权限、资源配额、审计、失败关闭。
 <a id="cc-051"></a>
-### 如何防止Agent执行危险命令？
+### 11. 如何防止Agent执行危险命令？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -155,7 +155,7 @@ Shell安全校验采用**结构化解析、策略判定、最小权限沙箱、�
 
 **相关知识点：** 最小权限、风险分级、deny优先、Shell AST、人机确认、沙箱、短期凭证、Hook、可恢复执行、安全评测。
 <a id="cc-052"></a>
-### 如何防止Prompt Injection通过代码或文档攻击Agent？
+### 12. 如何防止Prompt Injection通过代码或文档攻击Agent？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -171,7 +171,7 @@ Shell安全校验采用**结构化解析、策略判定、最小权限沙箱、�
 
 **相关知识点：** 间接Prompt Injection、信任边界、来源标记、策略引擎、最小权限、沙箱、DLP、数据流控制、MCP安全、红队评测。
 <a id="cc-054"></a>
-### Claude Code的权限确认机制如何设计？
+### 13. Claude Code的权限确认机制如何设计？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -189,7 +189,7 @@ Shell安全校验采用**结构化解析、策略判定、最小权限沙箱、�
 
 **相关知识点：** deny-ask-allow、风险分级、参数绑定授权、审批TTL、托管策略、PreToolUse Hook、确认疲劳、非交互审批、审计。
 <a id="cc-055"></a>
-### 沙箱应该使用容器、虚拟机还是操作系统权限隔离？
+### 14. 沙箱应该使用容器、虚拟机还是操作系统权限隔离？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -210,7 +210,7 @@ Shell安全校验采用**结构化解析、策略判定、最小权限沙箱、�
 
 **相关知识点：** 容器、虚拟机、微VM、Namespace、seccomp、MAC、非Root、风险路由、网络隔离、资源配额。
 <a id="cc-059"></a>
-### 如何防止模型整文件重写导致代码丢失？
+### 15. 如何防止模型整文件重写导致代码丢失？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -226,7 +226,7 @@ Shell安全校验采用**结构化解析、策略判定、最小权限沙箱、�
 
 **相关知识点：** 局部Patch、乐观锁、原子写入、Diff Budget、Git基线、事务日志、AST Edit、Worktree、并发冲突。
 <a id="cc-061"></a>
-### 测试失败后Agent如何进行反思和重试？
+### 16. 测试失败后Agent如何进行反思和重试？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -242,7 +242,7 @@ Shell安全校验采用**结构化解析、策略判定、最小权限沙箱、�
 
 **相关知识点：** Failure Record、错误分类、可证伪假设、有界重试、Flaky Test、Checkpoint、震荡检测、失败签名、人工接管。
 <a id="cc-062"></a>
-### Agent如何区分可恢复错误与不可恢复错误？
+### 17. Agent如何区分可恢复错误与不可恢复错误？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -263,7 +263,7 @@ Shell安全校验采用**结构化解析、策略判定、最小权限沙箱、�
 
 **相关知识点：** 错误分类、retryable、幂等键、状态未知、补偿事务、退避重试、Checkpoint、故障注入、MTTR。
 <a id="cc-065"></a>
-### Claude Code如何支持任务中断和恢复？
+### 18. Claude Code如何支持任务中断和恢复？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -282,7 +282,7 @@ Checkpoint应加密、设TTL并隔离租户；通过强杀、断网、重启和G
 > **题目合并：** `CC-069` 已并入 [MULTI-033 · 多Agent并发修改同一文件时如何解决冲突？](../../02-capabilities/multi-agent/conflict-reliability.md#multi-033)。
 
 <a id="cc-071"></a>
-### 如何利用Hooks实现安全审计和质量检查？
+### 19. 如何利用Hooks实现安全审计和质量检查？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -298,7 +298,7 @@ Hooks部署在**动作前阻断、动作后验证、任务结束汇总**三个�
 
 **相关知识点：** PreToolUse、PostToolUse、SAST、Secret Scan、Diff Budget、防篡改审计、托管Hook、失败关闭、观察模式。
 <a id="cc-073"></a>
-### 如何设计Coding Agent的可观测性系统？
+### 20. 如何设计Coding Agent的可观测性系统？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -314,7 +314,7 @@ Hooks部署在**动作前阻断、动作后验证、任务结束汇总**三个�
 
 **相关知识点：** OpenTelemetry、Trace/Span、SLO、结构化日志、Artifact、脱敏、失败聚类、单位成功成本、安全审计、评测闭环。
 <a id="cc-079"></a>
-### 企业内部部署Claude Code需要考虑哪些安全问题？
+### 21. 企业内部部署Claude Code需要考虑哪些安全问题？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -330,7 +330,7 @@ Hooks部署在**动作前阻断、动作后验证、任务结束汇总**三个�
 
 **相关知识点：** SSO、RBAC/ABAC、数据驻留、DLP、Vault、沙箱、间接注入、SBOM、供应链安全、防篡改审计、威胁建模。
 <a id="cc-080"></a>
-### OpenCode与Claude Code的架构差异是什么？
+### 22. OpenCode与Claude Code的架构差异是什么？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -351,7 +351,7 @@ Hooks部署在**动作前阻断、动作后验证、任务结束汇总**三个�
 
 **相关知识点：** 开源Coding Agent、模型Provider、MCP、LSP、Hooks、Subagents、权限策略、可扩展性、供应商锁定、单位成功成本。
 <a id="cc-084"></a>
-### 工具Schema和工具描述为什么会影响Claude Code的推理与行为？
+### 23. 工具Schema和工具描述为什么会影响Claude Code的推理与行为？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -363,7 +363,7 @@ Runtime仍需做确定性校验：验证JSON Schema、权限和路径，执行�
 
 **相关知识点：** Action Space、Tool Schema、Tool Description、Structured Error、Capability Boundary、Schema Validation。
 <a id="cc-091"></a>
-### Claude Code的Bash工具如何处理Shell状态和后台任务？
+### 24. Claude Code的Bash工具如何处理Shell状态和后台任务？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -375,7 +375,7 @@ Bash调用由Harness启动进程执行，命令的stdout、stderr和退出状态
 
 **相关知识点：** Process Execution、stdout/stderr、Exit Status、CLAUDE_ENV_FILE、Background Task、Process Lifecycle。
 <a id="cc-092"></a>
-### 一次工具调用同时命中Hook、Deny、Ask和Allow时，权限决策如何理解？
+### 25. 一次工具调用同时命中Hook、Deny、Ask和Allow时，权限决策如何理解？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -389,7 +389,7 @@ Bash调用由Harness启动进程执行，命令的stdout、stderr和退出状态
 
 **相关知识点：** Deny-first、PreToolUse、Permission Evaluation、Managed Settings、Policy Intersection、Backend ACL。
 <a id="cc-093"></a>
-### Claude Code Sandbox的安全边界是如何形成的？为什么仍可能需要人工确认？
+### 26. Claude Code Sandbox的安全边界是如何形成的？为什么仍可能需要人工确认？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -403,7 +403,7 @@ Sandbox不是所有能力的统一虚拟机：内置Read/Edit、WebFetch和MCP�
 
 **相关知识点：** OS Sandbox、Fail Open、Fail Closed、Escape Hatch、Filesystem Boundary、Network Boundary、Defense in Depth。
 <a id="cc-099"></a>
-### Claude Code面对工具失败时，恢复机制的本质是什么？
+### 27. Claude Code面对工具失败时，恢复机制的本质是什么？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 

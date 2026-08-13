@@ -3,7 +3,7 @@
 > 所属章节：[Claude Code](README.md)｜本文件共 **7** 题。
 
 <a id="cc-015"></a>
-### Claude Code Hooks 与普通Prompt规则有什么区别？
+### 1. Claude Code Hooks 与普通Prompt规则有什么区别？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -13,7 +13,7 @@ PreToolUse可校验或阻止命令，PostToolUse可格式化、扫描或记录�
 
 **相关知识点：** PreToolUse、PostToolUse、Stop Hook、SubagentStart、Matcher、Deterministic Guardrail。
 <a id="cc-021"></a>
-### Claude Agent SDK 与直接调用 Claude API 或 Claude Code CLI 有什么区别？
+### 2. Claude Agent SDK 与直接调用 Claude API 或 Claude Code CLI 有什么区别？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -23,7 +23,7 @@ SDK适合需要程序控制工具、权限、Hooks、流式消息、Session和�
 
 **相关知识点：** Messages API、CLI、Claude Agent SDK、Embedded Runtime、Stateful Session、Build vs Buy。
 <a id="cc-022"></a>
-### Claude Agent SDK 如何处理结构化输出、审批和用户澄清？
+### 3. Claude Agent SDK 如何处理结构化输出、审批和用户澄清？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -33,7 +33,7 @@ Schema校验失败应重试有限次数或返回明确错误，不能把未验�
 
 **相关知识点：** Structured Output、JSON Schema、Approval Flow、User Input、Session Binding、TOCTOU。
 <a id="cc-024"></a>
-### Claude Code 和 Agent SDK 如何建设可观测性？
+### 4. Claude Code 和 Agent SDK 如何建设可观测性？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -43,7 +43,7 @@ Schema校验失败应重试有限次数或返回明确错误，不能把未验�
 
 **相关知识点：** OpenTelemetry、Trace、Metric、Event、Session ID、Cost Attribution、PII Redaction。
 <a id="cc-056"></a>
-### MCP在Claude Code中承担什么作用？
+### 5. MCP在Claude Code中承担什么作用？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -59,7 +59,7 @@ MCP是客户端与能力提供方的协议，Tool Calling是模型提出调用�
 
 **相关知识点：** MCP Client/Server、Tools、Resources、Schema、延迟加载、Tool Calling、ACL、Hook、间接注入、熔断降级。
 <a id="cc-072"></a>
-### Claude Code如何集成Git、IDE和CI/CD？
+### 6. Claude Code如何集成Git、IDE和CI/CD？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
@@ -75,7 +75,7 @@ MCP是客户端与能力提供方的协议，Tool Calling是模型提出调用�
 
 **相关知识点：** Git Worktree、LSP、PR工作流、CI门禁、Check Run、Webhook、SAST、Canary、短期凭证、端到端追踪。
 <a id="cc-094"></a>
-### Claude Code Hooks在Runtime中类似什么机制？其阻断语义如何实现？
+### 7. Claude Code Hooks在Runtime中类似什么机制？其阻断语义如何实现？
 
 > 核验日期：2026-08-03｜来源：[官方资料](references.md)
 

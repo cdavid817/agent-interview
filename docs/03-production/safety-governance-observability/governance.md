@@ -3,7 +3,7 @@
 > 所属章节：[安全、治理与可观测性](README.md)｜本文件共 **41** 题。
 
 <a id="gov-020"></a>
-### Human-in-the-Loop 应该放在哪一层？
+### 1. Human-in-the-Loop 应该放在哪一层？
 
 HITL应布置在**目标确认、计划审批、高风险工具执行前、异常处置和最终验收**等边界，在人类仍能阻止不可逆后果时介入。
 
@@ -22,7 +22,7 @@ HITL应布置在**目标确认、计划审批、高风险工具执行前、异�
 
 **相关知识点：** HITL、Risk-based Approval、Dry Run、Approval Token、计划版本、Policy Recheck、人工接管率、职责分离。
 <a id="gov-028"></a>
-### 如何设计Agent执行状态机？
+### 2. 如何设计Agent执行状态机？
 
 Agent状态机应以**显式状态、受控迁移、持久化事件、幂等消费和检查点**约束执行；模型提出动作，Engine依据事件与策略推进状态。
 
@@ -36,7 +36,7 @@ Agent状态机应以**显式状态、受控迁移、持久化事件、幂等消�
 
 **相关知识点：** 有限状态机、Event Sourcing、乐观锁、CAS、Checkpoint、Lease、幂等、补偿事务、级联取消。
 <a id="gov-033"></a>
-### DAG执行过程如何可视化？
+### 3. DAG执行过程如何可视化？
 
 DAG可视化应表达**结构、实时状态、时间和证据**，使用户迅速判断执行位置、阻塞原因、关键路径和验收结果。
 
@@ -50,7 +50,7 @@ DAG可视化应表达**结构、实时状态、时间和证据**，使用户迅�
 
 **相关知识点：** DAG、Critical Path、Gantt、Waterfall、状态事件、拓扑布局、增量更新、时间旅行、可访问性。
 <a id="gov-036"></a>
-### Token消耗如何统计和分析？
+### 4. Token消耗如何统计和分析？
 
 Token统计应以**可归因、可对账、可优化**为目标，说明消耗由哪个租户、任务、步骤和上下文产生，以及是否转化为有效结果。
 
@@ -62,7 +62,7 @@ Token统计应以**可归因、可对账、可优化**为目标，说明消耗�
 
 **相关知识点：** Token Usage、Cost Attribution、价格版本、Tokenizer、Prompt Caching、Budget Guardrail、单位经济性、成本对账。
 <a id="gov-041"></a>
-### OpenTelemetry在Agent系统中如何落地？
+### 5. OpenTelemetry在Agent系统中如何落地？
 
 OpenTelemetry落地应先统一**语义与上下文传播**，再接入SDK，使模型、RAG、Tool和Agent链路可归因。
 
@@ -80,7 +80,7 @@ OpenTelemetry落地应先统一**语义与上下文传播**，再接入SDK，使
 > **题目合并：** `GOV-052` 已并入 [TOOL-115 · Tool参数生成错误如何治理？](../../02-capabilities/tools-skills-mcp/sandbox-security-1.md#tool-115)。
 
 <a id="gov-056"></a>
-### OpenTelemetry在Agent中的应用方式？
+### 6. OpenTelemetry在Agent中的应用方式？
 
 OpenTelemetry统一**Trace、Metric、Log和上下文传播**，把模型、Workflow、RAG与Tool关联为可下钻证据。
 
@@ -92,7 +92,7 @@ OpenTelemetry统一**Trace、Metric、Log和上下文传播**，把模型、Work
 
 **相关知识点：** OpenTelemetry、Auto Instrumentation、Manual Span、Semantic Convention、Span Link、Exemplar、Collector、Tail Sampling。
 <a id="gov-064"></a>
-### 如何实现Agent全链路成本分析？
+### 7. 如何实现Agent全链路成本分析？
 
 全链路成本应将**模型、检索、工具、计算、存储、人工和失败浪费**归因到Task、Step及Tenant，以单成功任务成本衡量效率。
 
@@ -106,7 +106,7 @@ OpenTelemetry统一**Trace、Metric、Log和上下文传播**，把模型、Work
 
 **相关知识点：** Cost Attribution、Unit Economics、Price Version、Cost/Success、共享成本分摊、Budget Guardrail、账单对账、A/B Test。
 <a id="gov-069"></a>
-### Replay和Retry有什么区别？
+### 8. Replay和Retry有什么区别？
 
 Replay与Retry的差异在于**目的和副作用**：Replay用于分析，默认不改变生产状态；Retry用于继续业务，可能产生真实副作用。
 
@@ -127,7 +127,7 @@ Replay与Retry的差异在于**目的和副作用**：Replay用于分析，默�
 
 **相关知识点：** Replay、Retry、OperationID、Attempt、Checkpoint、幂等、副作用隔离、Retry Budget、Unknown State。
 <a id="gov-070"></a>
-### Event Sourcing为什么适合Agent系统？
+### 9. Event Sourcing为什么适合Agent系统？
 
 Event Sourcing适合Agent，因为其具有**长流程、非确定决策、异步协作、重试和审计需求**；事实事件能解释为何形成当前状态。
 
@@ -141,7 +141,7 @@ Event Sourcing适合Agent，因为其具有**长流程、非确定决策、异�
 
 **相关知识点：** Event Sourcing、Projection、Snapshot、Checkpoint、CausationID、Optimistic Lock、Outbox、幂等、Schema Evolution。
 <a id="gov-072"></a>
-### Agent运行过程中如何安全中断？
+### 10. Agent运行过程中如何安全中断？
 
 安全中断应采用**协作式取消、状态机、检查点和副作用确认**，保证不再启动新动作、已提交动作状态明确且任务可恢复。
 
@@ -155,7 +155,7 @@ Event Sourcing适合Agent，因为其具有**长流程、非确定决策、异�
 
 **相关知识点：** Cooperative Cancellation、Cancellation Token、Grace Period、Commit Boundary、Checkpoint、Unknown State、补偿事务、级联取消。
 <a id="gov-073"></a>
-### 多Agent任务如何实现级联取消？
+### 11. 多Agent任务如何实现级联取消？
 
 级联取消应以**任务树、取消令牌、租约和收敛协议**实现。父任务取消后阻止新子任务，并确认每个分支进入终态或补偿态。
 
@@ -169,7 +169,7 @@ Event Sourcing适合Agent，因为其具有**长流程、非确定决策、异�
 
 **相关知识点：** Task Tree、CancelEpoch、Cancellation Token、Lease、Ack Barrier、Saga、幂等取消、孤儿任务。
 <a id="gov-074"></a>
-### 长时间工具调用如何实现强制终止？
+### 12. 长时间工具调用如何实现强制终止？
 
 长工具调用应采用**Deadline、协作取消、进程隔离与分级强杀**。强杀是最后手段，还须处理资源回收、副作用未知和恢复。
 
@@ -183,7 +183,7 @@ Event Sourcing适合Agent，因为其具有**长流程、非确定决策、异�
 
 **相关知识点：** Deadline、Cooperative Cancellation、Supervisor、Process Group、Lease、Grace Period、Resource Limit、Unknown State、幂等。
 <a id="gov-075"></a>
-### 任务暂停和任务取消有什么区别？
+### 13. 任务暂停和任务取消有什么区别？
 
 暂停与取消的区别是**是否继续原任务**：暂停保留上下文等待续跑；取消终止意图，不再执行未开始步骤，必要时补偿副作用。
 
@@ -202,7 +202,7 @@ Event Sourcing适合Agent，因为其具有**长流程、非确定决策、异�
 
 **相关知识点：** Pause、Cancel、Checkpoint、Cancellation Token、Lease、DAG Version、Unknown State、补偿事务、状态机。
 <a id="gov-078"></a>
-### Human-in-the-Loop如何设计状态流转？
+### 14. Human-in-the-Loop如何设计状态流转？
 
 HITL应作为**状态机中的持久化等待节点**，不能阻塞线程。审批必须绑定计划、参数和资源版本，实质变化后原审批失效。
 
@@ -216,7 +216,7 @@ HITL应作为**状态机中的持久化等待节点**，不能阻塞线程。审
 
 **相关知识点：** HITL、Approval State Machine、Checkpoint、CAS、Four-eyes Principle、职责分离、Approval Binding、审批超时。
 <a id="gov-079"></a>
-### 人工修改执行计划后如何继续执行？
+### 15. 人工修改执行计划后如何继续执行？
 
 人工修改后应生成**新DAG版本**，完成差异分析、约束校验和审批判断后再从Checkpoint继续，不得覆盖运行中计划。
 
@@ -230,7 +230,7 @@ HITL应作为**状态机中的持久化等待节点**，不能阻塞线程。审
 
 **相关知识点：** DAG Versioning、Plan Patch、Semantic Diff、Checkpoint、Stale Node、CAS、Approval Invalidation、Artifact Reuse。
 <a id="gov-081"></a>
-### 如何记录人工干预历史？
+### 16. 如何记录人工干预历史？
 
 人工干预应作为**不可变审计事件与计划版本**记录，回答谁在何时、以何权限、基于何证据修改了什么及其影响。
 
@@ -244,7 +244,7 @@ HITL应作为**状态机中的持久化等待节点**，不能阻塞线程。审
 
 **相关知识点：** Intervention Event、Audit Trail、WORM、Hash Chain、Plan Diff、Correction Event、Break-glass、数据留存。
 <a id="gov-082"></a>
-### Coding Agent如何支持人工Review代码？
+### 17. Coding Agent如何支持人工Review代码？
 
 Coding Agent应将Review设计为**基于Diff、证据和风险的合并门禁**。Agent生成可验证变更，人工判断业务意图与高风险事项。
 
@@ -258,7 +258,7 @@ Coding Agent应将Review设计为**基于Diff、证据和风险的合并门禁**
 
 **相关知识点：** Pull Request、Protected Branch、CODEOWNERS、Diff Review、SAST、Secret Scan、Risk Score、Commit SHA、合并门禁。
 <a id="gov-085"></a>
-### 审批链路如何与企业OA系统集成？
+### 18. 审批链路如何与企业OA系统集成？
 
 与OA集成应采用**Agent负责风险与执行，OA负责身份与审批**的分工，通过Approval Gateway隔离不同OA协议。
 
@@ -272,7 +272,7 @@ Coding Agent应将Review设计为**基于Diff、证据和风险的合并门禁**
 
 **相关知识点：** Approval Gateway、SSO/IAM、Webhook签名、mTLS、Nonce、幂等回调、职责分离、审批对账、参数绑定。
 <a id="gov-088"></a>
-### Workflow Engine如何支持断点续跑？
+### 19. Workflow Engine如何支持断点续跑？
 
 Workflow Engine通过**持久化状态机、Event、Checkpoint、幂等和租约**续跑，保证故障后只推进依赖满足的未完成节点。
 
@@ -286,7 +286,7 @@ Workflow Engine通过**持久化状态机、Event、Checkpoint、幂等和租约
 
 **相关知识点：** Durable Workflow、Event Sourcing、Checkpoint、Lease、CAS、Outbox、幂等、Retry Budget、Saga。
 <a id="gov-090"></a>
-### 分布式Agent状态如何保持一致？
+### 20. 分布式Agent状态如何保持一致？
 
 分布式Agent应按**关键状态强约束、消息至少一次、副作用最终一致**分层设计。任务状态由权威Workflow Store管理，本地只作缓存。
 
@@ -300,7 +300,7 @@ Workflow Engine通过**持久化状态机、Event、Checkpoint、幂等和租约
 
 **相关知识点：** CAS、Optimistic Concurrency、Lease Epoch、Transactional Outbox、Inbox、幂等、Saga、Eventual Consistency、Reconciliation。
 <a id="gov-095"></a>
-### 如何建立Agent质量基线（Baseline）？
+### 21. 如何建立Agent质量基线（Baseline）？
 
 质量基线是**固定任务分布、评测协议和可追溯版本下的参考结果**，用于判断新版本是否真实提升。
 
@@ -314,7 +314,7 @@ Workflow Engine通过**持久化状态机、Event、Checkpoint、幂等和租约
 
 **相关知识点：** Baseline、Golden Set、Stratified Sampling、Rubric、Data Leakage、置信区间、Failure Taxonomy、Regression Test。
 <a id="gov-103"></a>
-### 长链路任务如何设计验收节点？
+### 22. 长链路任务如何设计验收节点？
 
 长链路应采用**里程碑验收＋最终验收＋高风险前置门禁**，尽早阻断错误传播，同时避免每步都做昂贵评测。
 
@@ -328,7 +328,7 @@ Workflow Engine通过**持久化状态机、Event、Checkpoint、幂等和租约
 
 **相关知识点：** Milestone Validation、Acceptance Contract、Hard Gate、Artifact Attestation、EvidenceID、Stale Artifact、Risk-based Testing、端到端验收。
 <a id="gov-105"></a>
-### 单元测试通过是否等于任务完成？
+### 23. 单元测试通过是否等于任务完成？
 
 不等于。单元测试只证明**被覆盖的局部行为符合预期**，任务完成还要求需求、集成、回归、安全和业务验收均通过。
 
@@ -342,7 +342,7 @@ Workflow Engine通过**持久化状态机、Event、Checkpoint、幂等和租约
 
 **相关知识点：** Unit Test、Integration/E2E、Acceptance Criteria、Test Coverage、Mutation Testing、SAST、Hidden Test、Task Resolution。
 <a id="gov-130"></a>
-### 如何判断是Recall问题还是Rerank问题？
+### 24. 如何判断是Recall问题还是Rerank问题？
 
 判断关键是**同时保存初始候选集与Rerank结果**，检查黄金文档的位置变化；只看最终TopK无法归因。
 
@@ -361,7 +361,7 @@ Workflow Engine通过**持久化状态机、Event、Checkpoint、幂等和租约
 
 **相关知识点：** 两阶段检索、Recall@N、NDCG@K、MRR、Oracle实验、组件消融、黄金候选、元数据过滤、上下文截断。
 <a id="gov-131"></a>
-### 知识库覆盖率如何计算？
+### 25. 知识库覆盖率如何计算？
 
 知识库覆盖率应定义为**目标业务知识中，可被检索系统正确访问并支持回答的比例**，不能用“已导入文档数÷计划文档数”替代。
 
@@ -375,7 +375,7 @@ Workflow Engine通过**持久化状态机、Event、Checkpoint、幂等和租约
 
 **相关知识点：** 文档覆盖率、问题覆盖率、加权覆盖率、可检索覆盖、知识缺口、权威来源、数据新鲜度、黄金Query。
 <a id="gov-142"></a>
-### 如何设计Agent自动反思与自修复机制？
+### 26. 如何设计Agent自动反思与自修复机制？
 
 自动反思应是**由外部证据触发、受预算约束的验证—诊断—修复循环**，不是让同一模型无限“再想一次”；高风险副作用不得自动重放。
 
@@ -391,7 +391,7 @@ Workflow Engine通过**持久化状态机、Event、Checkpoint、幂等和租约
 
 **相关知识点：** Reflexion、Verifier、Failure Taxonomy、预算控制、振荡检测、幂等性、检查点、补偿事务、人工接管。
 <a id="gov-149"></a>
-### 如何识别低质量Chunk？
+### 27. 如何识别低质量Chunk？
 
 低质量Chunk是指**语义不完整、缺少上下文、含噪或过期，并导致误召、漏召或错误生成**的片段，应结合规则与下游效果识别。
 
@@ -411,7 +411,7 @@ Workflow Engine通过**持久化状态机、Event、Checkpoint、幂等和租约
 > **题目合并：** `GOV-158` 已并入 [TOOL-062 · Human-in-the-Loop应该在哪些场景下介入？](../../02-capabilities/tools-skills-mcp/sandbox-security-1.md#tool-062)。
 
 <a id="gov-160"></a>
-### 如何限制Agent执行危险Shell命令？
+### 28. 如何限制Agent执行危险Shell命令？
 
 限制危险Shell的核心是**减少通用Shell暴露、在执行前解析语义、在沙箱中强制最小权限**；字符串黑名单容易被编码、别名和命令组合绕过。
 
@@ -430,7 +430,7 @@ Workflow Engine通过**持久化状态机、Event、Checkpoint、幂等和租约
 > **题目合并：** `GOV-164` 已并入 [TOOL-068 · Agent如何实现命令沙箱隔离？](../../02-capabilities/tools-skills-mcp/sandbox-security-1.md#tool-068)。
 
 <a id="gov-165"></a>
-### 如何保证Agent只能修改指定目录？
+### 29. 如何保证Agent只能修改指定目录？
 
 保证目录边界应由**系统挂载与权限最终强制、应用路径校验前置防护**；字符串前缀无法防御相对路径、链接和竞态。
 
@@ -464,7 +464,7 @@ Workflow Engine通过**持久化状态机、Event、Checkpoint、幂等和租约
 > **题目合并：** `GOV-180` 已并入 [TOOL-084 · 如何平衡Agent自动化效率与人工审批带来的成本？](../../02-capabilities/tools-skills-mcp/sandbox-security-1.md#tool-084)。
 
 <a id="gov-185"></a>
-### Agent修改代码后如何保证不会引入安全漏洞？
+### 30. Agent修改代码后如何保证不会引入安全漏洞？
 
 无法保证零漏洞，应建立**最小变更、自动门禁、人工复核和可回滚发布**的纵深流程，将风险降到可接受范围。
 

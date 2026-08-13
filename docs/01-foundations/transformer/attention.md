@@ -3,7 +3,7 @@
 > 所属章节：[Transformer](README.md)｜本文件共 **26** 题。
 
 <a id="trans-003"></a>
-### 为什么需要Multi-Head？为什么Attention可以看成动态加权？（百度Agent）
+### 1. 为什么需要Multi-Head？为什么Attention可以看成动态加权？（百度Agent）
 
 Multi-Head通过多组QKV投影，在不同子空间中**并行学习多种关系**；Attention的权重由当前Token匹配实时计算，并非固定参数。
 
@@ -23,7 +23,7 @@ Multi-Head通过多组QKV投影，在不同子空间中**并行学习多种关�
 
 **相关知识点：** Multi-Head Attention、Head Dimension、动态权重、QKV子空间、Head冗余、剪枝、消融实验、KV Cache。
 <a id="trans-005"></a>
-### Attention复杂度很高，如果上下文特别长，会怎么优化？（百度Agent）
+### 2. Attention复杂度很高，如果上下文特别长，会怎么优化？（百度Agent）
 
 标准Dense Attention对长度`n`的计算近似**O(n²)**，KV Cache则随层数、Token和KV头增长。优化应区分Prefill、Decode和业务上下文。
 
@@ -42,7 +42,7 @@ Multi-Head通过多组QKV投影，在不同子空间中**并行学习多种关�
 
 **相关知识点：** O(n²)、FlashAttention、Sparse Attention、Sliding Window、Linear Attention、KV Cache、MQA、GQA、RAG。
 <a id="trans-015"></a>
-### Self-Attention的完整计算流程是什么？
+### 3. Self-Attention的完整计算流程是什么？
 
 Self-Attention把序列映射为Q、K、V，通过**缩放点积得到权重并聚合上下文**。流程还包括位置、Mask、多头、输出投影、残差和归一化。
 
@@ -62,7 +62,7 @@ Self-Attention把序列映射为Q、K、V，通过**缩放点积得到权重并�
 
 **相关知识点：** QKV、Scaled Dot-Product Attention、Softmax、Causal Mask、Multi-Head、Residual、LayerNorm、KV Cache。
 <a id="trans-016"></a>
-### Attention公式为什么要除以√d_k？
+### 4. Attention公式为什么要除以√d_k？
 
 除以`√d_k`是为了**控制Q·K点积的方差**，避免维度增大时logits绝对值过大，使Softmax过早饱和、梯度变小和训练不稳定。
 
@@ -83,7 +83,7 @@ Self-Attention把序列映射为Q、K、V，通过**缩放点积得到权重并�
 
 **相关知识点：** Scaled Dot-Product、方差传播、Softmax Saturation、Temperature、Gradient、LayerNorm、QK Normalization。
 <a id="trans-017"></a>
-### Softmax在Attention中的作用是什么？
+### 5. Softmax在Attention中的作用是什么？
 
 Softmax把Query对Key的logits转换为**非负、和为1的动态权重**，使模型对Value可微加权，并突出相关位置。
 
@@ -102,7 +102,7 @@ Softmax把Query对Key的logits转换为**非负、和为1的动态权重**，使
 
 **相关知识点：** Softmax、Logits、Convex Combination、Mask、Temperature、数值稳定、梯度饱和、Sparse Attention。
 <a id="trans-018"></a>
-### Multi-Head Attention为什么比单头效果好？
+### 6. Multi-Head Attention为什么比单头效果好？
 
 多头更强的核心是把模型维度划分为多个**独立投影与归一化的注意力子空间**，允许同一位置同时关注不同关系、距离和特征；单头只有一张权重分布，容易把多种关系压缩在一起。
 
@@ -121,7 +121,7 @@ Softmax把Query对Key的logits转换为**非负、和为1的动态权重**，使
 
 **相关知识点：** Multi-Head Attention、Projection Subspace、Head Diversity、W_O、Head Pruning、消融实验。
 <a id="trans-019"></a>
-### Multi-Head Attention的本质是什么？
+### 7. Multi-Head Attention的本质是什么？
 
 Multi-Head Attention本质是对同一序列做多组**低维、内容相关的动态信息路由**：每个头在独立投影空间中计算“向谁取信息”，再把多路结果融合回统一表示。
 
@@ -140,7 +140,7 @@ Multi-Head Attention本质是对同一序列做多组**低维、内容相关的�
 
 **相关知识点：** Dynamic Routing、QKV、Projection、Independent Softmax、Head Dimension、W_O、Head Redundancy。
 <a id="trans-020"></a>
-### Self-Attention和Cross-Attention有什么区别？
+### 8. Self-Attention和Cross-Attention有什么区别？
 
 两者公式相同，区别在于**Q、K、V来源**：Self-Attention在同一序列内建模；Cross-Attention让一个序列查询另一个序列。
 
@@ -161,7 +161,7 @@ Multi-Head Attention本质是对同一序列做多组**低维、内容相关的�
 
 **相关知识点：** Self-Attention、Cross-Attention、Encoder-Decoder、Causal Mask、多模态对齐、KV复用。
 <a id="trans-021"></a>
-### Transformer为什么能替代RNN和LSTM？
+### 9. Transformer为什么能替代RNN和LSTM？
 
 Transformer占优主要因为**训练可并行、长距离路径短、扩展性强**。它并非完全替代RNN/LSTM；严格流式和低功耗任务仍可能使用循环结构。
 
@@ -180,7 +180,7 @@ Transformer占优主要因为**训练可并行、长距离路径短、扩展性�
 
 **相关知识点：** RNN、LSTM、Self-Attention、并行训练、长距离依赖、Scaling、KV Cache、状态空间模型。
 <a id="trans-022"></a>
-### 为什么Q、K、V要拆成三组矩阵，而不是一个矩阵完成计算？
+### 10. 为什么Q、K、V要拆成三组矩阵，而不是一个矩阵完成计算？
 
 Q、K、V拆分是为了让同一隐藏状态学习**查询需求、匹配索引和传递内容**三种不同角色。一个共享投影会强迫“如何匹配”和“传递什么”使用同一表示，限制表达能力。
 
@@ -199,7 +199,7 @@ Q、K、V拆分是为了让同一隐藏状态学习**查询需求、匹配索引
 
 **相关知识点：** QKV、Asymmetric Matching、Cross-Attention、Fused QKV Projection、MQA、GQA、KV Cache、消融。
 <a id="trans-023"></a>
-### Multi-Head的Head数量如何确定？
+### 11. Multi-Head的Head数量如何确定？
 
 Head数量应与**模型维度、每头维度、硬件、KV Cache和任务质量**联合确定。通常满足`d_model = h × d_head`，并保持足够`d_head`。
 
@@ -218,7 +218,7 @@ Head数量应与**模型维度、每头维度、硬件、KV Cache和任务质量
 
 **相关知识点：** Head Count、Head Dimension、MHA、GQA、MQA、Tensor Parallelism、KV Cache、消融实验。
 <a id="trans-025"></a>
-### 不同Head学到的内容是否真的不同？如何验证？
+### 12. 不同Head学到的内容是否真的不同？如何验证？
 
 不同Head常表现出**分工与冗余并存**，不能凭一张Attention Map断言某头“理解语法”。验证应结合表示相似、干预和任务因果影响。
 
@@ -237,7 +237,7 @@ Head数量应与**模型维度、每头维度、硬件、KV Cache和任务质量
 
 **相关知识点：** Attention Head、CKA、SVCCA、Probing、Head Mask、Pruning、Causal Intervention、Path Patching。
 <a id="trans-026"></a>
-### Attention与CNN的本质区别是什么？
+### 13. Attention与CNN的本质区别是什么？
 
 Attention是**内容依赖的动态全局路由**，CNN是**位置共享的固定局部核**。前者计算任意位置间权重，后者在局部邻域提取模式。
 
@@ -256,7 +256,7 @@ Attention是**内容依赖的动态全局路由**，CNN是**位置共享的固�
 
 **相关知识点：** CNN、Self-Attention、Inductive Bias、Receptive Field、Translation Equivariance、Sliding Window。
 <a id="trans-027"></a>
-### Attention与RNN的本质区别是什么？
+### 14. Attention与RNN的本质区别是什么？
 
 RNN通过**递归隐藏状态压缩历史**，Attention通过**对可见Token计算动态权重并聚合**。差异在信息路径、并行性、状态容量和长序列成本。
 
@@ -275,7 +275,7 @@ RNN通过**递归隐藏状态压缩历史**，Attention通过**对可见Token计
 
 **相关知识点：** RNN、Hidden State、Self-Attention、长距离依赖、并行训练、KV Cache、状态空间模型。
 <a id="trans-028"></a>
-### Multi-Head是否存在冗余Head问题？如何压缩？
+### 15. Multi-Head是否存在冗余Head问题？如何压缩？
 
 多头中普遍存在**功能相似或低贡献的冗余Head**，但冗余不等于可无损删除；应以因果消融验证，而非仅按Attention图相似度剪枝。
 
@@ -294,7 +294,7 @@ RNN通过**递归隐藏状态压缩历史**，Attention通过**对可见Token计
 
 **相关知识点：** Head Redundancy、Structured Pruning、Taylor Importance、Group Lasso、Distillation、GQA、MQA、KV量化。
 <a id="trans-031"></a>
-### KV Cache的作用是什么？为什么能加速推理？
+### 16. KV Cache的作用是什么？为什么能加速推理？
 
 KV Cache在自回归解码中保存各层历史Token的**Key和Value张量**，后续只计算新Token的Q、K、V，并让新Query读取历史KV；它消除了不变前缀的重复计算。
 
@@ -306,7 +306,7 @@ KV Cache在自回归解码中保存各层历史Token的**Key和Value张量**，�
 
 **相关知识点：** 自回归解码、Prefill、Decode、Key/Value、Prefix Cache、GQA、MQA、PagedAttention、KV量化、显存带宽。
 <a id="trans-032"></a>
-### Attention时间复杂度为什么是O(n²)？
+### 17. Attention时间复杂度为什么是O(n²)？
 
 标准Self-Attention具有**关于序列长度的二次复杂度**，因为每个Query都与全部Key计算相关性，长度为$n$时形成$n\times n$矩阵；二次项来自Token两两交互。
 
@@ -318,7 +318,7 @@ KV Cache在自回归解码中保存各层历史Token的**Key和Value张量**，�
 
 **相关知识点：** QK点积、Softmax、矩阵乘法、FlashAttention、KV Cache、Sparse Attention、Linear Attention、计算复杂度、显存复杂度。
 <a id="trans-033"></a>
-### 长文本场景下Attention面临哪些性能瓶颈？
+### 18. 长文本场景下Attention面临哪些性能瓶颈？
 
 长文本Attention的瓶颈是**计算、显存、带宽、通信与调度相互放大**；训练、Prefill和Decode阶段的主导矛盾不同。
 
@@ -330,7 +330,7 @@ KV Cache在自回归解码中保存各层历史Token的**Key和Value张量**，�
 
 **相关知识点：** 二次复杂度、FlashAttention、Prefill、Decode、KV Cache、显存带宽、上下文并行、PagedAttention、连续批处理、TTFT。
 <a id="trans-034"></a>
-### Flash Attention优化了什么问题？
+### 19. Flash Attention优化了什么问题？
 
 FlashAttention主要优化标准Attention的**显存读写与中间矩阵占用**。它是精确算法，不改变$O(n^2d)$复杂度，而以IO感知设计减少数据搬运。
 
@@ -342,7 +342,7 @@ FlashAttention主要优化标准Attention的**显存读写与中间矩阵占用*
 
 **相关知识点：** IO-Aware Algorithm、HBM、SRAM、Tiling、Kernel Fusion、Online Softmax、重计算、Tensor Core、FlashAttention。
 <a id="trans-036"></a>
-### MQA与GQA为什么能够降低KV Cache开销？
+### 20. MQA与GQA为什么能够降低KV Cache开销？
 
 MQA和GQA通过**减少Key/Value头并让Query头共享KV**降低缓存。KV Cache不保存历史Q，其容量近似正比于KV头数。
 
@@ -360,7 +360,7 @@ MQA和GQA通过**减少Key/Value头并让Query头共享KV**降低缓存。KV Cac
 
 **相关知识点：** MHA、MQA、GQA、KV Head、KV Cache公式、显存带宽、张量并行、蒸馏、PagedAttention、KV量化。
 <a id="trans-037"></a>
-### 推理阶段KV Cache为什么能加速生成？
+### 21. 推理阶段KV Cache为什么能加速生成？
 
 自回归生成的历史前缀不变，KV Cache将各层历史Token的**Key和Value作为可复用状态**保存，使每步只处理新增Token，消除重复前向。
 
@@ -377,7 +377,7 @@ MQA和GQA通过**减少Key/Value头并让Query头共享KV**降低缓存。KV Cac
 
 **相关知识点：** 自回归生成、Prefill、Decode、增量推理、KV Cache、Prefix Cache、GQA、PagedAttention、内存带宽。
 <a id="trans-038"></a>
-### Transformer训练和推理阶段Attention计算有什么区别？
+### 22. Transformer训练和推理阶段Attention计算有什么区别？
 
 两阶段的数学形式一致，但执行方式不同：训练做**全序列并行注意力并保留反向状态**；推理先Prefill，再以KV Cache增量Decode。
 
@@ -395,7 +395,7 @@ MQA和GQA通过**减少Key/Value头并让Query头共享KV**降低缓存。KV Cac
 
 **相关知识点：** Causal Mask、Teacher Forcing、Prefill、Decode、KV Cache、反向传播、FlashAttention、连续批处理、投机解码。
 <a id="trans-042"></a>
-### Linear Attention与标准Attention的区别是什么？
+### 23. Linear Attention与标准Attention的区别是什么？
 
 标准Attention计算全部Q-K配对；Linear Attention通过**核分解或状态递推改变乘法顺序**，避免$n\times n$矩阵，使长度复杂度近似线性，但通常不等价于Softmax Attention。
 
@@ -413,7 +413,7 @@ MQA和GQA通过**减少Key/Value头并让Query头共享KV**降低缓存。KV Cac
 
 **相关知识点：** Kernel Trick、Feature Map、Causal Recurrence、Softmax Attention、低秩近似、状态空间模型、FlashAttention、Sparse Attention。
 <a id="trans-043"></a>
-### 在Agent长上下文场景下，Attention计算成本如何优化？
+### 24. 在Agent长上下文场景下，Attention计算成本如何优化？
 
 Agent不应持续拼接全部对话和工具结果；应**先减少进入Attention的Token，再优化计算与缓存**，同时保证状态、证据和可恢复性。
 
@@ -425,7 +425,7 @@ Agent不应持续拼接全部对话和工具结果；应**先减少进入Attenti
 
 **相关知识点：** Agent Memory、工作记忆、结构化摘要、Hybrid Retrieval、Rerank、Prefix Cache、Chunked Prefill、KV量化、上下文压缩、可追溯性。
 <a id="trans-053"></a>
-### Causal Mask 与 Teacher Forcing 如何配合？训练时为什么不算“偷看答案”？（高级）
+### 25. Causal Mask 与 Teacher Forcing 如何配合？训练时为什么不算“偷看答案”？（高级）
 
 **Teacher Forcing把真实Token序列一次性输入模型以并行计算所有位置；Causal Mask允许位置`t`使用不晚于`t`的输入Token，并用该位置Logit预测`t+1`，因此看不到待预测的未来Token。**
 
@@ -435,7 +435,7 @@ Agent不应持续拼接全部对话和工具结果；应**先减少进入Attenti
 
 **相关知识点：** Causal Language Modeling、Teacher Forcing、Shifted Labels、Attention Mask、Loss Mask、Exposure Bias。
 <a id="trans-055"></a>
-### FlashAttention、PagedAttention 和 Continuous Batching 分别优化什么？（高级）
+### 26. FlashAttention、PagedAttention 和 Continuous Batching 分别优化什么？（高级）
 
 **三者处于不同层次：FlashAttention优化单次Attention算子的显存IO，PagedAttention优化KV Cache内存管理，Continuous Batching优化服务端请求调度。**
 

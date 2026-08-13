@@ -3,7 +3,7 @@
 > 所属章节：[Agent 核心架构](README.md)｜本文件共 **4** 题。
 
 <a id="arc-008"></a>
-### 为什么没用 LangChain、Spring AI 这些 Agent 开发框架？（豆包一面）
+### 1. 为什么没用 LangChain、Spring AI 这些 Agent 开发框架？（豆包一面）
 
 **【核心思路】**
 不是否定框架，而是依据**控制需求、团队能力和维护成本**选型。原型或标准Agent可优先使用成熟框架；只有当现有抽象无法满足关键的状态、Context、性能或治理需求时，才下沉到LangGraph等低层Runtime或自研薄Harness。
@@ -26,7 +26,7 @@
 
 **相关知识点：** LangGraph、LangChain、Spring AI、Harness Engineering、Agent Runtime、可观测性、可靠性、评测体系。
 <a id="arc-009"></a>
-### LangChain 和 LangGraph 的区别以及各自适用场景（Agent 初级）
+### 2. LangChain 和 LangGraph 的区别以及各自适用场景（Agent 初级）
 
 **【核心思路】**
 当前 LangChain 是构建 Agent 和 LLM 应用的**高层框架**，其 `create_agent` 本身构建在 LangGraph 之上；LangGraph 是面向长运行、有状态工作流的**低层编排 Runtime**。区别不是“LangChain 只能线性、LangGraph 才能做 Agent”，而是**抽象层级与控制粒度**。
@@ -50,7 +50,7 @@
 
 **相关知识点：** LangGraph、LangChain、Agent Runtime、Multi-Agent、Tool Calling、Workflow、Checkpoint、RAG。
 <a id="arc-015"></a>
-### LangGraph、AutoGen、CrewAI 等框架分别适合哪些场景？
+### 3. LangGraph、AutoGen、CrewAI 等框架分别适合哪些场景？
 
 **【核心思路】**
 **LangGraph**：底层状态机图，精细控制、生产级，适合需要复杂控制流/断点/人在环路的严肃 Agent。**AutoGen**（微软）：**对话驱动**的多 Agent（Group Chat），适合研究型、探索型的多角色协作。**CrewAI**：**角色化流程**（Role/Task/Crew）抽象，上手快，适合快速搭建结构清晰的分工流水线。
@@ -71,7 +71,7 @@
 
 **相关知识点：** LangGraph、AutoGen、CrewAI、Multi-Agent、状态机、Checkpoint、Agent Architecture。
 <a id="arc-044"></a>
-### 如何结合 Reflection、ReAct、Plan-and-Execute 等模式构建执行框架？
+### 4. 如何结合 Reflection、ReAct、Plan-and-Execute 等模式构建执行框架？
 
 **【核心思路】**
 分层组合：**顶层用 Plan-and-Execute** 做全局规划（拆解 TODO，减少漂移、省 Token）；**每个子任务内用 ReAct** 循环（推理-行动-观察，处理不确定）；**失败或质量不达标时用 Reflection** 自我反思纠错后重试。即"**Plan 定方向、ReAct 干活、Reflection 纠错**"的三层执行框架，兼顾全局可控与局部灵活。
