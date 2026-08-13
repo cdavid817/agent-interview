@@ -3,9 +3,7 @@
 > 所属章节：[任务规划与执行](README.md)｜本文件共 **50** 题。
 
 <a id="plan-144"></a>
-### PLAN-144 · 多Agent协作场景下如何进行失败恢复？
-
-> 稳定 ID：`PLAN-144`｜原题号：144
+### 多Agent协作场景下如何进行失败恢复？
 
 **多Agent失败恢复应由中心Orchestrator维护权威状态，通过Lease、幂等消息和Checkpoint隔离局部故障。**
 
@@ -26,9 +24,7 @@
 
 **相关知识点：** Orchestrator、Lease、Heartbeat、Fencing Token、幂等消息、Checkpoint、Reducer、Saga。
 <a id="plan-145"></a>
-### PLAN-145 · Agent任务回滚和数据库事务回滚有什么区别？
-
-> 稳定 ID：`PLAN-145`｜原题号：145
+### Agent任务回滚和数据库事务回滚有什么区别？
 
 **数据库事务回滚撤销单一事务域内尚未提交的变更，Agent任务回滚则协调跨工具、跨系统且可能已经可见的副作用。**
 
@@ -50,9 +46,7 @@
 
 **相关知识点：** ACID、WAL、MVCC、事务边界、Saga、补偿事务、Transactional Outbox、最终一致性。
 <a id="plan-146"></a>
-### PLAN-146 · Checkpoint机制如何设计才能支持断点续跑？
-
-> 稳定 ID：`PLAN-146`｜原题号：146
+### Checkpoint机制如何设计才能支持断点续跑？
 
 **可断点续跑的Checkpoint必须是版本化、原子提交且与外部副作用边界一致的完整执行快照。**
 
@@ -73,9 +67,7 @@
 
 **相关知识点：** Checkpoint、原子快照、CAS、Event Sourcing、Lease、幂等键、安全点、Exactly-Once。
 <a id="plan-147"></a>
-### PLAN-147 · Agent如何实现任务暂停、恢复和回放？
-
-> 稳定 ID：`PLAN-147`｜原题号：147
+### Agent如何实现任务暂停、恢复和回放？
 
 **暂停、恢复和回放应建立在同一套持久化状态机上，但分别解决安全停机、继续执行和历史重建三个问题。**
 
@@ -96,9 +88,7 @@
 
 **相关知识点：** 持久化状态机、Checkpoint、Event Log、Lease、审计回放、确定性重放、Sandbox、Replay Run。
 <a id="plan-148"></a>
-### PLAN-148 · 如何设计补偿事务（Compensation）机制？
-
-> 稳定 ID：`PLAN-148`｜原题号：148
+### 如何设计补偿事务（Compensation）机制？
 
 **补偿事务应把长任务拆成可独立提交的本地事务，并为每个已提交副作用定义可幂等执行的业务逆操作。**
 
@@ -118,9 +108,7 @@
 
 **相关知识点：** Compensation、Saga、Orchestration、Choreography、TCC、Outbox、幂等性、最终一致性。
 <a id="plan-149"></a>
-### PLAN-149 · Planner和RePlanner的职责边界是什么？
-
-> 稳定 ID：`PLAN-149`｜原题号：149
+### Planner和RePlanner的职责边界是什么？
 
 **Planner负责从目标构造首版可执行计划，RePlanner负责在执行证据表明原计划失效时生成受约束的新版本。**
 
@@ -141,9 +129,7 @@
 
 **相关知识点：** Planner、RePlanner、Plan Version、局部重规划、DAG、Observation、Retry、Repair、计划抖动。
 <a id="plan-150"></a>
-### PLAN-150 · Agent如何定位失败原因来自模型还是工具？
-
-> 稳定 ID：`PLAN-150`｜原题号：150
+### Agent如何定位失败原因来自模型还是工具？
 
 **定位模型或工具故障的关键是保存调用边界证据，并通过分层验证与可控重放确定最早出现偏差的环节。**
 
@@ -164,9 +150,7 @@
 
 **相关知识点：** 故障归因、分布式追踪、Schema校验、Counterfactual Replay、Adapter、根因分析、Sandbox。
 <a id="plan-151"></a>
-### PLAN-151 · 长链路Agent任务如何保证最终一致性？
-
-> 稳定 ID：`PLAN-151`｜原题号：151
+### 长链路Agent任务如何保证最终一致性？
 
 **长链路任务无法依赖单一ACID事务，应通过本地原子提交、幂等消息、Saga补偿和周期对账使状态最终收敛。**
 
@@ -188,9 +172,7 @@
 
 **相关知识点：** 最终一致性、业务不变量、Transactional Outbox、幂等消费、Saga、补偿DAG、对账、死信队列。
 <a id="plan-154"></a>
-### PLAN-154 · 企业级Agent如何实现高可用和故障恢复？
-
-> 稳定 ID：`PLAN-154`｜原题号：154
+### 企业级Agent如何实现高可用和故障恢复？
 
 **企业级Agent应通过无状态计算、多副本持久化、故障隔离和跨区域灾备，实现服务可用与任务可恢复。**
 
@@ -211,9 +193,7 @@
 
 **相关知识点：** 高可用、故障恢复、灾难恢复、RTO、RPO、Lease、Fencing Token、熔断器、Bulkhead。
 <a id="plan-156"></a>
-### PLAN-156 · 如何评估RePlanning是否有效？
-
-> 稳定 ID：`PLAN-156`｜原题号：156
+### 如何评估RePlanning是否有效？
 
 **RePlanning是否有效，应以故障后的增量任务成功率为核心，并同时衡量恢复成本、计划稳定性和安全性。**
 
@@ -235,9 +215,7 @@
 
 **相关知识点：** RePlanning、恢复成功率、故障注入、反事实基线、计划编辑距离、产物复用率、净效用、A/B测试。
 <a id="plan-157"></a>
-### PLAN-157 · LangGraph、AutoGen、CrewAI分别如何实现失败恢复机制？
-
-> 稳定 ID：`PLAN-157`｜原题号：157
+### LangGraph、AutoGen、CrewAI分别如何实现失败恢复机制？
 
 **LangGraph以内建Checkpoint恢复，AutoGen保存团队状态，CrewAI主要通过Flows持久化和续跑。**
 
@@ -257,9 +235,7 @@
 
 **相关知识点：** LangGraph Checkpointer、Super-step、AutoGen Team State、CrewAI Flows、幂等恢复。
 <a id="plan-159"></a>
-### PLAN-159 · 为什么不能仅根据HTTP 200判断任务成功？
-
-> 稳定 ID：`PLAN-159`｜原题号：159
+### 为什么不能仅根据HTTP 200判断任务成功？
 
 **HTTP 200仅表示服务器成功处理了HTTP请求，不证明响应语义正确、业务状态已提交或用户目标已经完成。**
 
@@ -281,9 +257,7 @@
 
 **相关知识点：** HTTP语义、业务状态码、JSON Schema、业务不变量、回读验证、幂等键、Success Criteria、静默失败。
 <a id="plan-160"></a>
-### PLAN-160 · Retry应该在哪一层实现，Tool层还是Agent层？
-
-> 稳定 ID：`PLAN-160`｜原题号：160
+### Retry应该在哪一层实现，Tool层还是Agent层？
 
 **Retry应分层但不能重复负责：Tool层处理短暂技术故障，Agent层处理语义失败，并由Runtime统一控制总预算。**
 
@@ -304,9 +278,7 @@
 
 **相关知识点：** 分层Retry、Tool Adapter、Retry Budget、Deadline传播、指数退避、幂等键、重试放大、熔断器。
 <a id="plan-161"></a>
-### PLAN-161 · 什么情况下应该Retry，什么情况下应该直接Replan？
-
-> 稳定 ID：`PLAN-161`｜原题号：161
+### 什么情况下应该Retry，什么情况下应该直接Replan？
 
 **选择Retry还是Replan取决于原路径是否仍可达、故障是否随时间恢复，以及再次执行是否安全。**
 
@@ -328,9 +300,7 @@
 
 **相关知识点：** Retry、Repair、Replan、路径可达性、期望效用、错误指纹、幂等键、计划版本。
 <a id="plan-162"></a>
-### PLAN-162 · Exponential Backoff为什么比固定间隔重试更合适？
-
-> 稳定 ID：`PLAN-162`｜原题号：162
+### Exponential Backoff为什么比固定间隔重试更合适？
 
 **指数退避会随连续失败降低请求频率，为下游恢复留出时间；固定间隔则容易持续施压并形成同步重试峰值。**
 
@@ -351,9 +321,7 @@
 
 **相关知识点：** Exponential Backoff、Jitter、Thundering Herd、Retry-After、Retry Budget、幂等性、熔断器。
 <a id="plan-163"></a>
-### PLAN-163 · 如何避免Agent进入无限重试循环？
-
-> 稳定 ID：`PLAN-163`｜原题号：163
+### 如何避免Agent进入无限重试循环？
 
 **无限重试应由确定性的Loop Guard阻断，模型只能建议再次尝试，不能控制计数器、预算或终止状态。**
 
@@ -375,9 +343,7 @@
 
 **相关知识点：** Loop Guard、Retry Budget、错误指纹、进展检测、熔断器、幂等键、死信队列、终止条件。
 <a id="plan-164"></a>
-### PLAN-164 · Rollback与Compensation Transaction有什么区别？
-
-> 稳定 ID：`PLAN-164`｜原题号：164
+### Rollback与Compensation Transaction有什么区别？
 
 **Rollback撤销同一事务边界内尚未最终生效的变更，Compensation Transaction则用新的业务动作抵消已经提交的副作用。**
 
@@ -401,9 +367,7 @@
 
 **相关知识点：** Rollback、Compensation Transaction、ACID、MVCC、Saga、补偿DAG、幂等性、最终一致性。
 <a id="plan-165"></a>
-### PLAN-165 · Agent如何保证外部资源操作的幂等性？
-
-> 稳定 ID：`PLAN-165`｜原题号：165
+### Agent如何保证外部资源操作的幂等性？
 
 **外部操作幂等性的核心是用稳定业务键标识同一意图，并以原子去重记录保证重复执行返回同一结果。**
 
@@ -424,9 +388,7 @@
 
 **相关知识点：** Idempotency Key、Task ID、Attempt、唯一约束、条件写、At-Least-Once、等效Exactly-Once、对账。
 <a id="plan-166"></a>
-### PLAN-166 · 什么情况下需要Checkpoint机制？
-
-> 稳定 ID：`PLAN-166`｜原题号：166
+### 什么情况下需要Checkpoint机制？
 
 **当任务重算成本、失败概率或副作用风险高于状态持久化开销时，应引入Checkpoint机制。**
 
@@ -448,9 +410,7 @@
 
 **相关知识点：** Checkpoint、重算成本、稳定边界、恢复点目标、增量快照、Event Log、幂等性、Durable Execution。
 <a id="plan-167"></a>
-### PLAN-167 · Durable Execution如何支持任务恢复？
-
-> 稳定 ID：`PLAN-167`｜原题号：167
+### Durable Execution如何支持任务恢复？
 
 **Durable Execution通过持久化执行历史与步骤结果，使进程崩溃后能重建控制流，并从未完成边界继续。**
 
@@ -472,9 +432,7 @@
 
 **相关知识点：** Durable Execution、确定性重放、Event History、Activity、Checkpoint、Durable Timer、Lease、幂等性。
 <a id="plan-168"></a>
-### PLAN-168 · Agent如何判断失败原因是模型问题还是工具问题？
-
-> 稳定 ID：`PLAN-168`｜原题号：168
+### Agent如何判断失败原因是模型问题还是工具问题？
 
 **模型与工具故障应按调用边界逐层归因，以最早违反契约的位置为根因，而不是根据最终答案猜测。**
 
@@ -496,9 +454,7 @@
 
 **相关知识点：** 故障归因、调用边界、分布式追踪、Schema校验、反事实重放、Adapter、根因标签、Sandbox。
 <a id="plan-170"></a>
-### PLAN-170 · Replanning需要重新调用Planner还是局部修改计划？
-
-> 稳定 ID：`PLAN-170`｜原题号：170
+### Replanning需要重新调用Planner还是局部修改计划？
 
 **Replanning应默认局部修改受影响子图，只有目标、全局约束或大范围前提失效时才重新调用完整Planner。**
 
@@ -520,9 +476,7 @@
 
 **相关知识点：** RePlanner、局部子图、全量Planner、影响分析、Plan Patch、Plan Version、结构化Diff、计划一致性。
 <a id="plan-171"></a>
-### PLAN-171 · 多Agent执行过程中，一个Agent失败如何影响整个Workflow？
-
-> 稳定 ID：`PLAN-171`｜原题号：171
+### 多Agent执行过程中，一个Agent失败如何影响整个Workflow？
 
 **单个Agent失败不应直接终止整个Workflow，其影响取决于依赖关系、任务关键性、副作用状态以及系统是否具备故障隔离与降级路径。**
 
@@ -543,9 +497,7 @@
 
 **相关知识点：** 故障传播、DAG、关键路径、故障隔离、Fallback、熔断、幂等、Saga补偿、部分成功、Checkpoint。
 <a id="plan-173"></a>
-### PLAN-173 · Human-in-the-loop通常在什么场景介入？
-
-> 稳定 ID：`PLAN-173`｜原题号：173
+### Human-in-the-loop通常在什么场景介入？
 
 **Human-in-the-loop应部署在风险、歧义或责任超过自动化边界的位置，而不是把人工审核机械地添加到每个Agent步骤。**
 
@@ -566,9 +518,7 @@
 
 **相关知识点：** Human-in-the-loop、风险分级、Allow/Ask/Deny、审批令牌、Checkpoint、TOCTOU、最小权限、审计日志。
 <a id="plan-174"></a>
-### PLAN-174 · 如何设计Agent的错误分类体系？
-
-> 稳定 ID：`PLAN-174`｜原题号：174
+### 如何设计Agent的错误分类体系？
 
 **Agent错误分类应采用“故障来源、可恢复性、影响范围、副作用状态”四维模型，使错误类型能够直接映射恢复策略和告警等级。**
 
@@ -592,9 +542,7 @@
 
 **相关知识点：** Error Taxonomy、错误码、可恢复性、错误指纹、根因链、幂等性、重试预算、Fail Closed、可观测性。
 <a id="plan-176"></a>
-### PLAN-176 · 如何统计Agent任务成功率、重试率和恢复率等指标？
-
-> 稳定 ID：`PLAN-176`｜原题号：176
+### 如何统计Agent任务成功率、重试率和恢复率等指标？
 
 **Agent指标统计的关键是先统一Task、Step与Attempt口径，再用事件事实计算，避免因重试、重复上报或任务难度差异产生失真。**
 
@@ -613,9 +561,7 @@
 
 **相关知识点：** Success Rate、Retry Rate、Recovery Rate、First-pass Yield、指标口径、事件去重、状态机、观察窗口、SLO、置信区间。
 <a id="plan-177"></a>
-### PLAN-177 · Agent任务状态机应该如何设计？
-
-> 稳定 ID：`PLAN-177`｜原题号：177
+### Agent任务状态机应该如何设计？
 
 **Agent任务状态机应把执行生命周期、失败语义和人工介入显式化，并以受约束的状态迁移保证并发、恢复和审计的一致性。**
 
@@ -637,9 +583,7 @@
 
 **相关知识点：** 有限状态机、状态迁移表、CAS、Lease、Checkpoint、Attempt、幂等、事件溯源、故障注入。
 <a id="plan-178"></a>
-### PLAN-178 · 任务暂停后，恢复时如何保证上下文不丢失？
-
-> 稳定 ID：`PLAN-178`｜原题号：178
+### 任务暂停后，恢复时如何保证上下文不丢失？
 
 **可靠恢复依赖持久化的执行快照与可验证外部事实，不能仅把历史消息重新放入模型上下文。**
 
@@ -660,9 +604,7 @@
 
 **相关知识点：** Checkpoint、上下文分层、结构化摘要、幂等键、CAS、Lease、Attempt、状态核验、Replan、故障注入。
 <a id="plan-179"></a>
-### PLAN-179 · 重试时如何避免重复执行有副作用的操作？
-
-> 稳定 ID：`PLAN-179`｜原题号：179
+### 重试时如何避免重复执行有副作用的操作？
 
 **副作用操作的安全重试必须由端到端幂等协议保证，不能依赖Agent记忆或假设上一次超时等于执行失败。**
 
@@ -681,9 +623,7 @@
 
 **相关知识点：** Task ID、Idempotency Key、唯一约束、幂等消费、At-Least-Once、Exactly-Once、对账。
 <a id="plan-181"></a>
-### PLAN-181 · Agent回滚和传统数据库事务回滚有什么区别？
-
-> 稳定 ID：`PLAN-181`｜原题号：181
+### Agent回滚和传统数据库事务回滚有什么区别？
 
 **数据库事务回滚依赖单一事务管理器和隔离日志，能够撤销未提交写入；Agent回滚跨越模型、文件、API和人工动作，只能组合版本恢复与业务补偿，并接受最终一致而非瞬时原子性。**
 
@@ -703,9 +643,7 @@
 
 **相关知识点：** 最终一致性、Outbox、Saga、补偿事务、业务不变量、对账、CAS。
 <a id="plan-182"></a>
-### PLAN-182 · 如果工具调用已经成功但模型认为失败，如何处理？
-
-> 稳定 ID：`PLAN-182`｜原题号：182
+### 如果工具调用已经成功但模型认为失败，如何处理？
 
 **工具或外部系统的已提交事实高于模型判断；出现认知分歧时应先对账并修正执行状态，禁止依据模型猜测重复调用。**
 
@@ -724,9 +662,7 @@
 
 **相关知识点：** 外部事实源、状态对账、Tool Call ID、幂等键、Unknown状态、Validator、事件溯源、重复调用防护。
 <a id="plan-184"></a>
-### PLAN-184 · 如何区分可重试错误和不可重试错误？
-
-> 稳定 ID：`PLAN-184`｜原题号：184
+### 如何区分可重试错误和不可重试错误？
 
 **错误是否可重试取决于失败条件能否随时间或新输入改变，以及重复执行是否安全，不能仅依据HTTP状态码机械判断。**
 
@@ -745,9 +681,7 @@
 
 **相关知识点：** 错误分类、指数退避、随机抖动、幂等键、Rollback、Saga、局部Replan。
 <a id="plan-185"></a>
-### PLAN-185 · Agent多步骤任务如何保证最终一致性？
-
-> 稳定 ID：`PLAN-185`｜原题号：185
+### Agent多步骤任务如何保证最终一致性？
 
 **多步骤Agent任务应通过本地原子提交、可靠事件、幂等执行、Saga补偿与周期对账，使跨系统状态在故障后仍能收敛到业务不变量。**
 
@@ -768,9 +702,7 @@
 
 **相关知识点：** 最终一致性、Outbox、Saga、补偿事务、业务不变量、对账、CAS。
 <a id="plan-195"></a>
-### PLAN-195 · Tool Calling失败后如何重新规划？
-
-> 稳定 ID：`PLAN-195`｜原题号：195
+### Tool Calling失败后如何重新规划？
 
 **Tool Calling失败后应先保留原计划并执行最小恢复，只有工具能力或计划前提失效时才重建受影响子图。**
 
@@ -789,9 +721,7 @@
 
 **相关知识点：** 错误分类、指数退避、随机抖动、幂等键、Rollback、Saga、局部Replan。
 <a id="plan-196"></a>
-### PLAN-196 · Agent执行失败后如何回滚？
-
-> 稳定 ID：`PLAN-196`｜原题号：196
+### Agent执行失败后如何回滚？
 
 **Agent执行失败后的回滚应按副作用清单逆向恢复：本地未提交状态撤销，已提交的跨系统动作执行补偿，无法逆转的动作升级人工处理。**
 
@@ -810,9 +740,7 @@
 
 **相关知识点：** 错误分类、指数退避、随机抖动、幂等键、Rollback、Saga、局部Replan。
 <a id="plan-198"></a>
-### PLAN-198 · LangGraph 的 Checkpoint 机制是如何实现的？
-
-> 稳定 ID：`PLAN-198`｜原题号：198
+### LangGraph 的 Checkpoint 机制是如何实现的？
 
 **LangGraph Checkpoint按Thread组织图状态，并在Super-step边界形成可查询、可恢复的快照。**
 
@@ -831,9 +759,7 @@
 
 **相关知识点：** Checkpointer、Thread、StateSnapshot、Super-step、Pending Writes、Interrupt、Time Travel、幂等。
 <a id="plan-199"></a>
-### PLAN-199 · OpenAI Agent SDK 如何保证任务恢复？
-
-> 稳定 ID：`PLAN-199`｜原题号：199
+### OpenAI Agent SDK 如何保证任务恢复？
 
 **OpenAI Agents SDK以Session延续会话，以RunState恢复审批中断；完整业务任务恢复仍需应用层持久化执行状态与副作用。**
 
@@ -852,9 +778,7 @@
 
 **相关知识点：** OpenAI Agents SDK、Session、RunState、HITL、Conversation ID、Checkpoint、Context序列化、幂等、CAS。
 <a id="plan-200"></a>
-### PLAN-200 · AutoGen 多 Agent 如何避免重复执行？
-
-> 稳定 ID：`PLAN-200`｜原题号：200
+### AutoGen 多 Agent 如何避免重复执行？
 
 **AutoGen避免重复执行需要同时控制消息投递、Team恢复与工具副作用；save_state/load_state只恢复内部状态，不提供端到端Exactly-once。**
 
@@ -875,9 +799,7 @@
 
 **相关知识点：** AutoGen、Team State、save_state/load_state、on_resume、Message ID、Inbox去重、幂等键、CAS、Exactly-once。
 <a id="plan-201"></a>
-### PLAN-201 · CrewAI 如何设计任务状态管理？
-
-> 稳定 ID：`PLAN-201`｜原题号：201
+### CrewAI 如何设计任务状态管理？
 
 **CrewAI应以Flow承载可持久化流程状态，以Crew承载自治协作；生产任务不能只依赖Agent对话历史保存进度。**
 
@@ -898,9 +820,7 @@
 
 **相关知识点：** CrewAI Flow、Pydantic State、start/listen/router、事件驱动、持久化、Crew、CAS、幂等、Schema演进。
 <a id="plan-202"></a>
-### PLAN-202 · 企业级 Agent 平台如何实现全链路幂等控制？
-
-> 稳定 ID：`PLAN-202`｜原题号：202
+### 企业级 Agent 平台如何实现全链路幂等控制？
 
 **全链路幂等必须以业务意图为唯一身份，使同一请求经过网关、队列、Agent调度和工具层多次投递仍只产生一次有效副作用。**
 
@@ -919,9 +839,7 @@
 
 **相关知识点：** Task ID、Idempotency Key、唯一约束、幂等消费、At-Least-Once、Exactly-Once、对账。
 <a id="plan-204"></a>
-### PLAN-204 · Agent 为什么需要 Planning，而不是直接调用 LLM？
-
-> 稳定 ID：`PLAN-204`｜原题号：204
+### Agent 为什么需要 Planning，而不是直接调用 LLM？
 
 **Planning把开放式目标转换为可执行、可验证、可恢复的任务结构；直接调用LLM只适合低风险、单步且无需外部状态的请求。**
 
@@ -940,9 +858,7 @@
 
 **相关知识点：** Planner、Task Spec、任务粒度、目标反推、DAG、Workflow、局部重规划。
 <a id="plan-207"></a>
-### PLAN-207 · Task Planning 一般有哪些实现方式？
-
-> 稳定 ID：`PLAN-207`｜原题号：207
+### Task Planning 一般有哪些实现方式？
 
 **Task Planning常见实现包括线性步骤生成、层级任务分解、DAG规划、搜索式规划和模板化Workflow，选择取决于任务确定性与依赖复杂度。**
 
@@ -961,9 +877,7 @@
 
 **相关知识点：** Planner、Task Spec、任务粒度、目标反推、DAG、Workflow、局部重规划。
 <a id="plan-208"></a>
-### PLAN-208 · 如何设计一个可扩展的 Planner？
-
-> 稳定 ID：`PLAN-208`｜原题号：208
+### 如何设计一个可扩展的 Planner？
 
 **可扩展Planner应采用“任务理解—策略选择—计划生成—静态校验—版本发布”分层架构，并以稳定Plan IR解耦模型与Executor。**
 
@@ -982,9 +896,7 @@
 
 **相关知识点：** Planner、Task Spec、任务粒度、目标反推、DAG、Workflow、局部重规划。
 <a id="plan-218"></a>
-### PLAN-218 · Agent 如何设计 Retry、Rollback 与 Replan 策略？
-
-> 稳定 ID：`PLAN-218`｜原题号：218
+### Agent 如何设计 Retry、Rollback 与 Replan 策略？
 
 **恢复策略应先判定错误可恢复性和副作用状态：条件未变时Retry，已提交状态需Rollback或补偿，路径假设失效才Replan。**
 
@@ -1003,9 +915,7 @@
 
 **相关知识点：** 错误分类、指数退避、随机抖动、幂等键、Rollback、Saga、局部Replan。
 <a id="plan-219"></a>
-### PLAN-219 · 什么情况下应该重新规划，而不是继续执行？
-
-> 稳定 ID：`PLAN-219`｜原题号：219
+### 什么情况下应该重新规划，而不是继续执行？
 
 **当当前计划已无法在剩余约束内达到Success Criteria时必须Replan；单次瞬时故障或可修参数错误不构成重新规划理由。**
 
@@ -1024,9 +934,7 @@
 
 **相关知识点：** 错误分类、指数退避、随机抖动、幂等键、Rollback、Saga、局部Replan。
 <a id="plan-220"></a>
-### PLAN-220 · 如何避免 Agent 陷入无限循环执行？
-
-> 稳定 ID：`PLAN-220`｜原题号：220
+### 如何避免 Agent 陷入无限循环执行？
 
 **防止Agent无限循环需要同时设置硬预算和语义进展检测；仅限制单次重试次数无法识别换一种表述重复同一路径。**
 
@@ -1045,9 +953,7 @@
 
 **相关知识点：** Stuck Detector、Retry Budget、进展指纹、循环检测、熔断器、Replan、幂等、终止条件。
 <a id="plan-234"></a>
-### PLAN-234 · Planner 如何处理任务分解出错或子任务失败的情况？是否有回退（fallback）机制？
-
-> 稳定 ID：`PLAN-234`｜原题号：234
+### Planner 如何处理任务分解出错或子任务失败的情况？是否有回退（fallback）机制？
 
 **Planner应在执行前用静态校验拦截分解错误，在执行中按“Retry—Repair—Fallback—局部Replan—人工接管”逐级恢复子任务失败。**
 
@@ -1066,9 +972,7 @@
 
 **相关知识点：** 错误分类、指数退避、随机抖动、幂等键、Rollback、Saga、局部Replan。
 <a id="plan-240"></a>
-### PLAN-240 · Orchestrator 和 Planner 是否是同一模块？两者的边界如何划分？
-
-> 稳定 ID：`PLAN-240`｜原题号：240
+### Orchestrator 和 Planner 是否是同一模块？两者的边界如何划分？
 
 **Planner决定做哪些步骤及依赖关系，Orchestrator决定何时、由谁、在何种资源和权限下执行。**
 
@@ -1087,9 +991,7 @@
 
 **相关知识点：** Planner、Task Spec、任务粒度、目标反推、DAG、Workflow、局部重规划。
 <a id="plan-242"></a>
-### PLAN-242 · Observability 模块具体记录哪些指标？如何定位一次任务失败的根因？
-
-> 稳定 ID：`PLAN-242`｜原题号：242
+### Observability 模块具体记录哪些指标？如何定位一次任务失败的根因？
 
 **Observability应记录任务完成率、步骤成功率、重试率、恢复率、人工接管率、队列等待、P95延迟、Token和费用。**
 
@@ -1108,9 +1010,7 @@
 
 **相关知识点：** Observability、Trace、Metric、Log、Audit、错误指纹、成本监控、根因分析、脱敏。
 <a id="plan-246"></a>
-### PLAN-246 · Agent为什么不能只依赖重试机制？
-
-> 稳定 ID：`PLAN-246`｜原题号：246
+### Agent为什么不能只依赖重试机制？
 
 **重试只能处理瞬时且可安全重复的故障；参数、权限、能力、语义和计划错误若不改变条件，重复执行只会放大成本与风险。**
 

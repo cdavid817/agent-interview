@@ -3,9 +3,7 @@
 > 所属章节：[安全、治理与可观测性](README.md)｜本文件共 **35** 题。
 
 <a id="gov-007"></a>
-### GOV-007 · Agent执行过程如何追踪？（豆包二面）
-
-> 稳定 ID：`GOV-007`｜原题号：7
+### Agent执行过程如何追踪？（豆包二面）
 
 Agent追踪应以**Task为业务边界、Trace为执行链、Span为步骤、Event为状态变化**，把规划、模型、检索、工具和人工操作串成因果链。
 
@@ -24,9 +22,7 @@ Agent追踪应以**Task为业务边界、Trace为执行链、Span为步骤、Eve
 
 **相关知识点：** Distributed Tracing、TaskID、TraceID、Span、OpenTelemetry、状态事件、DAG、关键路径、尾部采样。
 <a id="gov-008"></a>
-### GOV-008 · Agent执行过程如何实现全链路追踪？如何推荐模型，Prompt，知识库及工具调用和任务状态？（腾讯一面）
-
-> 稳定 ID：`GOV-008`｜原题号：8
+### Agent执行过程如何实现全链路追踪？如何推荐模型，Prompt，知识库及工具调用和任务状态？（腾讯一面）
 
 全链路追踪应把**模型路由、Prompt、检索、模型、工具和状态迁移**建模为同一Trace的语义Span，保存“版本—选择依据—结果—反馈”，支持定位、回放和推荐。
 
@@ -38,9 +34,7 @@ Agent追踪应以**Task为业务边界、Trace为执行链、Span为步骤、Eve
 
 **相关知识点：** Semantic Span、W3C Trace Context、Decision Record、Prompt Lineage、RAG Trace、Tool Audit、状态事件、离线推荐。
 <a id="gov-009"></a>
-### GOV-009 · 全链路可观测平台：Agent每一步规划、工具调用、模型输入输出、耗时、报错全链路埋点（Agent高级）
-
-> 稳定 ID：`GOV-009`｜原题号：9
+### 全链路可观测平台：Agent每一步规划、工具调用、模型输入输出、耗时、报错全链路埋点（Agent高级）
 
 平台应围绕**Trace、Metric、Log、Event和Artifact**建设，分别表达因果、趋势、细节、状态与原始材料。埋点须统一语义，避免字段无法关联。
 
@@ -52,9 +46,7 @@ Agent追踪应以**Task为业务边界、Trace为执行链、Span为步骤、Eve
 
 **相关知识点：** OpenTelemetry、Semantic Convention、Span、Event、Artifact、TTFT、Tail Sampling、关键路径、高基数、数据脱敏。
 <a id="gov-010"></a>
-### GOV-010 · 任务如何回放、打断、人工干预？（豆包二面）
-
-> 稳定 ID：`GOV-010`｜原题号：10
+### 任务如何回放、打断、人工干预？（豆包二面）
 
 任务应由**事件日志、状态机、检查点、取消令牌和审批节点**控制。回放重建历史，打断阻止执行，人工干预修改决策或授权，均须持久化。
 
@@ -72,9 +64,7 @@ Agent追踪应以**Task为业务边界、Trace为执行链、Span为步骤、Eve
 
 **相关知识点：** Event Sourcing、Checkpoint、Cancellation Token、HITL、幂等、补偿事务、任务租约、确定性回放。
 <a id="gov-017"></a>
-### GOV-017 · 完整梳理从用户提问发起，到Agent规划、工具调用、接收工具返回、模型总结输出的全链路流程（Agent高级）
-
-> 稳定 ID：`GOV-017`｜原题号：17
+### 完整梳理从用户提问发起，到Agent规划、工具调用、接收工具返回、模型总结输出的全链路流程（Agent高级）
 
 完整链路是**接入鉴权—上下文—规划路由—工具执行—结果验证—生成验收**，以TaskID、TraceID和状态机贯穿。模型做语义决策，系统管权限与门禁。
 
@@ -86,9 +76,7 @@ Agent追踪应以**Task为业务边界、Trace为执行链、Span为步骤、Eve
 
 **相关知识点：** Gateway、Planner、DAG、Model Router、Policy Engine、Tool Registry、HITL、幂等、Validator、Event Sourcing、Trace。
 <a id="gov-025"></a>
-### GOV-025 · TraceId和TaskId如何设计？
-
-> 稳定 ID：`GOV-025`｜原题号：25
+### TraceId和TaskId如何设计？
 
 TraceID与TaskID分别表达**一次执行链**和**可续跑业务任务**。同一Task可有多个Trace；一个Trace可包含多个Agent与Tool Span。
 
@@ -109,9 +97,7 @@ TraceID与TaskID分别表达**一次执行链**和**可续跑业务任务**。�
 
 **相关知识点：** W3C Trace Context、UUIDv7、ULID、RunID、Span Link、StepID、Attempt、Idempotency Key、高基数。
 <a id="gov-026"></a>
-### GOV-026 · Agent执行链路如何实现全链路追踪？
-
-> 稳定 ID：`GOV-026`｜原题号：26
+### Agent执行链路如何实现全链路追踪？
 
 全链路追踪应基于**统一Trace Context、语义Span、版本Lineage和状态Event**，使规划、检索、模型、工具、验证、人工与续跑可按因果关系还原。
 
@@ -123,9 +109,7 @@ TraceID与TaskID分别表达**一次执行链**和**可续跑业务任务**。�
 
 **相关知识点：** Distributed Tracing、OpenTelemetry、Semantic Convention、Span Link、Artifact、Event、Tail Sampling、关键路径、高基数。
 <a id="gov-027"></a>
-### GOV-027 · Step级别和Task级别追踪有什么区别？
-
-> 稳定 ID：`GOV-027`｜原题号：27
+### Step级别和Task级别追踪有什么区别？
 
 Task级回答**业务任务是否达成、当前状态和总体成本**；Step级回答**具体节点如何执行及为何失败**。二者粒度与生命周期不同，通过TaskID、RunID和StepID关联。
 
@@ -144,9 +128,7 @@ Task级回答**业务任务是否达成、当前状态和总体成本**；Step�
 
 **相关知识点：** TaskID、StepID、Attempt、Business Acceptance、Postcondition、DAG、关键路径、状态聚合。
 <a id="gov-030"></a>
-### GOV-030 · 多Agent任务如何追踪执行进度？
-
-> 稳定 ID：`GOV-030`｜原题号：30
+### 多Agent任务如何追踪执行进度？
 
 多Agent任务的进度不能按已运行Agent数计算，而应基于**任务DAG、节点状态、权重和验收结果**形成视图，并展示关键路径与阻塞原因。
 
@@ -160,9 +142,7 @@ Task级回答**业务任务是否达成、当前状态和总体成本**；Step�
 
 **相关知识点：** DAG、Critical Path、Weighted Progress、Event Sourcing、CAS、Lease、Checkpoint、物化视图、验收门禁。
 <a id="gov-031"></a>
-### GOV-031 · Agent之间消息传递如何追踪？
-
-> 稳定 ID：`GOV-031`｜原题号：31
+### Agent之间消息传递如何追踪？
 
 Agent消息追踪应把发送、投递和消费建模为**可关联、可去重、可审计事件**，保留Envelope和Trace上下文。
 
@@ -175,9 +155,7 @@ Agent消息追踪应把发送、投递和消费建模为**可关联、可去重�
 
 **相关知识点：** Message Envelope、Trace Context、CausationID、CorrelationID、Span Link、幂等消费、死信队列、消息顺序。
 <a id="gov-032"></a>
-### GOV-032 · 多Agent协同失败如何定位问题？
-
-> 稳定 ID：`GOV-032`｜原题号：32
+### 多Agent协同失败如何定位问题？
 
 多Agent协同失败应沿**任务DAG、因果消息链和Trace**缩小范围，判断问题属于Agent能力、协作协议、共享状态还是基础设施。
 
@@ -191,9 +169,7 @@ Agent消息追踪应把发送、投递和消费建模为**可关联、可去重�
 
 **相关知识点：** Failure Taxonomy、DAG、Distributed Tracing、CausationID、最小失败子图、并发控制、确定性回放、根因分析。
 <a id="gov-034"></a>
-### GOV-034 · Agent协作链路如何关联Trace？
-
-> 稳定 ID：`GOV-034`｜原题号：34
+### Agent协作链路如何关联Trace？
 
 Agent协作链路应遵循**一个链路一个Trace、一次操作一个Span、异步多父关系使用Link**。TaskID用于业务恢复，TraceID用于观测。
 
@@ -205,9 +181,7 @@ Agent协作链路应遵循**一个链路一个Trace、一次操作一个Span、�
 
 **相关知识点：** W3C Trace Context、OpenTelemetry、Parent-Child、Span Link、Baggage、Context Propagation、Tail Sampling、Trace Continuation。
 <a id="gov-035"></a>
-### GOV-035 · Prompt执行过程如何记录？
-
-> 稳定 ID：`GOV-035`｜原题号：35
+### Prompt执行过程如何记录？
 
 Prompt执行记录应做到**可复现、可比较、可审计且不泄密**，记录模板、上下文装配、模型参数及输出血缘。
 
@@ -221,9 +195,7 @@ Prompt执行记录应做到**可复现、可比较、可审计且不泄密**，�
 
 **相关知识点：** Prompt Versioning、Data Lineage、Model Span、Context Snapshot、Content Hash、PII脱敏、确定性回放、实验追踪。
 <a id="gov-040"></a>
-### GOV-040 · TraceId与SpanId如何设计？
-
-> 稳定 ID：`GOV-040`｜原题号：40
+### TraceId与SpanId如何设计？
 
 TraceID与SpanID应采用**W3C Trace Context和OpenTelemetry语义**。TraceID标识一次执行链路，SpanID标识一次操作；业务任务另设TaskID。
 
@@ -244,9 +216,7 @@ TraceID与SpanID应采用**W3C Trace Context和OpenTelemetry语义**。TraceID�
 > **题目合并：** `GOV-042` 已并入 [MULTI-032 · 多Agent协同时如何实现链路关联？](../../02-capabilities/multi-agent/multi-agent-basics.md#multi-032)。
 
 <a id="gov-043"></a>
-### GOV-043 · 如何实现Agent执行过程回放？
-
-> 稳定 ID：`GOV-043`｜原题号：43
+### 如何实现Agent执行过程回放？
 
 Agent回放应基于**事件日志、版本快照和副作用隔离**重建过程。Replay用于观察与验证，默认不可再次修改外部系统；Retry用于继续真实任务。
 
@@ -260,9 +230,7 @@ Agent回放应基于**事件日志、版本快照和副作用隔离**重建过�
 
 **相关知识点：** Event Sourcing、Checkpoint、Deterministic Replay、Record/Replay、Dry-run、Mock、Replay Fork、Artifact Hash。
 <a id="gov-048"></a>
-### GOV-048 · MCP Tool调用链路如何追踪？
-
-> 稳定 ID：`GOV-048`｜原题号：48
+### MCP Tool调用链路如何追踪？
 
 MCP Tool追踪应覆盖**模型决策、Client、传输、Server和下游**，以Operation关联各阶段，从而区分协议与业务故障。
 
@@ -277,9 +245,7 @@ MCP Tool追踪应覆盖**模型决策、Client、传输、Server和下游**，�
 > **题目合并：** `GOV-054` 已并入 [TOOL-117 · MCP与Tool Calling如何融合？](../../02-capabilities/tools-skills-mcp/mcp.md#tool-117)。
 
 <a id="gov-055"></a>
-### GOV-055 · Agent监控平台如何设计？
-
-> 稳定 ID：`GOV-055`｜原题号：55
+### Agent监控平台如何设计？
 
 Agent监控平台应围绕**任务结果、链路、资源、成本和安全**建设统一观测面，以TaskID、TraceID关联Metrics、Logs、Traces与评测。
 
@@ -293,9 +259,7 @@ Agent监控平台应围绕**任务结果、链路、资源、成本和安全**�
 
 **相关知识点：** Observability Platform、OpenTelemetry、SLO、Error Budget、Trace-Log关联、Failure Taxonomy、成本归因、数据分层。
 <a id="gov-058"></a>
-### GOV-058 · Agent系统如何实现告警机制？
-
-> 稳定 ID：`GOV-058`｜原题号：58
+### Agent系统如何实现告警机制？
 
 Agent告警应以**用户影响、SLO消耗和安全风险**为核心，形成检测、聚合、路由、处置和复盘闭环，不能将每条错误都转为告警。
 
@@ -309,9 +273,7 @@ Agent告警应以**用户影响、SLO消耗和安全风险**为核心，形成�
 
 **相关知识点：** SLO、Error Budget、Burn Rate、Alertmanager、告警聚合、抑制、Runbook、Incident、MTTA、MTTR。
 <a id="gov-061"></a>
-### GOV-061 · 如何实现全链路告警体系？
-
-> 稳定 ID：`GOV-061`｜原题号：61
+### 如何实现全链路告警体系？
 
 全链路告警应从**业务SLO关联Agent、模型、RAG、Tool与基础设施**，通过依赖拓扑合并局部异常，并找出首个异常环节。
 
@@ -325,9 +287,7 @@ Agent告警应以**用户影响、SLO消耗和安全风险**为核心，形成�
 
 **相关知识点：** Service Topology、SLO、Burn Rate、Event Correlation、Fingerprint、告警抑制、Root Cause、Runbook、故障演练。
 <a id="gov-065"></a>
-### GOV-065 · 百万级Agent任务下如何保证监控系统性能？
-
-> 稳定 ID：`GOV-065`｜原题号：65
+### 百万级Agent任务下如何保证监控系统性能？
 
 百万级任务下应通过**边缘聚合、异步缓冲、分级采样、冷热分层和基数治理**控制成本，同时保证错误、安全与审计事件完整。
 
@@ -341,9 +301,7 @@ Agent告警应以**用户影响、SLO消耗和安全风险**为核心，形成�
 
 **相关知识点：** Cardinality Control、Head/Tail Sampling、Backpressure、Rollup、冷热分层、列式存储、查询限流、容量规划。
 <a id="gov-067"></a>
-### GOV-067 · Agent回放时如何保证结果一致？
-
-> 稳定 ID：`GOV-067`｜原题号：67
+### Agent回放时如何保证结果一致？
 
 Agent回放一致性应定义为**状态迁移、结构结果与业务验收等价**，而非文本逐字相同；需冻结可控输入并标记不可控因素。
 
@@ -357,9 +315,7 @@ Agent回放一致性应定义为**状态迁移、结构结果与业务验收等�
 
 **相关知识点：** Deterministic Replay、Event Sourcing、Snapshot、Checkpoint、Seed、Record/Replay、Semantic Equivalence、副作用隔离。
 <a id="gov-068"></a>
-### GOV-068 · Prompt变化后历史任务还能回放吗？
-
-> 稳定 ID：`GOV-068`｜原题号：68
+### Prompt变化后历史任务还能回放吗？
 
 可以，但须区分**原版复现**与**新版分叉实验**。旧Prompt及依赖仍可获取时才能忠实回放；使用新Prompt属于对照实验。
 
@@ -373,9 +329,7 @@ Agent回放一致性应定义为**状态迁移、结构结果与业务验收等�
 
 **相关知识点：** Prompt Registry、Immutable Version、Content Hash、Replay Fork、Configuration Diff、Context Snapshot、置信区间、副作用隔离。
 <a id="gov-071"></a>
-### GOV-071 · 如何降低回放日志存储成本？
-
-> 稳定 ID：`GOV-071`｜原题号：71
+### 如何降低回放日志存储成本？
 
 降低回放成本应坚持**事件保真、内容去重、冷热分层和可恢复性优先**；关键状态与副作用事件不可随意采样。
 
@@ -389,9 +343,7 @@ Agent回放一致性应定义为**状态迁移、结构结果与业务验收等�
 
 **相关知识点：** Content-addressable Storage、Deduplication、Columnar Compression、Checkpoint、冷热分层、TTL、Legal Hold、可恢复性测试。
 <a id="gov-112"></a>
-### GOV-112 · Agent执行过程如何进行全链路追踪？
-
-> 稳定 ID：`GOV-112`｜原题号：112
+### Agent执行过程如何进行全链路追踪？
 
 全链路追踪应以**TaskID关联业务任务、TraceID关联单次执行、Span表达原子步骤**，覆盖规划、模型、检索、工具、子Agent、审批和验收。
 
@@ -405,9 +357,7 @@ Agent回放一致性应定义为**状态迁移、结构结果与业务验收等�
 
 **相关知识点：** W3C Trace Context、OpenTelemetry、TaskID、TraceID、Span、Span Link、CausationID、Exemplar、Tail Sampling、数据血缘。
 <a id="gov-113"></a>
-### GOV-113 · OpenTelemetry如何用于Agent监控？
-
-> 稳定 ID：`GOV-113`｜原题号：113
+### OpenTelemetry如何用于Agent监控？
 
 OpenTelemetry应作为Agent的**统一遥测与上下文传播层**，采集Trace、Metric和Log，业务质量通过自定义语义约定表达。
 
@@ -421,9 +371,7 @@ OpenTelemetry应作为Agent的**统一遥测与上下文传播层**，采集Trac
 
 **相关知识点：** OpenTelemetry、OTLP、Resource、Instrumentation、Collector、Trace Context、Span Link、Exemplar、Tail Sampling、语义约定。
 <a id="gov-122"></a>
-### GOV-122 · Agent全链路Trace如何设计？
-
-> 稳定 ID：`GOV-122`｜原题号：122
+### Agent全链路Trace如何设计？
 
 Agent Trace应采用**任务与轨迹双层标识**：TaskID聚合重试和恢复，TraceID描述一次运行，Span刻画执行单元。
 
@@ -437,9 +385,7 @@ Agent Trace应采用**任务与轨迹双层标识**：TaskID聚合重试和恢�
 
 **相关知识点：** TaskID、TraceID、Span、W3C Trace Context、Span Link、Event、CausationID、Exemplar、Tail Sampling、Artifact。
 <a id="gov-123"></a>
-### GOV-123 · 如何构建Agent可观测平台？
-
-> 稳定 ID：`GOV-123`｜原题号：123
+### 如何构建Agent可观测平台？
 
 Agent可观测平台应关联**运行状态、任务质量、安全风险与成本**，支持从业务指标下钻到Trace、日志、RAG和Tool证据。
 
@@ -453,9 +399,7 @@ Agent可观测平台应关联**运行状态、任务质量、安全风险与成�
 
 **相关知识点：** 三大支柱、OpenTelemetry、SLO、错误预算、语义Schema、失败聚类、变更关联、数据留存、MTTD、MTTR。
 <a id="gov-132"></a>
-### GOV-132 · Tool Calling成功率如何监控？
-
-> 稳定 ID：`GOV-132`｜原题号：132
+### Tool Calling成功率如何监控？
 
 Tool Calling成功率应区分**调用是否送达、协议是否成功、业务副作用是否正确、结果是否被Agent有效使用**，仅统计HTTP 2xx会严重高估质量。
 
@@ -469,9 +413,7 @@ Tool Calling成功率应区分**调用是否送达、协议是否成功、业务
 
 **相关知识点：** 端到端成功率、调用漏斗、幂等键、业务终态、SLO、错误预算、重试放大、Exemplar、分层监控。
 <a id="gov-138"></a>
-### GOV-138 · Agent线上故障定位流程是什么？
-
-> 稳定 ID：`GOV-138`｜原题号：138
+### Agent线上故障定位流程是什么？
 
 线上故障定位应遵循**先止损、再定界、后定位根因、最后验证恢复**，全程保留证据，避免在高压状态下直接修改Prompt或反复重试。
 
@@ -488,9 +430,7 @@ Tool Calling成功率应区分**调用是否送达、协议是否成功、业务
 > **题目合并：** `GOV-144` 已并入 [MULTI-034 · 多Agent系统如何进行链路追踪？](../../02-capabilities/multi-agent/multi-agent-basics.md#multi-034)。
 
 <a id="gov-145"></a>
-### GOV-145 · Agent平台如何实现实时告警与根因分析？
-
-> 稳定 ID：`GOV-145`｜原题号：145
+### Agent平台如何实现实时告警与根因分析？
 
 平台应建立**指标检测—事件聚合—链路归因—自动止损—人工复核**的闭环，使告警反映用户影响，并能定位到具体版本、组件和失败证据。
 
@@ -504,9 +444,7 @@ Tool Calling成功率应区分**调用是否送达、协议是否成功、业务
 
 **相关知识点：** SLO、错误预算、多窗口告警、事件聚合、变更关联、首错定位、自动止损、MTTD、MTTR、Runbook。
 <a id="gov-151"></a>
-### GOV-151 · 如何定位知识库更新不生效问题？
-
-> 稳定 ID：`GOV-151`｜原题号：151
+### 如何定位知识库更新不生效问题？
 
 定位应沿**源数据—解析—Chunk—Embedding—索引—检索—缓存—生成**逐段核对版本，使用SourceID和测试Query追踪。
 

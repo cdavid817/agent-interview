@@ -3,9 +3,7 @@
 > 所属章节：[Transformer](README.md)｜本文件共 **1** 题。
 
 <a id="trans-056"></a>
-### TRANS-056 · Prefill 与 Decode 的瓶颈为什么不同？何时考虑分离部署？（高级）
-
-> 稳定 ID：`TRANS-056`｜原题号：56
+### Prefill 与 Decode 的瓶颈为什么不同？何时考虑分离部署？（高级）
 
 **Prefill一次处理整段输入，通常更偏计算密集；Decode每步只生成一个Token并频繁读取权重与KV Cache，通常更偏内存带宽和调度。**
 

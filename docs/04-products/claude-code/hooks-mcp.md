@@ -3,9 +3,9 @@
 > 所属章节：[Claude Code](README.md)｜本文件共 **7** 题。
 
 <a id="cc-015"></a>
-### CC-015 · Claude Code Hooks 与普通Prompt规则有什么区别？
+### Claude Code Hooks 与普通Prompt规则有什么区别？
 
-> 稳定 ID：`CC-015`｜原题号：15｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Hook是在Session、工具、通知、Subagent等生命周期事件上运行的**确定性程序化控制**；Prompt规则只影响模型决策，不能保证必然执行。
 
@@ -13,9 +13,9 @@ PreToolUse可校验或阻止命令，PostToolUse可格式化、扫描或记录�
 
 **相关知识点：** PreToolUse、PostToolUse、Stop Hook、SubagentStart、Matcher、Deterministic Guardrail。
 <a id="cc-021"></a>
-### CC-021 · Claude Agent SDK 与直接调用 Claude API 或 Claude Code CLI 有什么区别？
+### Claude Agent SDK 与直接调用 Claude API 或 Claude Code CLI 有什么区别？
 
-> 稳定 ID：`CC-021`｜原题号：21｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Claude API提供模型原语，需要应用自己实现Agent Loop、工具执行和会话；Claude Code CLI面向开发者交互；Claude Agent SDK把与Claude Code相同的**循环、工具和上下文管理**作为Python/TypeScript库嵌入应用。
 
@@ -23,9 +23,9 @@ SDK适合需要程序控制工具、权限、Hooks、流式消息、Session和�
 
 **相关知识点：** Messages API、CLI、Claude Agent SDK、Embedded Runtime、Stateful Session、Build vs Buy。
 <a id="cc-022"></a>
-### CC-022 · Claude Agent SDK 如何处理结构化输出、审批和用户澄清？
+### Claude Agent SDK 如何处理结构化输出、审批和用户澄清？
 
-> 稳定 ID：`CC-022`｜原题号：22｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 结构化输出允许Agent经过多轮工具执行后，按JSON Schema、Zod或Pydantic返回可校验结果；审批与澄清则通过SDK事件向宿主应用请求用户输入，再把决定送回Session。
 
@@ -33,9 +33,9 @@ Schema校验失败应重试有限次数或返回明确错误，不能把未验�
 
 **相关知识点：** Structured Output、JSON Schema、Approval Flow、User Input、Session Binding、TOCTOU。
 <a id="cc-024"></a>
-### CC-024 · Claude Code 和 Agent SDK 如何建设可观测性？
+### Claude Code 和 Agent SDK 如何建设可观测性？
 
-> 稳定 ID：`CC-024`｜原题号：24｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 可观测性应关联**Session—Turn—Model—Tool—Hook—Subagent—Result**。CLI可启用使用监控，Agent SDK可导出OpenTelemetry Trace、Metric和Event。
 
@@ -43,9 +43,9 @@ Schema校验失败应重试有限次数或返回明确错误，不能把未验�
 
 **相关知识点：** OpenTelemetry、Trace、Metric、Event、Session ID、Cost Attribution、PII Redaction。
 <a id="cc-056"></a>
-### CC-056 · MCP在Claude Code中承担什么作用？
+### MCP在Claude Code中承担什么作用？
 
-> 稳定 ID：`CC-056`｜原题号：56｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 MCP是**标准化连接外部工具、数据源与业务系统**的扩展层，使Claude Code无需为每个系统编写专有协议；它不是安全边界。
 
@@ -59,9 +59,9 @@ MCP是客户端与能力提供方的协议，Tool Calling是模型提出调用�
 
 **相关知识点：** MCP Client/Server、Tools、Resources、Schema、延迟加载、Tool Calling、ACL、Hook、间接注入、熔断降级。
 <a id="cc-072"></a>
-### CC-072 · Claude Code如何集成Git、IDE和CI/CD？
+### Claude Code如何集成Git、IDE和CI/CD？
 
-> 稳定 ID：`CC-072`｜原题号：72｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 集成以**Git作为事实源、IDE提供上下文、CI/CD承担验证与发布门禁**，通过Commit、任务ID和Artifact追踪。
 
@@ -75,9 +75,9 @@ MCP是客户端与能力提供方的协议，Tool Calling是模型提出调用�
 
 **相关知识点：** Git Worktree、LSP、PR工作流、CI门禁、Check Run、Webhook、SAST、Canary、短期凭证、端到端追踪。
 <a id="cc-094"></a>
-### CC-094 · Claude Code Hooks在Runtime中类似什么机制？其阻断语义如何实现？
+### Claude Code Hooks在Runtime中类似什么机制？其阻断语义如何实现？
 
-> 稳定 ID：`CC-094`｜原题号：94｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Hooks可理解为Agent Runtime的**生命周期事件总线和策略扩展点**。Session、Prompt、Tool、Permission、Compaction、Subagent和Task等事件触发外部命令、HTTP端点或其他处理器，输入输出通过结构化JSON传递。
 

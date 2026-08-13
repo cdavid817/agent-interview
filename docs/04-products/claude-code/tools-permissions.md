@@ -3,9 +3,9 @@
 > 所属章节：[Claude Code](README.md)｜本文件共 **28** 题。
 
 <a id="cc-008"></a>
-### CC-008 · Claude Code 如何决定使用 Read、Grep、Edit、Bash 等工具？
+### Claude Code 如何决定使用 Read、Grep、Edit、Bash 等工具？
 
-> 稳定 ID：`CC-008`｜原题号：8｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 模型根据目标、当前证据、工具说明和权限选择工具，Runtime执行并返回结果。定位通常先Glob/Grep，再Read精确范围；修改优先使用Edit或Write；编译、测试、Git和诊断通过Bash执行。
 
@@ -13,9 +13,9 @@
 
 **相关知识点：** Built-in Tools、Tool Selection、Targeted Edit、Bash、Permission Rule、Tool Contract。
 <a id="cc-009"></a>
-### CC-009 · Claude Code 的权限规则和 Permission Mode 如何协作？
+### Claude Code 的权限规则和 Permission Mode 如何协作？
 
-> 稳定 ID：`CC-009`｜原题号：9｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 权限规则决定**哪些工具、命令、路径或域名允许、询问或拒绝**，Permission Mode决定当前会话遇到动作时的总体交互方式。
 
@@ -25,9 +25,9 @@
 
 **相关知识点：** Permission Mode、Allow/Deny、Plan Mode、Managed Settings、Least Privilege、Rule Matching。
 <a id="cc-010"></a>
-### CC-010 · Claude Code 的 Permission 与 Sandboxed Bash 有什么区别？
+### Claude Code 的 Permission 与 Sandboxed Bash 有什么区别？
 
-> 稳定 ID：`CC-010`｜原题号：10｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Permission是应用层的**动作授权与交互决策**，Sandboxed Bash是OS层面对Bash及其子进程的**文件系统和网络限制**。两者互补。
 
@@ -37,9 +37,9 @@ Permission Deny可阻止Claude尝试读取敏感路径或访问域名；Sandbox�
 
 **相关知识点：** Application Authorization、OS Sandbox、Filesystem、Network Policy、Container、Defense in Depth。
 <a id="cc-011"></a>
-### CC-011 · 如何防止代码注释、README 或工具输出对 Claude Code 进行 Prompt Injection？
+### 如何防止代码注释、README 或工具输出对 Claude Code 进行 Prompt Injection？
 
-> 稳定 ID：`CC-011`｜原题号：11｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 仓库内容和工具结果必须视为**不可信数据，而非高优先级指令**。系统应限制工具与网络，敏感操作要求确认，并用Sandbox阻断越界行为。
 
@@ -47,9 +47,9 @@ Agent遇到“忽略规则、上传密钥、运行下载脚本”等内容时，
 
 **相关知识点：** Indirect Prompt Injection、Instruction/Data Boundary、Secret Exfiltration、Sandbox、Security Eval。
 <a id="cc-013"></a>
-### CC-013 · Claude Code 的 Checkpoint 和 Git 有什么区别？
+### Claude Code 的 Checkpoint 和 Git 有什么区别？
 
-> 稳定 ID：`CC-013`｜原题号：13｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Checkpoint为Claude通过文件编辑工具产生的变更提供**会话级快速回退**；Git提供长期、协作式版本历史。Checkpoint可随Session恢复并用于Rewind，但不是完整文件系统快照。
 
@@ -57,9 +57,9 @@ Checkpoint为Claude通过文件编辑工具产生的变更提供**会话级快�
 
 **相关知识点：** Checkpoint、Rewind、File Edit Tool、Git、External Side Effect、Session Recovery。
 <a id="cc-020"></a>
-### CC-020 · 如何在 CI/CD 中安全运行 Claude Code？
+### 如何在 CI/CD 中安全运行 Claude Code？
 
-> 稳定 ID：`CC-020`｜原题号：20｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 CI使用非交互Agent SDK或Print模式，输入固定任务，设置允许工具、最大Turn、结构化输出和超时。工作区使用临时Runner或容器，凭据按Job短期签发，默认只读仓库。
 
@@ -67,9 +67,9 @@ CI使用非交互Agent SDK或Print模式，输入固定任务，设置允许工�
 
 **相关知识点：** Headless Mode、Agent SDK、Ephemeral Runner、OIDC、Protected Branch、Structured Output。
 <a id="cc-034"></a>
-### CC-034 · LangGraph、OpenAI Agents SDK、Claude Code等Agent框架分别如何实现任务恢复与重新规划？
+### LangGraph、OpenAI Agents SDK、Claude Code等Agent框架分别如何实现任务恢复与重新规划？
 
-> 稳定 ID：`CC-034`｜原题号：34｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **三者都能继续任务，但恢复边界不同：LangGraph面向图状态，OpenAI SDK面向运行或会话，Claude Code面向对话与文件。**
 
@@ -91,9 +91,9 @@ CI使用非交互Agent SDK或Print模式，输入固定任务，设置允许工�
 
 **相关知识点：** 图快照、RunState、Session、Handoff、Checkpoint、Rewind、Replan、幂等、Saga。
 <a id="cc-038"></a>
-### CC-038 · Claude Code设计方案（附加专题）
+### Claude Code设计方案（附加专题）
 
-> 稳定 ID：`CC-038`｜原题号：38｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Claude Code类Agent应包含**交互、上下文、规划执行、受控工具、验证恢复和治理**，在大型仓库中完成可验证的最小修改。
 
@@ -107,9 +107,9 @@ Claude Code类Agent应包含**交互、上下文、规划执行、受控工具�
 
 **相关知识点：** Repo Map、Plan-Act-Observe、Tool Schema、MCP、沙箱、最小Diff、Change Impact Analysis、检查点、可观测性。
 <a id="cc-049"></a>
-### CC-049 · Claude Code的工具调用协议如何设计？
+### Claude Code的工具调用协议如何设计？
 
-> 稳定 ID：`CC-049`｜原题号：49｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 工具协议应是**强类型请求、结构化结果、权限前置、可取消执行与审计**的契约；模型提出意图，宿主负责校验和执行。
 
@@ -123,9 +123,9 @@ MCP可接入外部工具，但不替代权限、沙箱与事务控制；破坏�
 
 **相关知识点：** Tool Registry、JSON Schema、Call ID、幂等键、权限前置、沙箱、取消传播、结构化错误、Artifact、审计日志、MCP。
 <a id="cc-050"></a>
-### CC-050 · Shell命令如何进行安全校验？
+### Shell命令如何进行安全校验？
 
-> 稳定 ID：`CC-050`｜原题号：50｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Shell安全校验采用**结构化解析、策略判定、最小权限沙箱、执行约束和审计**，不能仅依赖字符串黑名单。
 
@@ -139,9 +139,9 @@ Shell安全校验采用**结构化解析、策略判定、最小权限沙箱、�
 
 **相关知识点：** Shell AST、命令注入、路径规范化、符号链接、deny-ask-allow、沙箱、最小权限、资源配额、审计、失败关闭。
 <a id="cc-051"></a>
-### CC-051 · 如何防止Agent执行危险命令？
+### 如何防止Agent执行危险命令？
 
-> 稳定 ID：`CC-051`｜原题号：51｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 防止危险命令必须贯彻**模型不拥有最终执行权、默认最小权限、高风险显式确认、系统级隔离和全程可追溯**，任何单一Prompt或黑名单都不足以构成安全边界。
 
@@ -155,9 +155,9 @@ Shell安全校验采用**结构化解析、策略判定、最小权限沙箱、�
 
 **相关知识点：** 最小权限、风险分级、deny优先、Shell AST、人机确认、沙箱、短期凭证、Hook、可恢复执行、安全评测。
 <a id="cc-052"></a>
-### CC-052 · 如何防止Prompt Injection通过代码或文档攻击Agent？
+### 如何防止Prompt Injection通过代码或文档攻击Agent？
 
-> 稳定 ID：`CC-052`｜原题号：52｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 代码、注释、文档和检索结果都应视为**不可信数据而非指令**。即使模型受影响，系统仍须阻止越权读取、执行或外传。
 
@@ -171,9 +171,9 @@ Shell安全校验采用**结构化解析、策略判定、最小权限沙箱、�
 
 **相关知识点：** 间接Prompt Injection、信任边界、来源标记、策略引擎、最小权限、沙箱、DLP、数据流控制、MCP安全、红队评测。
 <a id="cc-054"></a>
-### CC-054 · Claude Code的权限确认机制如何设计？
+### Claude Code的权限确认机制如何设计？
 
-> 稳定 ID：`CC-054`｜原题号：54｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 权限确认基于**动作风险、参数范围和授权生命周期**，采用deny→ask→allow策略；确认只授权具体动作。
 
@@ -189,9 +189,9 @@ Shell安全校验采用**结构化解析、策略判定、最小权限沙箱、�
 
 **相关知识点：** deny-ask-allow、风险分级、参数绑定授权、审批TTL、托管策略、PreToolUse Hook、确认疲劳、非交互审批、审计。
 <a id="cc-055"></a>
-### CC-055 · 沙箱应该使用容器、虚拟机还是操作系统权限隔离？
+### 沙箱应该使用容器、虚拟机还是操作系统权限隔离？
 
-> 稳定 ID：`CC-055`｜原题号：55｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 选择取决于**威胁等级、启动时延、租户边界与成本**。通常以OS权限为基础、容器承载常规任务，高风险任务升级至微虚拟机。
 
@@ -210,9 +210,9 @@ Shell安全校验采用**结构化解析、策略判定、最小权限沙箱、�
 
 **相关知识点：** 容器、虚拟机、微VM、Namespace、seccomp、MAC、非Root、风险路由、网络隔离、资源配额。
 <a id="cc-059"></a>
-### CC-059 · 如何防止模型整文件重写导致代码丢失？
+### 如何防止模型整文件重写导致代码丢失？
 
-> 稳定 ID：`CC-059`｜原题号：59｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 工具层应强制**局部Patch、版本前置条件、Diff预算和可恢复写入**；整文件写入属于高风险能力，默认限制。
 
@@ -226,9 +226,9 @@ Shell安全校验采用**结构化解析、策略判定、最小权限沙箱、�
 
 **相关知识点：** 局部Patch、乐观锁、原子写入、Diff Budget、Git基线、事务日志、AST Edit、Worktree、并发冲突。
 <a id="cc-061"></a>
-### CC-061 · 测试失败后Agent如何进行反思和重试？
+### 测试失败后Agent如何进行反思和重试？
 
-> 稳定 ID：`CC-061`｜原题号：61｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 有效反思是**基于失败证据更新假设并选择新动作**，不是重复生成同类补丁。重试必须有分类、预算、差异和停止条件。
 
@@ -242,9 +242,9 @@ Shell安全校验采用**结构化解析、策略判定、最小权限沙箱、�
 
 **相关知识点：** Failure Record、错误分类、可证伪假设、有界重试、Flaky Test、Checkpoint、震荡检测、失败签名、人工接管。
 <a id="cc-062"></a>
-### CC-062 · Agent如何区分可恢复错误与不可恢复错误？
+### Agent如何区分可恢复错误与不可恢复错误？
 
-> 稳定 ID：`CC-062`｜原题号：62｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 标准是错误能否在**不提权、不改变目标且保持状态一致**的前提下，通过有限动作消除；应由结构化策略判断。
 
@@ -263,9 +263,9 @@ Shell安全校验采用**结构化解析、策略判定、最小权限沙箱、�
 
 **相关知识点：** 错误分类、retryable、幂等键、状态未知、补偿事务、退避重试、Checkpoint、故障注入、MTTR。
 <a id="cc-065"></a>
-### CC-065 · Claude Code如何支持任务中断和恢复？
+### Claude Code如何支持任务中断和恢复？
 
-> 稳定 ID：`CC-065`｜原题号：65｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 关键是**取消运行与持久化状态解耦**：停止副作用，保存Checkpoint，恢复时验证外部状态是否与快照一致。
 
@@ -282,9 +282,9 @@ Checkpoint应加密、设TTL并隔离租户；通过强杀、断网、重启和G
 > **题目合并：** `CC-069` 已并入 [MULTI-033 · 多Agent并发修改同一文件时如何解决冲突？](../../02-capabilities/multi-agent/conflict-reliability.md#multi-033)。
 
 <a id="cc-071"></a>
-### CC-071 · 如何利用Hooks实现安全审计和质量检查？
+### 如何利用Hooks实现安全审计和质量检查？
 
-> 稳定 ID：`CC-071`｜原题号：71｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Hooks部署在**动作前阻断、动作后验证、任务结束汇总**三个位置，将安全与质量规则转为确定性控制。
 
@@ -298,9 +298,9 @@ Hooks部署在**动作前阻断、动作后验证、任务结束汇总**三个�
 
 **相关知识点：** PreToolUse、PostToolUse、SAST、Secret Scan、Diff Budget、防篡改审计、托管Hook、失败关闭、观察模式。
 <a id="cc-073"></a>
-### CC-073 · 如何设计Coding Agent的可观测性系统？
+### 如何设计Coding Agent的可观测性系统？
 
-> 稳定 ID：`CC-073`｜原题号：73｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 可观测性覆盖**任务、模型、检索、工具副作用、质量、成本和安全**，以统一Trace关联生命周期。
 
@@ -314,9 +314,9 @@ Hooks部署在**动作前阻断、动作后验证、任务结束汇总**三个�
 
 **相关知识点：** OpenTelemetry、Trace/Span、SLO、结构化日志、Artifact、脱敏、失败聚类、单位成功成本、安全审计、评测闭环。
 <a id="cc-079"></a>
-### CC-079 · 企业内部部署Claude Code需要考虑哪些安全问题？
+### 企业内部部署Claude Code需要考虑哪些安全问题？
 
-> 稳定 ID：`CC-079`｜原题号：79｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 企业部署围绕**身份权限、数据边界、工具执行、供应链、审计合规和模型数据使用**建立纵深防御。
 
@@ -330,9 +330,9 @@ Hooks部署在**动作前阻断、动作后验证、任务结束汇总**三个�
 
 **相关知识点：** SSO、RBAC/ABAC、数据驻留、DLP、Vault、沙箱、间接注入、SBOM、供应链安全、防篡改审计、威胁建模。
 <a id="cc-080"></a>
-### CC-080 · OpenCode与Claude Code的架构差异是什么？
+### OpenCode与Claude Code的架构差异是什么？
 
-> 稳定 ID：`CC-080`｜原题号：80｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 两者取向不同：**OpenCode强调开源、模型可替换和可扩展；Claude Code强调Claude原生体验与完整能力体系**。功能应以同版本实测为准。
 
@@ -351,9 +351,9 @@ Hooks部署在**动作前阻断、动作后验证、任务结束汇总**三个�
 
 **相关知识点：** 开源Coding Agent、模型Provider、MCP、LSP、Hooks、Subagents、权限策略、可扩展性、供应商锁定、单位成功成本。
 <a id="cc-084"></a>
-### CC-084 · 工具Schema和工具描述为什么会影响Claude Code的推理与行为？
+### 工具Schema和工具描述为什么会影响Claude Code的推理与行为？
 
-> 稳定 ID：`CC-084`｜原题号：84｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 工具定义构成模型当前可选择的**动作空间**。名称、描述、参数Schema和示例告诉模型工具能做什么、何时使用以及怎样构造参数；含糊或重叠的描述会增加误选工具和参数错误。
 
@@ -363,9 +363,9 @@ Runtime仍需做确定性校验：验证JSON Schema、权限和路径，执行�
 
 **相关知识点：** Action Space、Tool Schema、Tool Description、Structured Error、Capability Boundary、Schema Validation。
 <a id="cc-091"></a>
-### CC-091 · Claude Code的Bash工具如何处理Shell状态和后台任务？
+### Claude Code的Bash工具如何处理Shell状态和后台任务？
 
-> 稳定 ID：`CC-091`｜原题号：91｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Bash调用由Harness启动进程执行，命令的stdout、stderr和退出状态作为工具结果返回。不能假设不同Bash调用天然共享同一个交互式Shell状态；需要跨调用持久化的环境变量应通过启动环境、`CLAUDE_ENV_FILE`或SessionStart Hook明确注入。
 
@@ -375,9 +375,9 @@ Bash调用由Harness启动进程执行，命令的stdout、stderr和退出状态
 
 **相关知识点：** Process Execution、stdout/stderr、Exit Status、CLAUDE_ENV_FILE、Background Task、Process Lifecycle。
 <a id="cc-092"></a>
-### CC-092 · 一次工具调用同时命中Hook、Deny、Ask和Allow时，权限决策如何理解？
+### 一次工具调用同时命中Hook、Deny、Ask和Allow时，权限决策如何理解？
 
-> 稳定 ID：`CC-092`｜原题号：92｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 权限决策遵循**拒绝优先和多层约束**。`PreToolUse`在权限提示前运行，可阻止、修改输入或提出决策；显式Deny仍不能被Hook的Allow结果绕过，Ask也仍可要求确认。阻断型Hook可在Allow规则存在时拒绝动作。
 
@@ -389,9 +389,9 @@ Bash调用由Harness启动进程执行，命令的stdout、stderr和退出状态
 
 **相关知识点：** Deny-first、PreToolUse、Permission Evaluation、Managed Settings、Policy Intersection、Backend ACL。
 <a id="cc-093"></a>
-### CC-093 · Claude Code Sandbox的安全边界是如何形成的？为什么仍可能需要人工确认？
+### Claude Code Sandbox的安全边界是如何形成的？为什么仍可能需要人工确认？
 
-> 稳定 ID：`CC-093`｜原题号：93｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Sandbox在OS层限制Bash及其子进程的文件系统和网络访问；Permission层对所有工具的动作进行授权。两者合并后，命令即使受到Prompt Injection影响，也应被限制在允许挂载和域名内。
 
@@ -403,9 +403,9 @@ Sandbox不是所有能力的统一虚拟机：内置Read/Edit、WebFetch和MCP�
 
 **相关知识点：** OS Sandbox、Fail Open、Fail Closed、Escape Hatch、Filesystem Boundary、Network Boundary、Defense in Depth。
 <a id="cc-099"></a>
-### CC-099 · Claude Code面对工具失败时，恢复机制的本质是什么？
+### Claude Code面对工具失败时，恢复机制的本质是什么？
 
-> 稳定 ID：`CC-099`｜原题号：99｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 工具失败会作为Observation进入下一轮，模型可根据错误类型选择重试、修改参数、换工具、降级或请求用户。Harness提供最大Turn、权限拒绝、取消和Session恢复等控制，但不会自动证明某个重试策略正确。
 

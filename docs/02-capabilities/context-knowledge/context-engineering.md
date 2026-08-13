@@ -3,9 +3,7 @@
 > 所属章节：[上下文与知识系统](README.md)｜本文件共 **8** 题。
 
 <a id="ctx-071"></a>
-### CTX-071 · 如何识别用户偏好类信息？
-
-> 稳定 ID：`CTX-071`｜原题号：71
+### 如何识别用户偏好类信息？
 
 **用户偏好识别应区分明确声明、行为推断和情境选择，只有稳定、可解释且允许保存的偏好才能进入长期记忆。**
 
@@ -23,9 +21,7 @@
 
 **相关知识点：** Preference Extraction、Explicit Preference、Implicit Preference、Scope、Polarity、置信度校准、Supersedes、敏感属性推断、用户控制。
 <a id="ctx-160"></a>
-### CTX-160 · 企业级 Agent 的 Prompt 分层应该如何设计？
-
-> 稳定 ID：`CTX-160`｜原题号：160
+### 企业级 Agent 的 Prompt 分层应该如何设计？
 
 **企业级Agent Prompt应按全局策略、业务策略、Skill方法、任务目标和动态上下文分层，由Prompt Builder按优先级组装。**
 
@@ -37,9 +33,7 @@
 
 **相关知识点：** System Prompt、Policy Prompt、Skill Prompt、Task Prompt、Context Layer、Prompt Builder、信任边界、结构化变量、分层版本、可复现Trace。
 <a id="ctx-161"></a>
-### CTX-161 · System Prompt 和 Skill Prompt 的职责边界是什么？
-
-> 稳定 ID：`CTX-161`｜原题号：161
+### System Prompt 和 Skill Prompt 的职责边界是什么？
 
 **System Prompt定义跨任务恒定的身份与安全边界，Skill Prompt定义特定能力被选中后如何执行，两者不得互相复制或越权。**
 
@@ -56,9 +50,7 @@
 
 **相关知识点：** System Prompt、Skill Prompt、指令优先级、职责分离、能力路由、工具Schema、组合哈希、兼容性测试、独立灰度、策略强制。
 <a id="ctx-162"></a>
-### CTX-162 · Prompt 模板如何进行版本管理？
-
-> 稳定 ID：`CTX-162`｜原题号：162
+### Prompt 模板如何进行版本管理？
 
 **Prompt模板应像代码一样具备不可变版本、评审、自动评测、灰度发布、运行追踪和快速回滚能力。**
 
@@ -70,9 +62,7 @@
 
 **相关知识点：** Prompt Registry、语义版本、GitOps、变量Schema、内容哈希、Golden Dataset、Canary、A/B测试、稳定分桶、自动回滚、运行追踪。
 <a id="ctx-173"></a>
-### CTX-173 · 如何衡量上下文质量而不是上下文长度？
-
-> 稳定 ID：`CTX-173`｜原题号：173
+### 如何衡量上下文质量而不是上下文长度？
 
 **上下文质量应以必要信息覆盖、相关性、可信度、新鲜度、一致性、安全性和单位Token任务贡献衡量，而不是以Token总量衡量。**
 
@@ -84,9 +74,7 @@
 
 **相关知识点：** Gold Context、Context Recall、Context Precision、证据密度、可信度、新鲜度、冲突率、Leave-one-out消融、边际贡献、最小充分上下文。
 <a id="ctx-180"></a>
-### CTX-180 · MCP Tool 返回超长结果如何处理？
-
-> 稳定 ID：`CTX-180`｜原题号：180
+### MCP Tool 返回超长结果如何处理？
 
 **MCP Tool返回超长结果时，应在服务端分页或产物化，客户端只注入当前任务需要的结构化摘要和可继续读取的引用。**
 
@@ -98,9 +86,7 @@
 
 **相关知识点：** MCP Tool、MCP Resource、Cursor Pagination、字段投影、Resource URI、Result Adapter、截断标记、结果哈希、按需读取、关键字段保留率。
 <a id="ctx-184"></a>
-### CTX-184 · 如何监控和评估 Prompt 的效果？
-
-> 稳定 ID：`CTX-184`｜原题号：184
+### 如何监控和评估 Prompt 的效果？
 
 **Prompt效果应以任务成功、指令遵循、事实忠实、安全性和资源效率联合衡量，并通过版本化离线回归与线上对照实验持续监控。**
 
@@ -112,9 +98,7 @@
 
 **相关知识点：** Prompt Evaluation、Golden Dataset、指令遵循率、Faithfulness、Schema校验、LLM-as-a-Judge、Prompt Injection、A/B测试。
 <a id="ctx-192"></a>
-### CTX-192 · 模型如何区分工具返回结果和用户输入？
-
-> 稳定 ID：`CTX-192`｜原题号：192
+### 模型如何区分工具返回结果和用户输入？
 
 **模型主要依靠消息角色、tool_call_id和结构化协议区分工具结果与用户输入，应用层必须保持这些边界，不能把所有内容拼成普通文本。**
 

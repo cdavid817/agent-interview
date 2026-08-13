@@ -3,9 +3,9 @@
 > 所属章节：[OpenClaw](README.md)｜本文件共 **7** 题。
 
 <a id="oclaw-001"></a>
-### OCLAW-001 · OpenClaw 的产品定位是什么？它与普通聊天机器人有什么区别？
+### OpenClaw 的产品定位是什么？它与普通聊天机器人有什么区别？
 
-> 稳定 ID：`OCLAW-001`｜原题号：1｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 OpenClaw 是运行在自有设备或服务器上的**自托管 Agent Gateway 与个人助手运行时**。它把消息渠道、模型、会话、记忆、工具、Skills、Plugins、自动化任务和设备节点连接到一个常驻控制面，而不只是提供一次请求—一次回答的聊天接口。
 
@@ -15,9 +15,9 @@ OpenClaw 是运行在自有设备或服务器上的**自托管 Agent Gateway 与
 
 **相关知识点：** Self-hosted、Gateway、Agent Runtime、渠道适配、个人助手、ACP、控制面。
 <a id="oclaw-002"></a>
-### OCLAW-002 · OpenClaw Gateway 在整体架构中承担什么职责？
+### OpenClaw Gateway 在整体架构中承担什么职责？
 
-> 稳定 ID：`OCLAW-002`｜原题号：2｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Gateway 是 OpenClaw 的**常驻控制面和连接中枢**，负责接受渠道与客户端连接、解析路由、管理会话、启动 Agent Run、调度后台任务并把结果交付回目标渠道。
 
@@ -30,9 +30,9 @@ Gateway 是 OpenClaw 的**常驻控制面和连接中枢**，负责接受渠道�
 
 **相关知识点：** WebSocket Gateway、控制面、会话路由、故障域、进程守护、信任边界。
 <a id="oclaw-003"></a>
-### OCLAW-003 · OpenClaw 内置 Agent Runtime 的一次执行循环是怎样的？
+### OpenClaw 内置 Agent Runtime 的一次执行循环是怎样的？
 
-> 稳定 ID：`OCLAW-003`｜原题号：3｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 一次Run可概括为**组装上下文—调用模型—执行工具—回灌结果—继续或结束—交付回复**。模型决定是否请求工具，Runtime负责校验可见工具、执行并把Observation加入后续轮次。
 
@@ -42,9 +42,9 @@ Gateway 是 OpenClaw 的**常驻控制面和连接中枢**，负责接受渠道�
 
 **相关知识点：** Agent Loop、Prompt Assembly、Tool Calling、Observation、Streaming、Steering、停止条件。
 <a id="oclaw-005"></a>
-### OCLAW-005 · 为什么 OpenClaw 为每个 Agent 设置独立工作区？工作区中通常放什么？
+### 为什么 OpenClaw 为每个 Agent 设置独立工作区？工作区中通常放什么？
 
-> 稳定 ID：`OCLAW-005`｜原题号：5｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 工作区同时是Agent的**可操作目录和持久上下文载体**。独立工作区能隔离身份、规则、记忆、Skills和产物，避免多个Agent无意共享文件。
 
@@ -54,9 +54,9 @@ Gateway 是 OpenClaw 的**常驻控制面和连接中枢**，负责接受渠道�
 
 **相关知识点：** Agent Workspace、Bootstrap Files、身份隔离、配置即代码、备份、Secret Management。
 <a id="oclaw-020"></a>
-### OCLAW-020 · OpenClaw 的后台任务如何避免“运行了但用户没收到结果”？
+### OpenClaw 的后台任务如何避免“运行了但用户没收到结果”？
 
-> 稳定 ID：`OCLAW-020`｜原题号：20｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 任务完成与结果交付是两个状态，必须分别记录。后台任务应保存Task ID、Owner、来源会话、状态、结果Artifact、预期渠道和Delivery Receipt。
 
@@ -64,9 +64,9 @@ Gateway 是 OpenClaw 的**常驻控制面和连接中枢**，负责接受渠道�
 
 **相关知识点：** Background Task、Delivery Receipt、Outbox、Idempotency、Dead Letter、任务与交付分离。
 <a id="oclaw-029"></a>
-### OCLAW-029 · OpenClaw 是否适合直接作为多租户 SaaS 的共享 Runtime？
+### OpenClaw 是否适合直接作为多租户 SaaS 的共享 Runtime？
 
-> 稳定 ID：`OCLAW-029`｜原题号：29｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 默认信任模型更适合**单一可信操作者边界**，不应把Agent或Session配置当作敌对租户的强隔离。共享Gateway会共享进程故障域，并可能通过文件、凭据、Session Tool、Plugin或缓存形成越权路径。
 
@@ -74,9 +74,9 @@ Gateway 是 OpenClaw 的**常驻控制面和连接中枢**，负责接受渠道�
 
 **相关知识点：** Multi-tenancy、Trust Domain、Process Isolation、Tenant Context、Quota、Data Residency。
 <a id="oclaw-032"></a>
-### OCLAW-032 · OpenClaw 与 Claude Code 的架构差异是什么？
+### OpenClaw 与 Claude Code 的架构差异是什么？
 
-> 稳定 ID：`OCLAW-032`｜原题号：32｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 两者不是同类产品。OpenClaw 是**自托管、常驻的个人助手控制面**，通过 Gateway 连接消息渠道、会话、Memory、Skills、工具和设备，并支持多个模型Provider。Claude Code是面向代码仓库的专用Coding Agent，核心交互围绕读取、修改和验证代码。

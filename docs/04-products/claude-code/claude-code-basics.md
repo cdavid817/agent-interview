@@ -3,9 +3,9 @@
 > 所属章节：[Claude Code](README.md)｜本文件共 **14** 题。
 
 <a id="cc-012"></a>
-### CC-012 · Plan Mode、Goal、Advisor 等能力分别解决什么问题？
+### Plan Mode、Goal、Advisor 等能力分别解决什么问题？
 
-> 稳定 ID：`CC-012`｜原题号：12｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Plan Mode用于**只读探索与方案确认**，适合需求不清、改动面大或高风险任务；Goal用于声明持续完成条件，使Session跨Turn继续向验收目标推进；Advisor让主模型在困难决策点咨询更强模型。
 
@@ -13,9 +13,9 @@ Plan Mode用于**只读探索与方案确认**，适合需求不清、改动面�
 
 **相关知识点：** Plan Mode、Completion Goal、Advisor Model、Escalation、预算、Human Gate。
 <a id="cc-014"></a>
-### CC-014 · Claude Code 的 Continue、Resume、Fork 和外部 Session Storage 有何区别？
+### Claude Code 的 Continue、Resume、Fork 和外部 Session Storage 有何区别？
 
-> 稳定 ID：`CC-014`｜原题号：14｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 Continue加载当前目录最近Session，Resume按Session ID恢复指定历史，Fork从既有上下文创建独立分支，避免后续对话污染原Session。它们处理的是会话历史，不自动保证外部工作区状态完全一致。
 
@@ -25,9 +25,9 @@ Agent SDK生产部署可把Transcript镜像到S3、Redis或自有后端，使其
 
 **相关知识点：** Continue、Resume、Fork Session、Transcript、External Storage、Environment Rehydration。
 <a id="cc-019"></a>
-### CC-019 · 多个 Claude Code Session 并行修改代码时如何避免冲突？
+### 多个 Claude Code Session 并行修改代码时如何避免冲突？
 
-> 稳定 ID：`CC-019`｜原题号：19｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 采用**任务分片—隔离Worktree/分支—单一集成者—合并后全量验证**。按模块、文件或职责划分范围，每个Session基于固定Base Commit工作并生成最小Diff。
 
@@ -35,9 +35,9 @@ Desktop和其他Surface可提供Git隔离，但仍要记录Base SHA。合并时�
 
 **相关知识点：** Git Worktree、Branch Isolation、Base SHA、Three-way Merge、Merge Queue、Hotspot File。
 <a id="cc-029"></a>
-### CC-029 · 如何构建 Claude Code 的离线评测集和上线门禁？
+### 如何构建 Claude Code 的离线评测集和上线门禁？
 
-> 稳定 ID：`CC-029`｜原题号：29｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 评测集应包含真实Issue、Bug修复、跨文件功能、重构、测试生成、Review、安全任务和历史失败，并固定仓库Commit、依赖与执行环境。
 
@@ -45,9 +45,9 @@ Desktop和其他Surface可提供Git隔离，但仍要记录Base SHA。合并时�
 
 **相关知识点：** Coding Agent Eval、Repository Snapshot、Hidden Test、Patch Correctness、Regression Gate、LLM Judge。
 <a id="cc-031"></a>
-### CC-031 · Claude Code、Cursor、OpenCode 等 Agent 的 Runtime 有哪些共同点？
+### Claude Code、Cursor、OpenCode 等 Agent 的 Runtime 有哪些共同点？
 
-> 稳定 ID：`CC-031`｜原题号：31｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 **【核心思路】**
 它们本质是同一类"**编码 Agent**"，Runtime 共性明显：**ReAct 式主循环 + 丰富的文件/命令/搜索/编辑工具 + Agentic Search（而非纯 RAG）+ 大代码库上下文管理 + 危险操作权限确认 + 项目级记忆（规则文件）**。
@@ -70,9 +70,9 @@ Desktop和其他Surface可提供Git隔离，但仍要记录Base SHA。合并时�
 
 **相关知识点：** Claude Code、Agent Runtime、MCP、ReAct、RAG、Memory、权限控制、成本治理。
 <a id="cc-044"></a>
-### CC-044 · 如何设计代码仓库的增量索引机制？
+### 如何设计代码仓库的增量索引机制？
 
-> 稳定 ID：`CC-044`｜原题号：44｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 增量索引以**Git快照为边界、内容hash为复用依据、依赖图为传播路径**，保证查询不读到半成品且可重建。
 
@@ -86,9 +86,9 @@ Desktop和其他Surface可提供Git隔离，但仍要记录Base SHA。合并时�
 
 **相关知识点：** Git Diff、内容寻址、Manifest、AST增量解析、依赖影响域、墓碑、影子索引、原子切换、Watermark、索引对账。
 <a id="cc-045"></a>
-### CC-045 · 如何结合关键词检索、向量检索和AST检索？
+### 如何结合关键词检索、向量检索和AST检索？
 
-> 稳定 ID：`CC-045`｜原题号：45｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 三类检索应形成**词法精确召回、语义扩展召回、结构约束验证**的混合链路；查询类型决定权重，由统一候选Schema融合。
 
@@ -107,9 +107,9 @@ Desktop和其他Surface可提供Git隔离，但仍要记录Base SHA。合并时�
 
 **相关知识点：** BM25、向量检索、AST检索、查询路由、统一候选Schema、RRF、结构过滤、依赖图、混合检索消融。
 <a id="cc-053"></a>
-### CC-053 · 如何避免Agent泄漏密钥和环境变量？
+### 如何避免Agent泄漏密钥和环境变量？
 
-> 稳定 ID：`CC-053`｜原题号：53｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 核心原则是**密钥不进入模型上下文、按任务最小化授权、执行时短期注入、输出链路持续脱敏**；Prompt中的保密要求不能替代系统控制。
 
@@ -123,9 +123,9 @@ Desktop和其他Surface可提供Git隔离，但仍要记录Base SHA。合并时�
 
 **相关知识点：** Vault、KMS、短期凭证、最小授权、环境白名单、Secret Scanner、DLP、数据流策略、蜜罐密钥、凭证轮换。
 <a id="cc-058"></a>
-### CC-058 · Claude Code如何实现最小范围代码修改？
+### Claude Code如何实现最小范围代码修改？
 
-> 稳定 ID：`CC-058`｜原题号：58｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 最小修改依赖**先定位契约与影响域、再生成局部补丁、最后用Diff和测试约束范围**；目标是满足验收条件所需的最小语义变化，而非追求最少字符。
 
@@ -139,9 +139,9 @@ Desktop和其他Surface可提供Git隔离，但仍要记录Base SHA。合并时�
 
 **相关知识点：** 最小语义变更、影响域、Patch锚点、乐观并发控制、Git Diff、变更预算、回归测试、生成代码。
 <a id="cc-060"></a>
-### CC-060 · 代码修改后如何自动验证正确性？
+### 代码修改后如何自动验证正确性？
 
-> 稳定 ID：`CC-060`｜原题号：60｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 自动验证应构建**从变更结构、静态语义、目标行为到系统回归的分层证据链**；测试通过只说明已检查范围未失败，不能单独证明整体正确。
 
@@ -155,9 +155,9 @@ CI中采用风险分级门禁：低风险补丁可快速合并，高风险要求
 
 **相关知识点：** Diff审查、编译与静态分析、影响分析、测试金字塔、契约测试、变更有效性、风险门禁、Canary、自动回滚。
 <a id="cc-064"></a>
-### CC-064 · Agent的任务终止条件如何设计？
+### Agent的任务终止条件如何设计？
 
-> 稳定 ID：`CC-064`｜原题号：64｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 任务终止区分**成功、部分完成、失败、取消和阻塞**，由可验证条件触发；停止执行与宣告成功是不同决策。
 
@@ -171,9 +171,9 @@ CI中采用风险分级门禁：低风险补丁可快速合并，高风险要求
 
 **相关知识点：** Acceptance Criteria、终态机、成功证据、部分完成、取消传播、硬预算、独立终止器、资源回收、误成功率。
 <a id="cc-066"></a>
-### CC-066 · 如何持久化Agent的执行状态？
+### 如何持久化Agent的执行状态？
 
-> 稳定 ID：`CC-066`｜原题号：66｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 执行状态采用**事件日志记录事实、快照加速恢复、Artifact外置、版本约束一致性**，不能只保存自然语言摘要。
 
@@ -187,9 +187,9 @@ CI中采用风险分级门禁：低风险补丁可快速合并，高风险要求
 
 **相关知识点：** Event Sourcing、Snapshot、Artifact Store、Outbox、乐观锁、幂等键、状态未知、Schema版本、租户隔离。
 <a id="cc-076"></a>
-### CC-076 · 如何评估代码修改是否存在非预期影响？
+### 如何评估代码修改是否存在非预期影响？
 
-> 稳定 ID：`CC-076`｜原题号：76｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 通过**变更面审计、依赖分析、分层回归、行为差分和上线观测**识别影响；目标测试只覆盖已知预期。
 
@@ -203,9 +203,9 @@ CI中采用风险分级门禁：低风险补丁可快速合并，高风险要求
 
 **相关知识点：** Change Impact Analysis、依赖图、公共API、Differential Testing、契约测试、Shadow、Canary、Feature Flag、变更失败率。
 <a id="cc-096"></a>
-### CC-096 · Claude Code Session Transcript的持久化原理是什么？
+### Claude Code Session Transcript的持久化原理是什么？
 
-> 稳定 ID：`CC-096`｜原题号：96｜核验日期：2026-08-03｜来源：[官方资料](references.md)
+> 核验日期：2026-08-03｜来源：[官方资料](references.md)
 
 CLI会持续把Session事件写入本地JSONL Transcript，Session与项目目录关联。`continue`、`resume`和`fork`读取或分支这份历史，再结合当前工作目录、配置和凭据恢复运行。
 

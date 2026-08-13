@@ -3,9 +3,7 @@
 > 所属章节：[上下文与知识系统](README.md)｜本文件共 **50** 题。
 
 <a id="ctx-067"></a>
-### CTX-067 · 如何判断一条信息是否值得进入长期记忆？
-
-> 稳定 ID：`CTX-067`｜原题号：67
+### 如何判断一条信息是否值得进入长期记忆？
 
 **一条信息只有同时具备未来复用价值、可靠证据、明确主体与适用范围，并且保存风险可控，才值得进入长期记忆。**
 
@@ -17,9 +15,7 @@
 
 **相关知识点：** Memory Worthiness、价值评分、证据等级、数据最小化、候选记忆、Hard Rule、TTL、Human-in-the-loop、负迁移。
 <a id="ctx-068"></a>
-### CTX-068 · Memory Scoring应该如何设计？
-
-> 稳定 ID：`CTX-068`｜原题号：68
+### Memory Scoring应该如何设计？
 
 **Memory Scoring应拆分写入价值分、召回相关分和使用后效用分，避免用一个静态分数同时决定是否保存、何时召回和何时遗忘。**
 
@@ -31,9 +27,7 @@
 
 **相关知识点：** Write Score、Retrieval Score、Utility Score、Hard Filter、时间衰减、置信区间、曝光偏差、Learning to Rank、特征消融。
 <a id="ctx-069"></a>
-### CTX-069 · 长期记忆写入是同步还是异步？
-
-> 稳定 ID：`CTX-069`｜原题号：69
+### 长期记忆写入是同步还是异步？
 
 **长期记忆应采用“同步保存权威事件、异步抽取和索引”的混合模式，兼顾一致性、延迟和写入质量。**
 
@@ -50,9 +44,7 @@
 
 **相关知识点：** Sync Write、Async Pipeline、Outbox、Eventual Consistency、Read-your-writes、幂等消费、版本水位、墓碑删除、可见性SLO。
 <a id="ctx-070"></a>
-### CTX-070 · 如何避免重复记忆不断写入？
-
-> 稳定 ID：`CTX-070`｜原题号：70
+### 如何避免重复记忆不断写入？
 
 **避免重复写入需要同时使用事件幂等、规范化精确去重和语义近重复合并，并区分重复事实、事实更新与适用范围差异。**
 
@@ -64,9 +56,7 @@
 
 **相关知识点：** Idempotency Key、Canonicalization、Content Hash、Upsert、Semantic Deduplication、MinHash、Supersedes、唯一约束、误合并率。
 <a id="ctx-072"></a>
-### CTX-072 · Memory Compression具体如何实现？
-
-> 稳定 ID：`CTX-072`｜原题号：72
+### Memory Compression具体如何实现？
 
 **Memory Compression可按“规范化去重—结构化抽取—分层摘要—事实校验—版本发布”实现，原始证据始终通过ID可回溯。**
 
@@ -78,9 +68,7 @@
 
 **相关知识点：** Memory Compression、Canonicalization、Semantic Deduplication、Hierarchical Summary、强制槽位、Source ID、事实一致性、Progressive Retrieval。
 <a id="ctx-073"></a>
-### CTX-073 · 长对话如何自动生成摘要记忆？
-
-> 稳定 ID：`CTX-073`｜原题号：73
+### 长对话如何自动生成摘要记忆？
 
 **长对话摘要应通过增量抽取和分层合并生成，保留目标、确认事实、约束、决策、结果与未决事项，并能回溯原始轮次。**
 
@@ -92,9 +80,7 @@
 
 **相关知识点：** Rolling Summary、Summary Watermark、Event Sourcing、结构化抽取、Hierarchical Summary、Supersedes、Source ID、状态恢复、摘要漂移。
 <a id="ctx-074"></a>
-### CTX-074 · 什么时候触发记忆压缩？
-
-> 稳定 ID：`CTX-074`｜原题号：74
+### 什么时候触发记忆压缩？
 
 **记忆压缩应由容量、任务阶段、冗余度、访问热度和成本共同触发，并避开未决冲突、高风险操作及证据尚未稳定的时段。**
 
@@ -106,9 +92,7 @@
 
 **相关知识点：** Compression Trigger、Token Budget、Capacity Watermark、Compression Score、摘要漂移、异步调度、质量门、重复压缩率、动态阈值。
 <a id="ctx-076"></a>
-### CTX-076 · 项目级记忆如何聚合？
-
-> 稳定 ID：`CTX-076`｜原题号：76
+### 项目级记忆如何聚合？
 
 **项目级记忆应按“事件—任务—阶段—项目”分层聚合，以稳定项目实体、时间线和来源引用连接多会话事实，而不是拼接所有聊天摘要。**
 
@@ -120,9 +104,7 @@
 
 **相关知识点：** Project Memory、Entity Resolution、Hierarchical Aggregation、Timeline、Derived View、Source ID、Supersedes、Progressive Retrieval、权限交集。
 <a id="ctx-077"></a>
-### CTX-077 · Agent为什么需要遗忘机制？
-
-> 稳定 ID：`CTX-077`｜原题号：77
+### Agent为什么需要遗忘机制？
 
 **Agent需要遗忘机制来抑制过期、重复和低价值信息对当前决策的干扰，同时控制检索成本、隐私风险和无限增长。**
 
@@ -134,9 +116,7 @@
 
 **相关知识点：** Forgetting Mechanism、Memory Decay、负迁移、注意力稀释、TTL、冷归档、墓碑删除、数据保留、删除权、误删率。
 <a id="ctx-078"></a>
-### CTX-078 · 时间衰减策略如何设计？
-
-> 稳定 ID：`CTX-078`｜原题号：78
+### 时间衰减策略如何设计？
 
 **时间衰减应按记忆类型设置不同半衰期，并与重要度、访问频率、有效期和反馈效用组合，不能用统一TTL处理所有记忆。**
 
@@ -148,9 +128,7 @@
 
 **相关知识点：** Exponential Decay、Half-life、Valid Time、Recency、Utility、曝光偏差、冷却时间、Legal Hold、概念漂移、误遗忘率。
 <a id="ctx-079"></a>
-### CTX-079 · 什么情况下应该删除记忆？
-
-> 稳定 ID：`CTX-079`｜原题号：79
+### 什么情况下应该删除记忆？
 
 **记忆应在用户要求删除、授权或用途失效、达到保留期限、内容被证实错误有害，或已无独立价值时进入删除流程。**
 
@@ -162,9 +140,7 @@
 
 **相关知识点：** Right to Erasure、Retention Policy、Purpose Limitation、Legal Hold、Tombstone、Delete Event、Crypto-shredding、删除证明、归档。
 <a id="ctx-081"></a>
-### CTX-081 · 遗忘和归档有什么区别？
-
-> 稳定 ID：`CTX-081`｜原题号：81
+### 遗忘和归档有什么区别？
 
 **遗忘控制记忆是否继续影响推理，归档控制数据以何种成本保留；前者面向认知效用，后者面向审计、追溯和低频访问。**
 
@@ -183,9 +159,7 @@
 
 **相关知识点：** Forgetting、Archiving、Cold Storage、Lifecycle State、Memory Decay、Tombstone、Retention Policy、显式恢复、删除证明。
 <a id="ctx-082"></a>
-### CTX-082 · 长期记忆规模达到百万级如何检索？
-
-> 稳定 ID：`CTX-082`｜原题号：82
+### 长期记忆规模达到百万级如何检索？
 
 **百万级长期记忆应采用元数据预过滤、分区路由、稀疏与ANN混合召回、分级重排和冷热分层，避免对全库进行精确扫描。**
 
@@ -197,9 +171,7 @@
 
 **相关知识点：** Metadata Pre-filter、Sharding、HNSW、IVF、DiskANN、Hybrid Retrieval、RRF、Cross Encoder、冷热分层、向量量化。
 <a id="ctx-083"></a>
-### CTX-083 · 如何避免召回无关记忆？
-
-> 稳定 ID：`CTX-083`｜原题号：83
+### 如何避免召回无关记忆？
 
 **避免无关记忆需要在触发、过滤、召回、重排和注入各层收缩候选，并允许系统在证据不足时明确返回“无可靠记忆”。**
 
@@ -211,9 +183,7 @@
 
 **相关知识点：** Retrieval Router、Query Construction、Metadata Filter、Hard Negative、Reranker、Score Threshold、动态Top-N、无记忆识别、Precision@N。
 <a id="ctx-086"></a>
-### CTX-086 · Memory Re-ranking如何设计？
-
-> 稳定 ID：`CTX-086`｜原题号：86
+### Memory Re-ranking如何设计？
 
 **Memory Re-ranking应在硬权限过滤之后，以“轻量初排—深度精排—阈值与去重”三阶段选择少量可信且适用的记忆。**
 
@@ -225,9 +195,7 @@
 
 **相关知识点：** Memory Re-ranking、Hard Filter、Cross Encoder、Learning to Rank、Hard Negative、Score Gap、动态Top-N、曝光偏差、NDCG。
 <a id="ctx-087"></a>
-### CTX-087 · 企业Agent长期运行几年后如何管理海量记忆？
-
-> 稳定 ID：`CTX-087`｜原题号：87
+### 企业Agent长期运行几年后如何管理海量记忆？
 
 **多年运行的企业Agent必须把记忆作为受治理的数据资产，通过价值门、版本化、分层存储、遗忘归档和可重建索引控制规模。**
 
@@ -239,9 +207,7 @@
 
 **相关知识点：** Data Lifecycle、Memory Governance、容量预算、语义去重、分层摘要、冷热分层、ANN、影子索引、墓碑删除、单位成功任务成本。
 <a id="ctx-088"></a>
-### CTX-088 · 多租户环境下如何隔离记忆数据？
-
-> 稳定 ID：`CTX-088`｜原题号：88
+### 多租户环境下如何隔离记忆数据？
 
 **多租户记忆隔离必须把tenant_id作为不可缺失的安全边界，并在身份、分区、索引、缓存、密钥、检索和审计各层一致执行。**
 
@@ -253,9 +219,7 @@
 
 **相关知识点：** Tenant Isolation、Service Identity、Row-level Security、Namespace、Pre-filter、Cache Key、KMS、授权视图、Canary Record、串库检测。
 <a id="ctx-089"></a>
-### CTX-089 · 长期记忆存储成本如何优化？
-
-> 稳定 ID：`CTX-089`｜原题号：89
+### 长期记忆存储成本如何优化？
 
 **长期记忆成本优化应优先减少无价值写入和重复副本，再通过压缩、冷热分层、向量量化及生命周期清理降低单位有效记忆成本。**
 
@@ -267,9 +231,7 @@
 
 **相关知识点：** Write Gate、Semantic Deduplication、Hierarchical Summary、冷热分层、对象存储、Vector Quantization、容量预算、单位有效记忆成本。
 <a id="ctx-090"></a>
-### CTX-090 · 如何保证记忆系统的高可用性？
-
-> 稳定 ID：`CTX-090`｜原题号：90
+### 如何保证记忆系统的高可用性？
 
 **记忆系统高可用的核心是无状态服务多副本、权威记录可靠持久化、派生索引可重建，以及故障时能够安全降级为“无记忆执行”。**
 
@@ -281,9 +243,7 @@
 
 **相关知识点：** High Availability、Active Version、Outbox、幂等消费、Index Rebuild、熔断降级、SLO、跨可用区、故障演练、回切。
 <a id="ctx-091"></a>
-### CTX-091 · 如何评估长期记忆系统的效果和ROI？
-
-> 稳定 ID：`CTX-091`｜原题号：91
+### 如何评估长期记忆系统的效果和ROI？
 
 **长期记忆的价值必须通过开启与关闭Memory的增量效果证明，ROI应以净业务收益减去全生命周期成本计算，而不是统计写入量或命中量。**
 
@@ -295,9 +255,7 @@
 
 **相关知识点：** Golden Dataset、Memory Ablation、A/B测试、增量收益、负迁移率、单位成功任务成本、ROI、回收期、分层评测。
 <a id="ctx-092"></a>
-### CTX-092 · Agent 长期记忆为什么需要向量数据库？
-
-> 稳定 ID：`CTX-092`｜原题号：92
+### Agent 长期记忆为什么需要向量数据库？
 
 **向量数据库让Agent按语义而非完全相同的关键词检索历史，使同义改写、自然语言描述和相似案例能够在大规模记忆中被快速召回。**
 
@@ -315,9 +273,7 @@
 
 **相关知识点：** Embedding、Vector Database、ANN、HNSW、IVF、DiskANN、Metadata Filter、Hybrid Retrieval、Reranker、影子索引。
 <a id="ctx-093"></a>
-### CTX-093 · 长期记忆库数据越来越大怎么办？
-
-> 稳定 ID：`CTX-093`｜原题号：93
+### 长期记忆库数据越来越大怎么办？
 
 **记忆库增长应先判断是业务有效增长、重复写入还是清理失效，再分别通过入口治理、压缩归档、删除和横向扩展处理。**
 
@@ -329,9 +285,7 @@
 
 **相关知识点：** Growth Attribution、Write Quota、Semantic Deduplication、冷归档、墓碑删除、Sharding、Vector Quantization、Capacity Watermark、索引放大。
 <a id="ctx-094"></a>
-### CTX-094 · Memory Retrieval 如何避免上下文污染？
-
-> 稳定 ID：`CTX-094`｜原题号：94
+### Memory Retrieval 如何避免上下文污染？
 
 **Memory Retrieval必须把无关、过期、重复、冲突和低可信记录挡在Prompt之外，并限制记忆只能作为证据，不能改变系统指令。**
 
@@ -343,9 +297,7 @@
 
 **相关知识点：** Context Pollution、Retrieval Router、Hard Filter、Memory Reranker、Score Threshold、最小证据集、Prompt Injection、Provenance、负迁移。
 <a id="ctx-095"></a>
-### CTX-095 · Agent 如何判断召回哪些记忆？
-
-> 稳定 ID：`CTX-095`｜原题号：95
+### Agent 如何判断召回哪些记忆？
 
 **Agent应依据当前决策缺口选择记忆：先判断是否需要历史信息，再按主体、任务、时间、可信度和适用条件召回最小证据集。**
 
@@ -357,9 +309,7 @@
 
 **相关知识点：** Decision Gap、Retrieval Router、Query Construction、Metadata Filter、Hybrid Retrieval、Memory Reranker、Score Threshold、动态Top-N、无记忆识别。
 <a id="ctx-096"></a>
-### CTX-096 · 长期记忆是否需要定期归档和压缩？
-
-> 稳定 ID：`CTX-096`｜原题号：96
+### 长期记忆是否需要定期归档和压缩？
 
 **长期记忆需要归档和压缩，但应采用周期扫描加事件触发，并依据价值、访问热度、合规保留和风险分别处置，而非定时全量改写。**
 
@@ -371,9 +321,7 @@
 
 **相关知识点：** Memory Archiving、Memory Compression、Cold Storage、Derived View、Capacity Watermark、幂等调度、事实保留率、恢复验证、数据保留策略。
 <a id="ctx-097"></a>
-### CTX-097 · 长期记忆和动态上下文有什么区别？
-
-> 稳定 ID：`CTX-097`｜原题号：97
+### 长期记忆和动态上下文有什么区别？
 
 **长期记忆是跨会话保存的信息资产，动态上下文是为当前调用组装的输入视图；前者负责持久化，后者负责即时推理。**
 
@@ -392,9 +340,7 @@
 
 **相关知识点：** Long-term Memory、Dynamic Context、Context Builder、Context Window、Token Budget、Memory Retrieval、最小证据集、记忆巩固。
 <a id="ctx-098"></a>
-### CTX-098 · 记忆召回策略如何设计？
-
-> 稳定 ID：`CTX-098`｜原题号：98
+### 记忆召回策略如何设计？
 
 **记忆召回策略应采用“需求路由—权限过滤—多路召回—可信重排—阈值注入—反馈更新”的闭环，只提供决策需要的证据。**
 
@@ -406,9 +352,7 @@
 
 **相关知识点：** Retrieval Router、Query Decomposition、Metadata Filter、Hybrid Retrieval、RRF、Memory Reranker、动态Top-N、无记忆识别、反馈闭环。
 <a id="ctx-099"></a>
-### CTX-099 · 如何避免无关记忆污染当前任务？
-
-> 稳定 ID：`CTX-099`｜原题号：99
+### 如何避免无关记忆污染当前任务？
 
 **避免无关记忆污染的关键是按目标和步骤检索，只注入经主体、范围、时间、可信度及适用性验证的最小证据集。**
 
@@ -420,9 +364,7 @@
 
 **相关知识点：** Task State、Retrieval Router、Scope Matching、Metadata Filter、Memory Reranker、Context Slot、Score Threshold、最小证据集、负迁移。
 <a id="ctx-100"></a>
-### CTX-100 · 记忆如何进行生命周期管理？
-
-> 稳定 ID：`CTX-100`｜原题号：100
+### 记忆如何进行生命周期管理？
 
 **记忆生命周期应建模为候选、激活、更新、衰减、归档与删除的可审计状态机，使每条记忆在产生、使用和退出时都有明确规则。**
 
@@ -441,9 +383,7 @@
 
 **相关知识点：** 状态机、记忆巩固、TTL、时间衰减、追加式版本、墓碑删除、数据保留策略、删除证明、访问控制。
 <a id="ctx-101"></a>
-### CTX-101 · 用户画像信息应该如何注入 Prompt？
-
-> 稳定 ID：`CTX-101`｜原题号：101
+### 用户画像信息应该如何注入 Prompt？
 
 **用户画像应以结构化、最小必要且可撤销的数据块注入Prompt，只提供当前任务确实需要的稳定事实与偏好，不复制完整档案。**
 
@@ -455,9 +395,7 @@
 
 **相关知识点：** 用户画像、Prompt Builder、数据最小化、用途限制、字段白名单、指令层级、ACL、同意管理、画像消融实验。
 <a id="ctx-102"></a>
-### CTX-102 · 长期记忆和上下文窗口是什么关系？
-
-> 稳定 ID：`CTX-102`｜原题号：102
+### 长期记忆和上下文窗口是什么关系？
 
 **长期记忆是模型调用之外的持久信息库，上下文窗口是单次推理时模型能够读取的有限工作区；前者必须经过检索和编排才能影响后者。**
 
@@ -469,9 +407,7 @@
 
 **相关知识点：** 长期记忆、上下文窗口、工作记忆、检索增强、Prompt Builder、Token预算、读写边界、Lost in the Middle。
 <a id="ctx-103"></a>
-### CTX-103 · 什么内容应该进入长期记忆？
-
-> 稳定 ID：`CTX-103`｜原题号：103
+### 什么内容应该进入长期记忆？
 
 **只有跨会话仍有价值、来源可信、允许保存且能被后续任务准确复用的信息，才应进入长期记忆。**
 
@@ -483,9 +419,7 @@
 
 **相关知识点：** 记忆写入门控、语义记忆、情景记忆、稳定偏好、数据最小化、用途限制、敏感信息、置信度、版本化。
 <a id="ctx-104"></a>
-### CTX-104 · 长期记忆召回后如何避免污染上下文？
-
-> 稳定 ID：`CTX-104`｜原题号：104
+### 长期记忆召回后如何避免污染上下文？
 
 **避免长期记忆污染的核心是把召回结果视为待验证证据，通过权限过滤、可信度判定、冲突消解和预算压缩后再注入上下文。**
 
@@ -497,9 +431,7 @@
 
 **相关知识点：** 记忆污染、ACL、来源追踪、置信度、冲突消解、Prompt Injection、上下文分区、证据压缩、回归测试。
 <a id="ctx-105"></a>
-### CTX-105 · Memory Summarization 如何设计？
-
-> 稳定 ID：`CTX-105`｜原题号：105
+### Memory Summarization 如何设计？
 
 **Memory Summarization应生成可追溯、结构化且支持增量更新的最小事实集，而不是把整段历史改写成无法核验的短文。**
 
@@ -511,9 +443,7 @@
 
 **相关知识点：** 增量摘要、分层摘要、记忆巩固、来源追踪、蕴含性验证、摘要漂移、版本管理、事件溯源、Token预算。
 <a id="ctx-106"></a>
-### CTX-106 · Memory Consolidation 如何实现？
-
-> 稳定 ID：`CTX-106`｜原题号：106
+### Memory Consolidation 如何实现？
 
 **Memory Consolidation应把分散、重复的短期事件转化为稳定且可追溯的长期知识，同时保留原始证据和冲突，避免压缩造成事实漂移。**
 
@@ -525,9 +455,7 @@
 
 **相关知识点：** 记忆巩固、情景记忆、语义记忆、增量摘要、实体归一、冲突关系、追加式版本、事件溯源、摘要漂移。
 <a id="ctx-107"></a>
-### CTX-107 · 长期记忆是否需要版本管理？
-
-> 稳定 ID：`CTX-107`｜原题号：107
+### 长期记忆是否需要版本管理？
 
 **长期记忆必须进行版本管理，因为用户事实、偏好和业务状态会变化，直接覆盖会破坏可追溯性、冲突判断与错误恢复。**
 
@@ -539,9 +467,7 @@
 
 **相关知识点：** 追加式版本、有效时间、乐观锁、幂等写入、事件溯源、活动指针、冲突检测、墓碑删除、索引一致性。
 <a id="ctx-108"></a>
-### CTX-108 · 长期记忆如何进行召回？
-
-> 稳定 ID：`CTX-108`｜原题号：108
+### 长期记忆如何进行召回？
 
 **长期记忆召回应采用“查询理解—权限过滤—多路检索—融合重排—证据压缩”的流水线，在召回率、准确性、时延和Token成本之间取得平衡。**
 
@@ -553,9 +479,7 @@
 
 **相关知识点：** 查询改写、混合检索、Embedding、BM25、RRF、Cross-Encoder、Reranker、ACL过滤、Recall@K、nDCG。
 <a id="ctx-109"></a>
-### CTX-109 · 如何保证召回记忆的准确性？
-
-> 稳定 ID：`CTX-109`｜原题号：109
+### 如何保证召回记忆的准确性？
 
 **召回记忆的准确性不能由单一相似度保证，必须同时控制记忆写入质量、候选检索、证据重排和使用前验证。**
 
@@ -567,9 +491,7 @@
 
 **相关知识点：** 数据质量、混合检索、RRF、Cross-Encoder、困难负样本、冲突检测、置信度校准、Precision@K、nDCG。
 <a id="ctx-111"></a>
-### CTX-111 · Memory Recall的Top-K如何确定？
-
-> 稳定 ID：`CTX-111`｜原题号：111
+### Memory Recall的Top-K如何确定？
 
 **Memory Recall的Top-K不应设为全局常量，而应区分候选召回K、精排K和最终注入K，并依据查询难度、风险与Token预算动态确定。**
 
@@ -581,9 +503,7 @@
 
 **相关知识点：** Recall@K、Precision@K、MRR、nDCG、动态截断、分数阈值、边际收益、MMR、Token预算、帕累托前沿。
 <a id="ctx-112"></a>
-### CTX-112 · 如何解决记忆召回噪声问题？
-
-> 稳定 ID：`CTX-112`｜原题号：112
+### 如何解决记忆召回噪声问题？
 
 **记忆召回噪声需要从写入、检索、重排和上下文注入四个环节共同压制，不能只依赖提高相似度阈值。**
 
@@ -595,9 +515,7 @@
 
 **相关知识点：** 库内去噪、元数据过滤、困难负样本、Cross-Encoder、MMR、动态阈值、证据密度、Precision@K、空结果策略。
 <a id="ctx-113"></a>
-### CTX-113 · Memory Re-ranking如何实现？
-
-> 稳定 ID：`CTX-113`｜原题号：113
+### Memory Re-ranking如何实现？
 
 **Memory Re-ranking应在多路召回之后，以当前任务的完整语境重新判断候选记忆的相关性、可信度、时效和可用权限。**
 
@@ -609,9 +527,7 @@
 
 **相关知识点：** Reranker、Cross-Encoder、Learning to Rank、特征校准、困难负样本、MMR、MRR、nDCG、两阶段检索。
 <a id="ctx-114"></a>
-### CTX-114 · 长期记忆的数据结构如何设计？
-
-> 稳定 ID：`CTX-114`｜原题号：114
+### 长期记忆的数据结构如何设计？
 
 **长期记忆应采用“可审计事实记录＋语义索引＋关系边”的复合结构，同时表达内容、来源、时效、权限与演化。**
 
@@ -625,9 +541,7 @@
 
 **相关知识点：** Memory Schema、Episodic Memory、Semantic Memory、来源追踪、有效期、版本链、冲突边、向量索引、遗忘分数、墓碑删除。
 <a id="ctx-115"></a>
-### CTX-115 · Redis、MySQL、向量数据库分别存储什么？
-
-> 稳定 ID：`CTX-115`｜原题号：115
+### Redis、MySQL、向量数据库分别存储什么？
 
 **Redis承载短生命周期高速状态，MySQL保存权威事务元数据，向量数据库负责语义检索索引，三者按访问语义分工。**
 
@@ -639,9 +553,7 @@
 
 **相关知识点：** Redis TTL、工作记忆、MySQL事务、事实源、Outbox、向量数据库、ANN、回表校验、缓存失效、最终一致性、对象存储。
 <a id="ctx-116"></a>
-### CTX-116 · Memory系统如何支持海量用户？
-
-> 稳定 ID：`CTX-116`｜原题号：116
+### Memory系统如何支持海量用户？
 
 **海量用户Memory系统应按租户与主体水平分片，分离写入加工和在线检索，并通过分层存储控制容量与延迟。**
 
@@ -653,9 +565,7 @@
 
 **相关知识点：** 水平分片、无状态服务、消息队列、冷热分层、配额、重要性衰减、向量分区、热点隔离、分片再平衡、单位用户成本。
 <a id="ctx-117"></a>
-### CTX-117 · 多Agent之间如何共享记忆？
-
-> 稳定 ID：`CTX-117`｜原题号：117
+### 多Agent之间如何共享记忆？
 
 **多Agent共享记忆应通过独立Memory Service和授权视图实现，避免各Agent直接读写同一底层表或复制全量历史。**
 
@@ -667,9 +577,7 @@
 
 **相关知识点：** Memory Service、记忆作用域、ACL、服务身份、事件溯源、乐观锁、CRDT、冲突关系、授权视图、审计日志。
 <a id="ctx-118"></a>
-### CTX-118 · Memory检索延迟如何优化？
-
-> 稳定 ID：`CTX-118`｜原题号：118
+### Memory检索延迟如何优化？
 
 **Memory检索延迟优化应从候选空间收缩、索引参数、级联排序、缓存和超时降级五个层面同时进行。**
 
@@ -681,9 +589,7 @@
 
 **相关知识点：** ANN、HNSW、元数据预过滤、稳定分片、级联排序、热分区、缓存版本化、Deadline、早停、Recall—Latency曲线。
 <a id="ctx-119"></a>
-### CTX-119 · 长期记忆如何做权限隔离和安全控制？
-
-> 稳定 ID：`CTX-119`｜原题号：119
+### 长期记忆如何做权限隔离和安全控制？
 
 **长期记忆安全必须在身份、存储、检索、使用和审计各层实施强制授权，不能依赖Prompt约束模型自觉过滤。**
 
@@ -695,9 +601,7 @@
 
 **相关知识点：** Prompt Injection、ACL、RBAC/ABAC、数据分级、脱敏、最小权限、审计日志、保留策略、删除证明。
 <a id="ctx-120"></a>
-### CTX-120 · Claude、ChatGPT等Agent的记忆体系可能如何设计？
-
-> 稳定 ID：`CTX-120`｜原题号：120
+### Claude、ChatGPT等Agent的记忆体系可能如何设计？
 
 **在缺少内部实现公开证据时，只能从产品行为推测此类Agent采用会话上下文、用户显式配置、跨会话记忆和外部知识检索的分层体系。**
 
@@ -709,9 +613,7 @@
 
 **相关知识点：** 会话上下文、自定义指令、跨会话记忆、记忆抽取、按需召回、上下文压缩、产品可控性、临时会话、隐私治理、架构推断。
 <a id="ctx-121"></a>
-### CTX-121 · MCP与Memory系统如何结合？
-
-> 稳定 ID：`CTX-121`｜原题号：121
+### MCP与Memory系统如何结合？
 
 **MCP可作为Agent访问Memory Service的标准连接层，而记忆的抽取、权限、生命周期和冲突治理仍由Memory系统负责。**
 
@@ -723,9 +625,7 @@
 
 **相关知识点：** MCP Host、MCP Server、Tools、Resources、JSON Schema、服务端授权、候选记忆、幂等键、乐观锁、审计事件、失败降级。
 <a id="ctx-122"></a>
-### CTX-122 · Multi-Agent场景下记忆如何同步？
-
-> 稳定 ID：`CTX-122`｜原题号：122
+### Multi-Agent场景下记忆如何同步？
 
 **Multi-Agent记忆同步应采用中心事实源、事件增量传播和版本化读取，避免Agent之间点对点复制状态。**
 
