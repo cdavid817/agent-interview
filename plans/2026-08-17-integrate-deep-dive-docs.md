@@ -21,7 +21,7 @@
 - 标题标准化（去空白标点、casefold）后不得与题库中任何既有标题重复。
 - 单个题目文件不超过 50 题。
 - 同一文件内稳定 ID 数字必须严格递增。
-- 答案正文中若出现 `[文本](路径)` 形式，路径必须真实存在。
+- 答案正文中若出现 `[文本](路径)` 形式，路径必须真实存在。`docs/reference/deep-dive/` 是唯一例外（逐字收录的第三方资料，已排除出该校验）。
 - 每个任务结束前必须跑通：`python scripts/build_indexes.py` → `pwsh -File scripts/build_glossary.ps1` → `python scripts/validate.py`，输出 `All checks passed.`
 
 ## 源文档路径
@@ -56,6 +56,7 @@
 - Create: `docs/reference/deep-dive/claude-code-源码技术文档.md`
 - Create: `docs/reference/deep-dive/opencode-技术内幕.md`
 - Modify: `docs/reference/README.md`
+- Modify: `scripts/validate.py`
 
 **Interfaces:**
 - Produces: 两条稳定的相对路径，供后续 `references.md` 引用：
@@ -73,18 +74,24 @@ cp "D:/cdavid/Documents/code/opencode/OPencode技术内幕.md" \
    "docs/reference/deep-dive/opencode-技术内幕.md"
 ```
 
-- [ ] **Step 2: 修掉 3 处伪本地链接**
+- [ ] **Step 2: 让 `validate_local_links()` 跳过 deep-dive 目录**
 
-这三处是正文里形如「方括号紧跟半角圆括号」的普通文字，不是真链接，但会被 `validate_local_links()` 判为坏链。
+两份原文正文里有 3 处形如「方括号紧跟半角圆括号」的文字，会被 `validate_local_links()` 判为坏链。**不要改原文** —— 其中两处是有语义的内容：`opencode-技术内幕.md:1852` 是一段 TypeScript/Effect 代码表达式，`claude-code-源码技术文档.md:2834` 是在规定 MEMORY.md 索引行的格式。改动它们等于把第三方文档的技术内容写错。
 
-**必须把半角圆括号改成全角圆括号**。加反引号无效——`LOCAL_LINK_RE` 直接在原始文本上匹配，不识别代码围栏也不识别反引号。
+正确做法是把逐字收录的第三方资料排除出链接校验范围。在 `scripts/validate.py` 的 `validate_local_links()` 循环开头加跳过：
 
-在 `docs/reference/deep-dive/claude-code-源码技术文档.md`：
-- 第 1392 行附近：`[GlobTool, GrepTool](除非有嵌入式搜索)` → `[GlobTool, GrepTool]（除非有嵌入式搜索）`
-- 第 2834 行附近：`[Title](file.md)` → `[Title]（file.md）`
+```python
+def validate_local_links() -> list[str]:
+    errors: list[str] = []
+    paths = [ROOT / "README.md", ROOT / "CONTRIBUTING.md", ROOT / "Agent 名词解释.md", *DOCS.rglob("*.md")]
+    for path in paths:
+        # 逐字收录的第三方资料，仓库不维护其正文内链
+        if "reference/deep-dive" in path.as_posix():
+            continue
+        text = path.read_text(encoding="utf-8-sig")
+```
 
-在 `docs/reference/deep-dive/opencode-技术内幕.md`：
-- 第 1852 行附近：`[...](...)` → `[...]（...）`
+代价：这两份文档头部的回链不再被自动校验，需人工确认一次。
 
 - [ ] **Step 3: 去掉 OpenCode 原文重复的 H1**
 
@@ -138,13 +145,22 @@ python scripts/build_indexes.py && python scripts/validate.py
 
 Expected: `All checks passed.`，Total 仍为 1738。
 
-若报「本地链接不存在」，说明 Step 2 的伪链接没修干净，用下面这条定位：
+再确认两份原文除头部说明块外与源文件逐字一致：
 
 ```bash
-grep -noP '\[[^]]+\]\((?!https?://)(?!mailto:)(?!#)[^)]+\)' docs/reference/deep-dive/*.md
+diff <(sed 's/\r$//' "D:/cdavid/Documents/code/claude-code/Claude-Code-技术文档.md") \
+     <(sed 's/\r$//' docs/reference/deep-dive/claude-code-源码技术文档.md)
+diff <(sed 's/\r$//' "D:/cdavid/Documents/code/opencode/OPencode技术内幕.md") \
+     <(sed 's/\r$//' docs/reference/deep-dive/opencode-技术内幕.md)
 ```
 
-Expected: 无输出。
+Expected: 只输出头部说明块的新增行（OpenCode 另含删除重复 H1 那一行），**不得有任何正文改动**。
+
+最后人工确认头部回链有效（这两份文档已排除出自动校验）：
+
+```bash
+ls docs/04-products/claude-code/README.md
+```
 
 - [ ] **Step 8: 提交**
 
