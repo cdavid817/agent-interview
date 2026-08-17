@@ -213,7 +213,7 @@ foreach ($document in Get-ChildItem -LiteralPath $docsPath -Recurse -Filter "*.m
         continue
     }
     $documentText = Get-Content -LiteralPath $document.FullName -Raw -Encoding utf8
-    if ($documentText -notmatch "(?m)^###\s+[A-Z]+-\d{3}\s+·") {
+    if ($documentText -notmatch "(?m)^###\s+\d+\.\s+") {
         continue
     }
     $documentCount++
