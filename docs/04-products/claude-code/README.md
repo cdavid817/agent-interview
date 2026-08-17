@@ -4,7 +4,7 @@
 
 > 产品能力按 **2026-08-03** 可访问的官方资料核验；具体能力仍以实际版本和运行 Surface 为准。
 
-本章共 **123** 题。题目使用 `CC-NNN` 稳定 ID，移动文件不会改变引用。
+本章共 **134** 题。题目使用 `CC-NNN` 稳定 ID，移动文件不会改变引用。
 
 ## 子主题
 
@@ -15,7 +15,7 @@
 | [上下文与 Prompt Cache](context-cache.md) | 28 |
 | [工程集成与企业治理](engineering-operations.md) | 9 |
 | [Hooks、MCP 与扩展](hooks-mcp.md) | 7 |
-| [源码级内部机制](internals.md) | 24 |
+| [源码级内部机制](internals.md) | 35 |
 | [Subagents 与 Agent Teams](subagents-teams.md) | 1 |
 | [工具、权限与安全](tools-permissions.md) | 27 |
 ## 资料
