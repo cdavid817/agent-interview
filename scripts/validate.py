@@ -225,6 +225,9 @@ def validate_local_links() -> list[str]:
     errors: list[str] = []
     paths = [ROOT / "README.md", ROOT / "CONTRIBUTING.md", ROOT / "Agent 名词解释.md", *DOCS.rglob("*.md")]
     for path in paths:
+        # 逐字收录的第三方资料，仓库不维护其正文内链
+        if "reference/deep-dive" in path.as_posix():
+            continue
         text = path.read_text(encoding="utf-8-sig")
         for raw_target in LOCAL_LINK_RE.findall(text):
             target = unquote(raw_target.split("#", 1)[0].strip().strip("<>"))

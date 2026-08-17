@@ -1392,7 +1392,7 @@ toAutoClassifierInput: () => ''  // 安全相关工具必须覆盖
 `src/tools.ts` 的 `getAllBaseTools(): Tools`（`:193-251`）返回静态数组，是工具的**单一真相源**，包含：
 
 ```
-AgentTool, TaskOutputTool, BashTool, [GlobTool, GrepTool]（除非有嵌入式搜索）,
+AgentTool, TaskOutputTool, BashTool, [GlobTool, GrepTool](除非有嵌入式搜索),
 ExitPlanModeV2Tool, FileReadTool, FileEditTool, FileWriteTool, NotebookEditTool,
 WebFetchTool, TodoWriteTool, WebSearchTool, TaskStopTool, AskUserQuestionTool,
 SkillTool, EnterPlanModeTool, SendMessageTool, ListMcpResourcesTool,
@@ -2834,7 +2834,7 @@ type: {{user, feedback, project, reference}}
 
 - `ENTRYPOINT_NAME = 'MEMORY.md'`，`MAX_ENTRYPOINT_LINES = 200`，`MAX_ENTRYPOINT_BYTES = 25_000`（`memdir.ts:34-38`）
 - `truncateEntrypointContent`（`memdir.ts:57`）：先按行截断，再在最后一个换行处按字节截断，并追加 WARNING 说明触发了哪个上限
-- 规则：`MEMORY.md` 是**索引不是记忆**，每行一条 `- [Title]（file.md） — one-line hook`，**无 frontmatter**，绝不直接写入记忆内容。它**总是**被加载进系统提示/上下文，因此必须保持精简
+- 规则：`MEMORY.md` 是**索引不是记忆**，每行一条 `- [Title](file.md) — one-line hook`，**无 frontmatter**，绝不直接写入记忆内容。它**总是**被加载进系统提示/上下文，因此必须保持精简
 
 ### 52.4 记忆类型分类
 

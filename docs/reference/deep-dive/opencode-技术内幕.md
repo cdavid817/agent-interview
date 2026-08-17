@@ -1851,7 +1851,7 @@ stateDiagram-v2
 
 ### 4.19 Effect 客户端的 Stream.unwrap
 
-生成 Effect 客户端的流端点用 `Stream.unwrap(raw[...]（...）.pipe(...))`。`raw` 是 `HttpApiClient.ForApi<typeof ClientApi>` 的端点调用，返回 `Effect<HttpApiClient.Endpoint.Stream>`。`Stream.unwrap` 把 Effect 转 Stream——先运行 Effect 获取流描述，再迭代。
+生成 Effect 客户端的流端点用 `Stream.unwrap(raw[...](...).pipe(...))`。`raw` 是 `HttpApiClient.ForApi<typeof ClientApi>` 的端点调用，返回 `Effect<HttpApiClient.Endpoint.Stream>`。`Stream.unwrap` 把 Effect 转 Stream——先运行 Effect 获取流描述，再迭代。
 
 `mapClientError = (error) => HttpClientError.isHttpClientError(error) || Schema.isSchemaError(error) || Sse.Retry.is(error) ? new ClientError({ cause: error }) : error`。传输/schema/SSE 重试错误映射为 `ClientError`，其他错误透传。这使「基础设施错误」统一为 `ClientError`，领域错误保留原样。
 
