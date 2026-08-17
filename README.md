@@ -16,12 +16,13 @@
 - [重复题候选报告](docs/reference/duplicate-questions.md)
 - [稳定 ID 合并映射](docs/reference/id-aliases.md)
 - [术语索引](docs/reference/术语索引.md)
+- [深度技术资料](docs/reference/deep-dive/README.md)
 
 ## 导入 Anki
 
 仓库已提供可直接导入的 Anki 卡组：
 
-- [AgentInterview-完整题库.apkg](dist/anki/AgentInterview-完整题库.apkg)：**1,738 张卡片**，包含当前全部面试题。
+- [AgentInterview-完整题库.apkg](dist/anki/AgentInterview-完整题库.apkg)：**1,798 张卡片**，包含当前全部面试题。
 - [AgentInterview-核心100.apkg](dist/anki/AgentInterview-核心100.apkg)：**100 张卡片**，适合先建立知识主干。
 
 下载后双击 `.apkg` 文件，在 Anki 中确认导入即可。两份卡组包含重复的稳定题目 ID，请选择其中一份导入，不要同时导入。
@@ -69,8 +70,8 @@ agent-interview/
 │  ├─ 01-foundations/    # Agent 架构、Transformer
 │  ├─ 02-capabilities/   # 规划、上下文、工具、多 Agent、RAG
 │  ├─ 03-production/     # 模型成本、安全治理、工程平台
-│  ├─ 04-products/       # OpenClaw、Claude Code
-│  └─ reference/         # 重复题报告与术语索引
+│  ├─ 04-products/       # OpenClaw、Claude Code、OpenCode
+│  └─ reference/         # 重复题报告、术语索引与深度技术资料
 └─ scripts/              # 迁移、索引生成和结构校验
 ```
 

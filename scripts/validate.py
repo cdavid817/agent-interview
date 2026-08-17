@@ -224,6 +224,43 @@ def validate_all_markdown_locations() -> list[str]:
     return errors
 
 
+def validate_readme_product_index() -> list[str]:
+    """docs/README.md is hand-maintained; build_indexes.py never touches it.
+
+    The "产品专题" list has silently dropped a newly added 04-products
+    chapter before (caught only in code review). Guard against a repeat by
+    requiring every TAXONOMY chapter in the 产品专题 area to have a link in
+    that section.
+    """
+    errors: list[str] = []
+    readme = DOCS / "README.md"
+    product_area = "产品专题"
+    if not readme.exists():
+        return [f"{readme.relative_to(ROOT)}: 文件不存在"]
+    text = readme.read_text(encoding="utf-8-sig")
+    section_match = re.search(
+        rf"^## {re.escape(product_area)}\s*$([\s\S]*?)(?=^## |\Z)", text, re.MULTILINE
+    )
+    if not section_match:
+        return [f"{readme.relative_to(ROOT)}: 缺少「{product_area}」小节，无法确认是否覆盖全部产品章节"]
+    section = section_match.group(1)
+    linked_paths = set()
+    for raw_target in LOCAL_LINK_RE.findall(section):
+        target = unquote(raw_target.split("#", 1)[0].strip().strip("<>"))
+        if target:
+            linked_paths.add((readme.parent / target).resolve())
+    for chapter in TAXONOMY:
+        if chapter["area"] != product_area:
+            continue
+        expected = (ROOT / chapter["path"] / "README.md").resolve()
+        if expected not in linked_paths:
+            errors.append(
+                f"{readme.relative_to(ROOT)}: 「{product_area}」清单缺少章节 {chapter['title']}"
+                f"（应链接 {chapter['path']}/README.md）"
+            )
+    return errors
+
+
 def validate_local_links() -> list[str]:
     errors: list[str] = []
     paths = [ROOT / "README.md", ROOT / "CONTRIBUTING.md", ROOT / "Agent 名词解释.md", *DOCS.rglob("*.md")]
@@ -351,6 +388,7 @@ def main() -> int:
     errors.extend(validate_all_markdown_locations())
     errors.extend(validate_aliases())
     errors.extend(validate_local_links())
+    errors.extend(validate_readme_product_index())
     errors.extend(validate_glossary())
     errors.extend(validate_generated_indexes())
 

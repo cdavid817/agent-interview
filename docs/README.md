@@ -37,3 +37,4 @@
 
 - [重复题候选报告](reference/duplicate-questions.md)
 - [术语索引](reference/术语索引.md)
+- [深度技术资料](reference/deep-dive/README.md)
