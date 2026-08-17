@@ -623,7 +623,7 @@ git commit -m "docs: 更新题库统计、导航与 Anki 卡组至 1798 题"
 
 **发现并已修正的问题**
 
-1. Spec 说伪链接「反引号包裹」——实际 `LOCAL_LINK_RE` 不识别反引号，必须改用全角括号。Task 1 Step 2 已改正。
+1. Spec 要求改动原文里 3 处「伪链接」以绕过 `validate_local_links()`。执行中发现其中两处有语义——一处是 TypeScript 代码表达式，一处是 MEMORY.md 索引行格式规范——改动等于把第三方文档写错。已改为让校验器跳过 `docs/reference/deep-dive/`，原文逐字保留（Task 1 Step 2）。
 2. Spec 未提到 deep-dive README 与 OpenCode 原文头部的回链依赖 Task 2 才存在的目录，会造成 Task 1 校验失败。已在 Task 1 Step 4/5 标注挂起、Task 2 Step 5 补齐。
 3. 题数 60 = 13 + 12 + 18 + 17，与各任务预期 Total（1751 / 1763 / 1781 / 1798）自洽。
 4. 全部 60 个 ID 连续无缺口，文件内数字递增。
