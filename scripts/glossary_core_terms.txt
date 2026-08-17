@@ -8,6 +8,7 @@ Subagent
 Multi-Agent
 OpenClaw
 Claude Code
+OpenCode
 LangGraph
 AutoGen
 CrewAI

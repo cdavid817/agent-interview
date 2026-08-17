@@ -7,4 +7,4 @@
 | 资料 | 篇幅 | 对应题库章节 |
 |---|---|---|
 | [Claude Code 源码技术文档](claude-code-源码技术文档.md) | 119 章 | [Claude Code](../../04-products/claude-code/README.md) |
-| [OpenCode 技术内幕](opencode-技术内幕.md) | 26 章 | [OpenCode](../../04-products/opencode/README.md) |
+| [OpenCode 技术内幕](opencode-技术内幕.md) | 26 章 + 4 附录 | [OpenCode](../../04-products/opencode/README.md) |
