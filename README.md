@@ -2,7 +2,7 @@
 
 [![Validate](https://github.com/cdavid817/agent-interview/actions/workflows/validate.yml/badge.svg)](https://github.com/cdavid817/agent-interview/actions/workflows/validate.yml)
 
-面向 **AI Agent / 大模型应用工程师** 的中文面试题库，现收录 **1,734 道问题及参考答案**。内容强调工程边界、失败处理、验证指标和生产实践。
+面向 **AI Agent / 大模型应用工程师** 的中文面试题库，现收录 **1,738 道问题及参考答案**。内容强调工程边界、失败处理、验证指标和生产实践。
 
 题库采用“领域 → 章节 → 子主题 → 稳定题目 ID”结构。旧版十二个大文件保留迁移入口，新增引用请使用 `ARC-001`、`PLAN-001` 等稳定 ID。
 
@@ -17,6 +17,26 @@
 - [稳定 ID 合并映射](docs/reference/id-aliases.md)
 - [术语索引](docs/reference/术语索引.md)
 
+## 导入 Anki
+
+仓库已提供可直接导入的 Anki 卡组：
+
+- [AgentInterview-完整题库.apkg](dist/anki/AgentInterview-完整题库.apkg)：**1,738 张卡片**，包含当前全部面试题。
+- [AgentInterview-核心100.apkg](dist/anki/AgentInterview-核心100.apkg)：**100 张卡片**，适合先建立知识主干。
+
+下载后双击 `.apkg` 文件，在 Anki 中确认导入即可。两份卡组包含重复的稳定题目 ID，请选择其中一份导入，不要同时导入。
+
+卡片正面为问题，背面包含核心思路、可展开的深入拆解、相关知识点和题目来源。标签支持按领域、章节、知识点、面试来源以及 `set::核心100` 筛选。
+
+题库更新后，可安装依赖并重新生成卡组：
+
+```powershell
+python -m pip install genanki markdown
+python scripts/build_anki.py
+```
+
+生成结果位于 `dist/anki/`。卡片以稳定题目 ID 生成唯一标识，重新导入完整包可更新已有笔记，避免重复卡片。
+
 ## 内容导航
 
 <!-- QUESTION_STATS_START -->
@@ -27,14 +47,14 @@
 | 核心能力 | [任务规划与执行](docs/02-capabilities/planning-execution/README.md) | 299 |
 | 核心能力 | [上下文与知识系统](docs/02-capabilities/context-knowledge/README.md) | 197 |
 | 核心能力 | [工具、Skills 与 MCP](docs/02-capabilities/tools-skills-mcp/README.md) | 221 |
-| 核心能力 | [多 Agent 与协作](docs/02-capabilities/multi-agent/README.md) | 34 |
+| 核心能力 | [多 Agent 与协作](docs/02-capabilities/multi-agent/README.md) | 38 |
 | 核心能力 | [RAG](docs/02-capabilities/rag/README.md) | 197 |
 | 生产工程 | [模型能力与成本](docs/03-production/model-capability-cost/README.md) | 123 |
 | 生产工程 | [安全、治理与可观测性](docs/03-production/safety-governance-observability/README.md) | 159 |
 | 生产工程 | [工程落地与平台化](docs/03-production/engineering-platform/README.md) | 197 |
 | 产品专题 | [OpenClaw](docs/04-products/openclaw/README.md) | 56 |
 | 产品专题 | [Claude Code](docs/04-products/claude-code/README.md) | 99 |
-|  | **合计** | **1,734** |
+|  | **合计** | **1,738** |
 <!-- QUESTION_STATS_END -->
 
 ## 仓库结构
