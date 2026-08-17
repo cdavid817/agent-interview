@@ -391,10 +391,10 @@ git commit -m "feat: 新增 OpenCode 运行时与上下文 12 题"
 ```markdown
 # 源码级内部机制
 
-> 所属章节：[Claude Code](README.md)｜本文件共 **35** 题。
+> 所属章节：[Claude Code](README.md)｜本文件共 **18** 题。
 ```
 
-题数先按最终值写，Task 4 结束时文件里只有 18 题，`build_indexes.py` 不校验这一行，`validate.py` 也不校验，Task 5 补齐后即一致。
+写本任务结束时的真实题数 18。Task 5 补完后会把这一行改成 35，保证每次提交的仓库状态自洽。
 
 - [ ] **Step 3: 写 CC-101 … CC-118**
 
@@ -464,7 +464,15 @@ git commit -m "feat: 新增 Claude Code 源码级内部机制 18 题"
 - Consumes: Task 4 产出的 `internals.md`，末尾锚点为 `cc-118`、序号 18
 - Produces: 锚点 `cc-119` … `cc-135`，文件共 35 题
 
-- [ ] **Step 1: 在文件末尾续写 CC-119 … CC-135**
+- [ ] **Step 1: 把文件头的题数从 18 改成 35**
+
+`docs/04-products/claude-code/internals.md` 第 3 行改为：
+
+```markdown
+> 所属章节：[Claude Code](README.md)｜本文件共 **35** 题。
+```
+
+- [ ] **Step 2: 在文件末尾续写 CC-119 … CC-135**
 
 序号从 19 接续。格式同 Task 4 Step 3。对照表：
 
@@ -490,7 +498,7 @@ git commit -m "feat: 新增 Claude Code 源码级内部机制 18 题"
 
 压缩与记忆这一组题最容易与既有题（`context-cache.md`）撞长段落。写作前先读一遍 `docs/04-products/claude-code/context-cache.md`，确保措辞与切入点不同。
 
-- [ ] **Step 2: 验证**
+- [ ] **Step 3: 验证**
 
 ```bash
 python scripts/build_indexes.py && pwsh -File scripts/build_glossary.ps1 && python scripts/validate.py
@@ -500,7 +508,7 @@ Expected: `All checks passed.`，`134  CC  Claude Code`，Total 1798。
 
 若报「答案包含跨题重复长段落」，按提示的两个 ID 定位并改写后写的那一题。
 
-- [ ] **Step 3: 提交**
+- [ ] **Step 4: 提交**
 
 ```bash
 git add docs/04-products/claude-code/internals.md
