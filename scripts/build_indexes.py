@@ -23,6 +23,7 @@ STATS_END = "<!-- QUESTION_STATS_END -->"
 CORE_ALLOCATIONS = {
     "ARC": 10, "TRANS": 8, "PLAN": 12, "CTX": 10, "TOOL": 10, "MULTI": 8,
     "RAG": 12, "MODEL": 8, "GOV": 10, "ENG": 8, "OCLAW": 2, "CC": 2,
+    "OPC": 0,
 }
 
 
@@ -139,11 +140,14 @@ def core_questions() -> str:
     ]
     selected_total = 0
     for chapter in TAXONOMY:
+        allocation = CORE_ALLOCATIONS[chapter["prefix"]]
+        if not allocation:
+            continue
         records: list[tuple[int, str, str, Path]] = []
         for path in question_files(chapter):
             for stable_id, title in questions_in(path):
                 records.append((int(stable_id.rsplit("-", 1)[1]), stable_id, title, path))
-        selected = sorted(records)[:CORE_ALLOCATIONS[chapter["prefix"]]]
+        selected = sorted(records)[:allocation]
         selected_total += len(selected)
         lines.extend([f"## {chapter['title']}", ""])
         for _, stable_id, title, path in selected:

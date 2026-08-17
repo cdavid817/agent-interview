@@ -153,7 +153,7 @@ def validate_questions() -> tuple[list[str], Counter[str], int]:
             if len(related_lines) != 1:
                 errors.append(f"{relative}: {stable_id} 应有且仅有一处相关知识点，实际 {len(related_lines)}")
             if re.search(
-                r"相关知识点.*\b(?:ARC|TRANS|PLAN|CTX|TOOL|MULTI|RAG|MODEL|GOV|ENG|OCLAW|CC)-\d{3}\b",
+                r"相关知识点.*\b(?:ARC|TRANS|PLAN|CTX|TOOL|MULTI|RAG|MODEL|GOV|ENG|OCLAW|CC|OPC)-\d{3}\b",
                 answer,
                 re.IGNORECASE,
             ):
@@ -162,11 +162,14 @@ def validate_questions() -> tuple[list[str], Counter[str], int]:
                 errors.append(f"{relative}: {stable_id} 缺少可验证指标")
             if POSITIONAL_REFERENCE_RE.search(answer):
                 errors.append(f"{relative}: {stable_id} 仍使用旧位置题号引用")
-            if prefix in {"OCLAW", "CC"}:
+            if prefix in {"OCLAW", "CC", "OPC"}:
                 if not re.search(r"核验日期：\d{4}-\d{2}-\d{2}", body):
                     errors.append(f"{relative}: {stable_id} 缺少产品核验日期")
-                if "来源：[官方资料](references.md)" not in body:
-                    errors.append(f"{relative}: {stable_id} 缺少产品官方资料链接")
+                if not any(
+                    f"来源：[{label}](references.md)" in body
+                    for label in ("官方资料", "源码分析")
+                ):
+                    errors.append(f"{relative}: {stable_id} 缺少产品资料链接")
             for paragraph in re.split(r"\n\s*\n", answer):
                 key = re.sub(r"[\s`*_#>|]", "", paragraph.casefold())
                 if len(key) >= 100 and "相关知识点" not in key and "历史别名" not in key:
