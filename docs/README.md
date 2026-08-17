@@ -31,6 +31,7 @@
 
 - [OpenClaw](04-products/openclaw/README.md)
 - [Claude Code](04-products/claude-code/README.md)
+- [OpenCode](04-products/opencode/README.md)
 
 ## 参考
 

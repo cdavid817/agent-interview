@@ -20,6 +20,10 @@ QUESTION_RE = re.compile(
 )
 STATS_START = "<!-- QUESTION_STATS_START -->"
 STATS_END = "<!-- QUESTION_STATS_END -->"
+# 每个章节前缀都必须在此显式登记核心 100 题配额（配额 0 表示不入选）。
+# 下方按硬下标读取而非 .get()，新增章节时会直接 KeyError——这是刻意的：
+# 强制加章节的人做一次配额决策，而不是被静默跳过；改非零配额须从别处等量减，
+# 否则 selected_total != 100 的断言会失败。
 CORE_ALLOCATIONS = {
     "ARC": 10, "TRANS": 8, "PLAN": 12, "CTX": 10, "TOOL": 10, "MULTI": 8,
     "RAG": 12, "MODEL": 8, "GOV": 10, "ENG": 8, "OCLAW": 2, "CC": 2,
