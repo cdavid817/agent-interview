@@ -4,6 +4,8 @@
 
 - [OpenCode 仓库](https://github.com/sst/opencode)
 - [OpenCode 文档](https://opencode.ai/docs/)
+- [OpenCode Session Runtime（CONTEXT.md 仓库内副本）](../../reference/deep-dive/opencode-CONTEXT.md)
+  ※ 项目自己维护的架构文档，MIT 协议，2026-08-20 收录。定义会话运行时术语体系、组件关系与客户端契约。
 
 ## 源码分析资料（非官方）
 

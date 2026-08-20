@@ -16,7 +16,7 @@
 - [重复题候选报告](docs/reference/duplicate-questions.md)
 - [稳定 ID 合并映射](docs/reference/id-aliases.md)
 - [术语索引](docs/reference/术语索引.md)
-- [深度技术资料](docs/reference/deep-dive/README.md)（**非官方**，第三方逆向与源码分析整理，仅供工程参考）
+- [深度技术资料](docs/reference/deep-dive/README.md)（OpenCode 官方架构文档一份 + **非官方**逆向与源码分析两份，性质在目录内逐份标注）
 
 ## 导入 Anki
 
