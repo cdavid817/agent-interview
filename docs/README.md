@@ -31,8 +31,10 @@
 
 - [OpenClaw](04-products/openclaw/README.md)
 - [Claude Code](04-products/claude-code/README.md)
+- [OpenCode](04-products/opencode/README.md)
 
 ## 参考
 
 - [重复题候选报告](reference/duplicate-questions.md)
 - [术语索引](reference/术语索引.md)
+- [深度技术资料](reference/deep-dive/README.md)

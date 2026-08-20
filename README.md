@@ -2,7 +2,7 @@
 
 [![Validate](https://github.com/cdavid817/agent-interview/actions/workflows/validate.yml/badge.svg)](https://github.com/cdavid817/agent-interview/actions/workflows/validate.yml)
 
-面向 **AI Agent / 大模型应用工程师** 的中文面试题库，现收录 **1,738 道问题及参考答案**。内容强调工程边界、失败处理、验证指标和生产实践。
+面向 **AI Agent / 大模型应用工程师** 的中文面试题库，现收录 **1,798 道问题及参考答案**。内容强调工程边界、失败处理、验证指标和生产实践。
 
 题库采用“领域 → 章节 → 子主题 → 稳定题目 ID”结构。旧版十二个大文件保留迁移入口，新增引用请使用 `ARC-001`、`PLAN-001` 等稳定 ID。
 
@@ -16,12 +16,13 @@
 - [重复题候选报告](docs/reference/duplicate-questions.md)
 - [稳定 ID 合并映射](docs/reference/id-aliases.md)
 - [术语索引](docs/reference/术语索引.md)
+- [深度技术资料](docs/reference/deep-dive/README.md)（OpenCode 官方架构文档一份 + **非官方**逆向与源码分析两份，性质在目录内逐份标注）
 
 ## 导入 Anki
 
 仓库已提供可直接导入的 Anki 卡组：
 
-- [AgentInterview-完整题库.apkg](dist/anki/AgentInterview-完整题库.apkg)：**1,738 张卡片**，包含当前全部面试题。
+- [AgentInterview-完整题库.apkg](dist/anki/AgentInterview-完整题库.apkg)：**1,798 张卡片**，包含当前全部面试题。
 - [AgentInterview-核心100.apkg](dist/anki/AgentInterview-核心100.apkg)：**100 张卡片**，适合先建立知识主干。
 
 下载后双击 `.apkg` 文件，在 Anki 中确认导入即可。两份卡组包含重复的稳定题目 ID，请选择其中一份导入，不要同时导入。
@@ -53,8 +54,9 @@ python scripts/build_anki.py
 | 生产工程 | [安全、治理与可观测性](docs/03-production/safety-governance-observability/README.md) | 159 |
 | 生产工程 | [工程落地与平台化](docs/03-production/engineering-platform/README.md) | 197 |
 | 产品专题 | [OpenClaw](docs/04-products/openclaw/README.md) | 56 |
-| 产品专题 | [Claude Code](docs/04-products/claude-code/README.md) | 99 |
-|  | **合计** | **1,738** |
+| 产品专题 | [Claude Code](docs/04-products/claude-code/README.md) | 134 |
+| 产品专题 | [OpenCode](docs/04-products/opencode/README.md) | 25 |
+|  | **合计** | **1,798** |
 <!-- QUESTION_STATS_END -->
 
 ## 仓库结构
@@ -68,8 +70,8 @@ agent-interview/
 │  ├─ 01-foundations/    # Agent 架构、Transformer
 │  ├─ 02-capabilities/   # 规划、上下文、工具、多 Agent、RAG
 │  ├─ 03-production/     # 模型成本、安全治理、工程平台
-│  ├─ 04-products/       # OpenClaw、Claude Code
-│  └─ reference/         # 重复题报告与术语索引
+│  ├─ 04-products/       # OpenClaw、Claude Code、OpenCode
+│  └─ reference/         # 重复题报告、术语索引与深度技术资料
 └─ scripts/              # 迁移、索引生成和结构校验
 ```
 

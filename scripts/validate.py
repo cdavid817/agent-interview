@@ -153,7 +153,7 @@ def validate_questions() -> tuple[list[str], Counter[str], int]:
             if len(related_lines) != 1:
                 errors.append(f"{relative}: {stable_id} 应有且仅有一处相关知识点，实际 {len(related_lines)}")
             if re.search(
-                r"相关知识点.*\b(?:ARC|TRANS|PLAN|CTX|TOOL|MULTI|RAG|MODEL|GOV|ENG|OCLAW|CC)-\d{3}\b",
+                r"相关知识点.*\b(?:ARC|TRANS|PLAN|CTX|TOOL|MULTI|RAG|MODEL|GOV|ENG|OCLAW|CC|OPC)-\d{3}\b",
                 answer,
                 re.IGNORECASE,
             ):
@@ -162,11 +162,14 @@ def validate_questions() -> tuple[list[str], Counter[str], int]:
                 errors.append(f"{relative}: {stable_id} 缺少可验证指标")
             if POSITIONAL_REFERENCE_RE.search(answer):
                 errors.append(f"{relative}: {stable_id} 仍使用旧位置题号引用")
-            if prefix in {"OCLAW", "CC"}:
+            if prefix in {"OCLAW", "CC", "OPC"}:
                 if not re.search(r"核验日期：\d{4}-\d{2}-\d{2}", body):
                     errors.append(f"{relative}: {stable_id} 缺少产品核验日期")
-                if "来源：[官方资料](references.md)" not in body:
-                    errors.append(f"{relative}: {stable_id} 缺少产品官方资料链接")
+                if not any(
+                    f"来源：[{label}](references.md)" in body
+                    for label in ("官方资料", "源码分析")
+                ):
+                    errors.append(f"{relative}: {stable_id} 缺少产品资料链接")
             for paragraph in re.split(r"\n\s*\n", answer):
                 key = re.sub(r"[\s`*_#>|]", "", paragraph.casefold())
                 if len(key) >= 100 and "相关知识点" not in key and "历史别名" not in key:
@@ -221,10 +224,77 @@ def validate_all_markdown_locations() -> list[str]:
     return errors
 
 
+def linked_targets(text: str, base: Path) -> set[Path]:
+    targets = set()
+    for raw_target in LOCAL_LINK_RE.findall(text):
+        target = unquote(raw_target.split("#", 1)[0].strip().strip("<>"))
+        if target:
+            targets.add((base / target).resolve())
+    return targets
+
+
+def validate_navigation_indexes() -> list[str]:
+    """docs/README.md 与各领域 README 都是手工维护的，build_indexes.py 不碰。
+
+    新增 OpenCode 章节时，docs/README.md 的产品专题清单与 docs/04-products/README.md
+    都漏了它，前者到 code review 才发现、后者一路漏到整分支终审。这里要求
+    taxonomy 里每个章节都出现在两处导航中。
+
+    领域名一律从 TAXONOMY 推导，不写死：否则改了 taxonomy 的 area 字段后，
+    小节标题仍在、循环体一条不进，校验会静默失效——那正是最危险的方向。
+    """
+    errors: list[str] = []
+    areas = list(dict.fromkeys(chapter["area"] for chapter in TAXONOMY))
+
+    root_index = DOCS / "README.md"
+    if not root_index.exists():
+        return [f"{root_index.relative_to(ROOT)}: 文件不存在"]
+    text = root_index.read_text(encoding="utf-8-sig")
+    for area in areas:
+        section_match = re.search(
+            rf"^## {re.escape(area)}\s*$([\s\S]*?)(?=^## |\Z)", text, re.MULTILINE
+        )
+        if not section_match:
+            errors.append(f"{root_index.relative_to(ROOT)}: 缺少「{area}」小节，无法确认是否覆盖该领域全部章节")
+            continue
+        targets = linked_targets(section_match.group(1), root_index.parent)
+        for chapter in TAXONOMY:
+            if chapter["area"] != area:
+                continue
+            if (ROOT / chapter["path"] / "README.md").resolve() not in targets:
+                errors.append(
+                    f"{root_index.relative_to(ROOT)}: 「{area}」清单缺少章节 {chapter['title']}"
+                    f"（应链接 {chapter['path']}/README.md）"
+                )
+
+    # 领域 README（如 docs/04-products/README.md）同样要覆盖本领域全部章节
+    area_dirs: dict[Path, str] = {}
+    for chapter in TAXONOMY:
+        area_dirs[(ROOT / chapter["path"]).parent] = chapter["area"]
+    for area_dir, area in sorted(area_dirs.items()):
+        area_index = area_dir / "README.md"
+        if not area_index.exists():
+            errors.append(f"{area_index.relative_to(ROOT)}: 领域索引不存在")
+            continue
+        targets = linked_targets(area_index.read_text(encoding="utf-8-sig"), area_dir)
+        for chapter in TAXONOMY:
+            if chapter["area"] != area:
+                continue
+            if (ROOT / chapter["path"] / "README.md").resolve() not in targets:
+                errors.append(
+                    f"{area_index.relative_to(ROOT)}: 缺少章节 {chapter['title']}"
+                    f"（应链接 {Path(chapter['path']).name}/README.md）"
+                )
+    return errors
+
+
 def validate_local_links() -> list[str]:
     errors: list[str] = []
     paths = [ROOT / "README.md", ROOT / "CONTRIBUTING.md", ROOT / "Agent 名词解释.md", *DOCS.rglob("*.md")]
     for path in paths:
+        # 逐字收录的第三方资料，仓库不维护其正文内链；该目录的 README 是仓库自己写的，仍要校验
+        if path.is_relative_to(DOCS / "reference" / "deep-dive") and path.name != "README.md":
+            continue
         text = path.read_text(encoding="utf-8-sig")
         for raw_target in LOCAL_LINK_RE.findall(text):
             target = unquote(raw_target.split("#", 1)[0].strip().strip("<>"))
@@ -345,6 +415,7 @@ def main() -> int:
     errors.extend(validate_all_markdown_locations())
     errors.extend(validate_aliases())
     errors.extend(validate_local_links())
+    errors.extend(validate_navigation_indexes())
     errors.extend(validate_glossary())
     errors.extend(validate_generated_indexes())
 

@@ -1,6 +1,6 @@
 # 工具、权限与安全
 
-> 所属章节：[Claude Code](README.md)｜本文件共 **28** 题。
+> 所属章节：[Claude Code](README.md)｜本文件共 **27** 题。
 
 <a id="cc-008"></a>
 ### 1. Claude Code 如何决定使用 Read、Grep、Edit、Bash 等工具？

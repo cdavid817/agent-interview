@@ -439,14 +439,23 @@ def add_product_sources(apply: bool, date: str) -> int:
     changed: dict[Path, str] = {}
     count = 0
     for chapter in TAXONOMY:
-        if chapter["prefix"] not in {"OCLAW", "CC"}:
+        if chapter["area"] != "产品专题":
             continue
         directory = ROOT / chapter["path"]
         for path in directory.glob("*.md"):
             text = path.read_text(encoding="utf-8-sig")
+
+            def rewrite(match: re.Match[str]) -> str:
+                # 保留已有来源标签。产品题现有两种来源：官方资料与源码分析（非官方
+                # 逆向/源码整理）。早期版本在这里无条件写死「官方资料」，会把源码
+                # 分析题的出处静默篡改成官方，而 validate.py 只查标签存在、不查真伪。
+                label_match = re.search(r"来源：\[([^\]]+)\]\(references\.md\)", match.group(0))
+                label = label_match.group(1) if label_match else "官方资料"
+                return f"> 核验日期：{date}｜来源：[{label}](references.md)"
+
             updated, replacements = re.subn(
                 r"(?m)^>\s*核验日期：[^\n]*$",
-                lambda match: f"> 核验日期：{date}｜来源：[官方资料](references.md)",
+                rewrite,
                 text,
             )
             if replacements:
