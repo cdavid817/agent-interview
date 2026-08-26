@@ -10,5 +10,6 @@
   {"area": "生产工程", "title": "安全、治理与可观测性", "prefix": "GOV", "path": "docs/03-production/safety-governance-observability"},
   {"area": "生产工程", "title": "工程落地与平台化", "prefix": "ENG", "path": "docs/03-production/engineering-platform"},
   {"area": "产品专题", "title": "OpenClaw", "prefix": "OCLAW", "path": "docs/04-products/openclaw"},
-  {"area": "产品专题", "title": "Claude Code", "prefix": "CC", "path": "docs/04-products/claude-code"}
+  {"area": "产品专题", "title": "Claude Code", "prefix": "CC", "path": "docs/04-products/claude-code"},
+  {"area": "产品专题", "title": "OpenCode", "prefix": "OPC", "path": "docs/04-products/opencode"}
 ]

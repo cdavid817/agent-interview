@@ -23,3 +23,8 @@
 - [Completion Goal](https://code.claude.com/docs/en/goal)
 - [Advisor Tool](https://code.claude.com/docs/en/advisor)
 - [并行 Agents 与 Agent Teams](https://code.claude.com/docs/en/agents)
+
+## 源码分析资料（非官方）
+
+- [Claude Code 源码技术文档](../../reference/deep-dive/claude-code-源码技术文档.md)
+  ※ 基于逆向与泄露源码整理，与官方实现可能不一致，仅供工程参考。
