@@ -387,8 +387,6 @@ Workflow Engine通过**持久化状态机、Event、Checkpoint、幂等和租约
 
 每轮保存Attempt、诊断证据、变更、验证结果和成本，离线评估修复成功率、误修率、平均循环数及净完成率提升。只有在回归集和故障注入中证明安全有效的修复策略才能上线。
 
-**历史别名：** `MODEL-011`。
-
 **相关知识点：** Reflexion、Verifier、Failure Taxonomy、预算控制、振荡检测、幂等性、检查点、补偿事务、人工接管。
 <a id="gov-149"></a>
 ### 27. 如何识别低质量Chunk？
@@ -423,8 +421,6 @@ Workflow Engine通过**持久化状态机、Event、Checkpoint、幂等和租约
 
 执行中监控资源和子进程，超限终止；执行后校验副作用，并记录原始与规范化命令、身份、目录、策略、审批和结果。策略需经红队测试。
 
-**历史别名：** `TOOL-064`。
-
 **相关知识点：** Shell AST、Allowlist、命令注入、路径规范化、沙箱、系统调用过滤、MAC、资源配额、Dry Run、Hard Deny。
 <a id="gov-164"></a>
 > **题目合并：** `GOV-164` 已并入 [TOOL-068 · Agent如何实现命令沙箱隔离？](../../02-capabilities/tools-skills-mcp/sandbox-security-1.md#tool-068)。
@@ -441,8 +437,6 @@ Workflow Engine通过**持久化状态机、Event、Checkpoint、幂等和租约
 5. 修改前生成清单和Diff，批量操作需审批；修改后遍历工作区并比较快照，发现越界立即停止和回滚。
 
 审计记录TaskID、主体、规范化路径、文件标识、策略版本、Diff和结果，测试覆盖目录穿越、链接交换、大小写、并发及挂载绕过。**边界必须在内核层成立，即使模型或应用校验失效也无法越权写入**。
-
-**历史别名：** `TOOL-069`。
 
 **相关知识点：** 路径规范化、Allowlist、符号链接、TOCTOU、目录句柄、只读挂载、文件系统沙箱、Hard Deny、快照。
 <a id="gov-166"></a>

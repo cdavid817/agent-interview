@@ -338,15 +338,8 @@ def merge_duplicates(apply: bool) -> tuple[int, int]:
 
     for canonical_id, items in canonical_aliases.items():
         canonical = next(question for question in questions if question.stable_id == canonical_id)
-        alias_text = "、".join(f"`{item.stable_id}`" for item in sorted(items, key=lambda item: item.stable_id))
-        body = canonical.body
-        marker = f"**历史别名：** {alias_text}。"
-        if marker not in body:
-            related = RELATED_RE.search(body)
-            if related:
-                body = body[:related.start()].rstrip() + "\n\n" + marker + "\n\n" + body[related.start():]
-            else:
-                body = body.rstrip() + "\n\n" + marker
+        # 历史别名不再展示在正文中，仅保留锚点与 id-aliases.md 映射；顺带清理旧标记
+        body = re.sub(r"(?m)^\*\*历史别名：\*\*[^\n]*\n\n?", "", canonical.body).rstrip()
         original = canonical.path.read_text(encoding="utf-8-sig")[canonical.block_start:canonical.block_end]
         heading_end = original.find(canonical.body)
         updated = original[:heading_end] + body + "\n\n"
@@ -395,18 +388,8 @@ def merge_named_aliases(apply: bool) -> int:
         )
         replacements_by_path[alias.path].append((alias.block_start, alias.block_end, replacement))
 
-        body = canonical.body
-        history = re.search(r"(?m)^\*\*历史别名：\*\*\s*(.+?)。\s*$", body)
-        if history:
-            replacement_history = history.group(0).rstrip("。") + f"、`{alias.stable_id}`。"
-            body = body[:history.start()] + replacement_history + body[history.end():]
-        else:
-            marker = f"**历史别名：** `{alias.stable_id}`。"
-            related = RELATED_RE.search(body)
-            if related:
-                body = body[:related.start()].rstrip() + "\n\n" + marker + "\n\n" + body[related.start():]
-            else:
-                body = body.rstrip() + "\n\n" + marker
+        # 历史别名不再展示在正文中，仅保留锚点与 id-aliases.md 映射；顺带清理旧标记
+        body = re.sub(r"(?m)^\*\*历史别名：\*\*[^\n]*\n\n?", "", canonical.body).rstrip()
         text = canonical.path.read_text(encoding="utf-8-sig")
         original = text[canonical.block_start:canonical.block_end]
         heading_end = original.find(canonical.body)

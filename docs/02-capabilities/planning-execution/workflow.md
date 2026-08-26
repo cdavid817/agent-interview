@@ -560,8 +560,6 @@
 
 4. 超时、取消、审批、Retry和Replan建模为事件。恢复时加载快照、回放并核对副作用；迟到结果按版本和Fencing Token拒绝。检查不可达状态、非法环、终态外迁和死锁，测试重复消息与并发迁移。
 
-**历史别名：** `PLAN-258`。
-
 **相关知识点：** 有限状态机、层次状态机、Guard、Event、CAS、Outbox、Event Sourcing、Fencing Token。
 <a id="plan-224"></a>
 ### 27. Skill 与 Prompt 有什么区别？

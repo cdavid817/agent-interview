@@ -239,8 +239,6 @@
 
 3. 生产中由BM25与Bi-Encoder产生Top-K，融合后由Cross-Encoder选Top-N；可将后者蒸馏给前者。评估看Recall@K、MRR、nDCG、Precision@N、正确率、P95和成本。召回缺失时精排无法补救；头部噪声高时，改进Cross-Encoder。**架构选择由规模、SLA和质量下限决定。**
 
-**历史别名：** `RAG-110`。
-
 **相关知识点：** Bi-Encoder、Cross-Encoder、对比学习、ANN、知识蒸馏、Recall@K、Precision@N、两阶段检索。
 <a id="rag-081"></a>
 ### 17. Query Rewrite如何提升召回率？

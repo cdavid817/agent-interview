@@ -359,8 +359,6 @@ Code Review Skill应采用**确定性检查打底、LLM语义审查补充、证�
 | Suggestion | 可维护性改进 | 非阻塞 |
 | Question | 证据不足 | 补充上下文 |
 
-**历史别名：** `TOOL-182`。
-
 **相关知识点：** Diff Analysis、静态分析、语义审查、证据定位、风险分级、Code Owner、误报率、严重漏检、困难负样本。
 <a id="tool-215"></a>
 ### 19. 如何根据代码上下文提升Skill匹配准确率？

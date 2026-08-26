@@ -59,8 +59,6 @@
 
 3. 两路设置独立Top-K、超时和熔断，单路故障可降级；Top-N受Token预算和阈值限制。离线评测单路Recall@K、融合增益、MRR及NDCG，线上监控重合率、边际贡献、无结果率、P95、成本和任务成功率，并用消融实验避免无效复杂度。
 
-**历史别名：** `CTX-110`、`CTX-136`。
-
 **相关知识点：** BM25、Embedding、ANN、Hybrid Retrieval、RRF、Score Normalization、Cross Encoder、动态权重、消融实验、NDCG。
 <a id="ctx-110"></a>
 > **题目合并：** `CTX-110` 已并入 [CTX-085 · 向量检索和关键词检索如何结合？](#ctx-085)。

@@ -19,8 +19,6 @@ Prompt Cache复用**相同输入前缀的模型计算结果**，用于减少重�
 | Semantic Cache | 语义相似请求 | 最终结果 |
 | Response Cache | 完全相同请求 | 最终响应 |
 
-**历史别名：** `CTX-187`。
-
 **相关知识点：** Prefill、前缀缓存、KV Cache、缓存键、Singleflight、TTL、LRU、缓存击穿、租户隔离、版本失效。
 <a id="model-023"></a>
 ### 2. Prompt压缩有哪些常见方案？
@@ -39,8 +37,6 @@ Prompt压缩应删除**冗余、低相关和可外部引用的信息**，保护�
 | 抽取式 | 事实保真 | 连贯性较弱 |
 | 生成式摘要 | 压缩率高 | 遗漏与幻觉 |
 | RAG按需注入 | 动态相关 | 召回失败 |
-
-**历史别名：** `MODEL-116`。
 
 **相关知识点：** Prompt压缩、Extractive、Abstractive、动态Top-K、Rerank、结构化状态、Prompt Cache、压缩回归。
 <a id="model-025"></a>
@@ -66,8 +62,6 @@ Prompt压缩应删除**冗余、低相关和可外部引用的信息**，保护�
 | 模型计算 | Prefill Token/s、Decode TPS |
 | 显存 | 权重、KV Cache、批量 |
 | 外部供应商 | RPM、TPM、区域配额 |
-
-**历史别名：** `MODEL-127`。
 
 **相关知识点：** 容量规划、Little定律、Prefill、Decode、KV Cache、Admission Control、N+1、预测扩容、混合压测。
 <a id="model-077"></a>
@@ -147,8 +141,6 @@ Semantic Cache应以**业务等价而非文本相似**为标准，通过复合�
 | 向量召回 | 找语义相近候选 |
 | 业务校验 | 排除实体、时间等不等价 |
 | TTL/事件失效 | 控制陈旧结果 |
-
-**历史别名：** `CTX-188`、`MODEL-025`。
 
 **相关知识点：** Semantic Cache、Embedding、复合Cache Key、阈值校准、Cross-Encoder、TTL、事件失效、Singleflight。
 <a id="model-127"></a>
