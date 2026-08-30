@@ -2,13 +2,14 @@
 
 > PromptOps、Coding Agent、代码检索、沙箱测试、多模态和产品指标。
 
-本章共 **227** 题。题目使用 `ENG-NNN` 稳定 ID，移动文件不会改变引用。
+本章共 **257** 题。题目使用 `ENG-NNN` 稳定 ID，移动文件不会改变引用。
 
 ## 子主题
 
 | 子主题 | 题数 |
 |---|---:|
 | [代码理解与检索](code-search.md) | 33 |
+| [Coding Agent 沙箱运维与验证](coding-agent-sandbox-ops.md) | 30 |
 | [Coding Agent 沙箱与执行隔离](coding-agent-sandbox.md) | 30 |
 | [Coding Agent 架构与执行](coding-agent.md) | 20 |
 | [多模态 Agent](multimodal.md) | 19 |
