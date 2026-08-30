@@ -206,7 +206,7 @@ Expected: `All checks passed.`，统计表 `227  ENG  工程落地与平台化`�
 - [ ] **Step 4: 提交**
 
 ```bash
-git add docs/03-production/engineering-platform/
+git add README.md docs/03-production/engineering-platform/
 git commit -m "feat: 新增 Coding Agent 沙箱与执行隔离 30 题（ENG-203…232）"
 ```
 
@@ -284,7 +284,7 @@ Expected: `All checks passed.`，`257  ENG  工程落地与平台化`，Total 18
 - [ ] **Step 4: 提交**
 
 ```bash
-git add docs/03-production/engineering-platform/
+git add README.md docs/03-production/engineering-platform/
 git commit -m "feat: 新增 Coding Agent 沙箱运维与验证 30 题（ENG-233…262）"
 ```
 
@@ -366,7 +366,7 @@ Expected: `All checks passed.`，`189  GOV  安全、治理与可观测性`，To
 - [ ] **Step 4: 提交**
 
 ```bash
-git add docs/03-production/safety-governance-observability/
+git add README.md docs/03-production/safety-governance-observability/
 git commit -m "feat: 新增 Coding Agent 可观测性埋点与链路 30 题（GOV-192…221）"
 ```
 
@@ -444,7 +444,7 @@ Expected: `All checks passed.`，`219  GOV  安全、治理与可观测性`，To
 - [ ] **Step 4: 提交**
 
 ```bash
-git add docs/03-production/safety-governance-observability/
+git add README.md docs/03-production/safety-governance-observability/
 git commit -m "feat: 新增 Coding Agent 观测指标与归因治理 30 题（GOV-222…251）"
 ```
 
@@ -523,7 +523,7 @@ Expected: `All checks passed.`，`249  GOV  安全、治理与可观测性`，To
 - [ ] **Step 4: 提交**
 
 ```bash
-git add docs/03-production/safety-governance-observability/
+git add README.md docs/03-production/safety-governance-observability/
 git commit -m "feat: 新增 Coding Agent 评测基准与评测集 30 题（GOV-252…281）"
 ```
 
@@ -601,7 +601,7 @@ Expected: `All checks passed.`，`279  GOV  安全、治理与可观测性`，To
 - [ ] **Step 4: 提交**
 
 ```bash
-git add docs/03-production/safety-governance-observability/
+git add README.md docs/03-production/safety-governance-observability/
 git commit -m "feat: 新增 Coding Agent 线上评测指标与流程 30 题（GOV-282…311）"
 ```
 
@@ -669,7 +669,7 @@ Expected: `All checks passed.`，`294  GOV  安全、治理与可观测性`，To
 - [ ] **Step 4: 提交**
 
 ```bash
-git add docs/03-production/safety-governance-observability/
+git add README.md docs/03-production/safety-governance-observability/
 git commit -m "feat: 新增 DeepEval 评测框架 15 题（GOV-312…326）"
 ```
 
@@ -754,7 +754,7 @@ Expected: `All checks passed.`，`324  GOV  安全、治理与可观测性`，To
 - [ ] **Step 4: 提交**
 
 ```bash
-git add docs/03-production/safety-governance-observability/ docs/reference/术语索引.md
+git add README.md docs/03-production/safety-governance-observability/ docs/reference/术语索引.md
 git commit -m "feat: 新增 OpenTelemetry 核心概念与数据模型 30 题（GOV-327…356）"
 ```
 
@@ -834,7 +834,7 @@ Expected: `All checks passed.`，`354  GOV  安全、治理与可观测性`，To
 - [ ] **Step 4: 提交**
 
 ```bash
-git add docs/03-production/safety-governance-observability/
+git add README.md docs/03-production/safety-governance-observability/
 git commit -m "feat: 新增 OpenTelemetry Collector 采样与落地 30 题（GOV-357…386）"
 ```
 
