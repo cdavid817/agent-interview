@@ -112,6 +112,8 @@
 | 严重幻觉率 | 高影响错误答案比例 |
 | 拒答正确率 | 无证据场景正确拒答比例 |
 
+**历史别名：** `ENG-190`。
+
 **相关知识点：** Atomic Claim、Grounding、Faithfulness、Citation Precision/Recall、严重度加权、Judge校准、Bootstrap、拒答率。
 <a id="gov-024"></a>
 ### 7. 如何降低Agent幻觉和错误调用工具的问题？
@@ -123,6 +125,8 @@
 3. Tool Registry按任务和权限只注入必要工具，执行器再校验ToolID、版本和能力。参数使用类型、枚举、范围、跨字段约束及来源；关键值缺失时澄清。
 4. Policy以RBAC/ABAC检查主体、资源、Action和风险；写入、删除、资金和生产操作要求Dry Run、HITL、幂等及回滚。未知状态先查询。
 5. 工具响应使用结构化Envelope，模型不得把错误或空结果写成成功；Validator核验后置条件。记录各版本、参数来源、Policy和回执，评估幻觉率、选Tool准确率、参数通过率及重复调用率。
+
+**历史别名：** `ARC-041`。
 
 **相关知识点：** Grounding、Claim Verification、Tool Registry、参数来源、Policy Engine、ABAC、HITL、幂等、Postcondition、Tool Hallucination。
 <a id="gov-037"></a>

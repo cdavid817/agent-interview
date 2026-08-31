@@ -47,7 +47,7 @@ OpenCode 是一个**开源的 AI 编码代理（AI coding agent）**。它既是
 OpenCode 的核心定位可以概括为三层：
 
 1. **一个 AI 代理运行时**：负责把用户的提示（prompt）与代码库上下文组装成符合各家 Provider 规范的请求，流式接收模型响应，并将模型发出的工具调用安全地执行、有界地投影回会话历史，再驱动下一轮推理，直至任务收敛。
-2. **一个可嵌入的会话引擎**：通过严格的 API 契约分层（Schema → Protocol → Server → Client → SDK），同一套领域逻辑既能以独立 HTTP 服务器形式运行，也能以**同进程嵌入式主机（Embedded OpenCode**）形式被任意 TypeScript/JavaScript 程序直接调度，二者共享完全相同的路由、中间件、编解码与错误边界。
+2. **一个可嵌入的会话引擎**：通过严格的 API 契约分层（Schema → Protocol → Server → Client → SDK），同一套领域逻辑既能以独立 HTTP 服务器形式运行，也能以**同进程嵌入式主机（Embedded OpenCode）**形式被任意 TypeScript/JavaScript 程序直接调度，二者共享完全相同的路由、中间件、编解码与错误边界。
 3. **一组围绕代理的云端产品**：包括账号与计费控制台（Console）、OpenAI 兼容的 Zen 网关、可自托管的会话分享后端（Enterprise）、统计站点（Stats），以及桌面/网页客户端。
 
 ### 1.2 技术栈一览
@@ -2087,7 +2087,7 @@ runner 组装请求时：`system: [agent.info?.system, system.baseline].filter(n
 
 ### 12.1 持久 inbox 的设计
 
-V2 运行时的第一性原则是「持久准入与模型执行分离」。一条用户提示被接受进 Session，并不意味着它立即对模型可见。相反，它先被**持久地准入（admit**）到一张 `session_input` inbox 表，获得一个持久的准入序列号（`admitted_seq`），随后由进程本地的 runner 在**安全提供者回合边界**把它**晋升（promote**）为模型可见的用户消息。
+V2 运行时的第一性原则是「持久准入与模型执行分离」。一条用户提示被接受进 Session，并不意味着它立即对模型可见。相反，它先被**持久地准入（admit）**到一张 `session_input` inbox 表，获得一个持久的准入序列号（`admitted_seq`），随后由进程本地的 runner 在**安全提供者回合边界**把它**晋升（promote）**为模型可见的用户消息。
 
 这种分离带来三个关键能力：
 

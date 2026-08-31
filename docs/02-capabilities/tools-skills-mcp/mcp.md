@@ -167,6 +167,8 @@ Deadline、Trace、终端用户身份和幂等键不是所有MCP请求的固定�
 
 两者不是替代关系，企业仍需实现 **权限、审批、业务校验、限流、超时、审计和注入防护**。
 
+**历史别名：** `PLAN-128`、`TOOL-014`。
+
 **验证指标：** 工具选择准确率、调用成功率、参数错误率、P95 延迟和失败恢复率。
 
 **相关知识点：** Function Calling、MCP Host、MCP Client、MCP Server、Tool Discovery、JSON Schema、Tool Executor。
@@ -333,6 +335,8 @@ MCP Tool 权限应贯穿 **发现、调用前决策、Server 最终授权和审�
 
 权限决策还应设置短 TTL，并将策略版本写入调用上下文，确保回放时能够解释当时为何放行或拒绝。
 
+**历史别名：** `GOV-162`。
+
 **相关知识点：** MCP权限、RBAC、ABAC、Policy Engine、短期令牌、资源级授权、审批令牌、审计。
 <a id="tool-092"></a>
 ### 17. 如何设计沙箱与外部工具调用（Tool Calling）之间的安全通信协议？
@@ -432,6 +436,8 @@ Spring AI仍需补充评测、安全、审批和可靠工作流；统一API不�
 
 本地调用需求适合Tool Calling；跨应用连接多数据源或构建插件生态时，MCP更能减少重复适配。
 
+**历史别名：** `ENG-131`。
+
 **相关知识点：** Function Calling、JSON Schema、MCP Client、MCP Server、JSON-RPC、能力协商、tools/list、tools/call、Host安全边界。
 <a id="tool-117"></a>
 ### 22. MCP与Tool Calling如何融合？
@@ -451,5 +457,7 @@ Spring AI仍需补充评测、安全、审批和可靠工作流；统一API不�
 | 执行层 | 业务服务 | 最终资源级校验 |
 
 通过Schema兼容、恶意Server、权限矩阵和链路追踪测试，避免把互通误认为互信。
+
+**历史别名：** `GOV-054`。
 
 **相关知识点：** MCP Host、MCP Client、Tool Calling、tools/list、tools/call、Schema转换、能力过滤、Trace映射、零信任。
