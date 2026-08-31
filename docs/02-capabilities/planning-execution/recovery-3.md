@@ -220,6 +220,8 @@
 
 3. 采用版本号、校验和与CAS防止并发覆盖，大对象放Artifact Store，快照只存引用；敏感字段加密并设保留期限。恢复时验证完整性、租约、权限和依赖兼容性，再从首个未确认节点继续。测试覆盖写入中断、版本迁移、重复恢复、状态未知及快照损坏。
 
+**历史别名：** `PLAN-036`。
+
 **相关知识点：** Checkpoint、稳定恢复点、持久化状态机、CAS、Tool Receipt、Artifact Store、Durable Execution、Event Sourcing、版本迁移。
 <a id="plan-265"></a>
 ### 12. Workflow 如何断点续跑？
@@ -238,6 +240,8 @@
 | WAITING | 重新注册等待条件 | 期限未失效 |
 
 3. 恢复前校验工作流、Prompt、工具Schema、权限和Artifact版本；不兼容时显式迁移或转人工。恢复后重新计算就绪节点，避免调度已完成分支。测试注入节点前后崩溃、重复消息、租约争抢和状态损坏，并验证结果与副作用不重复。
+
+**历史别名：** `TOOL-173`。
 
 **相关知识点：** Workflow、断点续跑、Checkpoint、节点状态、租约、CAS、幂等节点、Durable Execution、状态迁移、故障注入。
 

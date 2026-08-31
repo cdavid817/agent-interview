@@ -3971,7 +3971,7 @@ startKeychainPrefetch() // macOS 钥匙串预取（OAuth + 旧 API key）
 
 ### 78.5 queryLoop 的不变量与状态转换
 
-第 13 章描述了 queryLoop 单次迭代的步骤，但更深层的理解在于把握其**不变量（invariants**）与**状态转换规则**。queryLoop 是一个异步生成器，其核心难度在于：流式接收、工具并发执行、错误恢复三者交织，且必须保持消息历史的 API 一致性。下面首先看 tool_use/tool_result 配对不变量。
+第 13 章描述了 queryLoop 单次迭代的步骤，但更深层的理解在于把握其**不变量（invariants）**与**状态转换规则**。queryLoop 是一个异步生成器，其核心难度在于：流式接收、工具并发执行、错误恢复三者交织，且必须保持消息历史的 API 一致性。下面首先看 tool_use/tool_result 配对不变量。
 
 ### 78.6 tool_use / tool_result 配对不变量
 
@@ -6278,7 +6278,7 @@ bones 放在最后，意味着即使旧格式 config 里残留了骨头字段（
 
 ## 第 106 章 自研 Ink 终端协议与状态管理
 
-第 63 章概述了自研 Ink，但其**终端协议层（termio**）的深度值得剖析。标准 Ink 只用基础 ANSI，而 Claude Code 的 termio 层实现了完整的终端协议栈，这是它在终端中实现复杂 UI（选区、搜索、鼠标、alt screen）的基础。
+第 63 章概述了自研 Ink，但其**终端协议层（termio）**的深度值得剖析。标准 Ink 只用基础 ANSI，而 Claude Code 的 termio 层实现了完整的终端协议栈，这是它在终端中实现复杂 UI（选区、搜索、鼠标、alt screen）的基础。
 
 ### 106.1 CSI/DEC/OSC/SGR 分词
 

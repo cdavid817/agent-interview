@@ -38,6 +38,8 @@ Orchestrator应是**无状态或可重建控制器，权威状态持久化在外
 | MessageID | 单条消息 | 重投识别 |
 | IdempotencyKey | 一次业务操作 | 防重复副作用 |
 
+**历史别名：** `GOV-042`。
+
 **相关知识点：** W3C Trace Context、TraceID、SpanID、Span Link、TaskID、CorrelationID、异步追踪、尾部采样、孤儿Span。
 <a id="multi-034"></a>
 ### 3. 多Agent系统如何进行链路追踪？
@@ -55,5 +57,7 @@ Orchestrator应是**无状态或可重建控制器，权威状态持久化在外
 | Log | 具体发生什么 | 事件定位 |
 | Metric | 是否系统性异常 | 告警与容量 |
 | Audit | 谁执行了什么 | 合规追责 |
+
+**历史别名：** `GOV-144`。
 
 **相关知识点：** OpenTelemetry、Instrumentation、OTel Collector、W3C Trace Context、Span Link、Exemplar、尾部采样、Agent语义埋点。

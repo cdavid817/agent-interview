@@ -225,6 +225,8 @@ Reflection适合在**错误代价高、结果可评审、首次输出不确定�
 | 成本结构 | GPU与运维固定成本 | 按量与配额 |
 | 运维责任 | 高 | 较低 |
 
+**历史别名：** `MODEL-044`。
+
 **相关知识点：** Hybrid Deployment、Model Gateway、TCO、数据驻留、量化、Continuous Batching、许可证、故障域。
 <a id="model-131"></a>
 > **题目合并：** `MODEL-131` 已并入 [MODEL-046 · 如何设计企业级统一模型接入层（Model Gateway）？](routing-fallback.md#model-046)。
