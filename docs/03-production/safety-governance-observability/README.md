@@ -2,13 +2,14 @@
 
 > 幻觉治理、安全权限、评测、全链路观测、审计和事件响应。
 
-本章共 **189** 题。题目使用 `GOV-NNN` 稳定 ID，移动文件不会改变引用。
+本章共 **219** 题。题目使用 `GOV-NNN` 稳定 ID，移动文件不会改变引用。
 
 ## 子主题
 
 | 子主题 | 题数 |
 |---|---:|
 | [权限、隐私与合规](access-privacy.md) | 25 |
+| [Coding Agent 可观测性：指标、归因与治理](coding-agent-observability-metrics.md) | 30 |
 | [Coding Agent 可观测性：埋点与链路](coding-agent-observability.md) | 30 |
 | [评测与质量治理](evaluation.md) | 35 |
 | [治理体系综合](governance.md) | 30 |

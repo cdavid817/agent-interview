@@ -2,7 +2,7 @@
 
 [![Validate](https://github.com/cdavid817/agent-interview/actions/workflows/validate.yml/badge.svg)](https://github.com/cdavid817/agent-interview/actions/workflows/validate.yml)
 
-面向 **AI Agent / 大模型应用工程师** 的中文面试题库，现收录 **1,888 道问题及参考答案**。内容强调工程边界、失败处理、验证指标和生产实践。
+面向 **AI Agent / 大模型应用工程师** 的中文面试题库，现收录 **1,918 道问题及参考答案**。内容强调工程边界、失败处理、验证指标和生产实践。
 
 题库采用“领域 → 章节 → 子主题 → 稳定题目 ID”结构。旧版十二个大文件保留迁移入口，新增引用请使用 `ARC-001`、`PLAN-001` 等稳定 ID。
 
@@ -51,12 +51,12 @@ python scripts/build_anki.py
 | 核心能力 | [多 Agent 与协作](docs/02-capabilities/multi-agent/README.md) | 38 |
 | 核心能力 | [RAG](docs/02-capabilities/rag/README.md) | 197 |
 | 生产工程 | [模型能力与成本](docs/03-production/model-capability-cost/README.md) | 123 |
-| 生产工程 | [安全、治理与可观测性](docs/03-production/safety-governance-observability/README.md) | 189 |
+| 生产工程 | [安全、治理与可观测性](docs/03-production/safety-governance-observability/README.md) | 219 |
 | 生产工程 | [工程落地与平台化](docs/03-production/engineering-platform/README.md) | 257 |
 | 产品专题 | [OpenClaw](docs/04-products/openclaw/README.md) | 56 |
 | 产品专题 | [Claude Code](docs/04-products/claude-code/README.md) | 134 |
 | 产品专题 | [OpenCode](docs/04-products/opencode/README.md) | 25 |
-|  | **合计** | **1,888** |
+|  | **合计** | **1,918** |
 <!-- QUESTION_STATS_END -->
 
 ## 仓库结构
