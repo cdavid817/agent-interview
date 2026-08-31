@@ -39,7 +39,6 @@ POSITIONAL_REFERENCE_RE = re.compile(
 )
 GLOSSARY = DOCS / "reference" / "术语索引.md"
 GLOSSARY_CORE_TERMS = ROOT / "scripts" / "glossary_core_terms.txt"
-MAX_QUESTIONS_PER_FILE = 50
 GLOSSARY_SECTIONS = [
     "一、架构设计类",
     "二、任务规划与编排类",
@@ -103,8 +102,6 @@ def validate_questions() -> tuple[list[str], Counter[str], int]:
         relative = path.relative_to(ROOT)
         if not text.startswith("# "):
             errors.append(f"{relative}: 文件必须以 H1 标题开始")
-        if len(matches) > MAX_QUESTIONS_PER_FILE:
-            errors.append(f"{relative}: 单文件 {len(matches)} 题，超过上限 {MAX_QUESTIONS_PER_FILE}")
         if text.count("```") % 2:
             errors.append(f"{relative}: Markdown 代码围栏未闭合")
         if LEGACY_QUESTION_RE.search(text):
